@@ -2,5 +2,5 @@
 // import { } from './pasta/arquivo'
 
 
-// AQUI VAI A MANUPULAÇÃO DE DOM DA PAGINA DE LOGIN
+// AQUI VAI A MANIPULAÇÃO DE DOM DA PAGINA DE LOGIN
 
