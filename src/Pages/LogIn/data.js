@@ -1,6 +1,3 @@
-//IMPORTAR AS COISAS aqui
-// import { } from './pasta/arquivo'
-
 //TUDO RELACIONADO A PAGINA DE LOGIN E CADASTRO VAI AQUI
 // CAMPO DE LOGIN COM OUTRO E-MAIL
 // LOGIN COM O GOOGLE
@@ -13,14 +10,12 @@ firebase.auth().createUserWithEmailAndPassword(email.value, senha.value)
   .then((userCredential) => {
   // Signed in
   const user = userCredential.user;
-  console.log('Cadastro realizado com sucesso', user);
-  // ...
+  //console.log('Cadastro realizado com sucesso', user);
 })
 .catch((error) => {
   const errorCode = error.code;
   const errorMessage = error.message;
-  // ..
-  console.log('Erro no cadastro', errorCode, errorMessage);
+  //console.log('Erro no cadastro', errorCode, errorMessage);
 });
 
 /////////////////////// LOGIN DE USUÁRIOS EXISTENTES/////////////////////////////
@@ -28,8 +23,8 @@ firebase.auth().signInWithEmailAndPassword(email, senha)
    .then((userCredential) => {
      // Signed in
      const user = userCredential.user;
-     alert(`Login realizado`, user);
-     // ...
+     alert(`Usuário conectado`, user);
+     //window.location.replace('nome-da-pagina.html')
    })
    .catch((error) => {
      const errorCode = error.code;
