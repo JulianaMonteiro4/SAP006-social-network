@@ -20,11 +20,6 @@ export const loginMainScreen = () => {
                 <input class="text-field" id="password" type="password" value="password" placeholder="Insira sua senha">
                 <button class="btn" type="button" id="btn-login">Entrar</button>
                 <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a>
-                <div class="social-media">
-                    <a href="#">
-                        <img src="img/icone-google.png" alt="Google">
-                    </a>
-                </div>
                 <button class="btn btn-google" type="button" id="btn-login-google">Google</button>
                 <p class="phrase-google">Login com o Google</p>
             </form>
