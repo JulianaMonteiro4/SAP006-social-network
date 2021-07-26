@@ -19,18 +19,37 @@ body{
     justify-content: center;
 }
 
+
+.l-container-grid {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 4fr;
+    grid-template-rows: 0.75fr 3fr 0.25fr;
+    grid-template-areas: 
+    "header-grid"
+    "container-login"
+    "footer";
+}
+
+
+.header-grid {
+   grid-area: header-grid;
+}
+
+
 .phrase{
     font-size: 20px;
     text-align: center;
 }
 
 .container-login{
+    grid-area: container-login;
     background-color: rgba(255, 255, 255, 0.589);
     box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.651);
     width: 70%;
-    height: 20%;
-    display: inline-block;
+    height: 65vh;
     margin: 10px;
+    margin-left: 60px;
 }
 
 #root {
@@ -91,39 +110,26 @@ body{
     font-size: 13px;
 }
 
-
 .footer {
+    grid-area: footer;
     height: 40px;
     font-size: 20px;
     background-color: #fe622ead;
     padding-top: 6px;
+    
+   
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
 }
 
 
-/*.l-grid {
-    display: grid;
-    height: 100vh;
-    grid-template-columns: 4fr;
-    grid-template-rows: 0.5fr 0.25fr 3fr 0.25fr;
-    grid-template-areas: 
-    "main-title"
-    "phrase"
-    "login"
-    "footer";
-    grid-gap: 0.3rem;
-}
 
 
-.main-title {
-   grid-area: main-title;
-}
 
-.phrase {
-    grid-area: phrase;
 
-}
 
-.login {
-    grid-area: login;
 
-}
+

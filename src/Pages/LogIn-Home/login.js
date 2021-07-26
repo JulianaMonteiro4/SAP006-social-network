@@ -9,15 +9,16 @@ export const loginMainScreen = () => {
     loginPage.innerHTML = `  */
 
     document.querySelector('#root').innerHTML = `
-        <header>  
+    <div class="l-container-grid">
+        <header class="header-grid">  
             <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
             <span class="phrase"> Aqui, onde até os memes socializam e você não. </span>
         </header>
         <section id="login" class="container-login">
             <h2 class="login">Login</h2>
             <form class="container-form" id="form-login">
-                <input class="text-field" id="email" type="e-mail" value="email" placeholder="Insira seu e-mail">
-                <input class="text-field" id="password" type="password" value="password" placeholder="Insira sua senha">
+                <input class="text-field" id="email" type="e-mail" value="email" placeholder="Insira seu e-mail"/> <i class="far fa-envelope"></i>
+                <input class="text-field" id="password" type="password" value="password" placeholder="Insira sua senha"/> <i class="fas fa-unlock-alt"></i>
                 <button class="btn" type="button" id="btn-login">Entrar</button>
                 <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a>
                 <button class="btn btn-google" type="button" id="btn-login-google">Google</button>
@@ -28,6 +29,7 @@ export const loginMainScreen = () => {
         <footer class="footer">
             <p> Desenvolvido por <a href="#"> Bianca </a>, <a href="#"> Juliana </a> e <a href="#"> Paloma</a>
         </footer>
+    </div>
     `;
 
 
