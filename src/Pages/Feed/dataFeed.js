@@ -7,7 +7,7 @@
 
 
 
-/*export default () => {
+/*export const tallll () => {
     const ...
 }*/
     
@@ -28,5 +28,6 @@ user.delete().then(() => {
 }).catch((error) => {
   // An error happened.
 });*/
+
 
 

@@ -1,12 +1,16 @@
-//TUDO RELACIONADO A PAGINA DE LOGIN E CADASTRO VAI AQUI
-// CAMPO DE LOGIN COM OUTRO E-MAIL
+//TUDO RELACIONADO A PAGINA DE LOGIN 
+// LOGIN COM OUTRO E-MAIL
+// SENHA PARA LOGIN
 // LOGIN COM O GOOGLE
-// CADASTRAR NOVO USUÁRIO
 // REDEFINIÇÃO DE SENHA
+// BOTÃO PARA CADASTRAR
 
 
 /////////////////////// CRIAR NOVOS USUÁRIOS NO FIREBASE/////////////////////////////
-firebase.auth().createUserWithEmailAndPassword(email.value, senha.value)
+const email = "testestes@email.com"
+const senha = "senhasenha"
+
+firebase.auth().createUserWithEmailAndPassword(email, senha)
   .then((userCredential) => {
   // Signed in
   const user = userCredential.user;
@@ -34,38 +38,14 @@ firebase.auth().signInWithEmailAndPassword(email, senha)
 
 
 
-
-
+//////////// DUVIDA TAUANA
+/*export const signInWithGoogle = async () => {
+  let provider = new firebase.auth.GoogleAuthProvider();
+  const result = await firebase.auth().signInWithPopup(provider)
+  return result;
+}*/
    
 
-////////////////////Definir a senha de um usuário
-/*const user = firebase.auth().currentUser;
-const newPassword = getASecureRandomPassword();
-
-user.updatePassword(newPassword).then(() => {
-  // Update successful.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-});*/
-
-
-/////////////////////////Enviar um e-mail de redefinição de senha
-/*firebase.auth().sendPasswordResetEmail(email)
-  .then(() => {
-    // Password reset email sent!
-    // ..
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ..
-  });*/
-
-
-///////Processar o fluxo de login com o SDK do Firebase
-//1. Crie uma instância do objeto do provedor do Google:
-//var provider = new firebase.auth.GoogleAuthProvider();
 
 /*2.Para fazer login com uma janela pop-up, chame signInWithPopup:
 firebase.auth()
@@ -91,17 +71,6 @@ firebase.auth()
   });*/
 
 
-//Para fazer login com uma janela pop-up, chame linkWithPopup:
-/*auth.currentUser.linkWithPopup(provider).then((result) => {
-  // Accounts successfully linked.
-  var credential = result.credential;
-  var user = result.user;
-  // ...
-}).catch((error) => {
-  // Handle Errors here.
-  // ...
-});*/
-
 
 //Após usar os métodos de login, os usuários serão redirecionados novamente à sua página. Em seguida, recupere o resultado do login chamando getRedirectResult quando a página for carregada:
 /*auth.getRedirectResult().then((result) => {
@@ -121,11 +90,29 @@ firebase.auth()
 //var googleProvider = new firebase.auth.GoogleAuthProvider();
 //var emailProvider = new firebase.auth.EmailAuthProvider();
 
+////////////////////Definir a senha de um usuário
+/*const user = firebase.auth().currentUser;
+const newPassword = getASecureRandomPassword();
 
-//export const myFunction = () => {
-  // aqui vai seu código
-  //console.log('Olá mundo!');
-//};
+user.updatePassword(newPassword).then(() => {
+  // Update successful.
+}).catch((error) => {
+  // An error ocurred
+  // ...
+});*/
+
+
+/////////////////////////Enviar um e-mail de redefinição de senha
+/*firebase.auth().sendPasswordResetEmail(email)
+  .then(() => {
+    // Password reset email sent!
+    // ..
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ..
+  });*/
 
 
 
