@@ -1,49 +1,16 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="./login.css">
+  <title>Document</title>
+</head>
 
-    <link rel="stylesheet" href="style.css" />
-
-    <title>MS&U</title>
-  </head>
-
-  <body>
-    <header>  </header>
-    
-    <main> 
-      <img src="img/logo nome.png">
-      <h1> Aqui, onde até os memes socializam e você não. </h1> <!-- COLOCAR O LOGO DO NOME-->
-
-      <form action="">
-        <p> LOGIN </p>
-          <label for="email"> <!-- o nome do label tem que ser o mesmo do input-->
-              <span></span>
-              <input type="email" id="email" name="email" placeholder="E-mail">
-          </label>
-          <label for="senha"> <!-- o nome do label tem que ser o mesmo do input-->
-              <span></span>
-              <input type="senha" id="senha" name="senha" placeholder="Senha">
-          </label>
-          <input type="submit" value="Entrar">
-          <p> Esqueceu a senha? Recupere-a 
-            <a href=""> Aqui </a>
-          </p>
-          <div class="alternativa">
-            <span>OU</span>
-          </div>
-          <div class="social-media">
-              <a href="#">
-                <img src="img/icone google.png" alt="Google">
-              </a>
-          </div>
-      </form>
-    </main>
-
-
+<body class="l-grid">
+  
      <!-- The core Firebase JS SDK is always required and must be listed first -->
      <script src="/__/firebase/8.7.1/firebase-app.js"></script>
     
@@ -56,6 +23,11 @@
      <!-- Initialize Firebase -->
      <script src="/__/firebase/init.js"></script>
 
-  <script type="module" src="main.js"></script>
-  </body>
+  <main>
+    <div id="root" class="main-screen"></div>
+  </main>
+
+  <script type="module" src="./pages/login/main.js"></script>
+</body>
+
 </html>
