@@ -5,7 +5,7 @@
 // myFunction();
 
 
-const email = 'teste@email.com';
+/*const email = 'teste@email.com';
 const password = '123456';
 
 firebase.auth().createUserWithEmailAndPassword(email, password)
@@ -18,4 +18,4 @@ firebase.auth().createUserWithEmailAndPassword(email, password)
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log('deu ruim', errorCode, errorMessage)
-});
+}); */
