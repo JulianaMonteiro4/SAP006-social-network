@@ -33,6 +33,11 @@ firebase.auth().signInWithEmailAndPassword(email, senha)
    });
 
 
+
+
+
+   
+
 ////////////////////Definir a senha de um usuário
 /*const user = firebase.auth().currentUser;
 const newPassword = getASecureRandomPassword();
