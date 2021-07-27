@@ -102,9 +102,11 @@ body{
     text-align: center;
 }
 
-/*.btn-google{
-    margin-top: 1px
-}*/
+.btn-google{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
 
 .phrase-google{
     font-size: 13px;

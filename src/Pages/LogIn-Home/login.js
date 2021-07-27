@@ -1,6 +1,6 @@
 ////// MANIPULAÇÃO DO DOM DO LOGIN
 
-//import {  } from './dataLogin.js'
+import { loginWithGoogle } from './dataLogin.js'
 
 export const loginMainScreen = () => {
 
@@ -17,11 +17,13 @@ export const loginMainScreen = () => {
         <section id="login" class="container-login">
             <h2 class="login">Login</h2>
             <form class="container-form" id="form-login">
-                <input class="text-field" id="email" type="e-mail" value="email" placeholder="Insira seu e-mail"/> <i class="far fa-envelope"></i>
-                <input class="text-field" id="password" type="password" value="password" placeholder="Insira sua senha"/> <i class="fas fa-unlock-alt"></i>
+                <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/> <i class="far fa-envelope"></i>
+                <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/> <i class="fas fa-unlock-alt"></i>
                 <button class="btn" type="button" id="btn-login">Entrar</button>
                 <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a>
-                <button class="btn btn-google" type="button" id="btn-login-google">Google</button>
+                <div>
+                    <img src="img/icone-google.png" class="btn-google" id="google" type="button" width="60px" height="60px>
+                </div>
                 <p class="phrase-google">Login com o Google</p>
             </form>
         </section> 
@@ -40,6 +42,18 @@ export const loginMainScreen = () => {
 }
 
 loginMainScreen()
+
+
+
+/////////////////////// BOTÃO LOGIN COM O GOOGLE /////////////////////////////
+const btnLoginWithGoogle = document.getElementById("google")
+btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
+
+
+
+
+
+
 
 
 
