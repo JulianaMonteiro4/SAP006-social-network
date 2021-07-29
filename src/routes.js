@@ -5,7 +5,7 @@
 
 import {registerUser} from "../Pages/Cadastro/cadastro.js"
 import {loginMainScreen} from "../Pages/LogIn-Home/login.js"
-import {} from "../Pages/Feed/feed.js"
+//import {} from "../Pages/Feed/feed.js"
 
 
 ///// PLANTÃO EVE - LAYS
