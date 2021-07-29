@@ -10,16 +10,26 @@
   <title>ms&u</title>
 </head>
 
-<body>
+<body class="l-container-grid">
+  <header class="header-grid">  
+    <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
+    <span class="phrase"> Aqui, onde até os memes socializam e você não. </span>
+  </header>
   <div id="root" class="main-screen"></div>
+  <div class="overlay"></div>
 
   <script src="/__/firebase/8.7.1/firebase-app.js"></script>
   <script src="/__/firebase/8.7.1/firebase-auth.js"></script>
   <script src="/__/firebase/8.7.1/firebase-firestore.js"></script>
   <script src="/__/firebase/8.7.1/firebase-storage.js"></script>
-  <script src="/__/firebase/init.js"></script>
+  <script src= "/__/firebase/init.js?useEmulator=true"></script>
+ <!-- <script src="/__/firebase/init.js"></script> -->
 
   <script type="module" src="./routes.js"></script>
+
+  <footer class="footer">
+    <p> Desenvolvido por <a href="#"> Bianca </a>, <a href="#"> Juliana </a> e <a href="#"> Paloma</a>
+  </footer>
 </body>
 
 </html>

@@ -1,6 +1,6 @@
 ////// MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithGoogle, loginWithRegister } from './dataLogin.js'
+import { loginWithGoogle, loginWithRegister } from '../../services/index.js'
 
 export const loginMainScreen = () => {
 
@@ -9,13 +9,14 @@ export const loginMainScreen = () => {
     const loginPage = document.createElement ("div");
     loginPage.setAttribute("class", "teste");
     loginPage.innerHTML =  `
-    <div class="l-container-grid">
-        <header class="header-grid">  
-            <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
-            <span class="phrase"> Aqui, onde até os memes socializam e você não. </span>
-        </header>
+   
+
+        
         <section id="login" class="container-login">
             <h2 class="login">Login</h2>
+            <div> 
+                <img src="img/icone-cadastro.png" class="btn-cadastrar" id="cadastro" type="button">
+            </div> 
             <form class="container-form" id="form-login">
                 <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
                 <span class="icons-login">
@@ -35,23 +36,22 @@ export const loginMainScreen = () => {
             </form>
         </section> 
             
-        <footer class="footer">
-            <p> Desenvolvido por <a href="#"> Bianca </a>, <a href="#"> Juliana </a> e <a href="#"> Paloma</a>
-        </footer>
-    </div>
+        
+    
     `;
 
 
     const email = loginPage.querySelector('#email').value; 
     const password = loginPage.querySelector('#password').value; 
+
     const btnLogin = loginPage.querySelector('#btn-login');
-    const btnLoginWithGoogle = document.getElementById("google");     
     btnLogin.addEventListener("click", (e)=> { 
         e.preventDefault(),
         loginWithRegister(email,password)     
         }
     ); 
 
+    const btnLoginWithGoogle = loginPage.querySelector("#google");   
     btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
         
     

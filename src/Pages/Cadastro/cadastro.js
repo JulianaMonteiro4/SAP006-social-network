@@ -61,8 +61,6 @@ export const registerUser = () => {
 };
 
 //registerUser()
-
-
 //const cadastroPage = document.querySelector('#root').innerHTML = 
 
 
