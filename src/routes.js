@@ -3,17 +3,20 @@
 // HASH
 // HISTORY API
 
+import {registerUser} from "../Pages/Cadastro/cadastro.js"
+import {loginMainScreen} from "../Pages/LogIn-Home/login.js"
+import {} from "../Pages/Feed/feed.js"
 
 
 ///// PLANTÃO EVE - LAYS
-import { Cadastro } from "./pages/cadastro.js";
-import { Login } from "./pages/login.js"
+//import { Cadastro } from "./pages/cadastro.js";
+//import { Login } from "./pages/login.js"
 
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
-    "/":Login,
-    "/cadastro":Cadastro
+    "/":loginMainScreen,
+    "/cadastro":registerUser,
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())

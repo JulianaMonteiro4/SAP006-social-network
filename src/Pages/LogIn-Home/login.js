@@ -1,14 +1,14 @@
 ////// MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithGoogle } from './dataLogin.js'
+import { loginWithGoogle, loginWithRegister } from './dataLogin.js'
 
 export const loginMainScreen = () => {
 
-    /*const loginPage = document.createElement('div');
-    document.getElementById("root").appendChild(div).className('class1');
-    loginPage.innerHTML = `  */
-
-    document.querySelector('#root').innerHTML = `
+    const main = document.getElementById("root")
+    main.innerHTML = "";
+    const loginPage = document.createElement ("div");
+    loginPage.setAttribute("class", "teste");
+    loginPage.innerHTML =  `
     <div class="l-container-grid">
         <header class="header-grid">  
             <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
@@ -17,12 +17,19 @@ export const loginMainScreen = () => {
         <section id="login" class="container-login">
             <h2 class="login">Login</h2>
             <form class="container-form" id="form-login">
-                <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/> <i class="far fa-envelope"></i>
-                <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/> <i class="fas fa-unlock-alt"></i>
+                <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
+                <span class="icons-login">
+                    <i class="far fa-envelope"></i>
+                </span>
+                <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
+                <span class="icons-login">
+                    <i class="fas fa-lock-open"></i>
+                    <i class="fas fa-lock"></i>
+                </span>
                 <button class="btn" type="button" id="btn-login">Entrar</button>
-                <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a>
+                <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a></span>
                 <div>
-                    <img src="img/icone-google.png" class="btn-google" id="google" type="button" width="60px" height="60px>
+                    <img src="img/icone-google.png" class="btn-google" id="google" type="button">
                 </div>
                 <p class="phrase-google">Login com o Google</p>
             </form>
@@ -35,25 +42,30 @@ export const loginMainScreen = () => {
     `;
 
 
-    /*const email = container.querySelector('#email');
-    const senha = container.querySelector('#password');
-    const btnLogin = container.querySelector('#btn-login');
-    const btnLoginGoogle = container.querySelector('#btn-login-google'); */
-}
+    const email = loginPage.querySelector('#email').value; 
+    const password = loginPage.querySelector('#password').value; 
+    const btnLogin = loginPage.querySelector('#btn-login');
+    const btnLoginWithGoogle = document.getElementById("google");     
+    btnLogin.addEventListener("click", (e)=> { 
+        e.preventDefault(),
+        loginWithRegister(email,password)     
+        }
+    ); 
 
-loginMainScreen()
+    btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
+        
+    
+    return main.appendChild(loginPage);
+};
+
+//loginMainScreen()
+
 
 
 
 /////////////////////// BOTÃO LOGIN COM O GOOGLE /////////////////////////////
-const btnLoginWithGoogle = document.getElementById("google")
-btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
-
-
-
-
-
-
+//const btnLoginWithGoogle = document.getElementById("google")
+//btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
 
 
 
@@ -87,3 +99,6 @@ export const Login = () => {
     return rootElement;
   
   }
+
+
+  //const loginPage = document.querySelector('#root').innerHTML = 

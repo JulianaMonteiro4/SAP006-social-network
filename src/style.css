@@ -40,14 +40,15 @@ body{
 .phrase{
     font-size: 20px;
     text-align: center;
+    margin-bottom: 30px;
 }
 
-.container-login{
+.container-login {
     grid-area: container-login;
     background-color: rgba(255, 255, 255, 0.589);
     box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.651);
     width: 70%;
-    height: 65vh;
+    height: 50vh;
     margin: 10px;
     margin-left: 60px;
 }
@@ -102,14 +103,17 @@ body{
     text-align: center;
 }
 
-.btn-google{
-   display: flex;
-   align-items: center;
-   justify-content: center;
+.btn-google {
+    display: flex;  
+    width: 40px;
+    height: 40px;
+    margin-left: 100px;
+    margin-top: 10px;
 }
 
 .phrase-google{
-    font-size: 13px;
+    font-size: 14px;
+    margin-top: 15px;
 }
 
 .footer {
@@ -118,8 +122,6 @@ body{
     font-size: 20px;
     background-color: #fe622ead;
     padding-top: 6px;
-    
-   
 }
 
 .footer a {

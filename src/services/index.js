@@ -1,29 +1,25 @@
-//TUDO RELACIONADO A PAGINA DE LOGIN 
-// LOGIN COM OUTRO E-MAIL
-// SENHA PARA LOGIN
-// LOGIN COM O GOOGLE
-// REDEFINIÇÃO DE SENHA
-// BOTÃO PARA CADASTRAR
+
+const email = ""
+const senha = ""
 
 
-/////////////////////// CRIAR NOVOS USUÁRIOS NO FIREBASE/////////////////////////////
-const email = "testestes@email.com"
-const senha = "senhasenha"
-
-firebase.auth().createUserWithEmailAndPassword(email, senha)
-  .then((userCredential) => {
-  // Signed in
-  const user = userCredential.user;
-  //console.log('Cadastro realizado com sucesso', user);
-})
-.catch((error) => {
-  const errorCode = error.code;
-  const errorMessage = error.message;
-  //console.log('Erro no cadastro', errorCode, errorMessage);
-});
+export const register = (email, password) => { 
+  firebase.auth().createUserWithEmailAndPassword(email, password) 
+  .then((userCredential) => { 
+    // Signed in 
+    console.log("logado") 
+    const user = userCredential.user; //
+  }) 
+  .catch((error) => { 
+    const errorCode = error.code; 
+    const errorMessage = error.message; 
+    //console.log('Erro no cadastro', errorCode, errorMessage); 
+  }); 
+} 
 
 /////////////////////// LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL/////////////////////////////
-firebase.auth().signInWithEmailAndPassword(email, senha)
+export const loginWithRegister = (email, password) => {
+  firebase.auth().signInWithEmailAndPassword(email, password)
    .then((userCredential) => {
      // Signed in
      const user = userCredential.user;
@@ -35,15 +31,7 @@ firebase.auth().signInWithEmailAndPassword(email, senha)
      const errorMessage = error.message;
      alert(`Por favor insira uma conta existente`, errorCode, errorMessage)
    });
-
-
-/////////////////////// BOTÃO DE ENTRAR /////////////////////////////
-/*export const botaoAutenticar = async () => {
-  let provider = new firebase.auth.GoogleAuthProvider();
-  const result = await firebase.auth().signInWithPopup(provider)
-  return result;
-}*/
-
+}
 
 /////////////////////// LOGIN COM O GOOGLE /////////////////////////////
 export const loginWithGoogle = async () => {
@@ -52,12 +40,6 @@ export const loginWithGoogle = async () => {
   return result;
 }
 
-/////////////////////// LOGIN COM OUTRO E-MAIL /////////////////////////////
-/*export const loginWithEmail = async () => {
-  let provider = new firebase.auth.EmailAuthProvider();
-  const result = await firebase.auth().signInWithPopup(provider)
-  return result;
-}*/
 
 
 /////////////////////// E-MAIL DE REDEFINIÇÃO DE SENHA /////////////////////////////
@@ -73,10 +55,6 @@ export const loginWithGoogle = async () => {
   });*/
 
 
-/////////////////////// CADASTRO DE NOVOS USUÁRIOS /////////////////////////////
-
-
-
 /////////////////////// RECUPERANDO OS DADOS DO LOGIN /////////////////////////////
 //Após usar os métodos de login, os usuários serão redirecionados novamente à sua página. Em seguida, recupere o resultado do login chamando getRedirectResult quando a página for carregada:
 /*auth.getRedirectResult().then((result) => {
@@ -90,5 +68,3 @@ export const loginWithGoogle = async () => {
   // Handle Errors here.
   // ...
 });*/
-
-
