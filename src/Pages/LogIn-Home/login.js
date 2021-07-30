@@ -1,14 +1,13 @@
-////// MANIPULAÇÃO DO DOM DO LOGIN
+// MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithRegister, loginWithGoogle } from '../../services/index.js'
+import { loginWithRegister, loginWithGoogle } from '../../services/index.js';
 
 export const loginMainScreen = () => {
-
-    const main = document.getElementById("root")
-    main.innerHTML = "";
-    const loginPage = document.createElement ("div");
-    loginPage.setAttribute("class", "teste");
-    loginPage.innerHTML =  `
+  const main = document.getElementById('root');
+  main.innerHTML = '';
+  const loginPage = document.createElement('div');
+  loginPage.setAttribute('class', 'teste');
+  loginPage.innerHTML = `
     
     <section id="login" class="container-login">
         <h2 class="login">Login</h2>
@@ -16,15 +15,15 @@ export const loginMainScreen = () => {
             <img src="img/icone-cadastro.png" class="btn-cadastrar" id="cadastro" type="button">
         </div> 
         <form class="container-form" id="form-login">
+          <fieldset class="icons-login">
             <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
-            <span class="icons-login">
                 <i class="far fa-envelope"></i>
-            </span>
+          </fieldset>
+          <fieldset class="icons-login">
             <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
-            <span class="icons-login">
                 <i class="fas fa-lock-open"></i>
                 <i class="fas fa-lock"></i>
-            </span>
+            </fieldset>
             <button class="btn" type="button" id="btn-login">Entrar</button>
             <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a></span>
             <div>
@@ -36,77 +35,56 @@ export const loginMainScreen = () => {
     
     `;
 
+  const email = loginPage.querySelector('#email').value;
+  const password = loginPage.querySelector('#password').value;
 
-    const email = loginPage.querySelector('#email').value; 
-    const password = loginPage.querySelector('#password').value; 
+  const btnLogin = loginPage.querySelector('#btn-login');
+  btnLogin.addEventListener('click', (e) => {
+    e.preventDefault(),
+    loginWithRegister(email, password);
+});
 
-    const btnLogin = loginPage.querySelector('#btn-login');
-    btnLogin.addEventListener("click", (e)=> { 
-        e.preventDefault(),
-        loginWithRegister(email,password)     
-        }
-    ); 
+  const btnLoginWithGoogle = loginPage.querySelector('#google');
+  btnLoginWithGoogle.addEventListener('click', loginWithGoogle);
 
-    const btnLoginWithGoogle = loginPage.querySelector("#google");   
-    btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
-        
-    
-
-    const btnCadastrar = loginPage.querySelector('#cadastro');
-    btnCadastrar.addEventListener('click', () => {
-        window.history.pushState({}, '', '/cadastro');
-        const popStateEvent = new popStateEvent('popstate', { state: {} });
-        dispatchEvent (popStateEvent);
-    });
-    return loginPage;
-
-
-
-
-    return main.appendChild(loginPage);
+  const btnCadastrar = loginPage.querySelector('#cadastro');
+  btnCadastrar.addEventListener('click', () => {
+    window.history.pushState({}, '', '/cadastro');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
+});
+  return loginPage;
+  return main.appendChild(loginPage);
 };
 
-//loginMainScreen()
-
-
-
-
-/////////////////////// BOTÃO LOGIN COM O GOOGLE /////////////////////////////
-//const btnLoginWithGoogle = document.getElementById("google")
-//btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
-
-
-
-/////////////////////////// JULIANA
-function mostrarSenha () {
-    const senha = document.getElementById("password");
-    if (senha.type === "password") {
-        senha.type = "text";
-    }else {
-        senha.type = "password"
-    }
-    senha.addEventListener("click", mostrarSenha());
+// JULIANA
+function mostrarSenha() {
+  const senha = document.getElementById('password');
+  if (senha.type === 'password') {
+    senha.type = 'text';
+} else {
+    senha.type = 'password';
+  }
+  senha.addEventListener('click', mostrarSenha());
 }
 
-
-///// PLANTÃO EVE - LAYS
+// PLANTÃO EVE - LAYS
 /* export const Login = () => {
     const rootElement = document.createElement("div");
     rootElement.innerHTML = `<h1> babla </h1>
     <button id="cadastro"> Cadastre-se </button>`;
-  
+
     console.log(rootElement)
-  
+
     const botao = rootElement.querySelector("#cadastro")
     botao.addEventListener("click", () => {
       window.history.pushState({}, "", "/cadastro")
       const popstateEvent = new PopStateEvent("popstate", {state:{}})
       dispatchEvent(popstateEvent)
     })
-  
-    return rootElement;
-  
-  } /*
 
+    return rootElement;
+
+  } /*
 
   //const loginPage = document.querySelector('#root').innerHTML */

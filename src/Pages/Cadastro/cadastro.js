@@ -1,17 +1,15 @@
-////// MANIPULAÇÃO DO DOM DO CADASTRO
+// MANIPULAÇÃO DO DOM DO CADASTRO
 
-import {  } from '../../services/index.js';
-
+// import {  } from '../../services/index.js';
 
 /// registrar
 
 export const registerUser = () => {
-
-    const main = document.getElementById("root")
-    main.innerHTML = "";
-    const cadastrarLogin = document.createElement ("div");
-    cadastrarLogin.setAttribute("class", "teste");
-    cadastrarLogin.innerHTML = ` 
+  const main = document.getElementById('root');
+  main.innerHTML = '';
+  const cadastrarLogin = document.createElement('div');
+  cadastrarLogin.setAttribute('class', 'teste');
+  cadastrarLogin.innerHTML = ` 
     <div class="l-container-grid">
         <header class='title'>  
             <h1 class='title main-title'>MS&U</h1> 
@@ -19,21 +17,21 @@ export const registerUser = () => {
         </header>
         <section class="register">
         <h2>Registrar</h2>
-        <form class="form-register">
-            <input type="email" placeholder="Insira um e-mail" id="register-email">
-            <span class="icons-cadastro">
+        <form class="container-form form-register">
+            <fieldset class="icons-cadastro">
+                <input type="email" placeholder="Insira um e-mail" id="register-email">
                 <i class="far fa-envelope"></i>
-            </span>
-            <input type="password" placeholder="Insira uma senha" id="register-password">
-            <span class="icons-cadastro">
+                <input type="password" placeholder="Insira uma senha" id="register-password">
+            </fieldset>
+            <fieldset class="icons-cadastro">
                 <i class="fas fa-lock-open"></i>
                 <i class="fas fa-lock"></i>
-            </span>
-            <input type="password" placeholder="Repita sua senha" id="register-password">
-            <span class="icons-cadastro">
+                <input type="password" placeholder="Repita sua senha" id="repeat-password">
+            </fieldset>
+            <fieldset class="icons-cadastro">
                 <i class="fas fa-lock-open"></i>
                 <i class="fas fa-lock"></i>
-            </span>
+            </fieldset>
             <button type="button" id="btn-register" class="btn">Cadastrar</button>
         </form>
     </section>  
@@ -44,34 +42,25 @@ export const registerUser = () => {
     </div>
     `;
 
+  /* const email = cadastrarLogin.querySelector('#email').value;
+  const password = cadastrarLogin.querySelector('#password').value; */
+  const btnCadastrar = cadastrarLogin.querySelector('#btn-register');
 
-    /*const email = cadastrarLogin.querySelector('#email').value;
-    const password = cadastrarLogin.querySelector('#password').value;*/
-    const btnCadastrar = cadastrarLogin.querySelector('#btn-login');
+  btnCadastrar.addEventListener('click', (e) => {
+    e.preventDefault();
+    registerUser(btnCadastrar.querySelector('#email').value, btnCadastrar.querySelector('#password').value);
+  });
 
-    btnCadastrar.addEventListener("click", (e)=> {
-        e.preventDefault()
-        teste(btnCadastrar.querySelector('#email').value, btnCadastrar.querySelector('#password').value)
-
-        
-    })
-
-    return main.appendChild(cadastrarLogin);
-
+  return main.appendChild(cadastrarLogin);
 };
 
-//registerUser()
-//const cadastroPage = document.querySelector('#root').innerHTML = 
+// registerUser()
+// const cadastroPage = document.querySelector('#root').innerHTML =
 
-
-
-///// PLANTÃO EVE - LAYS
-/*export const Cadastro = () => {
+// PLANTÃO EVE - LAYS
+/* export const Cadastro = () => {
     const rootElement = document.createElement("div");
     rootElement.innerHTML = `<h1> FUNCIONOOOOOOOOU </h1>`;
     return rootElement;
   }
   */
-
-
-  
