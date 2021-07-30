@@ -15,12 +15,12 @@ export const loginMainScreen = () => {
             <img src="img/icone-cadastro.png" class="btn-cadastrar" id="cadastro" type="button">
         </div> 
         <form class="container-form" id="form-login">
-          <fieldset class="icons-login">
-            <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
+            <fieldset class="icons-login">
+              <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
                 <i class="far fa-envelope"></i>
-          </fieldset>
-          <fieldset class="icons-login">
-            <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
+            </fieldset>
+            <fieldset class="icons-login">
+              <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
                 <i class="fas fa-lock-open"></i>
                 <i class="fas fa-lock"></i>
             </fieldset>
@@ -32,7 +32,6 @@ export const loginMainScreen = () => {
             <p class="phrase-google">Login com o Google</p>
         </form>
     </section> 
-    
     `;
 
   const email = loginPage.querySelector('#email').value;
@@ -42,7 +41,7 @@ export const loginMainScreen = () => {
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault(),
     loginWithRegister(email, password);
-});
+  });
 
   const btnLoginWithGoogle = loginPage.querySelector('#google');
   btnLoginWithGoogle.addEventListener('click', loginWithGoogle);
@@ -52,7 +51,7 @@ export const loginMainScreen = () => {
     window.history.pushState({}, '', '/cadastro');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
-});
+  });
   return loginPage;
   return main.appendChild(loginPage);
 };

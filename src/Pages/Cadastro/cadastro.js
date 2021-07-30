@@ -2,8 +2,6 @@
 
 // import {  } from '../../services/index.js';
 
-/// registrar
-
 export const registerUser = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
