@@ -41,6 +41,14 @@ body{
     "footer";
 }
 
+.btn-cadastrar{
+    display: flex;  
+    width: 60px;
+    height: 60px;
+    margin-right: 0;
+    margin-left: 100px;
+    margin-top: 0;
+}
 
 .header-grid {
    grid-area: header-grid;

@@ -1,6 +1,6 @@
 ////// MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithGoogle, loginWithRegister } from '../../services/index.js'
+import { loginWithRegister, loginWithGoogle } from '../../services/index.js'
 
 export const loginMainScreen = () => {
 
@@ -51,6 +51,18 @@ export const loginMainScreen = () => {
     btnLoginWithGoogle.addEventListener("click", loginWithGoogle)
         
     
+
+    const btnCadastrar = loginPage.querySelector('#cadastro');
+    btnCadastrar.addEventListener('click', () => {
+        window.history.pushState({}, '', '/cadastro');
+        const popStateEvent = new popStateEvent('popstate', { state: {} });
+        dispatchEvent (popStateEvent);
+    });
+    return loginPage;
+
+
+
+
     return main.appendChild(loginPage);
 };
 
@@ -78,7 +90,7 @@ function mostrarSenha () {
 
 
 ///// PLANTÃO EVE - LAYS
-export const Login = () => {
+/* export const Login = () => {
     const rootElement = document.createElement("div");
     rootElement.innerHTML = `<h1> babla </h1>
     <button id="cadastro"> Cadastre-se </button>`;
@@ -94,7 +106,7 @@ export const Login = () => {
   
     return rootElement;
   
-  }
+  } /*
 
 
-  //const loginPage = document.querySelector('#root').innerHTML = 
+  //const loginPage = document.querySelector('#root').innerHTML */

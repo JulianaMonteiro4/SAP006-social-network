@@ -15,8 +15,8 @@ import {loginMainScreen} from "../Pages/LogIn-Home/login.js"
 const routRender = () => {
   const elemento = document.getElementById("root");
   const routes = {
-    "/":loginMainScreen,
-    "/cadastro":registerUser,
+    "/": loginMainScreen,
+    "/cadastro": registerUser,
   }
   elemento.innerHTML = "";
   elemento.appendChild(routes[window.location.pathname]())

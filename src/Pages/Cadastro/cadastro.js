@@ -1,6 +1,6 @@
 ////// MANIPULAÇÃO DO DOM DO CADASTRO
 
-//import {  } from './dataCadastro'
+import {  } from '../../services/index.js';
 
 
 /// registrar
