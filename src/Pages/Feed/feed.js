@@ -1,4 +1,3 @@
-//AQUI VAI A MANOPULAÇÃO DE DOM DA PAGINA DE FEED
+// AQUI VAI A MANOPULAÇÃO DE DOM DA PAGINA DE FEED
 
-//import { } from './dataFeed'
-
+// import { } from './dataFeed'
