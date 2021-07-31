@@ -1,6 +1,6 @@
 // MANIPULAÇÃO DO DOM DO CADASTRO
 
-// import {  } from '../../services/index.js';
+// import { register } from '../../services/index.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
