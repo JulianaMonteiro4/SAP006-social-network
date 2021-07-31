@@ -1,6 +1,6 @@
 import { error } from './error.js';
 
-export const register = (email, password) => {
+export const registerUser = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in

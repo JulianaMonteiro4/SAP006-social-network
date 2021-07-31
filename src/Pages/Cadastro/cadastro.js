@@ -1,6 +1,6 @@
 // MANIPULAÇÃO DO DOM DO CADASTRO
 
-// import {  } from '../../services/index.js';
+import { registerUser } from '../../services/index.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
@@ -8,36 +8,26 @@ export const registerUser = () => {
   const cadastrarLogin = document.createElement('div');
   cadastrarLogin.setAttribute('class', 'teste');
   cadastrarLogin.innerHTML = ` 
-    <div class="l-container-grid">
-        <header class='title'>  
-            <h1 class='title main-title'>MS&U</h1> 
-            <span class='title phrase'> Aqui onde os memes socializam e você não. </span>
-        </header>
-        <section class="register">
-        <h2>Registrar</h2>
+    <section class="register container-login">
+        <h2 class="login">Registrar</h2>
         <form class="container-form form-register">
-            <fieldset class="icons-cadastro">
+            <fieldset class="icons-cadastro icons-login">
                 <input type="email" placeholder="Insira um e-mail" id="register-email">
-                <i class="far fa-envelope"></i>
+                <i class="far fa-envelope"></i>                
+            </fieldset>
+            <fieldset class="icons-cadastro icons-login">
                 <input type="password" placeholder="Insira uma senha" id="register-password">
+                <i class="fas fa-lock-open"></i>
+                <i class="fas fa-lock"></i>                
             </fieldset>
             <fieldset class="icons-cadastro">
-                <i class="fas fa-lock-open"></i>
-                <i class="fas fa-lock"></i>
                 <input type="password" placeholder="Repita sua senha" id="repeat-password">
-            </fieldset>
-            <fieldset class="icons-cadastro">
                 <i class="fas fa-lock-open"></i>
-                <i class="fas fa-lock"></i>
+                <i class="fas fa-lock"></i>                
             </fieldset>
-            <button type="button" id="btn-register" class="btn">Cadastrar</button>
+            <button type="button" id="btn-register" class="btn btn-login">Cadastrar</button>
         </form>
-    </section>  
-            
-        <footer class="footer">
-            <p> Desenvolvido por <a href="#"> Bianca </a>, <a href="#"> Juliana </a> e <a href="#"> Paloma</a>
-        </footer>
-    </div>
+    </section>              
     `;
 
   /* const email = cadastrarLogin.querySelector('#email').value;
