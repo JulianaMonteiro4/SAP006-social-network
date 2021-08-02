@@ -8,7 +8,7 @@ export const newRegister = (email, password) => {
       // console.log("logado");
       const user = userCredential.user; //
     })
-    .catch((error) => {
+    .catch(() => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // console.log('Erro no cadastro', errorCode, errorMessage);
@@ -17,7 +17,7 @@ export const newRegister = (email, password) => {
 
 // LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL
 export const loginWithRegister = (email, password) => {
-  console.log(email, password);
+  // console.log(email, password);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
@@ -43,7 +43,7 @@ export const recoverPassword = (email) => {
     .then(() => {
       // Password reset email sent!
     })
-    .catch((error) => {
+    .catch(() => {
       const errorCode = error.code;
       const errorMessage = error.message;
       // ..
