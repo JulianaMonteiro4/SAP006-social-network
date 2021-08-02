@@ -17,6 +17,7 @@ export const newRegister = (email, password) => {
 
 // LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL
 export const loginWithRegister = (email, password) => {
+  console.log(email, password);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
@@ -24,7 +25,7 @@ export const loginWithRegister = (email, password) => {
       error('Usuário conectado');
       // window.location.replace('nome-da-pagina.html')
     })
-    .catch((error) => {
+    .catch(() => {
       error('Por favor insira uma conta existente');
     });
 };

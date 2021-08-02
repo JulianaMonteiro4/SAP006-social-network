@@ -34,13 +34,13 @@ export const loginMainScreen = () => {
     </section> 
     `;
 
-  const email = loginPage.querySelector('#email').value;
-  const password = loginPage.querySelector('#password').value;
-
   const btnLogin = loginPage.querySelector('#btn-login');
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
+    const email = loginPage.querySelector('#email').value;
+    const password = loginPage.querySelector('#password').value;
     loginWithRegister(email, password);
+    // console.log(email, password);
   });
 
   const btnLoginWithGoogle = loginPage.querySelector('#google');
