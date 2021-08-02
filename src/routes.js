@@ -1,9 +1,10 @@
 // COLOCAR AS ROTAS DO SITE (SPA)
 
 import { registerUser } from './pages/cadastro/cadastro.js';
-import { loginMainScreen } from './pages/LogIn-Home/login.js';
-import { recoverLink } from './pages/LogIn-Home/recuperar.js';
+import { loginMainScreen } from './pages/loginHome/login.js';
+import { recoverLink } from './pages/loginHome/recuperar.js';
 import { feed } from './pages/feed/feed.js';
+
 
 const routRender = () => {
   const elemento = document.getElementById('root');
