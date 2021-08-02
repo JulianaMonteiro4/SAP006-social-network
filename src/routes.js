@@ -1,7 +1,7 @@
 // COLOCAR AS ROTAS DO SITE (SPA)
 
 import { registerUser } from './pages/cadastro/cadastro.js';
-import { loginMainScreen } from './pages/LogIn-Home/login.js';
+import { loginMainScreen } from './pages/loginHome/login.js';
 // import {} from "../Pages/Feed/feed.js"
 
 const routRender = () => {

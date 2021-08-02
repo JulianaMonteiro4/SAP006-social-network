@@ -39,7 +39,7 @@ export const loginMainScreen = () => {
 
   const btnLogin = loginPage.querySelector('#btn-login');
   btnLogin.addEventListener('click', (e) => {
-    e.preventDefault(),
+    e.preventDefault();
     loginWithRegister(email, password);
   });
 
@@ -52,11 +52,12 @@ export const loginMainScreen = () => {
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
   });
-  return loginPage;
-  return main.appendChild(loginPage);
+
+  main.appendChild(loginPage);
+  return main;
 };
 
-// JULIANA
+/* // JULIANA
 function mostrarSenha() {
   const senha = document.getElementById('password');
   if (senha.type === 'password') {
@@ -65,7 +66,7 @@ function mostrarSenha() {
     senha.type = 'password';
   }
   senha.addEventListener('click', mostrarSenha());
-}
+} */
 
 // PLANTÃO EVE - LAYS
 /* export const Login = () => {
