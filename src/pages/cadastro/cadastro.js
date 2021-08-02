@@ -24,17 +24,30 @@ export const registerUser = () => {
                 <i class="fas fa-lock"></i>                
             </fieldset>
             <button type="button" id="btn-register" class="btn btn-login">Cadastrar</button>
+            <button type="button" id="btn-back" class="btn btn-login">Retornar</button>
         </form>
     </section>              
     `;
 
-  /* const email = cadastrarLogin.querySelector('#email').value;
-  const password = cadastrarLogin.querySelector('#password').value; */
-  const btnCadastrar = cadastrarLogin.querySelector('#btn-register');
-
-  btnCadastrar.addEventListener('click', (e) => {
+  const btnRegister = cadastrarLogin.querySelector('#btn-register');
+  btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    newRegister(btnCadastrar.querySelector('#email').value, btnCadastrar.querySelector('#password').value);
+    const email = cadastrarLogin.querySelector('#register-email').value;
+    const password = cadastrarLogin.querySelector('#register-password').value;
+    const repeatPassword = cadastrarLogin.querySelector('#repeat-password').value;
+    newRegister(email, password, repeatPassword);
+    window.history.pushState({}, '', '/');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
+    // console.log(email, password, repeatPassword);
+  });
+
+  const btnBack = cadastrarLogin.querySelector('#btn-back');
+  btnBack.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.history.pushState({}, '', '/');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
   });
 
   return main.appendChild(cadastrarLogin);

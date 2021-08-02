@@ -25,7 +25,7 @@ export const loginMainScreen = () => {
                 <i class="fas fa-lock"></i>
             </fieldset>
             <button class="btn" type="button" id="btn-login">Entrar</button>
-            <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a id="recover" href="#"> Aqui</a></span>
+            <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
             <div>
                 <img src="img/icone-google.png" class="btn-google" id="google" type="button">
             </div>
@@ -46,14 +46,14 @@ export const loginMainScreen = () => {
   const btnLoginWithGoogle = loginPage.querySelector('#google');
   btnLoginWithGoogle.addEventListener('click', loginWithGoogle);
 
-  const btnCadastrar = loginPage.querySelector('#cadastro');
-  btnCadastrar.addEventListener('click', () => {
+  const imgBtnRegister = loginPage.querySelector('#cadastro');
+  imgBtnRegister.addEventListener('click', () => {
     window.history.pushState({}, '', '/cadastro');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
   });
 
-  const btnLink = loginPage.querySelector('#recover');
+  const btnLink = loginPage.querySelector('#recover'); // btnAquiRecover
   btnLink.addEventListener('click', () => {
     window.history.pushState({}, '', '/recuperar');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });

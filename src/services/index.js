@@ -26,7 +26,7 @@ export const loginWithRegister = (email, password) => {
       // window.location.replace('nome-da-pagina.html')
     })
     .catch(() => {
-      error('Por favor insira uma conta existente');
+      error('Por favor insira uma conta existente ou cadastre-se');
     });
 };
 
@@ -61,7 +61,6 @@ signOut(auth).then(() => {
 // EXCLUIR USUÁRIO
 /* const auth = getAuth();
 const user = auth.currentUser;
-
 deleteUser(user).then(() => {
   // User deleted.
 }).catch((error) => {
