@@ -41,6 +41,7 @@ export const loginMainScreen = () => {
     const password = loginPage.querySelector('#password').value;
     loginWithRegister(email, password);
     // console.log(email, password);
+    // window.location.pathname = 'feed';
   });
 
   const btnLoginWithGoogle = loginPage.querySelector('#google');

@@ -17,17 +17,32 @@ export const newRegister = (email, password) => {
 
 // LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL
 export const loginWithRegister = (email, password) => {
+  /* if (firebase.auth().currentUser){
+    firebase.auth.signOut();
+  }, */
+
   // console.log(email, password);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in
       const user = userCredential.user;
       error('Usuário conectado');
-      // window.location.replace('nome-da-pagina.html')
     })
+  /*  .then ( () => {
+      setTimeout ( () => {
+        window.location.replace('feed')
+      }, 1000),
+    }) */
     .catch(() => {
       error('Por favor insira uma conta existente ou cadastre-se');
     });
+
+  firebase.auth().onAuthStateChanged ((firebaseUser) => {
+    if (firebaseUser) {
+      console.log (firebaseUser);
+    } else {
+      console.log('não logado');
+    }
+  });
 };
 
 // LOGIN COM O GOOGLE
@@ -51,12 +66,20 @@ export const recoverPassword = (email) => {
 };
 
 // SIGN OUT
-/* const auth = getAuth();
-signOut(auth).then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  // An error happened.
-}); */
+
+export const btnSignOut = () => {
+  firebase.auth().signOut()
+    .then(() => { })
+    .catch(() => {
+      error('Até logo');
+    });
+};
+
+/* export const btnSignOut = () => {
+  firebase.auth().signOut();
+  window.location.hash = '';
+  location.reload();
+}; */
 
 // EXCLUIR USUÁRIO
 /* const auth = getAuth();
