@@ -1,6 +1,4 @@
-// MANIPULAÇÃO DO DOM DO CADASTRO
-
-// import { register } from '../../services/index.js';
+import { newRegister } from '../../services/index.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
@@ -36,19 +34,8 @@ export const registerUser = () => {
 
   btnCadastrar.addEventListener('click', (e) => {
     e.preventDefault();
-    registerUser(btnCadastrar.querySelector('#email').value, btnCadastrar.querySelector('#password').value);
+    newRegister(btnCadastrar.querySelector('#email').value, btnCadastrar.querySelector('#password').value);
   });
 
   return main.appendChild(cadastrarLogin);
 };
-
-// registerUser()
-// const cadastroPage = document.querySelector('#root').innerHTML =
-
-// PLANTÃO EVE - LAYS
-/* export const Cadastro = () => {
-    const rootElement = document.createElement("div");
-    rootElement.innerHTML = `<h1> FUNCIONOOOOOOOOU </h1>`;
-    return rootElement;
-  }
-  */

@@ -1,6 +1,7 @@
 import { error } from './error.js';
 
-export const register = (email, password) => {
+// CRIAR UMA CONTA
+export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
@@ -14,8 +15,9 @@ export const register = (email, password) => {
     });
 };
 
-// LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL/////////////////////////////
+// LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL
 export const loginWithRegister = (email, password) => {
+  console.log(email, password);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       // Signed in
@@ -23,39 +25,46 @@ export const loginWithRegister = (email, password) => {
       error('Usuário conectado');
       // window.location.replace('nome-da-pagina.html')
     })
-    .catch((error) => {
+    .catch(() => {
       error('Por favor insira uma conta existente');
     });
 };
 
-// LOGIN COM O GOOGLE /////////////////////////////
+// LOGIN COM O GOOGLE
 export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
   return result;
 };
 
-// E-MAIL DE REDEFINIÇÃO DE SENHA /////////////////////////////
-/* firebase.auth().sendPasswordResetEmail(email)
-  .then(() => {
-    // Password reset email sent!
-    // ..
-  })
-  .catch((error) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    // ..
-  }); */
+// E-MAIL DE REDEFINIÇÃO DE SENHA
+export const recoverPassword = (email) => {
+  firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      // Password reset email sent!
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    });
+};
 
-// RECUPERANDO OS DADOS DO LOGIN /////////////////////////////
-/* auth.getRedirectResult().then((result) => {
-  if (result.credential) {
-    // Accounts successfully linked.
-    var credential = result.credential;
-    var user = result.user;
-    // ...
-  }
+// SIGN OUT
+/* const auth = getAuth();
+signOut(auth).then(() => {
+  // Sign-out successful.
 }).catch((error) => {
-  // Handle Errors here.
+  // An error happened.
+}); */
+
+// EXCLUIR USUÁRIO
+/* const auth = getAuth();
+const user = auth.currentUser;
+
+deleteUser(user).then(() => {
+  // User deleted.
+}).catch((error) => {
+  // An error ocurred
   // ...
 }); */

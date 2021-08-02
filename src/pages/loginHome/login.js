@@ -25,7 +25,7 @@ export const loginMainScreen = () => {
                 <i class="fas fa-lock"></i>
             </fieldset>
             <button class="btn" type="button" id="btn-login">Entrar</button>
-            <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a href="#"> Aqui</a></span>
+            <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a id="recover" href="#"> Aqui</a></span>
             <div>
                 <img src="img/icone-google.png" class="btn-google" id="google" type="button">
             </div>
@@ -34,13 +34,13 @@ export const loginMainScreen = () => {
     </section> 
     `;
 
-  const email = loginPage.querySelector('#email').value;
-  const password = loginPage.querySelector('#password').value;
-
   const btnLogin = loginPage.querySelector('#btn-login');
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
+    const email = loginPage.querySelector('#email').value;
+    const password = loginPage.querySelector('#password').value;
     loginWithRegister(email, password);
+    // console.log(email, password);
   });
 
   const btnLoginWithGoogle = loginPage.querySelector('#google');
@@ -53,12 +53,18 @@ export const loginMainScreen = () => {
     dispatchEvent(popStateEvent);
   });
 
-  main.appendChild(loginPage);
-  return main;
+  const btnLink = loginPage.querySelector('#recover');
+  btnLink.addEventListener('click', () => {
+    window.history.pushState({}, '', '/recuperar');
+    const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    dispatchEvent(popStateEvent);
+  });
+
+  return main.appendChild(loginPage);
 };
 
-/* // JULIANA
-function mostrarSenha() {
+// JULIANA
+/* function mostrarSenha() {
   const senha = document.getElementById('password');
   if (senha.type === 'password') {
     senha.type = 'text';
@@ -67,24 +73,3 @@ function mostrarSenha() {
   }
   senha.addEventListener('click', mostrarSenha());
 } */
-
-// PLANTÃO EVE - LAYS
-/* export const Login = () => {
-    const rootElement = document.createElement("div");
-    rootElement.innerHTML = `<h1> babla </h1>
-    <button id="cadastro"> Cadastre-se </button>`;
-
-    console.log(rootElement)
-
-    const botao = rootElement.querySelector("#cadastro")
-    botao.addEventListener("click", () => {
-      window.history.pushState({}, "", "/cadastro")
-      const popstateEvent = new PopStateEvent("popstate", {state:{}})
-      dispatchEvent(popstateEvent)
-    })
-
-    return rootElement;
-
-  } /*
-
-  //const loginPage = document.querySelector('#root').innerHTML */
