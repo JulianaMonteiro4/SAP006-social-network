@@ -19,3 +19,7 @@ window.addEventListener('popstate', routRender);
 window.addEventListener('load', () => {
   routRender();
 });
+
+// para poder diminuir a parte da rotas nos arquivos - nos arquivos fica: routes ('/feed');
+/* export const routes = (state) => { window.history.pushState({}, "", state); 
+const popstateEvent = new PopStateEvent("popstate", {state:{}}); dispatchEvent(popstateEvent); } */
