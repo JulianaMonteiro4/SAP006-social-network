@@ -1,6 +1,7 @@
 // MANIPULAÇÃO DO DOM DO LOGIN
 
 import { loginWithRegister, loginWithGoogle } from '../../services/index.js';
+import { getRoutes } from '../../routes.js';
 
 export const loginMainScreen = () => {
   const main = document.getElementById('root');
@@ -34,31 +35,31 @@ export const loginMainScreen = () => {
     </section> 
     `;
 
+  const email = loginPage.querySelector('#email');
+  const password = loginPage.querySelector('#password');
   const btnLogin = loginPage.querySelector('#btn-login');
+  const btnLoginWithGoogle = loginPage.querySelector('#google');
+  const imgBtnRegister = loginPage.querySelector('#cadastro');
+  const btnRecoverPass = loginPage.querySelector('#recover');
+
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    const email = loginPage.querySelector('#email').value;
-    const password = loginPage.querySelector('#password').value;
-    loginWithRegister(email, password);
-    // console.log(email, password);
-    // window.location.pathname = 'feed';
+    loginWithRegister(email.value, password.value);
   });
 
-  const btnLoginWithGoogle = loginPage.querySelector('#google');
-  btnLoginWithGoogle.addEventListener('click', loginWithGoogle);
-
-  const imgBtnRegister = loginPage.querySelector('#cadastro');
-  imgBtnRegister.addEventListener('click', () => {
-    window.history.pushState({}, '', '/cadastro');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
+  btnLoginWithGoogle.addEventListener('click', (e) => {
+    e.preventDefault();
+    loginWithGoogle();
   });
 
-  const btnLink = loginPage.querySelector('#recover'); // btnAquiRecover
-  btnLink.addEventListener('click', () => {
-    window.history.pushState({}, '', '/recuperar');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
+  imgBtnRegister.addEventListener('click', (e) => {
+    e.preventDefault();
+    getRoutes('/cadastro');
+  });
+
+  btnRecoverPass.addEventListener('click', (e) => {
+    e.preventDefault();
+    getRoutes('/recuperar');
   });
 
   return main.appendChild(loginPage);

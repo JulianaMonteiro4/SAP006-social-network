@@ -1,32 +1,29 @@
 import { error } from './error.js';
+import { getRoutes } from '../routes.js';
 
-// CRIAR UMA CONTA
+// CRIAR UMA CONTA - FUNCIONANDO
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // console.log("logado");
       const user = userCredential.user;
-      console.log(user);
+      window.location.replace('/');
       error('Usuário cadastrado');
     })
     .catch(() => {
       error('Por favor insira um e-mail e senha');
-      // console.log('Erro no cadastro');
     });
 };
 
-// LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL
+// LOGIN DE USUÁRIOS EXISTENTES - NÃO ESTÁ FUNCIONANDO
 export const loginWithRegister = (email, password) => {
   /* if (firebase.auth().currentUser){
     firebase.auth.signOut();
   }, */
 
-  // console.log(email, password);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      window.location.pathname = 'feed';
-      // console.log(user);
+      window.location.replace = ('/feed');
       error('Usuário conectado');
     })
   /*  .then ( () => {
@@ -38,56 +35,46 @@ export const loginWithRegister = (email, password) => {
       error('Por favor insira uma conta existente ou cadastre-se');
     });
 
-  firebase.auth().onAuthStateChanged ((firebaseUser) => {
-    if (firebaseUser) {
-      console.log (firebaseUser);
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log(user);
+      const uid = user.uid;
+      console.log(uid);
     } else {
       console.log('não logado');
     }
   });
 };
 
-// LOGIN COM O GOOGLE
+// LOGIN COM O GOOGLE - FUNCIONANDO
 export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
+  getRoutes('/feed');
   return result;
 };
 
-// E-MAIL DE REDEFINIÇÃO DE SENHA
+// E-MAIL DE REDEFINIÇÃO DE SENHA - FUNCIONANDO (SÓ VERIFICAR COMO RECEBE E-MAIL)
 export const recoverPassword = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
       error('E-mail para redefinição de senha enviado');
-      // Password reset email sent!
     })
     .catch(() => {
       error('Por favor, insira um e-mail existente');
     });
 };
 
-// SIGN OUT
-
+// SIGN OUT - FUNCIONANDO
 export const btnSignOut = () => {
   firebase.auth().signOut()
-    .then(() => { })
+    .then(() => {
+      window.location.replace = ('/');
+      error('Até Logo');
+      // console.log('sai logo');
+    })
     .catch(() => {
-      error('Até logo');
+      error('Não saiu');
+      // console.log('não foi dessa vez');
     });
 };
-
-/* export const btnSignOut = () => {
-  firebase.auth().signOut();
-  window.location.hash = '';
-  location.reload();
-}; */
-
-// EXCLUIR USUÁRIO
-/* const auth = getAuth();
-const user = auth.currentUser;
-deleteUser(user).then(() => {
-  // User deleted.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-}); */

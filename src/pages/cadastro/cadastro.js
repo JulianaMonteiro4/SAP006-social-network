@@ -1,11 +1,12 @@
 import { newRegister } from '../../services/index.js';
+import { getRoutes } from '../../routes.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
-  const cadastrarLogin = document.createElement('div');
-  cadastrarLogin.setAttribute('class', 'teste');
-  cadastrarLogin.innerHTML = ` 
+  const registerPage = document.createElement('div');
+  registerPage.setAttribute('class', 'teste');
+  registerPage.innerHTML = ` 
     <section class="register container-login">
         <h2 class="login">Registrar</h2>
         <form class="container-form form-register">
@@ -29,26 +30,21 @@ export const registerUser = () => {
     </section>              
     `;
 
-  const btnRegister = cadastrarLogin.querySelector('#btn-register');
+  const btnRegister = registerPage.querySelector('#btn-register');
+  const email = registerPage.querySelector('#register-email');
+  const password = registerPage.querySelector('#register-password');
+  const repeatPassword = registerPage.querySelector('#repeat-password');
+  const btnBack = registerPage.querySelector('#btn-back');
+
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    const email = cadastrarLogin.querySelector('#register-email').value;
-    const password = cadastrarLogin.querySelector('#register-password').value;
-    const repeatPassword = cadastrarLogin.querySelector('#repeat-password').value;
-    newRegister(email, password, repeatPassword);
-    // window.history.pushState({}, '', '/');
-    // const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    // dispatchEvent(popStateEvent);
-    // console.log(email, password, repeatPassword);
+    newRegister(email.value, password.value, repeatPassword.value);
   });
 
-  const btnBack = cadastrarLogin.querySelector('#btn-back');
   btnBack.addEventListener('click', (e) => {
     e.preventDefault();
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
+    getRoutes('/');
   });
 
-  return main.appendChild(cadastrarLogin);
+  return main.appendChild(registerPage);
 };
