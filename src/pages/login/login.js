@@ -1,6 +1,6 @@
 // MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithRegister, loginWithGoogle } from '../../services/index.js';
+import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
 import { getRoutes } from '../../routes.js';
 
 export const loginMainScreen = () => {
@@ -10,27 +10,26 @@ export const loginMainScreen = () => {
   loginPage.setAttribute('class', 'teste');
   loginPage.innerHTML = `
     
-    <section id="login" class="container-login">
-        <h2 class="login">Login</h2>
-        <div> 
-            <img src="img/icone-cadastro.png" class="btn-cadastrar" id="cadastro" type="button">
-        </div> 
-        <form class="container-form" id="form-login">
-            <fieldset class="icons-login">
+    <section class="main-container">
+        <h2 class="title">Login</h2>
+        <form class="container-form">
+            <fieldset class="inputs">
               <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
                 <i class="far fa-envelope"></i>
             </fieldset>
-            <fieldset class="icons-login">
+            <fieldset class="inputs">
               <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
                 <i class="fas fa-lock-open"></i>
                 <i class="fas fa-lock"></i>
             </fieldset>
             <button class="btn" type="button" id="btn-login">Entrar</button>
-            <span class="pswd-recover"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
+            <button class="btn" type="button" id="cadastro">Cadastrar</button>
+            <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
             <div>
+                <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
                 <img src="img/icone-google.png" class="btn-google" id="google" type="button">
             </div>
-            <p class="phrase-google">Login com o Google</p>
+            <p class="phrase">Login com o Google</p>
         </form>
     </section> 
     `;
@@ -41,6 +40,7 @@ export const loginMainScreen = () => {
   const btnLoginWithGoogle = loginPage.querySelector('#google');
   const imgBtnRegister = loginPage.querySelector('#cadastro');
   const btnRecoverPass = loginPage.querySelector('#recover');
+  const checkbox = loginPage.querySelector('.checkbox');
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
@@ -60,6 +60,17 @@ export const loginMainScreen = () => {
   btnRecoverPass.addEventListener('click', (e) => {
     e.preventDefault();
     getRoutes('/recuperar');
+  });
+
+  checkbox.addEventListener('change', () => {
+    const local = firebase.auth.Auth.Persistence.LOCAL;
+    const none = firebase.auth.Auth.Persistence.NONE;
+    if (checkbox.checked === true && loginWithGoogle) {
+      keepLogged(local);
+    } else if (checkbox.checked === true && loginWithRegister) {
+      keepLogged(local);
+    }
+    keepLogged(none);
   });
 
   return main.appendChild(loginPage);

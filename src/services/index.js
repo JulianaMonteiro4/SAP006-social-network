@@ -78,3 +78,15 @@ export const btnSignOut = () => {
       // console.log('não foi dessa vez');
     });
 };
+
+export const keepLogged = (persistence) => {
+  firebase.auth().setPersistence(persistence)
+    .then(() => {
+      const provider = new firebase.auth();
+      return firebase.auth().signInWithRedirect(provider);
+    })
+    .catch(() => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    });
+};
