@@ -36,9 +36,9 @@ export const registerUser = () => {
     const password = cadastrarLogin.querySelector('#register-password').value;
     const repeatPassword = cadastrarLogin.querySelector('#repeat-password').value;
     newRegister(email, password, repeatPassword);
-    window.history.pushState({}, '', '/');
-    const popStateEvent = new PopStateEvent('popstate', { state: {} });
-    dispatchEvent(popStateEvent);
+    // window.history.pushState({}, '', '/');
+    // const popStateEvent = new PopStateEvent('popstate', { state: {} });
+    // dispatchEvent(popStateEvent);
     // console.log(email, password, repeatPassword);
   });
 

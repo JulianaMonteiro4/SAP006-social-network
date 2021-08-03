@@ -4,14 +4,14 @@ import { error } from './error.js';
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // Signed in
       // console.log("logado");
-      const user = userCredential.user; //
+      const user = userCredential.user;
+      console.log(user);
+      error('Usuário cadastrado');
     })
     .catch(() => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // console.log('Erro no cadastro', errorCode, errorMessage);
+      error('Por favor insira um e-mail e senha');
+      // console.log('Erro no cadastro');
     });
 };
 
@@ -25,6 +25,8 @@ export const loginWithRegister = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
+      window.location.pathname = 'feed';
+      // console.log(user);
       error('Usuário conectado');
     })
   /*  .then ( () => {
@@ -56,12 +58,11 @@ export const loginWithGoogle = async () => {
 export const recoverPassword = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
+      error('E-mail para redefinição de senha enviado');
       // Password reset email sent!
     })
     .catch(() => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
+      error('Por favor, insira um e-mail existente');
     });
 };
 
