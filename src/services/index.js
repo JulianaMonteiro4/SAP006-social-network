@@ -4,8 +4,9 @@ import { error } from './error.js';
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      // console.log("logado");
       const user = userCredential.user;
+      // se cadastro der certo eu quero que me direcione para ... colocar pg login;
+      // window.location.replace('login')
       console.log(user);
       error('Usuário cadastrado');
     })
@@ -15,17 +16,13 @@ export const newRegister = (email, password) => {
     });
 };
 
-// LOGIN DE USUÁRIOS EXISTENTES COM OUTRO E-MAIL
+// LOGIN DE USUÁRIOS EXISTENTES
 export const loginWithRegister = (email, password) => {
-  /* if (firebase.auth().currentUser){
-    firebase.auth.signOut();
-  }, */
-
-  // console.log(email, password);
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      window.location.pathname = 'feed';
+      // se login der certo eu quero que me direcione para ... colocar pg feed;
+      // window.location.replace('feed')
       // console.log(user);
       error('Usuário conectado');
     })
@@ -38,13 +35,13 @@ export const loginWithRegister = (email, password) => {
       error('Por favor insira uma conta existente ou cadastre-se');
     });
 
-  firebase.auth().onAuthStateChanged ((firebaseUser) => {
+  /* firebase.auth().onAuthStateChanged ((firebaseUser) => {
     if (firebaseUser) {
       console.log (firebaseUser);
     } else {
       console.log('não logado');
     }
-  });
+  }); */
 };
 
 // LOGIN COM O GOOGLE
@@ -52,6 +49,18 @@ export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
   return result;
+  // REDIRECIONAR PARA PG FEED.
+};
+
+// SIGN OUT
+export const btnSignOut = () => {
+  firebase.auth().signOut()
+    .then(() => { 
+      // window.location.replace('login')
+    })
+    .catch(() => {
+      error('Até logo');
+    });
 };
 
 // E-MAIL DE REDEFINIÇÃO DE SENHA
@@ -65,29 +74,3 @@ export const recoverPassword = (email) => {
       error('Por favor, insira um e-mail existente');
     });
 };
-
-// SIGN OUT
-
-export const btnSignOut = () => {
-  firebase.auth().signOut()
-    .then(() => { })
-    .catch(() => {
-      error('Até logo');
-    });
-};
-
-/* export const btnSignOut = () => {
-  firebase.auth().signOut();
-  window.location.hash = '';
-  location.reload();
-}; */
-
-// EXCLUIR USUÁRIO
-/* const auth = getAuth();
-const user = auth.currentUser;
-deleteUser(user).then(() => {
-  // User deleted.
-}).catch((error) => {
-  // An error ocurred
-  // ...
-}); */

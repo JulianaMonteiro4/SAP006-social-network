@@ -41,7 +41,7 @@ export const loginMainScreen = () => {
     const password = loginPage.querySelector('#password').value;
     loginWithRegister(email, password);
     // console.log(email, password);
-    // window.location.pathname = 'feed';
+    // direcionamento na função em services.
   });
 
   const btnLoginWithGoogle = loginPage.querySelector('#google');
@@ -54,12 +54,14 @@ export const loginMainScreen = () => {
     dispatchEvent(popStateEvent);
   });
 
-  const btnLink = loginPage.querySelector('#recover'); // btnAquiRecover
+  const btnLink = loginPage.querySelector('#recover'); // btnAquiRecover - tentar usar o window.location.replace
   btnLink.addEventListener('click', () => {
     window.history.pushState({}, '', '/recuperar');
     const popStateEvent = new PopStateEvent('popstate', { state: {} });
     dispatchEvent(popStateEvent);
   });
+
+  // FALTA MANTER USUÁRIO LOGADO
 
   return main.appendChild(loginPage);
 };
