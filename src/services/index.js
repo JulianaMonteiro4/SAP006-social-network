@@ -1,29 +1,29 @@
 import { error } from './error.js';
+import { getRoutes } from '../routes.js';
 
-// CRIAR UMA CONTA
+// CRIAR UMA CONTA - FUNCIONANDO
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // se cadastro der certo eu quero que me direcione para ... colocar pg login;
-      // window.location.replace('login')
-      console.log(user);
+      window.location.replace('/');
       error('Usuário cadastrado');
     })
     .catch(() => {
       error('Por favor insira um e-mail e senha');
-      // console.log('Erro no cadastro');
     });
 };
 
-// LOGIN DE USUÁRIOS EXISTENTES
+// LOGIN DE USUÁRIOS EXISTENTES - NÃO ESTÁ FUNCIONANDO
 export const loginWithRegister = (email, password) => {
+  /* if (firebase.auth().currentUser){
+    firebase.auth.signOut();
+  }, */
+
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      // se login der certo eu quero que me direcione para ... colocar pg feed;
-      // window.location.replace('feed')
-      // console.log(user);
+      window.location.replace = ('/feed');
       error('Usuário conectado');
     })
   /*  .then ( () => {
@@ -35,19 +35,22 @@ export const loginWithRegister = (email, password) => {
       error('Por favor insira uma conta existente ou cadastre-se');
     });
 
-  /* firebase.auth().onAuthStateChanged ((firebaseUser) => {
-    if (firebaseUser) {
-      console.log (firebaseUser);
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+      console.log(user);
+      const uid = user.uid;
+      console.log(uid);
     } else {
       console.log('não logado');
     }
-  }); */
+  });
 };
 
-// LOGIN COM O GOOGLE
+// LOGIN COM O GOOGLE - FUNCIONANDO
 export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
+  getRoutes('/feed');
   return result;
   // REDIRECIONAR PARA PG FEED.
 };
@@ -63,14 +66,39 @@ export const btnSignOut = () => {
     });
 };
 
-// E-MAIL DE REDEFINIÇÃO DE SENHA
+// E-MAIL DE REDEFINIÇÃO DE SENHA - FUNCIONANDO (SÓ VERIFICAR COMO RECEBE E-MAIL)
 export const recoverPassword = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
       error('E-mail para redefinição de senha enviado');
-      // Password reset email sent!
     })
     .catch(() => {
       error('Por favor, insira um e-mail existente');
+    });
+};
+
+// SIGN OUT - FUNCIONANDO
+export const btnSignOut = () => {
+  firebase.auth().signOut()
+    .then(() => {
+      window.location.replace = ('/');
+      error('Até Logo');
+      // console.log('sai logo');
+    })
+    .catch(() => {
+      error('Não saiu');
+      // console.log('não foi dessa vez');
+    });
+};
+
+export const keepLogged = (persistence) => {
+  firebase.auth().setPersistence(persistence)
+    .then(() => {
+      const provider = new firebase.auth();
+      return firebase.auth().signInWithRedirect(provider);
+    })
+    .catch(() => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
     });
 };
