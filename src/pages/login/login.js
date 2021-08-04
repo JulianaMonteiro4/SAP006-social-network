@@ -1,9 +1,12 @@
 // MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
+import { loginWithRegister, loginWithGoogle, keepLogged, getLoggedUser, teste } from '../../services/index.js';
 import { getRoutes } from '../../routes.js';
 
 export const loginMainScreen = () => {
+  teste().then((user) => {
+    console.log("Ta logado", user.email);
+  });
   const main = document.getElementById('root');
   main.innerHTML = '';
   const loginPage = document.createElement('div');
@@ -19,8 +22,8 @@ export const loginMainScreen = () => {
             </fieldset>
         <fieldset class="inputs">
           <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
-            <i class="fas fa-lock-open"></i>
-            <i class="fas fa-lock"></i>
+            <i id="open" class="fas fa-lock-open"></i>
+            <i id="block" class="fas fa-lock"></i>
         </fieldset>
         <div class="checkbox-container">
           <input id="checkbox" type="checkbox" name="remember"><label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
@@ -74,6 +77,18 @@ export const loginMainScreen = () => {
     }
     keepLogged(none);
   });
+
+  /*const icon = document.querySelector('#block');
+
+  icon.addEventListener('click', () => {
+    const inputPassword = document.querySelector('#password');
+
+    if (inputPassword.getAttribute('type') === 'password') {
+      inputPassword.setAttribute('type', 'text');
+    } else {
+      inputPassword.setAttribute('type', 'password');
+    }
+  });*/
 
   return main.appendChild(loginPage);
 };
