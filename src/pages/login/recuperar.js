@@ -7,21 +7,21 @@ export const recoverLink = () => {
   const recoverPage = document.createElement('div');
   recoverPage.setAttribute('class', 'teste');
   recoverPage.innerHTML = ` 
-  <span>Você receberá por e-mail um link para a recuperação da senha.</span>
-      <section class="main-container">
-          <h2 class="title">Recuperar a Senha</h2>
-          <form class="container-form">
-              <fieldset class="inputs">
-                <input class="text-field" type="email" placeholder="Insira um e-mail" id="recover-email">
-                <i class="far fa-envelope"></i>
-              </fieldset>
-                <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
-              <button class="btn" id="btn-recover" type="button">Recuperar</button>
-              <button class="btn" id="btn-back-recover" type="button">Retornar</button>
-          </form>
-      </section>              
-    
-    `;
+    <span>Você receberá por e-mail um link para a recuperação da senha.</span>
+    <section class="main-container">
+      <h2 class="title">Recuperar a Senha</h2>
+      <form class="container-form">
+        <fieldset class="inputs">
+          <input class="text-field" type="email" placeholder="Insira um e-mail" id="recover-email">
+          <i class="far fa-envelope"></i>
+        </fieldset>
+          <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
+          <button class="btn" id="btn-recover" type="button">Recuperar</button>
+          <button class="btn btn-blue" id="btn-back-recover" type="button">Retornar</button>
+      </form>
+    </section>              
+  `;
+  
   const btnLinkRecover = recoverPage.querySelector('#btn-recover');
   const inputEmail = recoverPage.querySelector('#recover-email');
   const btnBackRecover = recoverPage.querySelector('#btn-back-recover');
