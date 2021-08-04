@@ -26,7 +26,7 @@ export const loginMainScreen = () => {
         <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
         <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
         <div>
-          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
+          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Mantenha-me conectado(a)</label>
             <img src="img/icone-google.png" class="btn-google" id="google" type="button">
         </div>
         <p class="phrase">Login com o Google</p>

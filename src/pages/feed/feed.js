@@ -1,4 +1,4 @@
-import { btnSignOut } from '../../services/index.js';
+import { signOut } from '../../services/index.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -20,7 +20,7 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
-    btnSignOut();
+    signOut();
   });
 
   return main.appendChild(feedPage);

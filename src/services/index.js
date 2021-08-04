@@ -66,7 +66,7 @@ export const recoverPassword = (email) => {
 };
 
 // SIGN OUT - FUNCIONANDO
-export const btnSignOut = () => {
+export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
       window.location.replace = ('/');

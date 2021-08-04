@@ -21,7 +21,7 @@ export const recoverLink = () => {
       </form>
     </section>              
   `;
-  
+
   const btnLinkRecover = recoverPage.querySelector('#btn-recover');
   const inputEmail = recoverPage.querySelector('#recover-email');
   const btnBackRecover = recoverPage.querySelector('#btn-back-recover');
