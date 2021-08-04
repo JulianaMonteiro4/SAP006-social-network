@@ -7,7 +7,7 @@ export const registerUser = () => {
   const registerPage = document.createElement('div');
   registerPage.setAttribute('class', 'teste');
   registerPage.innerHTML = ` 
-    <span class="phrase-register"> Aqui, onde até os memes socializam e você não. </span>
+    <span class="phrase-register"> Aqui, onde até os memes socializam e você não!! Então não fique de fora, cadastre-se. </span>
     <section class="main-container">
       <h2 class="title">Cadastrar</h2>
       <form class="container-form">

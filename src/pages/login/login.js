@@ -22,14 +22,16 @@ export const loginMainScreen = () => {
             <i class="fas fa-lock-open"></i>
             <i class="fas fa-lock"></i>
         </fieldset>
+        <div class="checkbox-container">
+          <input id="checkbox" type="checkbox" name="remember"><label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
+          <span class="checkbox-phrase"><a id="recover" href="#">Esqueceu a senha?</a></span>
+        </div>
         <button class="btn" type="button" id="btn-login">Entrar</button>
         <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
-        <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
         <div>
-          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Mantenha-me conectado(a)</label>
             <img src="img/icone-google.png" class="btn-google" id="google" type="button">
         </div>
-        <p class="phrase">Login com o Google</p>
+        <p class="phrase">Entrar com o Google</p>
       </form>
     </section> 
   `;
@@ -40,7 +42,7 @@ export const loginMainScreen = () => {
   const btnLoginWithGoogle = loginPage.querySelector('#google');
   const imgBtnRegister = loginPage.querySelector('#cadastro');
   const btnRecoverPass = loginPage.querySelector('#recover');
-  const keepMeSignedIn = loginPage.querySelector('.checkbox');
+  const keepMeSignedIn = loginPage.querySelector('#checkbox');
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
