@@ -40,12 +40,12 @@ body{
     "footer";
 }
 
-.btn-cadastrar{
+/*.btn-cadastrar{
     display: flex;  
     width: 60px;
     height: 60px;
     float: right;
-}
+}*/
 
 .header-grid {
    grid-area: header-grid;
@@ -108,8 +108,12 @@ body{
     cursor: pointer;
 }
 
-.btn:hover{
+.btn:hover {
     background: #FF8CA4;
+}
+ 
+.btn-blue {
+    background-color: #7c81e4;
 }
 
 .phrase {

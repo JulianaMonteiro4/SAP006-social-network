@@ -11,28 +11,28 @@ export const loginMainScreen = () => {
   loginPage.innerHTML = `
     
     <section class="main-container">
-        <h2 class="title">Login</h2>
-        <form class="container-form">
-            <fieldset class="inputs">
-              <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
-                <i class="far fa-envelope"></i>
+      <h2 class="title">Login</h2>
+      <form class="container-form">
+        <fieldset class="inputs">
+          <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
+            <i class="far fa-envelope"></i>
             </fieldset>
-            <fieldset class="inputs">
-              <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
-                <i class="fas fa-lock-open"></i>
-                <i class="fas fa-lock"></i>
-            </fieldset>
-            <button class="btn" type="button" id="btn-login">Entrar</button>
-            <button class="btn" type="button" id="cadastro">Cadastrar</button>
-            <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
-            <div>
-                <input type="checkbox" class="checkbox" name="remember"><label for="remember">Lembrar meus dados</label>
-                <img src="img/icone-google.png" class="btn-google" id="google" type="button">
-            </div>
-            <p class="phrase">Login com o Google</p>
-        </form>
+        <fieldset class="inputs">
+          <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
+            <i class="fas fa-lock-open"></i>
+            <i class="fas fa-lock"></i>
+        </fieldset>
+        <button class="btn" type="button" id="btn-login">Entrar</button>
+        <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
+        <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
+        <div>
+          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Mantenha-me conectado(a)</label>
+            <img src="img/icone-google.png" class="btn-google" id="google" type="button">
+        </div>
+        <p class="phrase">Login com o Google</p>
+      </form>
     </section> 
-    `;
+  `;
 
   const email = loginPage.querySelector('#email');
   const password = loginPage.querySelector('#password');
@@ -40,7 +40,7 @@ export const loginMainScreen = () => {
   const btnLoginWithGoogle = loginPage.querySelector('#google');
   const imgBtnRegister = loginPage.querySelector('#cadastro');
   const btnRecoverPass = loginPage.querySelector('#recover');
-  const checkbox = loginPage.querySelector('.checkbox');
+  const keepMeSignedIn = loginPage.querySelector('.checkbox');
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
@@ -62,12 +62,12 @@ export const loginMainScreen = () => {
     getRoutes('/recuperar');
   });
 
-  checkbox.addEventListener('change', () => {
+  keepMeSignedIn.addEventListener('change', () => {
     const local = firebase.auth.Auth.Persistence.LOCAL;
     const none = firebase.auth.Auth.Persistence.NONE;
-    if (checkbox.checked === true && loginWithGoogle) {
+    if (keepMeSignedIn.checked === true && loginWithGoogle) {
       keepLogged(local);
-    } else if (checkbox.checked === true && loginWithRegister) {
+    } else if (keepMeSignedIn.checked === true && loginWithRegister) {
       keepLogged(local);
     }
     keepLogged(none);
