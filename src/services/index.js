@@ -1,7 +1,7 @@
 import { error } from './error.js';
 import { getRoutes } from '../routes.js';
 
-// CRIAR UMA CONTA - FUNCIONANDO
+// CRIAR UMA CONTA - FUNCIONAND;
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -34,15 +34,21 @@ export const loginWithRegister = (email, password) => {
     .catch(() => {
       error('Por favor insira uma conta existente ou cadastre-se');
     });
+};
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      console.log(user);
-      const uid = user.uid;
-      console.log(uid);
-    } else {
-      console.log('não logado');
-    }
+export const getLoggedUser = () => {
+    return firebase.auth().currentUser;
+};
+
+export const teste = () => {
+  return new Promise ((res, rej) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        res(user);
+      } else {
+        rej();
+      }
+    });
   });
 };
 

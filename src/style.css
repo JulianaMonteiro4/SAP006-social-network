@@ -151,3 +151,10 @@ body{
     border-radius: 15px;
 }
 
+#open {
+    display: none;
+}
+
+/*#block:hover {
+    display: none;
+}*/
