@@ -1,6 +1,6 @@
 import { registerUser } from './pages/cadastro/cadastro.js';
-import { loginMainScreen } from './pages/loginHome/login.js';
-import { recoverLink } from './pages/loginHome/recuperar.js';
+import { loginMainScreen } from './pages/login/login.js';
+import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
 
 const routRender = () => {
@@ -19,3 +19,9 @@ window.addEventListener('popstate', routRender);
 window.addEventListener('load', () => {
   routRender();
 });
+
+export const getRoutes = (state) => {
+  window.history.pushState({}, '', state);
+  const popstateEvent = new PopStateEvent('popstate', { state: {} });
+  dispatchEvent(popstateEvent);
+};

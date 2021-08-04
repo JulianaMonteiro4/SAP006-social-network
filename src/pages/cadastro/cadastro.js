@@ -1,41 +1,51 @@
 import { newRegister } from '../../services/index.js';
+import { getRoutes } from '../../routes.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
-  const cadastrarLogin = document.createElement('div');
-  cadastrarLogin.setAttribute('class', 'teste');
-  cadastrarLogin.innerHTML = ` 
-    <section class="register container-login">
-        <h2 class="login">Registrar</h2>
-        <form class="container-form form-register">
-            <fieldset class="icons-cadastro icons-login">
-                <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
-                <i class="far fa-envelope"></i>                
-            </fieldset>
-            <fieldset class="icons-cadastro icons-login">
-                <input class="text-field"type="password" placeholder="Insira uma senha" id="register-password">
-                <i class="fas fa-lock-open"></i>
-                <i class="fas fa-lock"></i>                
-            </fieldset>
-            <fieldset class="icons-cadastro">
-                <input class="text-field" type="password" placeholder="Repita sua senha" id="repeat-password">
-                <i class="fas fa-lock-open"></i>
-                <i class="fas fa-lock"></i>                
-            </fieldset>
-            <button type="button" id="btn-register" class="btn btn-login">Cadastrar</button>
-        </form>
+  const registerPage = document.createElement('div');
+  registerPage.setAttribute('class', 'teste');
+  registerPage.innerHTML = ` 
+    <span class="phrase-register"> Aqui, onde até os memes socializam e você não. </span>
+    <section class="main-container">
+      <h2 class="title">Cadastrar</h2>
+      <form class="container-form">
+        <fieldset class="inputs">
+          <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
+            <i class="far fa-envelope"></i>                
+        </fieldset>
+        <fieldset class="inputs">
+          <input class="text-field" type="password" placeholder="Insira uma senha" id="register-password">
+            <i class="fas fa-lock-open"></i>
+            <i class="fas fa-lock"></i>                
+        </fieldset>
+        <fieldset class="inputs">
+          <input class="text-field" type="password" placeholder="Repita sua senha" id="repeat-password">
+            <i class="fas fa-lock-open"></i>
+            <i class="fas fa-lock"></i>                
+        </fieldset>
+        <button class="btn" id="btn-register" type="button">Cadastrar</button>
+        <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
+      </form>
     </section>              
-    `;
+  `;
 
-  /* const email = cadastrarLogin.querySelector('#email').value;
-  const password = cadastrarLogin.querySelector('#password').value; */
-  const btnCadastrar = cadastrarLogin.querySelector('#btn-register');
+  const btnRegister = registerPage.querySelector('#btn-register');
+  const email = registerPage.querySelector('#register-email');
+  const password = registerPage.querySelector('#register-password');
+  const repeatPassword = registerPage.querySelector('#repeat-password');
+  const btnBack = registerPage.querySelector('#btn-back');
 
-  btnCadastrar.addEventListener('click', (e) => {
+  btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    newRegister(btnCadastrar.querySelector('#email').value, btnCadastrar.querySelector('#password').value);
+    newRegister(email.value, password.value, repeatPassword.value);
   });
 
-  return main.appendChild(cadastrarLogin);
+  btnBack.addEventListener('click', (e) => {
+    e.preventDefault();
+    getRoutes('/');
+  });
+
+  return main.appendChild(registerPage);
 };

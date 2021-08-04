@@ -1,32 +1,27 @@
-// import { loginWithRegister } from './dataFeed';
+import { signOut } from '../../services/index.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
-  const loginFeed = document.createElement('div');
-  loginFeed.setAttribute('class', 'teste');
-  loginFeed.innerHTML = ` 
+  const feedPage = document.createElement('div');
+  feedPage.setAttribute('class', 'teste');
+  feedPage.innerHTML = ` 
       <section class="register container-login">
-          <h2 class="login">Registrar</h2>
+          <h2 class="login">Feed</h2>
           <form class="container-form form-register">
               <fieldset class="icons-cadastro icons-login">
-                  <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
-                  <i class="far fa-envelope"></i>                
-              </fieldset>
-              <fieldset class="icons-cadastro icons-login">
-                  <input class="text-field"type="password" placeholder="Insira uma senha" id="register-password">
-                  <i class="fas fa-lock-open"></i>
-                  <i class="fas fa-lock"></i>                
-              </fieldset>
-              <fieldset class="icons-cadastro">
-                  <input class="text-field" type="password" placeholder="Repita sua senha" id="repeat-password">
-                  <i class="fas fa-lock-open"></i>
-                  <i class="fas fa-lock"></i>                
+                  <input class="text-field" type="email" placeholder="" id="register-email"/>
               </fieldset>
               <button type="button" id="btn-logout" class="btn btn-login">Sair</button>
           </form>
       </section>              
       `;
 
-  return main.appendChild(loginFeed);
+  const btnLogout = feedPage.querySelector('#btn-logout');
+  btnLogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    signOut();
+  });
+
+  return main.appendChild(feedPage);
 };
