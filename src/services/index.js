@@ -10,7 +10,20 @@ export const newRegister = (email, password) => {
       error('Usuário cadastrado');
     })
     .catch(() => {
-      error('Por favor insira um e-mail e senha');
+      const errorCode = error.code;
+      switch (errorCode) {
+        case 'auth/email-already-in-use':
+          error('Email em uso');
+          break;
+        case 'auth/invalid-email':
+          error('Email inválido');
+          break;
+        case 'auth/weak-password':
+          error('Senha fraca');
+          break;
+        default:
+          error('Por favor, verifique as informações digitadas');
+      }
     });
 };
 
@@ -27,7 +40,20 @@ export const loginWithRegister = (email, password) => {
       }, 1000);
     })
     .catch(() => {
-      error('Por favor insira uma conta existente ou cadastre-se');
+      const errorCode = error.code;
+      switch (errorCode) {
+        case 'auth/wrong-password':
+          error('Senha inválida');
+          break;
+        case 'auth/invalid-email':
+          error('Email inválido');
+          break;
+        case 'auth/user-not-found':
+          error('usuário não encontrado');
+          break;
+        default:
+          error('Por favor insira uma conta existente ou cadastre-se');
+      }
     });
 };
 
@@ -64,7 +90,17 @@ export const recoverPassword = (email) => {
       error('E-mail para redefinição de senha enviado');
     })
     .catch(() => {
-      error('Por favor, insira um e-mail existente');
+      const errorCode = error.code;
+      switch (errorCode) {
+        case 'auth/invalid-email':
+          error('Email inválido');
+          break;
+        case 'auth/user-not-found':
+          error('Usuário não encontrado');
+          break;
+        default:
+          error('Não será possível recuperar sua senha.');
+      }
     });
 };
 
@@ -89,7 +125,6 @@ export const keepLogged = (persistence) => {
       return firebase.auth().signInWithRedirect(provider);
     })
     .catch(() => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      error('Não foi possível permanecer conectado(a)');
     });
 };
