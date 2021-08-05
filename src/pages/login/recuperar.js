@@ -4,8 +4,8 @@ import { getRoutes } from '../../routes.js';
 export const recoverLink = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
-  const recoverPage = document.createElement('div');
-  recoverPage.setAttribute('class', 'teste');
+  const recoverPage = document.createElement('section');
+  recoverPage.setAttribute('class', 'container');
   recoverPage.innerHTML = ` 
     <span>Você receberá por e-mail um link para a recuperação da senha.</span>
     <section class="main-container">

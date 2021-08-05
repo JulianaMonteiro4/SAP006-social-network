@@ -4,8 +4,8 @@ import { getRoutes } from '../../routes.js';
 export const registerUser = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
-  const registerPage = document.createElement('div');
-  registerPage.setAttribute('class', 'teste');
+  const registerPage = document.createElement('section');
+  registerPage.setAttribute('class', 'container');
   registerPage.innerHTML = ` 
     <span class="phrase-register"> Aqui, onde até os memes socializam e você não. </span>
     <section class="main-container">

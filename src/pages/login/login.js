@@ -1,18 +1,19 @@
 // MANIPULAÇÃO DO DOM DO LOGIN
 
-import { loginWithRegister, loginWithGoogle, keepLogged, getLoggedUser, teste } from '../../services/index.js';
+import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
 import { getRoutes } from '../../routes.js';
+// getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
-  teste().then((user) => {
-    console.log("Ta logado", user.email);
-  });
+  /* userStatus().then((user) => {
+    console.log("Ta logado", user.email, user.uid);
+  }); */
+
   const main = document.getElementById('root');
   main.innerHTML = '';
-  const loginPage = document.createElement('div');
-  loginPage.setAttribute('class', 'teste');
+  const loginPage = document.createElement('section');
+  loginPage.setAttribute('class', 'container');
   loginPage.innerHTML = `
-    
     <section class="main-container">
       <h2 class="title">Login</h2>
       <form class="container-form">
@@ -76,9 +77,8 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
-  /*const icon = document.querySelector('#block');
-
-  icon.addEventListener('click', () => {
+  /* const icon = document.querySelector('#block');
+    icon.addEventListener('click', () => {
     const inputPassword = document.querySelector('#password');
 
     if (inputPassword.getAttribute('type') === 'password') {
@@ -86,7 +86,7 @@ export const loginMainScreen = () => {
     } else {
       inputPassword.setAttribute('type', 'password');
     }
-  });*/
+  }); */
 
   return main.appendChild(loginPage);
 };

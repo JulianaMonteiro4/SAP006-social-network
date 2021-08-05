@@ -16,31 +16,26 @@ export const newRegister = (email, password) => {
 
 // LOGIN DE USUÁRIOS EXISTENTES - NÃO ESTÁ FUNCIONANDO
 export const loginWithRegister = (email, password) => {
-  /* if (firebase.auth().currentUser){
-    firebase.auth.signOut();
-  }, */
-
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      window.location.replace = ('/feed');
       error('Usuário conectado');
     })
-  /*  .then ( () => {
-      setTimeout ( () => {
-        window.location.replace('feed')
-      }, 1000),
-    }) */
+    .then(() => {
+      setTimeout(() => {
+        window.location.replace('feed');
+      }, 1000);
+    })
     .catch(() => {
       error('Por favor insira uma conta existente ou cadastre-se');
     });
 };
 
-export const getLoggedUser = () => {
+/* export const getLoggedUser = () => {
     return firebase.auth().currentUser;
 };
 
-export const teste = () => {
+export const userStatus = () => {
   return new Promise ((res, rej) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -51,6 +46,7 @@ export const teste = () => {
     });
   });
 };
+*/
 
 // LOGIN COM O GOOGLE - FUNCIONANDO
 export const loginWithGoogle = async () => {
@@ -59,17 +55,6 @@ export const loginWithGoogle = async () => {
   getRoutes('/feed');
   return result;
   // REDIRECIONAR PARA PG FEED.
-};
-
-// SIGN OUT
-export const btnSignOut = () => {
-  firebase.auth().signOut()
-    .then(() => { 
-      // window.location.replace('login')
-    })
-    .catch(() => {
-      error('Até logo');
-    });
 };
 
 // E-MAIL DE REDEFINIÇÃO DE SENHA - FUNCIONANDO (SÓ VERIFICAR COMO RECEBE E-MAIL)
@@ -87,7 +72,7 @@ export const recoverPassword = (email) => {
 export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
-      window.location.replace = ('/');
+      window.location.replace('/');
       error('Até Logo');
       // console.log('sai logo');
     })
