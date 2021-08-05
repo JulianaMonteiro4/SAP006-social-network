@@ -10,37 +10,58 @@ export const newRegister = (email, password) => {
       error('Usuário cadastrado');
     })
     .catch(() => {
-      error('Por favor insira um e-mail e senha');
+      const errorCode = error.code;
+      switch (errorCode) {
+        case 'auth/email-already-in-use':
+          error('Email em uso');
+          break;
+        case 'auth/invalid-email':
+          error('Email inválido');
+          break;
+        case 'auth/weak-password':
+          error('Senha fraca');
+          break;
+        default:
+          error('Por favor, verifique as informações digitadas');
+      }
     });
 };
 
 // LOGIN DE USUÁRIOS EXISTENTES - NÃO ESTÁ FUNCIONANDO
 export const loginWithRegister = (email, password) => {
-  /* if (firebase.auth().currentUser){
-    firebase.auth.signOut();
-  }, */
-
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      window.location.replace = ('/feed');
       error('Usuário conectado');
     })
-  /*  .then ( () => {
-      setTimeout ( () => {
-        window.location.replace('feed')
-      }, 1000),
-    }) */
+    .then(() => {
+      setTimeout(() => {
+        window.location.replace('feed');
+      }, 1000);
+    })
     .catch(() => {
-      error('Por favor insira uma conta existente ou cadastre-se');
+      const errorCode = error.code;
+      switch (errorCode) {
+        case 'auth/wrong-password':
+          error('Senha inválida');
+          break;
+        case 'auth/invalid-email':
+          error('Email inválido');
+          break;
+        case 'auth/user-not-found':
+          error('usuário não encontrado');
+          break;
+        default:
+          error('Por favor insira uma conta existente ou cadastre-se');
+      }
     });
 };
 
-export const getLoggedUser = () => {
+/* export const getLoggedUser = () => {
     return firebase.auth().currentUser;
 };
 
-export const teste = () => {
+export const userStatus = () => {
   return new Promise ((res, rej) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -51,6 +72,7 @@ export const teste = () => {
     });
   });
 };
+*/
 
 // LOGIN COM O GOOGLE - FUNCIONANDO
 export const loginWithGoogle = async () => {
@@ -58,6 +80,7 @@ export const loginWithGoogle = async () => {
   const result = await firebase.auth().signInWithPopup(provider);
   getRoutes('/feed');
   return result;
+  // REDIRECIONAR PARA PG FEED.
 };
 
 // E-MAIL DE REDEFINIÇÃO DE SENHA - FUNCIONANDO (SÓ VERIFICAR COMO RECEBE E-MAIL)
@@ -67,7 +90,17 @@ export const recoverPassword = (email) => {
       error('E-mail para redefinição de senha enviado');
     })
     .catch(() => {
-      error('Por favor, insira um e-mail existente');
+      const errorCode = error.code;
+      switch (errorCode) {
+        case 'auth/invalid-email':
+          error('Email inválido');
+          break;
+        case 'auth/user-not-found':
+          error('Usuário não encontrado');
+          break;
+        default:
+          error('Não será possível recuperar sua senha.');
+      }
     });
 };
 
@@ -75,7 +108,7 @@ export const recoverPassword = (email) => {
 export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
-      window.location.replace = ('/');
+      window.location.replace('/');
       error('Até Logo');
       // console.log('sai logo');
     })
@@ -92,7 +125,6 @@ export const keepLogged = (persistence) => {
       return firebase.auth().signInWithRedirect(provider);
     })
     .catch(() => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
+      error('Não foi possível permanecer conectado(a)');
     });
 };
