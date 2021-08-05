@@ -1,7 +1,8 @@
 import { error } from './error.js';
-import { getRoutes } from '../routes.js';
+import { navigateTo } from '../routes.js';
+// import { dataFirestore } from './firebaseconfig.js';
 
-// CRIAR UMA CONTA - FUNCIONAND;
+// CRIAR UMA CONTA
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -27,7 +28,7 @@ export const newRegister = (email, password) => {
     });
 };
 
-// LOGIN DE USUÁRIOS EXISTENTES - NÃO ESTÁ FUNCIONANDO
+// LOGIN DE USUÁRIOS EXISTENTES
 export const loginWithRegister = (email, password) => {
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -57,28 +58,11 @@ export const loginWithRegister = (email, password) => {
     });
 };
 
-/* export const getLoggedUser = () => {
-    return firebase.auth().currentUser;
-};
-
-export const userStatus = () => {
-  return new Promise ((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
-    });
-  });
-};
-*/
-
-// LOGIN COM O GOOGLE - FUNCIONANDO
+// LOGIN COM O GOOGLE
 export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
-  getRoutes('/feed');
+  navigateTo('/feed');
   return result;
   // REDIRECIONAR PARA PG FEED.
 };
@@ -104,27 +88,69 @@ export const recoverPassword = (email) => {
     });
 };
 
-// SIGN OUT - FUNCIONANDO
+// SIGN OUT
 export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
       window.location.replace('/');
       error('Até Logo');
-      // console.log('sai logo');
     })
     .catch(() => {
       error('Não saiu');
-      // console.log('não foi dessa vez');
     });
 };
 
 export const keepLogged = (persistence) => {
   firebase.auth().setPersistence(persistence)
     .then(() => {
-      const provider = new firebase.auth();
-      return firebase.auth().signInWithRedirect(provider);
+      // const provider = new firebase.auth();
+      // return firebase.auth().signInWithRedirect(provider);
+      // console.log('qualquer coisa');
     })
     .catch(() => {
       error('Não foi possível permanecer conectado(a)');
     });
 };
+
+// CRIAR DADOS EM UMA COLEÇÃO
+/* dataFirestore.collection('posts').add({
+  title: titleInput.value,
+  content: contentInput.value,
+})
+  .then((docRef) => {
+    console.log('Document written with ID: ', docRef.id);
+  })
+  .catch((error) => {
+    console.error('Error adding document: ', error);
+  });
+
+// CRIAR DADOS EM UM USUÁRIO
+dataFirestore.collection('users').add({
+  name: inputNome.value,
+  idUser: userCredential.uid,
+})
+  .then((docRef) => {
+    console.log('Document written with ID: ', docRef.id);
+  })
+  .catch((error) => {
+    console.error('Error adding document: ', error);
+  });
+*/
+
+// .
+/* export const getLoggedUser = () => {
+    return firebase.auth().currentUser;
+};
+
+export const userStatus = () => {
+  return new Promise ((res, rej) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        res(user);
+      } else {
+        rej();
+      }
+    });
+  });
+};
+*/

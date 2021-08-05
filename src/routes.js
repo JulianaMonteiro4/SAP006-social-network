@@ -20,8 +20,8 @@ window.addEventListener('load', () => {
   routRender();
 });
 
-export const getRoutes = (state) => {
-  window.history.pushState({}, '', state);
+export const navigateTo = (url) => {
+  window.history.pushState({}, '', url);
   const popstateEvent = new PopStateEvent('popstate', { state: {} });
   dispatchEvent(popstateEvent);
 };

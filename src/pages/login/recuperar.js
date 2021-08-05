@@ -1,5 +1,5 @@
 import { recoverPassword } from '../../services/index.js';
-import { getRoutes } from '../../routes.js';
+import { navigateTo } from '../../routes.js';
 
 export const recoverLink = () => {
   const main = document.getElementById('root');
@@ -7,7 +7,7 @@ export const recoverLink = () => {
   const recoverPage = document.createElement('section');
   recoverPage.setAttribute('class', 'container');
   recoverPage.innerHTML = ` 
-    <span>Você receberá por e-mail um link para a recuperação da senha.</span>
+    <span class="phrase-recover">Você receberá por e-mail um link para a recuperação da senha.</span>
     <section class="main-container">
       <h2 class="title">Recuperar a Senha</h2>
       <form class="container-form">
@@ -33,7 +33,7 @@ export const recoverLink = () => {
 
   btnBackRecover.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/');
+    navigateTo('/');
   });
 
   return main.appendChild(recoverPage);

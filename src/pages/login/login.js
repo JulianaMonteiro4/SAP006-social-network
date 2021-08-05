@@ -1,7 +1,7 @@
 // MANIPULAÇÃO DO DOM DO LOGIN
 
 import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
-import { getRoutes } from '../../routes.js';
+import { navigateTo } from '../../routes.js';
 // getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
@@ -50,7 +50,10 @@ export const loginMainScreen = () => {
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithRegister(email.value, password.value);
+    loginWithRegister(email.value, password.value)
+    /* .then(() => {
+        navigateTo('/feed');
+      }); */
   });
 
   btnLoginWithGoogle.addEventListener('click', (e) => {
@@ -60,12 +63,12 @@ export const loginMainScreen = () => {
 
   imgBtnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/cadastro');
+    navigateTo('/cadastro');
   });
 
   btnRecoverPass.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/recuperar');
+    navigateTo('/recuperar');
   });
 
   keepMeSignedIn.addEventListener('change', () => {
