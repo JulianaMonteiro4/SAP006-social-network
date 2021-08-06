@@ -17,15 +17,17 @@ export const loginMainScreen = () => {
     <section class="main-container">
       <h2 class="title">Login</h2>
       <form class="container-form">
-        <fieldset class="inputs">
+        
+        <fieldset class="input">
+          <i class="far fa-envelope"></i>
           <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
-            <i class="far fa-envelope"></i>
-            </fieldset>
-        <fieldset class="inputs">
-          <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
-            <i id="open" class="fas fa-lock-open"></i>
-            <i id="block" class="fas fa-lock"></i>
         </fieldset>
+        
+        <fieldset class="input">
+          <i id="lock" class="fas fa-lock"></i>
+          <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
+        </fieldset>
+        
         <button class="btn" type="button" id="btn-login">Entrar</button>
         <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
         <div class="checkbox-container">

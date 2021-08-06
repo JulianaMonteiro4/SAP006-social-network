@@ -71,6 +71,7 @@ export const loginWithGoogle = async () => {
 export const recoverPassword = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
+      window.location.replace('/');
       error('E-mail para redefinição de senha enviado');
     })
     .catch(() => {

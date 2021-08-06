@@ -11,9 +11,9 @@ export const recoverLink = () => {
     <section class="main-container">
       <h2 class="title">Recuperar a Senha</h2>
       <form class="container-form">
-        <fieldset class="inputs">
-          <input class="text-field" type="email" placeholder="Insira um e-mail" id="recover-email">
+        <fieldset class="input">
           <i class="far fa-envelope"></i>
+          <input class="text-field" type="email" placeholder="Insira um e-mail" id="recover-email">
         </fieldset>
           <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
           <button class="btn" id="btn-recover" type="button">Recuperar</button>

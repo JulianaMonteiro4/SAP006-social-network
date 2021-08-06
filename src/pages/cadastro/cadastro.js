@@ -11,20 +11,22 @@ export const registerUser = () => {
     <section class="main-container">
       <h2 class="title">Cadastrar</h2>
       <form class="container-form">
-        <fieldset class="inputs">
+        
+      <fieldset class="input">
+          <i class="far fa-envelope"></i>                
           <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
-            <i class="far fa-envelope"></i>                
         </fieldset>
-        <fieldset class="inputs">
+        
+        <fieldset class="input">
+          <i class="fas fa-lock"></i>                
           <input class="text-field" type="password" placeholder="Insira uma senha" id="register-password">
-            <i class="fas fa-lock-open"></i>
-            <i class="fas fa-lock"></i>                
         </fieldset>
-        <fieldset class="inputs">
-          <input class="text-field" type="password" placeholder="Repita sua senha" id="repeat-password">
-            <i class="fas fa-lock-open"></i>
-            <i class="fas fa-lock"></i>                
+        
+        <fieldset class="input">
+          <i class="fas fa-lock"></i>                
+          <input class="text-field" type="password" placeholder="Confirme sua senha" id="repeat-password">
         </fieldset>
+        
         <button class="btn" id="btn-register" type="button">Cadastrar</button>
         <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
       </form>

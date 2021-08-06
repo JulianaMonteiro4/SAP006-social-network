@@ -7,7 +7,6 @@
 
 body{
     background-image: url("img/fundo-celular.jpg");
-    background-size: cover;
 }
 
 .overlay {
@@ -84,16 +83,34 @@ body{
 
 .text-field {
     flex-direction:column;
-    width: 180px;
-    height: 40px;
+    width: 150px;
+    height: 35px;
     background: #ffd050ce;
-    margin: 1rem;
+    margin: 5px;
     outline: none;
     border: 1px solid #ffd050de;
     border-radius: 10px;
     padding-top: 4px;
-    padding-left: 30px;
-    font-size: 18px;
+    padding-left: 5px;
+    font-size: 15px;
+    align-items: center;
+}
+
+.input{
+    background-color: #ffd050ce;
+    border: 1px solid #ffd050de;
+    display: flex;
+    align-items: center;
+    margin: 4% 10%;
+    padding-left: 2%;
+    border-radius: 10px;
+}
+
+.fa-lock{
+    background: #ffd050ce;
+    outline: none;
+    border: 1px solid #ffd050de;
+    border-radius: 10px;    
 }
 
 .btn {
@@ -109,8 +126,14 @@ body{
     cursor: pointer;
 }
 
-.btn:hover {
-    background: #FF8CA4;
+.btn:hover{
+    background: #628ab8b2;
+}
+
+.btn:active {
+    position:relative;
+    top: 3px;
+    box-shadow:none;
 }
  
 .btn-blue {
@@ -128,7 +151,7 @@ body{
     display: flex;  
     width: 40px;
     height: 40px;
-    margin-left: 45%;
+    margin-left: 43%;
     margin-top: 7%;
 }
 
@@ -166,8 +189,13 @@ body{
     margin-right: 20px;
     justify-content:space-between;
 }
+
 #open {
     display: none;
+}
+
+.footer {
+    font-size: 17px;
 }
 
 .footer a {
@@ -175,7 +203,7 @@ body{
     color: black;
 }
 
-@media screen and (min-width: 640px) and (max-width:1024px){
+@media screen and (min-width: 426px) and (max-width:1024px){
     .logo-img{
         width: 32%;
         height: 25%;
@@ -225,7 +253,7 @@ body{
     } */
 }
 
-@media screen and (min-width:1025px){
+@media screen and (min-width:1025px) and (max-width:1440px){
     .logo-img{
         width: 32%;
         height: 25%;
@@ -267,4 +295,7 @@ body{
         word-break: break-word;
         font-size: 20px;
     }
+}
+
+@media screen and (min-width:1441px){
 }
