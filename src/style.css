@@ -83,15 +83,15 @@ body{
 
 .text-field {
     flex-direction:column;
-    width: 150px;
+    width: 170px;
     height: 35px;
     background: transparent;
     margin: 5px;
+    margin-left: auto;
     outline: none;
     border: none;
     border-radius: 10px;
     padding-top: 4px;
-    padding-left: 5px;
     font-size: 15px;
     align-items: center;
 }
@@ -103,15 +103,16 @@ body{
     display: flex;
     align-items: center;
     margin: 4% 10%;
-    padding-left: 2%;
     border-radius: 10px;
 }
 
-.fa-lock{
-    background: #ffd050ce;
-    outline: none;
-    border: 1px solid #ffd050de;
-    border-radius: 10px;    
+#hide, #hide-again{
+    display: none;
+}
+
+.eye, .fa-envelope{
+    color: rgba(0, 0, 0, 0.548);
+    margin-right: 5%;
 }
 
 .btn {
@@ -172,13 +173,6 @@ body{
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.651);
     border-radius: 15px;
 }
-
-
-/* .btn-google:hover { //para desktop
-    cursor: pointer;
-    transform: translateY(-10px);
-    box-shadow: 4px 30px 16px 0px rgba(50, 50, 50, 0.45);
-} */ 
 
 .checkbox-container{
     display: inline-block;

@@ -81,6 +81,8 @@ export const feed = () => {
 
   loadPosts();
 
+
+  // BOTÃO DE SAIR
   const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
