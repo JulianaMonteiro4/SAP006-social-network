@@ -13,7 +13,7 @@ export const feed = () => {
       </nav>
       <section>
         <h2 class="title">Bem vindo(a).</h2>
-        <form class="container-post"> 
+        <form id="container-post"> 
           <input id="post-text" type="textarea" class="text-field" placeholder="Novo Post"/>
           <button id="btnSendPost" type="submit" class="send-post">Publicar</i></button> 
         </form>
@@ -21,16 +21,17 @@ export const feed = () => {
       </section>
     </div>              
   `;
-
-  feedPage.querySelector('.container-post').addEventListener('submit', (e) => {
+  // Criar post.
+  feedPage.querySelector('#container-post').addEventListener('submit', (e) => {
     e.preventDefault();
-    const text = feedPage.querySelector('#post-text').value;
+    const text = feedPage.getElementById('#post-text').value;
     const post = {
       text: text,
-      user_id: id,
+      user_id: 'paloma',
       likes:0,
       comments:[],
     };
+    // salvar post no Banco de dados.
     const createPost = firebase.firestore().collection('posts');
     createPost.add(post);
   });
@@ -88,4 +89,3 @@ export const feed = () => {
 
   return main.appendChild(feedPage);
 };
-
