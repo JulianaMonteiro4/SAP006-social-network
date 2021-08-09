@@ -1,5 +1,5 @@
 import { recoverPassword } from '../../services/index.js';
-import { getRoutes } from '../../routes.js';
+import { navigateTo } from '../../routes.js';
 
 export const recoverLink = () => {
   const main = document.getElementById('root');
@@ -38,7 +38,7 @@ export const recoverLink = () => {
 
   btnBackRecover.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/');
+    navigateTo('/');
   });
 
   return main.appendChild(recoverPage);

@@ -1,5 +1,5 @@
 import { newRegister } from '../../services/index.js';
-import { getRoutes } from '../../routes.js';
+import { navigateTo } from '../../routes.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
@@ -49,7 +49,7 @@ export const registerUser = () => {
 
   btnBack.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/');
+    navigateTo('/');
   });
 
   return main.appendChild(registerPage);

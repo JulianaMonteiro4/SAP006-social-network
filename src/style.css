@@ -7,7 +7,6 @@
 
 body{
     background-image: url("img/fundo-celular.jpg");
-    background-size: cover;
 }
 
 .overlay {
@@ -16,7 +15,7 @@ body{
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(255, 255, 255,0.3);
+    background: rgba(255, 255, 255,0.42);
     z-index: -1;
 }
 
@@ -75,6 +74,7 @@ body{
 .title {
     margin: 2rem 0;
     font-size: 30px;
+    
 }
 
 .container-form{
@@ -83,16 +83,34 @@ body{
 
 .text-field {
     flex-direction:column;
-    width: 180px;
-    height: 40px;
+    width: 150px;
+    height: 35px;
     background: #ffd050ce;
-    margin: 1rem;
+    margin: 5px;
     outline: none;
     border: 1px solid #ffd050de;
     border-radius: 10px;
     padding-top: 4px;
-    padding-left: 30px;
-    font-size: 18px;
+    padding-left: 5px;
+    font-size: 15px;
+    align-items: center;
+}
+
+.input{
+    background-color: #ffd050ce;
+    border: 1px solid #ffd050de;
+    display: flex;
+    align-items: center;
+    margin: 4% 10%;
+    padding-left: 2%;
+    border-radius: 10px;
+}
+
+.fa-lock{
+    background: #ffd050ce;
+    outline: none;
+    border: 1px solid #ffd050de;
+    border-radius: 10px;    
 }
 
 .btn {
@@ -108,8 +126,14 @@ body{
     cursor: pointer;
 }
 
-.btn:hover {
-    background: #FF8CA4;
+.btn:hover{
+    background: #628ab8b2;
+}
+
+.btn:active {
+    position:relative;
+    top: 3px;
+    box-shadow:none;
 }
  
 .btn-blue {
@@ -118,7 +142,7 @@ body{
 
 .phrase {
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 5px;
     text-align: center;
     font-size: 16px;
 }
@@ -127,8 +151,8 @@ body{
     display: flex;  
     width: 40px;
     height: 40px;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-left: 43%;
+    margin-top: 7%;
 }
 
 .footer {
@@ -137,11 +161,7 @@ body{
     font-size: 20px;
     background-color: #fe622ead;
     padding-top: 6px;
-}
-
-.footer a {
-    text-decoration: none;
-    color: black;
+    text-align: center;
 }
 
 .meme-senha{
@@ -149,6 +169,25 @@ body{
     height: 60%;
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.651);
     border-radius: 15px;
+}
+
+
+/* .btn-google:hover { //para desktop
+    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 4px 30px 16px 0px rgba(50, 50, 50, 0.45);
+} */ 
+
+.checkbox-container{
+    display: inline-block;
+    justify-content: space-evenly;
+}
+
+.checkbox-phrase{
+    font-size: 13px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    justify-content:space-between;
 }
 
 #open {
@@ -173,4 +212,110 @@ body{
     height: 60px;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.footer {
+    font-size: 17px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (min-width: 426px) and (max-width:1024px){
+    .logo-img{
+        width: 32%;
+        height: 25%;
+        float: left;
+        margin: 12% 0 0 15%;
+        position: absolute;
+        flex-direction: column;
+    }
+
+    .main-container {
+        width: 36%;
+        float: right;
+        margin-right: 10%;
+    }
+
+    .text-field {
+        width: 70%;
+    }
+
+    .btn-google {
+        margin-left: 45%;
+        margin-top: 7%;
+    }
+
+    .phrase-register{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+    .phrase-recover{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+   /* .btn-google:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 4px 30px 16px 0px rgba(50, 50, 50, 0.45);
+    } */
+}
+
+@media screen and (min-width:1025px) and (max-width:1440px){
+    .logo-img{
+        width: 32%;
+        height: 25%;
+        float: left;
+        margin: 12% 0 0 15%;
+        position: absolute;
+        flex-direction: column;
+    }
+
+    .main-container {
+        width: 36%;
+        float: right;
+        margin-right: 10%;
+    }
+
+    .text-field {
+        width: 70%;
+    }
+
+    .btn-google {
+        margin-left: 45%;
+        margin-top: 7%;
+    }
+
+    .phrase-register{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+    .phrase-recover{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:1441px){
 }

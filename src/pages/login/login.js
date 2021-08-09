@@ -1,7 +1,7 @@
 // MANIPULAÇÃO DO DOM DO LOGIN
 
 import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
-import { getRoutes } from '../../routes.js';
+import { navigateTo } from '../../routes.js';
 // getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
@@ -49,11 +49,14 @@ export const loginMainScreen = () => {
   const btnLoginWithGoogle = loginPage.querySelector('#google');
   const imgBtnRegister = loginPage.querySelector('#cadastro');
   const btnRecoverPass = loginPage.querySelector('#recover');
-  const keepMeSignedIn = loginPage.querySelector('.checkbox');
+  const keepMeSignedIn = loginPage.querySelector('#checkbox');
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithRegister(email.value, password.value);
+    loginWithRegister(email.value, password.value)
+    /* .then(() => {
+        navigateTo('/feed');
+      }); */
   });
 
   btnLoginWithGoogle.addEventListener('click', (e) => {
@@ -63,15 +66,15 @@ export const loginMainScreen = () => {
 
   imgBtnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/cadastro');
+    navigateTo('/cadastro');
   });
 
   btnRecoverPass.addEventListener('click', (e) => {
     e.preventDefault();
-    getRoutes('/recuperar');
+    navigateTo('/recuperar');
   });
 
-  keepMeSignedIn.addEventListener('change', () => {
+  /keepMeSignedIn.addEventListener('change', () => {
     const local = firebase.auth.Auth.Persistence.LOCAL;
     const none = firebase.auth.Auth.Persistence.NONE;
     if (keepMeSignedIn.checked === true && loginWithGoogle) {
