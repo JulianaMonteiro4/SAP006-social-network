@@ -7,31 +7,33 @@ export const registerUser = () => {
   const registerPage = document.createElement('section');
   registerPage.setAttribute('class', 'container');
   registerPage.innerHTML = ` 
-    <header class="header-grid">  
-      <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
-    </header>
-    <span class="phrase-register"> Aqui, onde até os memes socializam e você não. </span>
-    <section class="main-container">
-      <h2 class="title">Cadastrar</h2>
-      <form class="container-form">
-        <fieldset class="inputs">
-          <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
-            <i class="far fa-envelope"></i>                
-        </fieldset>
-        <fieldset class="inputs">
-          <input class="text-field" type="password" placeholder="Insira uma senha" id="register-password">
-            <i class="fas fa-lock-open"></i>
-            <i class="fas fa-lock"></i>                
-        </fieldset>
-        <fieldset class="inputs">
-          <input class="text-field" type="password" placeholder="Repita sua senha" id="repeat-password">
-            <i class="fas fa-lock-open"></i>
-            <i class="fas fa-lock"></i>                
-        </fieldset>
-        <button class="btn" id="btn-register" type="button">Cadastrar</button>
-        <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
-      </form>
-    </section>              
+    <div class="l-container-grid">
+      <header class="header-grid">  
+        <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
+      </header>
+      <span class="phrase-register"> Aqui, onde até os memes socializam e você não. </span>
+      <section class="main-container">
+        <h2 class="title">Cadastrar</h2>
+        <form class="container-form">
+          <fieldset class="inputs">
+            <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
+              <i class="far fa-envelope"></i>                
+          </fieldset>
+          <fieldset class="inputs">
+            <input class="text-field" type="password" placeholder="Insira uma senha" id="register-password">
+              <i class="fas fa-lock-open"></i>
+              <i class="fas fa-lock"></i>                
+          </fieldset>
+          <fieldset class="inputs">
+            <input class="text-field" type="password" placeholder="Repita sua senha" id="repeat-password">
+              <i class="fas fa-lock-open"></i>
+              <i class="fas fa-lock"></i>                
+          </fieldset>
+          <button class="btn" id="btn-register" type="button">Cadastrar</button>
+          <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
+        </form>
+      </section> 
+    </div>             
   `;
 
   const btnRegister = registerPage.querySelector('#btn-register');
