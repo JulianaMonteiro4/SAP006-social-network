@@ -341,5 +341,21 @@ body{
         word-break: break-word;
         font-size: 20px;
     }
-}s
+}
+
+/* PAgina feed */
+
+.nav-bar {
+    display: flex;
+    background-color: rgb(128, 165, 229);
+    height: 80px;
+    color: blanchedalmond;
+    justify-content: space-between;
+}
+
+.logoPagefeed {
+    width: 100px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
