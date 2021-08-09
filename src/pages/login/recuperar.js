@@ -7,6 +7,9 @@ export const recoverLink = () => {
   const recoverPage = document.createElement('section');
   recoverPage.setAttribute('class', 'container');
   recoverPage.innerHTML = ` 
+    <header class="header-grid">  
+      <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
+    </header>
     <span>Você receberá por e-mail um link para a recuperação da senha.</span>
     <section class="main-container">
       <h2 class="title">Recuperar a Senha</h2>

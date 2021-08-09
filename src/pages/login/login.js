@@ -14,28 +14,33 @@ export const loginMainScreen = () => {
   const loginPage = document.createElement('section');
   loginPage.setAttribute('class', 'container');
   loginPage.innerHTML = `
-    <section class="main-container">
-      <h2 class="title">Login</h2>
-      <form class="container-form">
-        <fieldset class="inputs">
-          <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
-            <i class="far fa-envelope"></i>
-            </fieldset>
-        <fieldset class="inputs">
-          <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
-            <i id="open" class="fas fa-lock-open"></i>
-            <i id="block" class="fas fa-lock"></i>
-        </fieldset>
-        <button class="btn" type="button" id="btn-login">Entrar</button>
-        <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
-        <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
-        <div>
-          <input type="checkbox" class="checkbox" name="remember"><label for="remember">Mantenha-me conectado(a)</label>
-            <img src="img/icone-google.png" class="btn-google" id="google" type="button">
-        </div>
-        <p class="phrase">Login com o Google</p>
-      </form>
-    </section> 
+    <div class="l-container-grid">
+      <header class="header-grid">  
+        <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
+      </header>
+      <section class="main-container">
+        <h2 class="title">Login</h2>
+        <form class="container-form">
+          <fieldset class="inputs">
+            <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
+              <i class="far fa-envelope"></i>
+              </fieldset>
+          <fieldset class="inputs">
+            <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
+              <i id="open" class="fas fa-lock-open"></i>
+              <i id="block" class="fas fa-lock"></i>
+          </fieldset>
+          <button class="btn" type="button" id="btn-login">Entrar</button>
+          <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
+          <span class="phrase"> Esqueceu a senha? Recupere-a <a id="recover" href="#">Aqui</a></span>
+          <div>
+            <input type="checkbox" class="checkbox" name="remember"><label for="remember">Mantenha-me conectado(a)</label>
+              <img src="img/icone-google.png" class="btn-google" id="google" type="button">
+          </div>
+          <p class="phrase">Login com o Google</p>
+        </form>
+      </section> 
+    </div>
   `;
 
   const email = loginPage.querySelector('#email');

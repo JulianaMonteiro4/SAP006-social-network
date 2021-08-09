@@ -6,15 +6,19 @@ export const feed = () => {
   const feedPage = document.createElement('section');
   feedPage.setAttribute('class', 'container');
   feedPage.innerHTML = ` 
-      <section class="main-container">
-          <h2 class="title">Feed</h2>
-          <form class="container-form">
-              <fieldset class="icons-cadastro icons-login">
-                  <input class="text-field" type="text" placeholder="Novo Post" id="register-email"/>
-              </fieldset>
-              <button type="button" id="btn-logout" class="btn btn-login">Sair</button>
-          </form>
-      </section>              
+    <div class="l-container-grid">
+      <nav class="nav-bar">
+        <img src="#" alt="logo">
+        <button type="button" id="btn-logout" class="btn btn-login"><i class="fas fa-sign-out-alt"></i></button>
+      </nav>
+      <section>
+        <h2 class="title">Bem vindo(a).</h2>
+        <form class="container-form">            
+          <input class="text-field" type="textarea" placeholder="Novo Post" id="register-email"/>
+          <button type="submit" id="btnSendPost" class="send-post">Publicar</i></button>                     
+        </form>
+      </section>
+    </div>              
       `;
 
   const btnLogout = feedPage.querySelector('#btn-logout');

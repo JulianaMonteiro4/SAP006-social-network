@@ -158,3 +158,12 @@ body{
 /*#block:hover {
     display: none;
 }*/
+
+/* Pagina do Feed */
+.nav-bar {
+    display: flex;
+    background-color: rgb(128, 165, 229);
+    height: 80px;
+    color: blanchedalmond;
+    justify-content: space-between;
+}

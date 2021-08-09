@@ -7,6 +7,9 @@ export const registerUser = () => {
   const registerPage = document.createElement('section');
   registerPage.setAttribute('class', 'container');
   registerPage.innerHTML = ` 
+    <header class="header-grid">  
+      <img class="logo-img" src="img/logo-nome.png" alt="logo"></img>
+    </header>
     <span class="phrase-register"> Aqui, onde até os memes socializam e você não. </span>
     <section class="main-container">
       <h2 class="title">Cadastrar</h2>
