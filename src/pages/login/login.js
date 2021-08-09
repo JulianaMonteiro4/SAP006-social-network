@@ -19,16 +19,15 @@ export const loginMainScreen = () => {
       <form class="container-form">
         
         <fieldset class="input">
-          <i class="far fa-envelope"></i>
           <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
+          <i class="far fa-envelope"></i>
         </fieldset>
         
         <fieldset class="input">
-          <i id="lock" class="fas fa-lock"></i>
           <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
           <span class="eye">
-            <i id="hide1" class="far fa-eye"></i>
-            <i id="hide2" class="far fa-eye-slash"></i>
+            <i id="show" class="fas fa-lock-open"></i>
+            <i id="hide" class="fas fa-lock"></i>
           </span>
         </fieldset>
         
@@ -53,7 +52,10 @@ export const loginMainScreen = () => {
   const imgBtnRegister = loginPage.querySelector('#cadastro');
   const btnRecoverPass = loginPage.querySelector('#recover');
   const keepMeSignedIn = loginPage.querySelector('#checkbox');
+  const show = loginPage.querySelector('#show');
+  const hide = loginPage.querySelector('#hide');
 
+  // BOTÃO DE LOGIN
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
     loginWithRegister(email.value, password.value);
@@ -62,21 +64,25 @@ export const loginMainScreen = () => {
       }); */
   });
 
+  // BOTÃO DE LOGIN COM O GOOGLE
   btnLoginWithGoogle.addEventListener('click', (e) => {
     e.preventDefault();
     loginWithGoogle();
   });
 
+  // BOTÃO PARA CADASTRAR
   imgBtnRegister.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/cadastro');
   });
 
+  // LINK ESQUECEU A SENHA
   btnRecoverPass.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/recuperar');
   });
 
+  // CHECKBOX DE MANTER CONECTADO
   keepMeSignedIn.addEventListener('change', () => {
     const local = firebase.auth.Auth.Persistence.LOCAL;
     const none = firebase.auth.Auth.Persistence.NONE;
@@ -86,6 +92,21 @@ export const loginMainScreen = () => {
       keepLogged(local);
     }
     keepLogged(none);
+  });
+
+  // MOSTRAR E OCULTAR A SENHA
+  show.addEventListener('click', (e) => {
+    e.preventDefault();
+    password.setAttribute('type', 'text');
+    show.style.display = 'none';
+    hide.style.display = 'block';
+  });
+
+  hide.addEventListener('click', (e) => {
+    e.preventDefault();
+    password.setAttribute('type', 'password');
+    hide.style.display = 'none';
+    show.style.display = 'block';
   });
 
   return main.appendChild(loginPage);

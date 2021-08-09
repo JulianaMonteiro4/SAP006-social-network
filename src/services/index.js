@@ -2,12 +2,12 @@ import { error } from './error.js';
 import { navigateTo } from '../routes.js';
 // import { dataFirestore } from './firebaseconfig.js';
 
-// CRIAR UMA CONTA
+// CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      window.location.replace('/');
+      navigateTo('/');
       error('Usuário cadastrado');
     })
     .catch(() => {
@@ -37,7 +37,7 @@ export const loginWithRegister = (email, password) => {
     })
     .then(() => {
       setTimeout(() => {
-        window.location.replace('feed');
+        navigateTo('feed');
       }, 1000);
     })
     .catch(() => {
@@ -101,12 +101,12 @@ export const signOut = () => {
     });
 };
 
+// MANTER CONECTADO
 export const keepLogged = (persistence) => {
   firebase.auth().setPersistence(persistence)
     .then(() => {
       // const provider = new firebase.auth();
       // return firebase.auth().signInWithRedirect(provider);
-      // console.log('qualquer coisa');
     })
     .catch(() => {
       error('Não foi possível permanecer conectado(a)');

@@ -12,8 +12,10 @@ export const recoverLink = () => {
       <h2 class="title">Recuperar a Senha</h2>
       <form class="container-form">
         <fieldset class="input">
-          <i class="far fa-envelope"></i>
           <input class="text-field" type="email" placeholder="Insira um e-mail" id="recover-email">
+          <span class="eye">
+            <i class="far fa-envelope"></i>
+          </span>              
         </fieldset>
           <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
           <button class="btn" id="btn-recover" type="button">Recuperar</button>
@@ -26,11 +28,13 @@ export const recoverLink = () => {
   const inputEmail = recoverPage.querySelector('#recover-email');
   const btnBackRecover = recoverPage.querySelector('#btn-back-recover');
 
+  // BOTÃO DE ENVIAR RECUPERAÇÃO DE SENHA
   btnLinkRecover.addEventListener('click', (e) => {
     e.preventDefault();
     recoverPassword(inputEmail.value);
   });
 
+  // BOTÃO DE RETORNAR PARA LOGIN
   btnBackRecover.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/');
