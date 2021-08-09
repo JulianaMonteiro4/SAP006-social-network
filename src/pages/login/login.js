@@ -26,6 +26,10 @@ export const loginMainScreen = () => {
         <fieldset class="input">
           <i id="lock" class="fas fa-lock"></i>
           <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
+          <span class="eye">
+            <i id="hide1" class="far fa-eye"></i>
+            <i id="hide2" class="far fa-eye-slash"></i>
+          </span>
         </fieldset>
         
         <button class="btn" type="button" id="btn-login">Entrar</button>
@@ -52,7 +56,7 @@ export const loginMainScreen = () => {
 
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithRegister(email.value, password.value)
+    loginWithRegister(email.value, password.value);
     /* .then(() => {
         navigateTo('/feed');
       }); */
@@ -84,27 +88,5 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
-  /* const icon = document.querySelector('#block');
-    icon.addEventListener('click', () => {
-    const inputPassword = document.querySelector('#password');
-
-    if (inputPassword.getAttribute('type') === 'password') {
-      inputPassword.setAttribute('type', 'text');
-    } else {
-      inputPassword.setAttribute('type', 'password');
-    }
-  }); */
-
   return main.appendChild(loginPage);
 };
-
-// JULIANA
-/* function mostrarSenha() {
-  const senha = document.getElementById('password');
-  if (senha.type === 'password') {
-    senha.type = 'text';
-} else {
-    senha.type = 'password';
-  }
-  senha.addEventListener('click', mostrarSenha());
-} */
