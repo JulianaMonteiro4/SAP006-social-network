@@ -5,10 +5,6 @@ import { navigateTo } from '../../routes.js';
 // getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
-  /* userStatus().then((user) => {
-    console.log("Ta logado", user.email, user.uid);
-  }); */
-
   const main = document.getElementById('root');
   main.innerHTML = '';
   const loginPage = document.createElement('section');
