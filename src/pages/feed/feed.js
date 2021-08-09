@@ -1,4 +1,4 @@
-import { signOut } from '../../services/index.js';
+import { signOut, createNewPost } from '../../services/index.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -13,8 +13,8 @@ export const feed = () => {
       </nav>
       <section>
         <h2 class="title">Bem vindo(a).</h2>
-        <form class="container-post"> 
-          <input id="post-text" type="textarea" class="text-field" placeholder="Novo Post"/>
+        <form action="" id="postForm" class="container-post"> 
+          <input id="postText" type="textarea" class="text-field" placeholder="Novo Post">
           <button id="btnSendPost" type="submit" class="send-post">Publicar</i></button> 
         </form>
         <ul id="postList" class="post-list"></ul>
@@ -22,6 +22,7 @@ export const feed = () => {
     </div>              
   `;
 
+  // BOTÃO DE SAIR
   const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();

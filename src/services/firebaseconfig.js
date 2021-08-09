@@ -1,4 +1,4 @@
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: 'AIzaSyCKCVzvQ94UKiHIbNUq8dJ-pt8UOeTUvik',
   authDomain: 'sap006-social-network-94ddf.firebaseapp.com',
   projectId: 'sap006-social-network-94ddf',
@@ -7,4 +7,4 @@ const firebaseConfig = {
   appId: '1:157712593605:web:8f8fcf8cebf069357036ac',
 };
 
-export const dataFirestore = firebase.App(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
