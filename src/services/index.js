@@ -128,3 +128,14 @@ export const keepLogged = (persistence) => {
       error('Não foi possível permanecer conectado(a)');
     });
 };
+
+// POST
+
+/* const postsCollection = firebase
+    .firestore()
+    .collection('posts');
+  postsCollection.add(post).then(() => {
+    // document.querySelector('#postsList').value = '';
+    
+  });
+}; */
