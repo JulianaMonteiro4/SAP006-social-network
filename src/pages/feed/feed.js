@@ -24,7 +24,7 @@ export const feed = () => {
   // Criar post.
   feedPage.querySelector('#container-post').addEventListener('submit', (e) => {
     e.preventDefault();
-    const text = feedPage.getElementById('#post-text').value;
+    const text = feedPage.querySelector('#post-text').value;
     const post = {
       text: text,
       user_id: 'paloma',
@@ -32,8 +32,8 @@ export const feed = () => {
       comments:[],
     };
     // salvar post no Banco de dados.
-    const createPost = firebase.firestore().collection('posts');
-    createPost.add(post);
+    const createCollectionOfPosts = firebase.firestore().collection('posts');
+    createCollectionOfPosts.add(post);
   });
 
   /* const getUserFromDatabase = (userLogged) => {
@@ -60,15 +60,17 @@ export const feed = () => {
     console.log("Ta logado", user.email, user.uid);
   });
 
+  // Add post.
   const addPosts = (post) => {
     const postTemplate = `
     <li id='${post.id}'>
       ${post.data().text} ❤️ ${post.data().likes}
     </li>
     `;
-    document.getElementById('#postList').innerHTML += postTemplate;
+    document.querySelector('#postList').innerHTML += postTemplate;
   };
 
+  // banco de dados dos posts
   const loadPosts = () => {
     const postsCollection = firebase.firestore().collection('posts');
     postsCollection.get().then((snap) => {
