@@ -1,4 +1,4 @@
-import { signOut, createPost } from '../../services/index.js';
+import { signOut} from '../../services/index.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -24,28 +24,38 @@ export const feed = () => {
 
   feedPage.querySelector('.container-post').addEventListener('submit', (e) => {
     e.preventDefault();
-    const textPost = feedPage.querySelector('#post-text').value;
+    const text = feedPage.querySelector('#post-text').value;
     const post = {
-      text: textPost,
-      user_id:'x',
+      text: text,
+      user_id:'paloma',
       likes:0,
       comments:[],
-    },
-    // createPost(textPost);
+    }
+    const createPost = firebase.firestore().collection('posts')
+    createPost.add(post);
   });
 
-
-
-  /* const createPost = (post) => {
-    const postStructure = `
-    <section>
-      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p> 
-      <button id="btnDelete" value="${post.id}">Excluir</button>
-    </section>
+  const addPosts = (post) => {
+    const postTemplate = `
+    <li id='${post.id}'>
+      ${post.data().text} ❤️ ${post.data().likes}
+    </li>
     `;
-  
-    document.getElementById('postTemplate').innerHTML += postStructure;
-  } */
+    document.getElementById('posts').innerHTML += postTemplate;
+  };
+
+  const loadPosts = () => {
+    const postsCollection = firebase.firestore().collection('posts');
+    postsCollection.get().then((snap) => {
+      feedPage.querySelector('#postsList').innerHTML = '';
+      snap.forEach((post) => {
+        addPosts(post);
+      });
+    });
+  };
+
+  loadPosts();
+
 
   const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
@@ -56,4 +66,3 @@ export const feed = () => {
   return main.appendChild(feedPage);
 };
 
-// <textarea id="message" class="msg-field"  required></textarea>
