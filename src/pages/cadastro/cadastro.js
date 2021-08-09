@@ -7,12 +7,16 @@ export const registerUser = () => {
   const registerPage = document.createElement('section');
   registerPage.setAttribute('class', 'container');
   registerPage.innerHTML = ` 
-    <span class="phrase-register"> Aqui, onde até os memes socializam e você não!! Então não fique de fora, cadastre-se. </span>
-    <section class="main-container">
-      <h2 class="title">Cadastrar</h2>
-      <form class="container-form">
-        
-      <fieldset class="input">
+    <div class="l-container-grid">
+      <header class="header-grid">  
+        <img class="logo-img" src="img/logo-nome.png" alt="logo">  
+      </header>
+      <span class="phrase-register"> Aqui, onde até os memes socializam e você não!! Então não fique de fora, cadastre-se. </span>
+      <section class="main-container">
+        <h2 class="title">Cadastrar</h2>
+        <form class="container-form">
+          
+        <fieldset class="input">
           <input class="text-field" type="email" placeholder="Insira um e-mail" id="register-email">
           <span class="eye">
             <i class="far fa-envelope"></i> 
@@ -34,11 +38,12 @@ export const registerUser = () => {
             <i id="hide-again" class="fas fa-lock"></i>
           </span>
         </fieldset>
-        
-        <button class="btn" id="btn-register" type="button">Cadastrar</button>
-        <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
-      </form>
-    </section>              
+          
+          <button class="btn" id="btn-register" type="button">Cadastrar</button>
+          <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
+        </form>
+      </section>
+    </div>              
   `;
 
   const btnRegister = registerPage.querySelector('#btn-register');
