@@ -1,4 +1,4 @@
-import { signOut } from '../../services/index.js';
+import { signOut, createPost } from '../../services/index.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -14,13 +14,38 @@ export const feed = () => {
       <section>
         <h2 class="title">Bem vindo(a).</h2>
         <form class="container-post"> 
-          <input class="text-field" type="textarea" placeholder="Novo Post" id="register-email"/>
-          <button type="submit" id="btnSendPost" class="send-post">Publicar</i></button> 
+          <input id="post-text" type="textarea" class="text-field" placeholder="Novo Post"/>
+          <button id="btnSendPost" type="submit" class="send-post">Publicar</i></button> 
         </form>
         <ul id="postList" class="post-list"></ul>
       </section>
     </div>              
   `;
+
+  feedPage.querySelector('.container-post').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const textPost = feedPage.querySelector('#post-text').value;
+    const post = {
+      text: textPost,
+      user_id:'x',
+      likes:0,
+      comments:[],
+    },
+    // createPost(textPost);
+  });
+
+
+
+  /* const createPost = (post) => {
+    const postStructure = `
+    <section>
+      <p id='${post.id}'>${post.data().text} ❤️ ${post.data().likes}</p> 
+      <button id="btnDelete" value="${post.id}">Excluir</button>
+    </section>
+    `;
+  
+    document.getElementById('postTemplate').innerHTML += postStructure;
+  } */
 
   const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
