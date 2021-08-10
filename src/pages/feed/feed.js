@@ -24,19 +24,70 @@ export const feed = () => {
   // Criar post.
   feedPage.querySelector('#container-post').addEventListener('submit', (e) => {
     e.preventDefault();
+    // pegar usuario
+    userStatus().then((user) => {
+      const userId = user.uid;
+      console.log(userId);
+      // console.log("Ta logado", user.email, user.uid);
+    });
     const text = feedPage.querySelector('#post-text').value;
     const post = {
       text: text,
-      user_id: 'paloma',
+      user_id: userId,
       likes:0,
       comments:[],
     };
     // salvar post no Banco de dados.
     const createCollectionOfPosts = firebase.firestore().collection('posts');
-    createCollectionOfPosts.add(post);
+    createCollectionOfPosts.add(post).then(res => {
+      const text = feedPage.querySelector('#post-text').value = "";
+      loadPosts()
+    });
   });
 
-  /* const getUserFromDatabase = (userLogged) => {
+  // Add post.
+  const addPosts = (post) => {
+    const postTemplate = `
+    <li id='${post.id}'>
+      ${post.data().text} ❤️ ${post.data().likes}
+    </li>
+    `;
+    document.querySelector('#postList').innerHTML += postTemplate;
+  };
+
+  // banco de dados dos posts
+  const loadPosts = () => {
+    const postsCollection = firebase.firestore().collection('posts');
+    postsCollection.get().then((snap) => {          // ler todos os posts get().
+      feedPage.querySelector('#postList').innerHTML = '';
+      snap.forEach((post) => {
+        addPosts(post);
+      });
+    });
+  };
+
+  loadPosts();
+
+  // deletar post
+/* function deletePost(postId) {
+  const postsCollection = firebase.firestore().collection('posts');
+  postsCollection.doc(postId).delete().then(doc => {
+    loadPosts()
+  }
+} */
+
+
+  // BOTÃO DE SAIR
+  const btnLogout = feedPage.querySelector('#btn-logout');
+  btnLogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    signOut();
+  });
+
+  return main.appendChild(feedPage);
+};
+
+/* const getUserFromDatabase = (userLogged) => {
     const usersCollection = firebase.firestore().collection('users');
     usersCollection.get().then((snap) => {
       snap.forEach((user) => {
@@ -53,43 +104,3 @@ export const feed = () => {
   }
 
   */
-
-  // pegar usuario
-
-  userStatus().then((user) => {
-    console.log("Ta logado", user.email, user.uid);
-  });
-
-  // Add post.
-  const addPosts = (post) => {
-    const postTemplate = `
-    <li id='${post.id}'>
-      ${post.data().text} ❤️ ${post.data().likes}
-    </li>
-    `;
-    document.querySelector('#postList').innerHTML += postTemplate;
-  };
-
-  // banco de dados dos posts
-  const loadPosts = () => {
-    const postsCollection = firebase.firestore().collection('posts');
-    postsCollection.get().then((snap) => {
-      feedPage.querySelector('#postList').innerHTML = '';
-      snap.forEach((post) => {
-        addPosts(post);
-      });
-    });
-  };
-
-  loadPosts();
-
-
-  // BOTÃO DE SAIR
-  const btnLogout = feedPage.querySelector('#btn-logout');
-  btnLogout.addEventListener('click', (e) => {
-    e.preventDefault();
-    signOut();
-  });
-
-  return main.appendChild(feedPage);
-};
