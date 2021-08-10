@@ -37,14 +37,14 @@ export const feed = () => {
     const post = {
       text: text,
       user_id: userId,
-      likes:0,
-      comments:[],
+      likes: 0,
+      comments: [],
     };
     // salvar post no Banco de dados.
     const createCollectionOfPosts = firebase.firestore().collection('posts');
     createCollectionOfPosts.add(post).then(res => {
       const text = feedPage.querySelector('#post-text').value = "";
-      loadPosts()
+      loadPosts();
     });
   });
 
@@ -72,13 +72,12 @@ export const feed = () => {
   loadPosts();
 
   // deletar post
-/* function deletePost(postId) {
+  /* function deletePost(postId) {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.doc(postId).delete().then(doc => {
     loadPosts()
   }
 } */
-
 
   // BOTÃO DE SAIR
   const btnLogout = feedPage.querySelector('#btn-logout');

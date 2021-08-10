@@ -34,7 +34,7 @@ export const loginMainScreen = () => {
           </span>
         </fieldset>
           
-          <button class="btn" type="button" id="btn-login">Entrar</button>
+          <button class="btn btn-animation" type="button" id="btn-login"><i class="far fa-play-circle"> Play</i></button>
           <div class="checkbox-container">
             <input id="checkbox" type="checkbox" name="remember"><label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
             <span class="checkbox-phrase"><a id="recover" href="#">Esqueceu a senha?</a></span>

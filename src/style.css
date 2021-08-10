@@ -40,6 +40,16 @@ body{
     "footer";
 }
 
+.btn-animation{
+    animation: image 0.3s ease alternate infinite;
+}
+
+@keyframes image{
+    to{
+        transform: translateX(3px);
+    }
+}
+
 .btn-cadastrar{
     position: absolute;
     width: 70px;
@@ -48,6 +58,7 @@ body{
     border-radius: 40px;
     flex-direction: row;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    cursor: pointer;
 }
 
 .btn-cadastrar:active {
