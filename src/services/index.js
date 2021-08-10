@@ -64,10 +64,9 @@ export const loginWithGoogle = async () => {
   const result = await firebase.auth().signInWithPopup(provider);
   navigateTo('/feed');
   return result;
-  // REDIRECIONAR PARA PG FEED.
 };
 
-// E-MAIL DE REDEFINIÇÃO DE SENHA - FUNCIONANDO (SÓ VERIFICAR COMO RECEBE E-MAIL)
+// E-MAIL DE REDEFINIÇÃO DE SENHA
 export const recoverPassword = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
@@ -113,26 +112,29 @@ export const keepLogged = (persistence) => {
     });
 };
 
+// CRIAR NOVOS POSTS
 export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
-// CRIAR DADOS EM UMA COLEÇÃO
+// LIKES NOS POSTS
+// const firestorePP = firebase.firestore();
+/* const likesCollection = firestore.collection('likes');
 
-/* export const createPost = (post) => {
-  firebase.firestore().collection('posts').add(post);
+export const likedPost = () => likesCollection.add({
+  liked: true,
+})
+  .then(() => true)
+  .catch((error) => error);
+
+export const comentPost = (comment) => {
+  console.log(comment);
+  return likesCollection.add({
+    liked: true,
+  })
+    .then(() => true)
+    .catch((error) => error);
 }; */
 
-/* dataFirestore.collection('posts').add({
-  title: titleInput.value,
-  content: contentInput.value,
-})
-  .then((docRef) => {
-    console.log('Document written with ID: ', docRef.id);
-  })
-  .catch((error) => {
-    console.error('Error adding document: ', error);
-  });
-
-// CRIAR DADOS EM UM USUÁRIO
+/* // CRIAR DADOS EM UM USUÁRIO
 dataFirestore.collection('users').add({
   name: inputNome.value,
   idUser: userCredential.uid,
@@ -144,11 +146,6 @@ dataFirestore.collection('users').add({
     console.error('Error adding document: ', error);
   });
 */
-
-// .
-/* export const getLoggedUser = () => {
-    return firebase.auth().currentUser;
-}; */
 
 export const userStatus = () => {
   return new Promise ((res, rej) => {
