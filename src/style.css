@@ -40,12 +40,30 @@ body{
     "footer";
 }
 
-/*.btn-cadastrar{
-    display: flex;  
-    width: 60px;
-    height: 60px;
-    float: right;
-}*/
+.btn-cadastrar{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: #ffd050d7;
+    border-radius: 40px;
+    flex-direction: row;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+}
+
+.btn-cadastrar:active {
+    position:relative;
+    top: 3px;
+    box-shadow:none;
+}
+
+.img-register{
+    display: flexs;
+    opacity: 82%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 15px 15px;
+}
 
 .header-grid {
    grid-area: header-grid;
@@ -110,9 +128,15 @@ body{
     display: none;
 }
 
-.eye, .fa-envelope{
+.eye, .fa-envelope, .fa-file-alt{
     color: rgba(0, 0, 0, 0.548);
     margin-right: 5%;
+}
+
+.fa-file-alt{
+    width: 50px;
+    height: 50px;
+    position: absolute;
 }
 
 .btn {
@@ -140,7 +164,7 @@ body{
 }
  
 .btn-blue {
-    background-color: #7c81e4;
+    background-color: #7c81e4d2;
 }
 
 .phrase {
@@ -170,7 +194,7 @@ body{
 .meme-senha{
     width: 60%;
     height: 60%;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.651);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.315);
     border-radius: 15px;
 }
 
@@ -358,7 +382,6 @@ body{
 }
 
 /* PAgina feed */
-
 .nav-bar {
     display: flex;
     background-color: rgb(128, 165, 229);
@@ -372,4 +395,34 @@ body{
     height: 60px;
     margin-left: 10px;
     margin-top: 10px;
+}
+
+.posts{
+    background-color: #ff8ca5be;
+    width: 90%;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    font-size: 15px;
+    padding-left: 5px;
+}
+
+.fa-image{
+    display: flex;
+    color: rgba(0, 0, 0, 0.582);
+    flex-direction: row;
+}
+
+.img-post{
+    position: absolute;
+    flex-direction: row;
+    float: right;
+}
+
+.img-photo{
+    position: absolute;
+    float: right;
+    width: 35px;
+    height: 35px;
+    opacity: 70%;
 }

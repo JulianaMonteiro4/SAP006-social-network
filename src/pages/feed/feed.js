@@ -9,13 +9,16 @@ export const feed = () => {
     <div class="l-container-grid">
       <nav class="nav-bar">
         <img class="logoPagefeed" src="./img/logo-nome.png" alt="logo">
+        <h2 class="title">Feed</h2>
         <button type="button" id="btn-logout" class="btn btn-login"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
       <section>
-        <h2 class="title">Bem vindo(a).</h2>
-        <form id="container-post"> 
-          <input id="post-text" type="textarea" class="text-field" placeholder="Novo Post"/>
-          <button id="btnSendPost" type="submit" class="send-post">Publicar</i></button> 
+        <form class="container-post"> 
+          <div class="img-post">
+            <img src="img/icone-img.png" class="img-photo" id="btn-img" type="button">
+          </div>
+          <input id="post-text" type="textarea" class="posts" placeholder="Novo Post"/>
+            <button id="btnSendPost" type="submit" class="btn btn-blue">Publicar</i></button> 
         </form>
         <ul id="postList" class="post-list"></ul>
       </section>
