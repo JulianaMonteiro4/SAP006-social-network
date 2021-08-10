@@ -19,6 +19,9 @@ export const loginMainScreen = () => {
         <img class="logo-img" src="img/logo-nome.png" alt="logo">  
       </header>
       <section class="main-container">
+        <div class="btn-cadastrar">
+          <img src="img/icone-register.png" class="img-register" id="cadastro" type="button">
+        </div>
         <h2 class="title">Login</h2>
         <form class="container-form">
           
@@ -36,7 +39,6 @@ export const loginMainScreen = () => {
         </fieldset>
           
           <button class="btn" type="button" id="btn-login">Entrar</button>
-          <button class="btn btn-blue" type="button" id="cadastro">Cadastrar</button>
           <div class="checkbox-container">
             <input id="checkbox" type="checkbox" name="remember"><label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
             <span class="checkbox-phrase"><a id="recover" href="#">Esqueceu a senha?</a></span>
