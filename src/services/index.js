@@ -148,7 +148,7 @@ dataFirestore.collection('users').add({
 // .
 /* export const getLoggedUser = () => {
     return firebase.auth().currentUser;
-};
+}; */
 
 export const userStatus = () => {
   return new Promise ((res, rej) => {
@@ -161,4 +161,4 @@ export const userStatus = () => {
     });
   });
 };
-*/
+
