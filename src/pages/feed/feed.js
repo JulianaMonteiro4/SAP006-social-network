@@ -13,7 +13,7 @@ export const feed = () => {
         <button type="button" id="btn-logout" class="btn btn-login"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
       <section>
-        <form class="container-post"> 
+        <form id="container-post"> 
           <div class="img-post">
             <img src="img/icone-img.png" class="img-photo" id="btn-img" type="button">
           </div>
