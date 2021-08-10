@@ -2,12 +2,12 @@ import { error } from './error.js';
 import { navigateTo } from '../routes.js';
 // import { dataFirestore } from './firebaseconfig.js';
 
-// CRIAR UMA CONTA
+// CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
 export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      window.location.replace('/');
+      navigateTo('/');
       error('Usuário cadastrado');
     })
     .catch(() => {
@@ -37,7 +37,7 @@ export const loginWithRegister = (email, password) => {
     })
     .then(() => {
       setTimeout(() => {
-        window.location.replace('feed');
+        navigateTo('feed');
       }, 1000);
     })
     .catch(() => {
@@ -101,28 +101,27 @@ export const signOut = () => {
     });
 };
 
+// MANTER CONECTADO
 export const keepLogged = (persistence) => {
   firebase.auth().setPersistence(persistence)
     .then(() => {
       // const provider = new firebase.auth();
       // return firebase.auth().signInWithRedirect(provider);
-      // console.log('qualquer coisa');
     })
     .catch(() => {
       error('Não foi possível permanecer conectado(a)');
     });
 };
 
-// POST
+// export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
-/* const postsCollection = firebase
-    .firestore()
-    .collection('posts');
-  postsCollection.add(post).then(() => {
-    // document.querySelector('#postsList').value = '';
-  });
-}; */
+
 // CRIAR DADOS EM UMA COLEÇÃO
+
+/* export const createPost = (post) => {
+  firebase.firestore().collection('posts').add(post);
+}; */
+
 /* dataFirestore.collection('posts').add({
   title: titleInput.value,
   content: contentInput.value,
@@ -150,7 +149,7 @@ dataFirestore.collection('users').add({
 // .
 /* export const getLoggedUser = () => {
     return firebase.auth().currentUser;
-};
+}; */
 
 export const userStatus = () => {
   return new Promise ((res, rej) => {
@@ -163,4 +162,4 @@ export const userStatus = () => {
     });
   });
 };
-*/
+
