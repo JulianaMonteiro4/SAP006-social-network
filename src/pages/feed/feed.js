@@ -13,7 +13,7 @@ export const feed = () => {
         <button type="button" id="btn-logout" class="btn btn-login"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
       <section>
-        <form class="container-post"> 
+        <form id="container-post"> 
           <div class="img-post">
             <img src="img/icone-img.png" class="img-photo" id="btn-img" type="button">
           </div>
@@ -24,26 +24,41 @@ export const feed = () => {
       </section>
     </div>              
   `;
-  // Criar post.
-  feedPage.querySelector('#container-post').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // pegar usuario
+
+  // DOM-VAR
+  const createPost = feedPage.querySelector('#container-post');
+  const text = feedPage.querySelector('#post-text');
+  const postList = feedPage.querySelector('#postList');
+  const btnLogout = feedPage.querySelector('#btn-logout');
+
+  // pegar usuario
+  function getloggedUser() {
     userStatus().then((user) => {
       const userId = user.uid;
+      const userEmail = user.email;
+      const userIniciais = userEmail.substring(0,2); //pegar 2 iniciais do e-mail
       console.log(userId);
+      console.log(userIniciais)
       // console.log("Ta logado", user.email, user.uid);
+      // return
     });
-    const text = feedPage.querySelector('#post-text').value;
+  }
+  getloggedUser();
+
+  // Criar post.
+  createPost.addEventListener('submit', (e) => {
+    e.preventDefault();
     const post = {
-      text: text,
-      user_id: userId,
-      likes:0,
-      comments:[],
+      text: text.value,
+      user_id: userId, /// linkar com usuário ativo.
+      likes: 0,
+      comments: [],
     };
+
     // salvar post no Banco de dados.
     const createCollectionOfPosts = firebase.firestore().collection('posts');
     createCollectionOfPosts.add(post).then(res => {
-      const text = feedPage.querySelector('#post-text').value = "";
+      text.value = '';
       loadPosts()
     });
   });
@@ -55,14 +70,14 @@ export const feed = () => {
       ${post.data().text} ❤️ ${post.data().likes}
     </li>
     `;
-    document.querySelector('#postList').innerHTML += postTemplate;
+    postList.innerHTML += postTemplate;
   };
 
   // banco de dados dos posts
   const loadPosts = () => {
     const postsCollection = firebase.firestore().collection('posts');
     postsCollection.get().then((snap) => {          // ler todos os posts get().
-      feedPage.querySelector('#postList').innerHTML = '';
+      postList.innerHTML = '';
       snap.forEach((post) => {
         addPosts(post);
       });
@@ -81,7 +96,6 @@ export const feed = () => {
 
 
   // BOTÃO DE SAIR
-  const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
     signOut();

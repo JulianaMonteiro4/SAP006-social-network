@@ -115,6 +115,8 @@ export const keepLogged = (persistence) => {
 
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
+// export const postsCollection = firebase.firestore().collection('posts').get();
+
 // CRIAR DADOS EM UMA COLEÇÃO
 
 /* export const createPost = (post) => {
