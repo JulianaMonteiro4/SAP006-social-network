@@ -23,26 +23,40 @@ export const feed = () => {
     </div>            
   `;
 
-  // Criar post.
-  feedPage.querySelector('#container-post').addEventListener('submit', (e) => {
-    e.preventDefault();
-    // pegar usuario
+  // DOM-VAR
+  const createPost = feedPage.querySelector('#container-post');
+  const text = feedPage.querySelector('#post-text');
+  const postList = feedPage.querySelector('#postList');
+  const btnLogout = feedPage.querySelector('#btn-logout');
+
+  // pegar usuario
+  function getloggedUser() {
     userStatus().then((user) => {
       const userId = user.uid;
+      const userEmail = user.email;
+      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
       console.log(userId);
+      console.log(userIniciais);
       // console.log("Ta logado", user.email, user.uid);
+      // return
     });
-    const text = feedPage.querySelector('#post-text').value;
+  }
+  getloggedUser();
+
+  // Criar post.
+  createPost.addEventListener('submit', (e) => {
+    e.preventDefault();
     const post = {
-      text: text,
-      user_id: userId,
+      text: text.value,
+      user_id: 'fulano banana', /// linkar com usuário ativo.
       likes: 0,
       comments: [],
     };
+
     // salvar post no Banco de dados.
     const createCollectionOfPosts = firebase.firestore().collection('posts');
     createCollectionOfPosts.add(post).then(res => {
-      const text = feedPage.querySelector('#post-text').value = "";
+      text.value = '';
       loadPosts();
     });
   });
@@ -53,8 +67,7 @@ export const feed = () => {
     <div class="container-post-publicado">
       <div class="post-publicado">❤️${post.data().text}</div>
         <div class="container-icons">
-          <span>${post.data().likes}</span>
-          <button class="like" data-like><i id="vazio" class="far fa-star icons-post"></i></button>
+            <button class="like" data-like="like" data-like2="${post.id}"><span data-like2="${post.id}" data-like="like">${post.data().likes}</span><i id="vazio" class="far fa-star icons-post" data-like2="${post.id}" data-like="like"></i></button>
           <span>
             <i class="far fa-comment-dots icons-post"></i>
           </span>
@@ -65,27 +78,29 @@ export const feed = () => {
     </div>
     `;
 
-    // FUNÇÃO DE CURTIR
-    const section = feedPage.querySelector('[data-section]');
-    section.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.dataset.like === '') {
-        console.log('cliquei no like');
-      } else {
-        console.log('outra coisa');
-      }
-    });
-
     document.querySelector('#postList').innerHTML += postTemplate;
+
+    // FUNÇÃO DE CURTIR
+    postList.innerHTML += postTemplate;
   };
 
   // banco de dados dos posts - // get() - ler todos os posts.
   const loadPosts = () => {
     const postsCollection = firebase.firestore().collection('posts');
     postsCollection.get().then((snap) => {
-      feedPage.querySelector('#postList').innerHTML = '';
+      postList.innerHTML = '';
       snap.forEach((post) => {
         addPosts(post);
+      });
+      const section = feedPage.querySelector('[data-section]');
+      section.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.dataset.like === 'like') {
+          // console.log('cliquei no like');
+          // console.log(target.dataset.like2);
+        } else {
+          console.log('outra coisa');
+        }
       });
     });
   };
@@ -101,7 +116,6 @@ export const feed = () => {
 } */
 
   // BOTÃO DE SAIR
-  const btnLogout = feedPage.querySelector('#btn-logout');
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
     signOut();

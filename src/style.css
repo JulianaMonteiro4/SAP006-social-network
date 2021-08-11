@@ -6,8 +6,7 @@
 }
 
 body{
-    background-image: url("img/fundo-celular.jpg");
-    background-size: cover;
+    background-image: linear-gradient(#171923, #c31331);
 }
 
 .overlay {
@@ -22,8 +21,8 @@ body{
 
 .logo-img{
     display: flex;
-    width: 80%;
-    height: 80%;
+    width: 60%;
+    height: 90%;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
@@ -91,7 +90,7 @@ body{
     background-color: rgba(255, 255, 255, 0.589);
     box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.651);
     width: 70%;
-    margin: 10px;
+    margin: 5;
     margin-left: 60px;
     border-radius: 20px;
 }
@@ -223,6 +222,26 @@ body{
 
 #open {
     display: none;
+}
+
+/*#block:hover {
+    display: none;
+}*/
+
+/* Pagina do Feed */
+.nav-bar {
+    display: flex;
+    background-color: rgb(128, 165, 229);
+    height: 80px;
+    color: blanchedalmond;
+    justify-content: space-between;
+}
+
+.logoPagefeed {
+    width: 100px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 .footer {
@@ -471,6 +490,6 @@ body{
     box-shadow:none;
 }
 
-.like{
+.like:hover{
     background-color: red;
 }

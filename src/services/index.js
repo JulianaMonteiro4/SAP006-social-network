@@ -112,8 +112,9 @@ export const keepLogged = (persistence) => {
     });
 };
 
-// CRIAR NOVOS POSTS
-export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
+// export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
+
+// export const postsCollection = firebase.firestore().collection('posts').get();
 
 // LIKES NOS POSTS
 // const firestorePP = firebase.firestore();
