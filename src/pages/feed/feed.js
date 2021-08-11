@@ -1,4 +1,4 @@
-import { signOut, userStatus} from '../../services/index.js';
+import { signOut, userStatus, criarPost } from '../../services/index.js';
 import { navigateTo } from '../../routes.js';
 import { error } from '../../services/error.js';
 
@@ -47,26 +47,6 @@ export const feed = () => {
   getloggedUser();
   */
 
-  // Criar post.
-  createPost.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const user = firebase.auth().currentUser;
-    const post = {
-      text: text.value,
-      user_id: user.uid, /// linkar com usuário ativo.
-      likes: 0,
-      comments: [],
-    };
-    console.log(user.uid);
-
-    // salvar post no Banco de dados.
-    const createCollectionOfPosts = firebase.firestore().collection('posts');
-    createCollectionOfPosts.add(post).then(res => {
-      text.value = '';
-      loadPosts();
-    });
-  });
-
   // Add post.
   const addPosts = (post) => {
     const postTemplate = `
@@ -89,24 +69,36 @@ export const feed = () => {
   // banco de dados dos posts - // get() - ler todos os posts.
   const loadPosts = () => {
     const postsCollection = firebase.firestore().collection('posts');
-    postsCollection.get().then((snap) => {          // ler todos os posts get().
+    postsCollection.orderBy('data', 'desc').get().then((snap) => {
       postList.innerHTML = '';
       snap.forEach((post) => {
         addPosts(post);
       });
+      // DAR LIKE
       section.addEventListener('click', (e) => {
         const target = e.target;
         if (target.dataset.like === 'like') {
-          // console.log('cliquei no like');
+          console.log('cliquei no like');
           // console.log(target.dataset.like2);
         } else {
           console.log('outra coisa');
         }
       });
     });
-  };
+  }; // target.classList.add
 
   loadPosts();
+
+  // Criar post.
+  createPost.addEventListener('submit', (e) => {
+    e.preventDefault();
+    criarPost(text)
+      .then((res) => {
+        // console.log(res);
+        loadPosts();
+      });
+  });
+
 
   // deletar post
   /* function deletePost(postId) {

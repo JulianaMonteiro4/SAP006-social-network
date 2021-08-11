@@ -61,7 +61,7 @@ export const keepLogged = (persistence) => {
 };
 
 export const userStatus = () => (
-  new Promise ((res, rej) => {
+  new Promise((res, rej) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         res(user);
@@ -71,6 +71,27 @@ export const userStatus = () => (
     });
   })
 );
+
+// CRIAR POST NO FIREBASE
+export const criarPost = (text) => {
+  const user = firebase.auth().currentUser;
+  console.log(user);
+  const post = {
+    text: text.value,
+    user_id: user.uid, /// linkar com usuário ativo.
+    likes: 0,
+    comments: [],
+    data: new Date(),
+  };
+  console.log(user.uid);
+
+  // salvar post no Banco de dados.
+  const createCollectionOfPosts = firebase.firestore().collection('posts');
+  return createCollectionOfPosts.doc().set(post);
+  // .then(res => (res));
+  // text.value = '';
+  // loadPosts();
+};
 
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
