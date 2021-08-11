@@ -1,6 +1,6 @@
-import { signOut, userStatus, criarPost } from '../../services/index.js';
-import { navigateTo } from '../../routes.js';
-import { error } from '../../services/error.js';
+import { signOut, criarPost } from '../../services/index.js';
+// import { navigateTo } from '../../routes.js';
+// import { error } from '../../services/error.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -74,14 +74,14 @@ export const feed = () => {
       snap.forEach((post) => {
         addPosts(post);
       });
+
       // DAR LIKE
       section.addEventListener('click', (e) => {
         const target = e.target;
         if (target.dataset.like === 'like') {
-          console.log('cliquei no like');
-          // console.log(target.dataset.like2);
+          // console.log('cliquei no like');
         } else {
-          console.log('outra coisa');
+          // console.log('outra coisa');
         }
       });
     });
@@ -99,7 +99,6 @@ export const feed = () => {
       });
   });
 
-
   // deletar post
   /* function deletePost(postId) {
   const postsCollection = firebase.firestore().collection('posts');
@@ -111,10 +110,7 @@ export const feed = () => {
   // BOTÃO DE SAIR
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
-    signOut().then(() => navigateTo('/'))
-      .catch(() => {
-        error('Não saiu');
-      });
+    signOut();
   });
 
   return main.appendChild(feedPage);

@@ -9,7 +9,7 @@ export const newRegister = (email, password) => {
       const user = userCredential.user;
       error('Usuário cadastrado');
     });
-};
+}; // fazer IF ELSE PARA SENHAS DIFERENTES
 
 // LOGIN DE USUÁRIOS EXISTENTES
 export const loginWithRegister = (email, password) => (
@@ -44,7 +44,11 @@ export const recoverPassword = (email) => {
 export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
+      navigateTo('/');
       error('Até Logo');
+    })
+    .catch(() => {
+      error('Não saiu');
     });
 };
 
@@ -52,8 +56,6 @@ export const signOut = () => {
 export const keepLogged = (persistence) => {
   firebase.auth().setPersistence(persistence)
     .then(() => {
-      // const provider = new firebase.auth();
-      // return firebase.auth().signInWithRedirect(provider);
     })
     .catch(() => {
       error('Não foi possível permanecer conectado(a)');
@@ -75,7 +77,7 @@ export const userStatus = () => (
 // CRIAR POST NO FIREBASE
 export const criarPost = (text) => {
   const user = firebase.auth().currentUser;
-  console.log(user);
+  // console.log(user);
   const post = {
     text: text.value,
     user_id: user.uid, /// linkar com usuário ativo.
@@ -83,25 +85,18 @@ export const criarPost = (text) => {
     comments: [],
     data: new Date(),
   };
-  console.log(user.uid);
+  // console.log(user.uid);
 
   // salvar post no Banco de dados.
   const createCollectionOfPosts = firebase.firestore().collection('posts');
   return createCollectionOfPosts.doc().set(post);
-  // .then(res => (res));
-  // text.value = '';
-  // loadPosts();
 };
 
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
 // export const postsCollection = firebase.firestore().collection('posts').get();
 
-// LIKES NOS POSTS
-// const firestorePP = firebase.firestore();
-/* const likesCollection = firestore.collection('likes');
-
-export const likedPost = () => likesCollection.add({
+/* export const likedPost = () => likesCollection.add({
   liked: true,
 })
   .then(() => true)
