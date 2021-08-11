@@ -29,7 +29,7 @@ export const newRegister = (email, password) => {
 };
 
 // LOGIN DE USUÁRIOS EXISTENTES
-export const loginWithRegister = (email, password) => {
+export const loginWithRegister = (email, password) => (
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
@@ -37,26 +37,9 @@ export const loginWithRegister = (email, password) => {
     })
     .then(() => {
       setTimeout(() => {
-        navigateTo('feed');
       }, 1000);
     })
-    .catch(() => {
-      const errorCode = error.code;
-      switch (errorCode) {
-        case 'auth/wrong-password':
-          error('Senha inválida');
-          break;
-        case 'auth/invalid-email':
-          error('Email inválido');
-          break;
-        case 'auth/user-not-found':
-          error('usuário não encontrado');
-          break;
-        default:
-          error('Por favor insira uma conta existente ou cadastre-se');
-      }
-    });
-};
+);
 
 // LOGIN COM O GOOGLE
 export const loginWithGoogle = async () => {
@@ -148,8 +131,8 @@ dataFirestore.collection('users').add({
   });
 */
 
-export const userStatus = () => {
-  return new Promise ((res, rej) => {
+export const userStatus = () => (
+  new Promise ((res, rej) => {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         res(user);
@@ -157,6 +140,7 @@ export const userStatus = () => {
         rej();
       }
     });
-  });
-};
+  })
+);
 
+// const user = firebase.auth().currentUser

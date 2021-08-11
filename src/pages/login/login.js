@@ -2,6 +2,7 @@
 
 import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
 import { navigateTo } from '../../routes.js';
+import { error } from '../../services/error.js';
 // getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
@@ -61,10 +62,23 @@ export const loginMainScreen = () => {
   // BOTÃO DE LOGIN
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithRegister(email.value, password.value);
-    /* .then(() => {
-        navigateTo('/feed');
-      }); */
+    loginWithRegister(email.value, password.value).then(() => navigateTo('/feed'))
+      .catch((erro) => {
+        const errorCode = erro.code;
+        switch (errorCode) {
+          case 'auth/wrong-password':
+            error('Senha inválida');
+            break;
+          case 'auth/invalid-email':
+            error('Email inválido');
+            break;
+          case 'auth/user-not-found':
+            error('usuário não encontrado');
+            break;
+          default:
+            error('Por favor insira uma conta existente ou cadastre-se');
+        }
+      });
   });
 
   // BOTÃO DE LOGIN COM O GOOGLE

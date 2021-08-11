@@ -30,7 +30,7 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
 
   // pegar usuario
-  function getloggedUser() {
+  /* function getloggedUser() {
     userStatus().then((user) => {
       const userId = user.uid;
       const userEmail = user.email;
@@ -42,13 +42,15 @@ export const feed = () => {
     });
   }
   getloggedUser();
+  */
 
   // Criar post.
   createPost.addEventListener('submit', (e) => {
     e.preventDefault();
+    const user = firebase.auth().currentUser;
     const post = {
       text: text.value,
-      user_id: userId, /// linkar com usuário ativo.
+      user_id: user.uid, /// linkar com usuário ativo.
       likes: 0,
       comments: [],
     };
