@@ -13,7 +13,7 @@ export const loginMainScreen = () => {
   loginPage.innerHTML = `
     <div class="l-container-grid">
       <header class="header-grid">  
-        <img class="logo-img" src="img/logo-nome.png" alt="logo">  
+        <img class="logo-img" src="img/logo.png" alt="logo">  
       </header>
       <section class="main-container">
         <div class="btn-cadastrar">

@@ -30,13 +30,13 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
 
   // pegar usuario
-  /* function getloggedUser() {
+  function getloggedUser() {
     userStatus().then((user) => {
       const userId = user.uid;
       const userEmail = user.email;
-      const userIniciais = userEmail.substring(0,2); //pegar 2 iniciais do e-mail
+      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
       console.log(userId);
-      console.log(userIniciais)
+      console.log(userIniciais);
       // console.log("Ta logado", user.email, user.uid);
       // return
     });
@@ -59,7 +59,7 @@ export const feed = () => {
     const createCollectionOfPosts = firebase.firestore().collection('posts');
     createCollectionOfPosts.add(post).then(res => {
       text.value = '';
-      loadPosts()
+      loadPosts();
     });
   });
 
@@ -102,6 +102,16 @@ export const feed = () => {
       postList.innerHTML = '';
       snap.forEach((post) => {
         addPosts(post);
+      });
+      const section = feedPage.querySelector('[data-section]');
+      section.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target.dataset.like === 'like') {
+          // console.log('cliquei no like');
+          // console.log(target.dataset.like2);
+        } else {
+          console.log('outra coisa');
+        }
       });
     });
   };
