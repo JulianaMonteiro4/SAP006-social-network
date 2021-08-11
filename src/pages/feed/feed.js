@@ -1,4 +1,6 @@
 import { signOut, userStatus} from '../../services/index.js';
+import { navigateTo } from '../../routes.js';
+import { error } from '../../services/error.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -28,9 +30,10 @@ export const feed = () => {
   const text = feedPage.querySelector('#post-text');
   const postList = feedPage.querySelector('#postList');
   const btnLogout = feedPage.querySelector('#btn-logout');
+  const section = feedPage.querySelector('[data-section]');
 
   // pegar usuario
-  function getloggedUser() {
+  /* function getloggedUser() {
     userStatus().then((user) => {
       const userId = user.uid;
       const userEmail = user.email;
@@ -54,6 +57,7 @@ export const feed = () => {
       likes: 0,
       comments: [],
     };
+    console.log(user.id);
 
     // salvar post no Banco de dados.
     const createCollectionOfPosts = firebase.firestore().collection('posts');
@@ -67,32 +71,19 @@ export const feed = () => {
   const addPosts = (post) => {
     const postTemplate = `
       <div class="container-post-publicado">
-        <div class="post-publicado">❤️${post.data().text}</div>
-          <div class="container-icons">
-            <span>${post.data().likes}</span>
-            <button class="like" data-like><i id="vazio" class="far fa-star icons-post"></i></button>
-            <span>
-              <i class="far fa-comment-dots icons-post"></i>
-            </span>
-            <span>
-              <i class="far fa-share-square icons-post"></i>
-            </span
-          </div>
+      <div class="post-publicado">❤️${post.data().text}</div>
+        <div class="container-icons">
+            <button class="like" data-like="like" data-like2="${post.id}"><span data-like2="${post.id}" data-like="like">${post.data().likes}</span><i id="vazio" class="far fa-star icons-post" data-like2="${post.id}" data-like="like"></i></button>
+          <span>
+            <i class="far fa-comment-dots icons-post"></i>
+          </span>
+          <span>
+            <i class="far fa-share-square icons-post"></i>
+          </span
+        </div>
       </div>
     `;
-
-    // FUNÇÃO DE CURTIR
-    const section = feedPage.querySelector('[data-section]');
-    section.addEventListener('click', (e) => {
-      const target = e.target;
-      if (target.dataset.like === '') {
-        console.log('cliquei no like');
-      } else {
-        console.log('outra coisa');
-      }
-    });
-
-    document.querySelector('#postList').innerHTML += postTemplate;
+    postList.innerHTML += postTemplate;
   };
 
   // banco de dados dos posts - // get() - ler todos os posts.
@@ -103,7 +94,6 @@ export const feed = () => {
       snap.forEach((post) => {
         addPosts(post);
       });
-      const section = feedPage.querySelector('[data-section]');
       section.addEventListener('click', (e) => {
         const target = e.target;
         if (target.dataset.like === 'like') {
@@ -124,12 +114,15 @@ export const feed = () => {
   postsCollection.doc(postId).delete().then(doc => {
     loadPosts()
   }
-} */
+ */
 
   // BOTÃO DE SAIR
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
-    signOut();
+    signOut().then(() => navigateTo('/'))
+      .catch(() => {
+        error('Não saiu');
+      });
   });
 
   return main.appendChild(feedPage);
@@ -149,6 +142,4 @@ export const feed = () => {
   const userLogged = firebase.auth().currentUser;
   if (userLogged !== 'null') {
     getUserFromDatabase(userLogged.uid);
-  }
-
-  */
+  } */

@@ -1,5 +1,6 @@
 import { newRegister } from '../../services/index.js';
 import { navigateTo } from '../../routes.js';
+import { error } from '../../services/error.js';
 
 export const registerUser = () => {
   const main = document.getElementById('root');
@@ -59,7 +60,23 @@ export const registerUser = () => {
   // BOTÃO DE CADASTRAR
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    newRegister(email.value, password.value, repeatPassword.value);
+    newRegister(email.value, password.value, repeatPassword.value).then(() => navigateTo('/'))
+      .catch((erro) => {
+        const errorCode = erro.code;
+        switch (errorCode) {
+          case 'auth/email-already-in-use':
+            error('Email em uso');
+            break;
+          case 'auth/invalid-email':
+            error('Email inválido');
+            break;
+          case 'auth/weak-password':
+            error('Senha fraca');
+            break;
+          default:
+            error('Por favor, verifique as informações digitadas');
+        }
+      });
   });
 
   // BOTÃO DE VOLTAR PARA LOGIN

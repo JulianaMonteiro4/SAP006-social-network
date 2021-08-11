@@ -7,24 +7,7 @@ export const newRegister = (email, password) => {
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
-      navigateTo('/');
       error('Usuário cadastrado');
-    })
-    .catch(() => {
-      const errorCode = error.code;
-      switch (errorCode) {
-        case 'auth/email-already-in-use':
-          error('Email em uso');
-          break;
-        case 'auth/invalid-email':
-          error('Email inválido');
-          break;
-        case 'auth/weak-password':
-          error('Senha fraca');
-          break;
-        default:
-          error('Por favor, verifique as informações digitadas');
-      }
     });
 };
 
@@ -53,21 +36,7 @@ export const loginWithGoogle = async () => {
 export const recoverPassword = (email) => {
   firebase.auth().sendPasswordResetEmail(email)
     .then(() => {
-      window.location.replace('/');
       error('E-mail para redefinição de senha enviado');
-    })
-    .catch(() => {
-      const errorCode = error.code;
-      switch (errorCode) {
-        case 'auth/invalid-email':
-          error('Email inválido');
-          break;
-        case 'auth/user-not-found':
-          error('Usuário não encontrado');
-          break;
-        default:
-          error('Não será possível recuperar sua senha.');
-      }
     });
 };
 
@@ -75,11 +44,7 @@ export const recoverPassword = (email) => {
 export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
-      window.location.replace('/');
       error('Até Logo');
-    })
-    .catch(() => {
-      error('Não saiu');
     });
 };
 
@@ -94,6 +59,18 @@ export const keepLogged = (persistence) => {
       error('Não foi possível permanecer conectado(a)');
     });
 };
+
+export const userStatus = () => (
+  new Promise ((res, rej) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        res(user);
+      } else {
+        rej();
+      }
+    });
+  })
+);
 
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
@@ -130,17 +107,3 @@ dataFirestore.collection('users').add({
     console.error('Error adding document: ', error);
   });
 */
-
-export const userStatus = () => (
-  new Promise ((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
-    });
-  })
-);
-
-// const user = firebase.auth().currentUser

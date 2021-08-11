@@ -1,5 +1,6 @@
 import { recoverPassword } from '../../services/index.js';
 import { navigateTo } from '../../routes.js';
+import { error } from '../../services/error.js';
 
 export const recoverLink = () => {
   const main = document.getElementById('root');
@@ -36,7 +37,20 @@ export const recoverLink = () => {
   // BOTÃO DE ENVIAR RECUPERAÇÃO DE SENHA
   btnLinkRecover.addEventListener('click', (e) => {
     e.preventDefault();
-    recoverPassword(inputEmail.value);
+    recoverPassword(inputEmail.value).then(() => navigateTo('/'))
+      .catch(() => {
+        const errorCode = error.code;
+        switch (errorCode) {
+          case 'auth/invalid-email':
+            error('Email inválido');
+            break;
+          case 'auth/user-not-found':
+            error('Usuário não encontrado');
+            break;
+          default:
+            error('Não será possível recuperar sua senha.');
+        }
+      });
   });
 
   // BOTÃO DE RETORNAR PARA LOGIN
