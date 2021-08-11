@@ -57,7 +57,7 @@ export const feed = () => {
       likes: 0,
       comments: [],
     };
-    console.log(user.id);
+    console.log(user.uid);
 
     // salvar post no Banco de dados.
     const createCollectionOfPosts = firebase.firestore().collection('posts');
