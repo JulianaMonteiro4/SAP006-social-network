@@ -62,35 +62,22 @@ export const keepLogged = (persistence) => {
     });
 };
 
-export const userStatus = () => (
-  new Promise((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
-    });
-  })
-);
-
 // CRIAR POST NO FIREBASE
-export const criarPost = (text) => {
+export const createPost = (text) => {
   const user = firebase.auth().currentUser;
-  // console.log(user);
   const post = {
     text: text.value,
-    user_id: user.uid, /// linkar com usuário ativo.
+    user_id: user.uid,
     likes: 0,
     comments: [],
     data: new Date(),
   };
-  // console.log(user.uid);
-
   // salvar post no Banco de dados.
   const createCollectionOfPosts = firebase.firestore().collection('posts');
   return createCollectionOfPosts.doc().set(post);
 };
+
+export const postsCollection = firebase.firestore().collection('posts').orderBy('data', 'desc').get();
 
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
@@ -123,3 +110,15 @@ dataFirestore.collection('users').add({
     console.error('Error adding document: ', error);
   });
 */
+
+/* export const userStatus = () => (
+  new Promise((res, rej) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        res(user);
+      } else {
+        rej();
+      }
+    });
+  })
+); */
