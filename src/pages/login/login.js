@@ -9,7 +9,7 @@ export const loginMainScreen = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const loginPage = document.createElement('section');
-  loginPage.setAttribute('class', 'container');
+  loginPage.setAttribute('class', 'container background-claquete');
   loginPage.innerHTML = `
     <div class="l-container-grid">
       <header class="header-grid">  
@@ -35,7 +35,7 @@ export const loginMainScreen = () => {
           </span>
         </fieldset>
           
-          <button class="btn btn-animation" type="button" id="btn-login"><i class="far fa-play-circle"> Play</i></button>
+          <button class="btn btn-animation" type="button" id="btn-login"><i class="far fa-play-circle"></i></button>
           <div class="checkbox-container">
             <input id="checkbox" type="checkbox" name="remember"><label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
             <span class="checkbox-phrase"><a id="recover" href="#">Esqueceu a senha?</a></span>

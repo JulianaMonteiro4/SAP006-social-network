@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 
-body{
+.background-claquete{
     background-image: url("img/claquete.gif");
     background-size: cover;
 }
@@ -480,4 +480,8 @@ body{
     position:relative;
     top: 3px;
     box-shadow:none;
+}
+
+.liked{
+    background-color: yellow;
 }

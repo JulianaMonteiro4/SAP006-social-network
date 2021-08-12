@@ -1,4 +1,4 @@
-import { signOut, criarPost } from '../../services/index.js';
+import { signOut, createPost, postsCollection } from '../../services/index.js';
 // import { navigateTo } from '../../routes.js';
 // import { error } from '../../services/error.js';
 
@@ -26,28 +26,12 @@ export const feed = () => {
   `;
 
   // DOM-VAR
-  const createPost = feedPage.querySelector('#container-post');
+  const containerPost = feedPage.querySelector('#container-post');
   const text = feedPage.querySelector('#post-text');
   const postList = feedPage.querySelector('#postList');
   const btnLogout = feedPage.querySelector('#btn-logout');
   const section = feedPage.querySelector('[data-section]');
 
-  // pegar usuario
-  /* function getloggedUser() {
-    userStatus().then((user) => {
-      const userId = user.uid;
-      const userEmail = user.email;
-      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
-      console.log(userId);
-      console.log(userIniciais);
-      // console.log("Ta logado", user.email, user.uid);
-      // return
-    });
-  }
-  getloggedUser();
-  */
-
-  // ADICIONAR POSTS NA TELA
   const addPosts = (post) => {
     const postTemplate = `
       <div class="container-post-publicado">
@@ -57,7 +41,6 @@ export const feed = () => {
           <span>${post.data().likes}</span>
           <button class="like" data-like="like" data-like2="${post.id}">
             <i id="show" class="far fa-star icons-post" data-like="like" data-like2="${post.id}"></i>
-            <i id="hide" class="fas fa-star" icons-post" data-like="like" data-like2="${post.id}"></i>
           </button>
 
           <span>
@@ -77,44 +60,38 @@ export const feed = () => {
 
   // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
   const loadPosts = () => {
-    const postsCollection = firebase.firestore().collection('posts');
-    postsCollection.orderBy('data', 'desc').get().then((snap) => {
+    postsCollection().then((snap) => {
       postList.innerHTML = '';
       snap.forEach((post) => {
         addPosts(post);
       });
-
-      // DAR LIKE
-      section.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target.dataset.like === 'like') {
-          console.log('cliquei no like');
-        } else {
-          // console.log('outra coisa');
-        }
-      });
     });
-  }; // target.classList.add('.likes')
+  };
 
   loadPosts();
 
-  // CRIAR POSTS NO FIREBASE
-  createPost.addEventListener('submit', (e) => {
+  // DAR LIKE
+  section.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
+      e.target.classList.add('liked');
+    } else {
+      e.target.classList.remove('liked');
+    }
+  });
+
+  let conteudoNumeroDeCurtidas = Number(numeroDeCurtidas.innerHTML);
+
+
+  // Criar post.
+  containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
-    criarPost(text)
+    createPost(text)
       .then((res) => {
         // console.log(res);
         loadPosts();
       });
   });
-
-  // DELETAR POSTS
-  /* function deletePost(postId) {
-  const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then(doc => {
-    loadPosts()
-  }
- */
 
   // BOTÃO DE SAIR
   btnLogout.addEventListener('click', (e) => {
@@ -140,3 +117,26 @@ export const feed = () => {
   if (userLogged !== 'null') {
     getUserFromDatabase(userLogged.uid);
   } */
+
+// deletar post
+/* function deletePost(postId) {
+  const postsCollection = firebase.firestore().collection('posts');
+  postsCollection.doc(postId).delete().then(doc => {
+    loadPosts()
+  }
+ */
+
+// pegar usuario
+/* function getloggedUser() {
+    userStatus().then((user) => {
+      const userId = user.uid;
+      const userEmail = user.email;
+      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
+      console.log(userId);
+      console.log(userIniciais);
+      // console.log("Ta logado", user.email, user.uid);
+      // return
+    });
+  }
+  getloggedUser();
+  */
