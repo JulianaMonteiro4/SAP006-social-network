@@ -40,18 +40,6 @@ export const recoverPassword = (email) => {
     });
 };
 
-// SIGN OUT
-export const signOut = () => {
-  firebase.auth().signOut()
-    .then(() => {
-      navigateTo('/');
-      error('Até Logo');
-    })
-    .catch(() => {
-      error('Não saiu');
-    });
-};
-
 // MANTER CONECTADO
 export const keepLogged = (persistence) => {
   firebase.auth().setPersistence(persistence)
@@ -87,9 +75,21 @@ export const criarPost = (text) => {
   };
   // console.log(user.uid);
 
-  // salvar post no Banco de dados.
+  // SALVAR POST NO BANCO DE DADOS
   const createCollectionOfPosts = firebase.firestore().collection('posts');
   return createCollectionOfPosts.doc().set(post);
+};
+
+// SIGN OUT
+export const signOut = () => {
+  firebase.auth().signOut()
+    .then(() => {
+      navigateTo('/');
+      error('Até Logo');
+    })
+    .catch(() => {
+      error('Tente novamente.');
+    });
 };
 
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);

@@ -47,26 +47,35 @@ export const feed = () => {
   getloggedUser();
   */
 
-  // Add post.
+  // ADICIONAR POSTS NA TELA
   const addPosts = (post) => {
     const postTemplate = `
       <div class="container-post-publicado">
-      <div class="post-publicado">❤️${post.data().text}</div>
+      <div class="post-publicado">❤️${post.data().text}</div> 
         <div class="container-icons">
-            <button class="like" data-like="like" data-like2="${post.id}"><span data-like2="${post.id}" data-like="like">${post.data().likes}</span><i id="vazio" class="far fa-star icons-post" data-like2="${post.id}" data-like="like"></i></button>
+
+          <span>${post.data().likes}</span>
+          <button class="like" data-like="like" data-like2="${post.id}">
+            <i id="show" class="far fa-star icons-post" data-like="like" data-like2="${post.id}"></i>
+            <i id="hide" class="fas fa-star" icons-post" data-like="like" data-like2="${post.id}"></i>
+          </button>
+
           <span>
             <i class="far fa-comment-dots icons-post"></i>
           </span>
+
           <span>
             <i class="far fa-share-square icons-post"></i>
-          </span
+          </span>
+
         </div>
       </div>
     `;
+
     postList.innerHTML += postTemplate;
   };
 
-  // banco de dados dos posts - // get() - ler todos os posts.
+  // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
   const loadPosts = () => {
     const postsCollection = firebase.firestore().collection('posts');
     postsCollection.orderBy('data', 'desc').get().then((snap) => {
@@ -79,17 +88,17 @@ export const feed = () => {
       section.addEventListener('click', (e) => {
         const target = e.target;
         if (target.dataset.like === 'like') {
-          // console.log('cliquei no like');
+          console.log('cliquei no like');
         } else {
           // console.log('outra coisa');
         }
       });
     });
-  }; // target.classList.add
+  }; // target.classList.add('.likes')
 
   loadPosts();
 
-  // Criar post.
+  // CRIAR POSTS NO FIREBASE
   createPost.addEventListener('submit', (e) => {
     e.preventDefault();
     criarPost(text)
@@ -99,7 +108,7 @@ export const feed = () => {
       });
   });
 
-  // deletar post
+  // DELETAR POSTS
   /* function deletePost(postId) {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.doc(postId).delete().then(doc => {

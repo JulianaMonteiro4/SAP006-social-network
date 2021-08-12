@@ -6,7 +6,7 @@
 }
 
 body{
-    background-image: url("img/fundo-celular.jpg");
+    background-image: url("img/claquete.gif");
     background-size: cover;
 }
 
@@ -40,15 +40,7 @@ body{
     "footer";
 }
 
-.btn-animation{
-    animation: image 0.3s ease alternate infinite;
-}
 
-@keyframes image{
-    to{
-        transform: translateX(3px);
-    }
-}
 
 .btn-cadastrar{
     position: absolute;
@@ -126,9 +118,7 @@ body{
 }
 
 .input{
-    background-color: #ffd050ce;
-    border: 1px solid #ffd050ce;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    background-color: none;
     display: flex;
     align-items: center;
     margin: 4% 10%;
@@ -152,9 +142,10 @@ body{
 
 .btn {
     flex-direction: column;
+    color: white;
     align-items: center;
     margin: 1rem;
-    background-color: #ff8ca5b2;
+    background-color: #DD1818;
     width: 100px;
     height: 35px;
     border-radius: 10px;
@@ -175,7 +166,7 @@ body{
 }
  
 .btn-blue {
-    background-color: #7c81e4d2;
+    background-color: #EBB017;
 }
 
 .phrase {
@@ -489,8 +480,4 @@ body{
     position:relative;
     top: 3px;
     box-shadow:none;
-}
-
-.like:hover{
-    background-color: yellow;
 }
