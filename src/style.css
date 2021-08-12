@@ -5,8 +5,8 @@
     box-sizing: border-box;
 }
 
-body{
-    background-image: url("img/fundo-celular.jpg");
+.background-claquete{
+    background-image: url("img/claquete.gif");
     background-size: cover;
 }
 
@@ -16,14 +16,14 @@ body{
     height: 100%;
     left: 0;
     top: 0;
-    background: rgba(255, 255, 255,0.3);
+    background: rgba(255, 255, 255,0.42);
     z-index: -1;
 }
 
 .logo-img{
     display: flex;
-    width: 80%;
-    height: 80%;
+    width: 50%;
+    height: 90%;
     margin: 0 auto;
     align-items: center;
     justify-content: center;
@@ -40,12 +40,33 @@ body{
     "footer";
 }
 
-/*.btn-cadastrar{
-    display: flex;  
-    width: 60px;
-    height: 60px;
-    float: right;
-}*/
+
+
+.btn-cadastrar{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: #ffd050d7;
+    border-radius: 40px;
+    flex-direction: row;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    cursor: pointer;
+}
+
+.btn-cadastrar:active {
+    position:relative;
+    top: 3px;
+    box-shadow:none;
+}
+
+.img-register{
+    display: flexs;
+    opacity: 82%;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 15px 15px;
+}
 
 .header-grid {
    grid-area: header-grid;
@@ -83,42 +104,74 @@ body{
 
 .text-field {
     flex-direction:column;
-    width: 180px;
-    height: 40px;
-    background: #ffd050ce;
-    margin: 1rem;
+    width: 170px;
+    height: 35px;
+    background: transparent;
+    margin: 5px;
+    margin-left: auto;
     outline: none;
-    border: 1px solid #ffd050de;
+    border: none;
     border-radius: 10px;
     padding-top: 4px;
-    padding-left: 30px;
-    font-size: 18px;
+    font-size: 15px;
+    align-items: center;
+}
+
+.input{
+    background-color: none;
+    display: flex;
+    align-items: center;
+    margin: 4% 10%;
+    border-radius: 10px;
+}
+
+#hide, #hide-again{
+    display: none;
+}
+
+.eye, .fa-envelope, .fa-file-alt{
+    color: rgba(0, 0, 0, 0.548);
+    margin-right: 5%;
+}
+
+.fa-file-alt{
+    width: 50px;
+    height: 50px;
+    position: absolute;
 }
 
 .btn {
     flex-direction: column;
+    color: white;
     align-items: center;
     margin: 1rem;
-    background-color: #ff8ca5b2;
+    background-color: #DD1818;
     width: 100px;
     height: 35px;
     border-radius: 10px;
     padding-top: 6px;
     font-size: 18px;
     cursor: pointer;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
 }
 
-.btn:hover {
-    background: #FF8CA4;
+.btn:hover{
+    background: #628ab8b2;
+}
+
+.btn:active {
+    position:relative;
+    top: 3px;
+    box-shadow:none;
 }
  
 .btn-blue {
-    background-color: #7c81e4;
+    background-color: #EBB017;
 }
 
 .phrase {
     display: inline-block;
-    margin-top: 10px;
+    margin: 6px 0;
     text-align: center;
     font-size: 16px;
 }
@@ -127,8 +180,8 @@ body{
     display: flex;  
     width: 40px;
     height: 40px;
-    margin-left: 100px;
-    margin-top: 10px;
+    margin-left: 43%;
+    margin-top: 7%;
 }
 
 .footer {
@@ -137,18 +190,26 @@ body{
     font-size: 20px;
     background-color: #fe622ead;
     padding-top: 6px;
-}
-
-.footer a {
-    text-decoration: none;
-    color: black;
+    text-align: center;
 }
 
 .meme-senha{
     width: 60%;
     height: 60%;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.651);
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.315);
     border-radius: 15px;
+}
+
+.checkbox-container{
+    display: inline-block;
+    justify-content: space-evenly;
+}
+
+.checkbox-phrase{
+    font-size: 13px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    justify-content:space-between;
 }
 
 #open {
@@ -158,3 +219,269 @@ body{
 /*#block:hover {
     display: none;
 }*/
+
+/* Pagina do Feed */
+.nav-bar {
+    display: flex;
+    background-color: rgb(128, 165, 229);
+    height: 80px;
+    color: blanchedalmond;
+    justify-content: space-between;
+}
+
+.logoPagefeed {
+    width: 100px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.footer {
+    font-size: 17px;
+    display: flex;
+}
+
+.footer a {
+    text-decoration: none;
+    color: black;
+}
+
+@media screen and (min-width: 426px) and (max-width:1024px){
+    .logo-img{
+        width: 32%;
+        height: 25%;
+        float: left;
+        margin: 12% 0 0 15%;
+        position: absolute;
+        flex-direction: column;
+    }
+
+    .main-container {
+        width: 36%;
+        float: right;
+        margin-right: 10%;
+    }
+
+    .text-field {
+        width: 70%;
+    }
+
+    .btn-google {
+        margin-left: 45%;
+        margin-top: 7%;
+    }
+
+    .phrase-register{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+    .phrase-recover{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+   /* .btn-google:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+    box-shadow: 4px 30px 16px 0px rgba(50, 50, 50, 0.45);
+    } */
+}
+
+@media screen and (min-width:1025px) and (max-width:1440px){
+    .logo-img{
+        width: 32%;
+        height: 25%;
+        float: left;
+        margin: 12% 0 0 15%;
+        position: absolute;
+        flex-direction: column;
+    }
+
+    .main-container {
+        width: 36%;
+        float: right;
+        margin-right: 10%;
+    }
+
+    .text-field {
+        width: 70%;
+    }
+
+    .btn-google {
+        margin-left: 45%;
+        margin-top: 7%;
+    }
+
+    .phrase-register{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+    .phrase-recover{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width:1441px){
+    .logo-img{
+        width: 25%;
+        height: 20%;
+        float: left;
+        margin: 12% 0 0 15%;
+        position: absolute;
+        flex-direction: column;
+    }
+
+    .main-container {
+        width: 36%;
+        float: right;
+        margin-right: 10%;
+    }
+
+    .text-field {
+        width: 70%;
+    }
+
+    .btn-google {
+        margin-left: 45%;
+        margin-top: 7%;
+    }
+
+    .phrase-register{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+
+    .phrase-recover{
+        display: flex;
+        position: absolute;
+        float: left;
+        margin: 14% 48% 0 10%;
+        word-break: break-word;
+        font-size: 20px;
+    }
+}
+
+/* PAgina feed */
+.nav-bar {
+    display: flex;
+    background-color: rgb(128, 165, 229);
+    height: 80px;
+    color: blanchedalmond;
+    justify-content: space-between;
+}
+
+.logoPagefeed {
+    width: 100px;
+    height: 60px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.new-post{
+    background-color: #ff8ca5ab;
+    width: 90%;
+    height: 80px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    font-size: 15px;
+    padding-left: 5px;
+    margin-top: 20px;
+}
+
+.fa-image{
+    display: flex;
+    color: rgba(0, 0, 0, 0.582);
+    flex-direction: row;
+}
+
+.img-photo{
+    position: absolute;
+    flex-direction: row;
+    float: right;
+    width: 35px;
+    height: 35px;
+    opacity: 70%;
+}
+
+
+
+
+
+.container-post-publicado{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.post-publicado{
+    background-color: #ffffffad;
+    width: 80%;
+    height: 70px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    font-size: 18px;
+    text-align: left;
+}
+
+.container-icons{
+    display: flex;
+    margin: 8px;
+}
+
+.icons-post{
+    margin: 0 4px;
+    display: flex;
+}
+
+.btn-publicar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    float: right;
+    width: 80px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    padding-top: 2px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+}
+
+.btn-publicar:hover{
+    background: #efeff0b2;
+}
+
+.btn-publicar:active {
+    position:relative;
+    top: 3px;
+    box-shadow:none;
+}
+
+.liked{
+    background-color: yellow;
+}
