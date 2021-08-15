@@ -22,7 +22,7 @@ export const feed = () => {
           </form>
         <div id="postList" class="post-list" data-section></div>
       </section>
-    </div>            
+    </div>         
   `;
 
   // DOM-VAR
@@ -73,17 +73,17 @@ export const feed = () => {
   // DAR LIKE
   section.addEventListener('click', (e) => {
     const target = e.target;
+    // const countLikes = post.data().likes;
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
+      // likes: post.data().likes - 1,
     } else {
       e.target.classList.remove('liked');
+      // likes: post.data().likes + 1,
     }
   });
 
-  let conteudoNumeroDeCurtidas = Number(numeroDeCurtidas.innerHTML);
-
-
-  // Criar post.
+  // CRIAR POST
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
     createPost(text)

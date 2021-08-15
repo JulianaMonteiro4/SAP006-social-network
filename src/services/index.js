@@ -17,6 +17,17 @@ export const loginWithRegister = (email, password) => (
     .then((userCredential) => {
       const user = userCredential.user;
       error('Usuário conectado');
+      /* userUp.updateProfile({
+      displayName: profileName,
+      photoURL: 'urlImg',
+      });
+      firebase.firestore().collection('users').doc(user.email)
+      .set({
+        name: profileName,
+        id: user.uid,
+        photo: 'botão add url photo',
+      });
+    }) */
     })
     .then(() => {
       setTimeout(() => {
