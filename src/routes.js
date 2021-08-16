@@ -1,4 +1,3 @@
-import { registerUser } from './pages/cadastro/cadastro.js';
 import { loginMainScreen } from './pages/login/login.js';
 import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
@@ -7,7 +6,6 @@ const routRender = () => {
   const elemento = document.getElementById('root');
   const routes = {
     '/': loginMainScreen,
-    '/cadastro': registerUser,
     '/recuperar': recoverLink,
     '/feed': feed,
   };

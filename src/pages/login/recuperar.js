@@ -6,27 +6,24 @@ export const recoverLink = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const recoverPage = document.createElement('section');
-  recoverPage.setAttribute('class', 'container');
+  recoverPage.setAttribute('class', 'container background');
   recoverPage.innerHTML = `              
     <div class="l-container-grid">
       <header class="header-grid">  
-        <img class="logo-img" src="img/logo-nome.png" alt="logo">  
+        <img class="logo-img" src="img/logo.png" alt="logo">  
       </header>
-      <span class="phrase-recover">Você receberá por e-mail um link para a recuperação da senha.</span>
-      <section class="main-container">
-        <h2 class="title">Recuperar a Senha</h2>
-        <form class="container-form">
-          <fieldset class="input">
-            <input class="text-field" type="email" placeholder="Insira um e-mail" id="recover-email">
-            <span class="eye">
-              <i class="far fa-envelope"></i>
-            </span>              
+      <div class="main-container">
+        <form>
+          <label for="chk" aria-hidden="true">Recuperação</label>
+          <fieldset class="form-login">
+            <input type="email" id="email" name="email" placeholder="Email" required="">
+            <i class="far fa-envelope icons"></i>
           </fieldset>
-            <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
-            <button class="btn" id="btn-recover" type="button">Recuperar</button>
-            <button class="btn btn-blue" id="btn-back-recover" type="button">Retornar</button>
+          <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
+          <button id="btn-recover" type="button">Recuperar</button>
+          <button class="btn-back" id="btn-back-recover" type="button">Retornar</button>
         </form>
-      </section>  
+      </div>
     </div>              
   `;
 
