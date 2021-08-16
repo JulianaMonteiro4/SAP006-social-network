@@ -17,17 +17,6 @@ export const loginWithRegister = (email, password) => (
     .then((userCredential) => {
       const user = userCredential.user;
       error('Usuário conectado');
-      /* userUp.updateProfile({
-      displayName: profileName,
-      photoURL: 'urlImg',
-      });
-      firebase.firestore().collection('users').doc(user.email)
-      .set({
-        name: profileName,
-        id: user.uid,
-        photo: 'botão add url photo',
-      });
-    }) */
     })
     .then(() => {
       setTimeout(() => {
@@ -72,7 +61,7 @@ export const createPost = (text) => {
     data: new Date(),
   };
 
-  // salvar post no Banco de dados.
+  // SALVAR POSTS NO BANCO DE DADOS
   const createCollectionOfPosts = firebase.firestore().collection('posts');
   return createCollectionOfPosts.doc().set(post);
 };
@@ -132,3 +121,37 @@ dataFirestore.collection('users').add({
     });
   })
 ); */
+
+/* const postsCollection = firebase.firestore().collection('posts');
+
+export const deletePost = (id) => {
+  postsCollection
+    .doc(id)
+    .delete();
+};
+
+export const editPost = (newPost, id) => {
+  postsCollection
+    .doc(id)
+    .update({
+      text: newPost,
+    });
+};
+
+export const saveUserUpdate = (name) => {
+  firebase.auth().currentUser.updateProfile({
+    displayName: name,
+  })
+    .then(() => true)
+    .catch((error) => error);
+};
+
+export const saveUser = (user, userEmail, userName) => {
+  firebase.firestore().collection('users').doc(userEmail).set({
+    userId: user.uid,
+    name: userName,
+    email: userEmail
+  })
+    .then(() => true)
+    .catch((error) => error);
+}; */

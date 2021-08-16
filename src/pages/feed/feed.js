@@ -8,17 +8,17 @@ export const feed = () => {
   const feedPage = document.createElement('section');
   feedPage.setAttribute('class', 'container');
   feedPage.innerHTML = ` 
-    <div class="l-container-grid">
+    <div class="container-main">
       <nav class="nav-bar">
         <img class="logoPagefeed" src="./img/logo-nome.png" alt="logo">
         <h2 class="title">Feed</h2>
-        <button type="button" id="btn-logout" class="btn btn-login"><i class="fas fa-sign-out-alt"></i></button>
+        <button class="btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
       <section>
           <form id="container-post"> 
             <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button">
             <input id="post-text" type="textarea" class="new-post" placeholder="Novo Post"/> 
-            <button id="btnSendPost" type="submit" class="btn-blue btn-publicar">Publicar</i></button> 
+            <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</i></button> 
           </form>
         <div id="postList" class="post-list" data-section></div>
       </section>
@@ -35,23 +35,25 @@ export const feed = () => {
   const addPosts = (post) => {
     const postTemplate = `
       <div class="container-post-publicado">
-      <div class="post-publicado">❤️${post.data().text}</div> 
-        <div class="container-icons">
+        <div class="post-publicado">❤️${post.data().text}</div> 
+          <div class="container-icons">
 
-          <span>${post.data().likes}</span>
-          <button class="like" data-like="like" data-like2="${post.id}">
-            <i id="show" class="far fa-star icons-post" data-like="like" data-like2="${post.id}"></i>
-          </button>
+            <span>${post.data().likes}</span>
+            <div class="heart">
+              <button class="btn-like" data-like="like" data-like2="${post.id}">
+                <i class="far fa-star icons-post" data-like="like" data-like2="${post.id}"></i>
+              </button>
+            </div>
 
-          <span>
-            <i class="far fa-comment-dots icons-post"></i>
-          </span>
+            <span>
+              <i class="far fa-comment-dots icons-post"></i>
+            </span>
 
-          <span>
-            <i class="far fa-share-square icons-post"></i>
-          </span>
+            <span>
+              <i class="far fa-share-square icons-post"></i>
+            </span>
 
-        </div>
+          </div>
       </div>
     `;
 
@@ -118,7 +120,7 @@ export const feed = () => {
     getUserFromDatabase(userLogged.uid);
   } */
 
-// deletar post
+// DELETAR POST
 /* function deletePost(postId) {
   const postsCollection = firebase.firestore().collection('posts');
   postsCollection.doc(postId).delete().then(doc => {
@@ -140,3 +142,29 @@ export const feed = () => {
   }
   getloggedUser();
   */
+
+// Adicionando foto do perfil (MOBILE)
+/* const uploadImage = timeline.querySelector('#uploadImage');
+   uploadImage.addEventListener('click', () => {
+     const ref = firebase.storage().ref();
+     const file = timeline.querySelector('#photo').files[0];
+     const name = `${new Date()}-${file.name}`;
+     const metadata = {
+       contentType: file.type,
+     };
+     const task = ref.child(name).put(file, metadata);
+     task
+       .then((snapshot) => snapshot.ref.getDownloadURL())
+       .then((url) => {
+         console.log(url);
+         console.log('imagem upada');
+         const image = timeline.querySelector('#preview');
+         image.src = url;
+         const userUp = firebase.auth().currentUser;
+         userUp.updateProfile({
+           photoURL: url,
+         });
+         location.reload();
+       });
+   });
+   */
