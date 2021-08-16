@@ -34,6 +34,7 @@ export const loginMainScreen = () => {
             <i id="hide" class="fas fa-lock"></i>
           </span>
         </fieldset>
+        <p class="error-msg">Insira no mínimo 6 caracteres</p>
           
           <button class="btn btn-animation" type="button" id="btn-login"><i class="far fa-play-circle"> Play</i></button>
           <div class="checkbox-container">
@@ -126,5 +127,28 @@ export const loginMainScreen = () => {
     show.style.display = 'block';
   });
 
+  // Validação email
+  email.addEventListener('keyup', () => {
+    if (email.value.indexOf('@') == -1) {
+      email.setAttribute('style', 'color: red');
+      // errorMsg.innerHTML == "Email invalido"; <p class="error-msg"></p>
+    } else {
+      email.setAttribute('style', 'color: green');
+    }
+  });
+
+  // Validação de senha
+  password.addEventListener('keyup', () => {
+    const errorMsg = document.querySelector('.error-msg');
+    if (password.value.length < 6) {
+      password.setAttribute('style', 'color: red');
+      errorMsg.style.display = 'block';
+      // innerHTML = '<strong>Nome "Insira no mínimo 6 caracteres</strong>"';
+    } else {
+      password.setAttribute('style', 'color: green');
+      errorMsg.style.display = 'none';
+    }
+  });
+
   return main.appendChild(loginPage);
-};
+}

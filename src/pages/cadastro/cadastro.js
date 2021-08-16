@@ -23,6 +23,7 @@ export const registerUser = () => {
             <i class="far fa-envelope"></i> 
           </span>              
         </fieldset>
+        <p class="error-email">Insira um e-mail válido</p>
         
         <fieldset class="input">
           <input class="text-field" type="password" placeholder="Insira uma senha" id="register-password">
@@ -31,6 +32,7 @@ export const registerUser = () => {
             <i id="hide" class="fas fa-lock"></i>
           </span>
         </fieldset>
+        <p class="error-pass">Insira no mínimo 6 caracteres</p>
         
         <fieldset class="input">
           <input class="text-field" type="password" placeholder="Confirme sua senha" id="repeat-password">
@@ -39,6 +41,7 @@ export const registerUser = () => {
             <i id="hide-again" class="fas fa-lock"></i>
           </span>
         </fieldset>
+        <p class="error-repeat">A senha deve ser igual ao campo anterior</p>
           
           <button class="btn" id="btn-register" type="button">Cadastrar</button>
           <button class="btn btn-blue" id="btn-back" type="button" >Retornar</button>
@@ -56,6 +59,9 @@ export const registerUser = () => {
   const hide = registerPage.querySelector('#hide');
   const showAgain = registerPage.querySelector('#show-again');
   const hideAgain = registerPage.querySelector('#hide-again');
+  const errorEmail = document.querySelector('.error-email');
+  const errorPass = document.querySelector('.error-pass');
+  const errorRepeat = document.querySelector('.error-repeat');
 
   // BOTÃO DE CADASTRAR
   btnRegister.addEventListener('click', (e) => {
@@ -113,6 +119,52 @@ export const registerUser = () => {
     repeatPassword.setAttribute('type', 'password');
     hideAgain.style.display = 'none';
     showAgain.style.display = 'block';
+  });
+
+  // Validação de email
+  email.addEventListener('keyup', () => {
+    if (email.value.indexOf('@') == -1) {
+      email.setAttribute('style', 'color: red');
+      errorEmail.style.display = 'block';
+    } else {
+      email.setAttribute('style', 'color: green');
+      errorEmail.style.display = 'none';
+    }
+  });
+
+  // Validação de senha
+  password.addEventListener('keyup', () => {
+    if (password.value.length < 6) {
+      password.setAttribute('style', 'color: red');
+      errorPass.style.display = 'block';
+    } else {
+      password.setAttribute('style', 'color: green');
+      errorPass.style.display = 'none';
+    }
+  });
+
+  /* Validação de repetição senha
+  repeatPassword.addEventListener('keyup', () => {
+    const errorRepeat = document.querySelector('.error-repeat');
+
+    if (repeatPassword.value.length <= 6) {
+      repeatPassword.setAttribute('style', 'color: red');
+      errorRepeat.style.display = 'block';
+    } else {
+      repeatPassword.setAttribute('style', 'color: green');
+      errorRepeat.style.display = 'none';
+    }
+  }); */
+
+  // Validação de mensagens igual na senha
+  repeatPassword.addEventListener('keyup', () => {
+    if (password.value !== repeatPassword.value) {
+      repeatPassword.setAttribute('style', 'color: red');
+      errorRepeat.style.display = 'block';
+    } else {
+      repeatPassword.setAttribute('style', 'color: green');
+      errorRepeat.style.display = 'none';
+    }
   });
 
   return main.appendChild(registerPage);
