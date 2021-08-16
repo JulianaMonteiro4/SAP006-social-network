@@ -13,24 +13,20 @@
     height: 500px;
     background-image: white;
     overflow: hidden;
+    margin-bottom: 50%;
     background-color: #3a2b4ebd;
     border-radius: 10px;
     box-shadow: 5px 20px 50px #000;
     margin: auto;
-
 }
 
 .logo-img{
     display: flex;
-    width: 60%;
-    height: 70%;
+    width: 40%;
+    height: 60%;
     margin: 2px auto;
     align-items: center;
     justify-content: center;
-}
-
-.container-principal{
-
 }
 
 #chk{
@@ -80,7 +76,7 @@ input {
     border: none;
 }
 
-button{
+.btn{
     width: 40%;
     height: 35px;
     margin: 10px auto;
@@ -97,7 +93,7 @@ button{
     cursor: pointer;
 }
 
-button:hover{
+.btn:hover{
     background: #2a1949;
 }
 
@@ -128,14 +124,13 @@ button:hover{
 
 .checkbox-container{
     display: flex;
-    justify-content: space-evenly;
 }
 
 .checkbox{
-    position: relative;
+    position: absolute;
     width: 12px;
     height: 12px;
-    margin: 20px auto;
+    margin: 20px 20px;
 }
 
 .checkbox-phrase{
@@ -153,15 +148,16 @@ button:hover{
 }
 
 .phrase {
-    display: inline-block;
+    display: flex;
     font-size: 13px;
     align-items: center;
+    justify-content: center;
     text-align: center;
 }
 
 #hide, #hide-again, #hide-login{
     display: none;
-}
+}*/
 
 .root {
     text-align: center;
@@ -170,11 +166,11 @@ button:hover{
 
 .footer {
     /* grid-area: footer;*/
-    height: 40px;
+    height: 30px;
     font-size: 17px;
     color: white;
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
-    padding-top: 6px;
+    padding-top: 18px;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -216,7 +212,7 @@ button:hover{
     margin-top: 10px;
 }
 
-.title {
+.photo {
     margin: 2rem 0;
     font-size: 30px;
     text-align: center;
@@ -247,12 +243,6 @@ button:hover{
     padding-left: 5px;
     margin-top: 20px;
     color: black;
-}
-
-.fa-image{
-    display: flex;
-    color: rgba(0, 0, 0, 0.582);
-    flex-direction: row;
 }
 
 .btn-publicar{
@@ -305,7 +295,7 @@ button:hover{
 
 .btn-like{
     color: black;
-    background: white;
+    background: transparent;
     cursor: pointer;
 }
 
@@ -334,7 +324,7 @@ button:hover{
 } */
 
 /* @media screen and (min-width:1441px){ 
-}
+} */
 
 /* .content .heart{
     height: 90px;

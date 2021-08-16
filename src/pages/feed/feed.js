@@ -2,7 +2,7 @@ import { signOut, createPost, postsCollection } from '../../services/index.js';
 // import { navigateTo } from '../../routes.js';
 // import { error } from '../../services/error.js';
 
-export const feed = () => {
+export const feed = (user) => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -11,14 +11,14 @@ export const feed = () => {
     <div class="container-main">
       <nav class="nav-bar">
         <img class="logoPagefeed" src="./img/logo-nome.png" alt="logo">
-        <h2 class="title">Feed</h2>
-        <button class="btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+        <h2 class="photo"></h2>
+        <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
       <section>
           <form id="container-post"> 
             <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button">
             <input id="post-text" type="textarea" class="new-post" placeholder="Novo Post"/> 
-            <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</i></button> 
+            <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button> 
           </form>
         <div id="postList" class="post-list" data-section></div>
       </section>
@@ -40,19 +40,11 @@ export const feed = () => {
 
             <span>${post.data().likes}</span>
             <div class="heart">
-              <button class="btn-like" data-like="like" data-like2="${post.id}">
-                <i class="far fa-star icons-post" data-like="like" data-like2="${post.id}"></i>
-              </button>
-            </div>
-
-            <span>
+              <i class="far fa-star icons-post btn-like" data-like="like" data-like2="${post.id}"></i>
               <i class="far fa-comment-dots icons-post"></i>
-            </span>
-
-            <span>
               <i class="far fa-share-square icons-post"></i>
-            </span>
-
+              <i class="far fa-trash-alt" data-btnDeletePost ="${post.id}"></i>
+            </div>
           </div>
       </div>
     `;

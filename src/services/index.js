@@ -1,6 +1,6 @@
 import { error } from './error.js';
 import { navigateTo } from '../routes.js';
-// import { dataFirestore } from './firebaseconfig.js';
+// import { firebaseConfig } from './firebaseconfig.js';
 
 // CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
 export const newRegister = (email, password) => {

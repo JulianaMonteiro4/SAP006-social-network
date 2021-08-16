@@ -8,11 +8,11 @@ export const recoverLink = () => {
   const recoverPage = document.createElement('section');
   recoverPage.setAttribute('class', 'container background');
   recoverPage.innerHTML = `              
-    <div class="l-container-grid">
-      <header class="header-grid">  
+    <div class="container-principal">
+      <header>  
         <img class="logo-img" src="img/logo.png" alt="logo">  
       </header>
-      <div class="main-container">
+      <div class="container-main">
         <form>
           <label for="chk" aria-hidden="true">Recuperação</label>
           <fieldset class="form-login">
@@ -20,8 +20,8 @@ export const recoverLink = () => {
             <i class="far fa-envelope icons"></i>
           </fieldset>
           <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
-          <button id="btn-recover" type="button">Recuperar</button>
-          <button class="btn-back" id="btn-back-recover" type="button">Retornar</button>
+          <button class="btn" id="btn-recover" type="button">Recuperar</button>
+          <button class="btn btn-back" id="btn-back-recover" type="button">Retornar</button>
         </form>
       </div>
     </div>              

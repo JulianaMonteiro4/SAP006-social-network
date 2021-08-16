@@ -24,19 +24,19 @@ export const loginMainScreen = () => {
               </fieldset>
               <fieldset class="form-login">
                 <input type="password" id="password" placeholder="Password" required="">
-                <span class="eye">
+                <span>
                   <i id="show" class="fas fa-lock-open icons"></i>
                   <i id="hide" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
               <fieldset class="form-login">
                 <input type="password" id="repeat-password" placeholder="Repeat Password" required="">
-                <span class="eye">
+                <span>
                   <i id="show-again" class="fas fa-lock-open icons"></i>
                   <i id="hide-again" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
-              <button class="btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+              <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
           </div>
 
@@ -50,12 +50,12 @@ export const loginMainScreen = () => {
 
               <fieldset class="form-login">
                 <input type="Password" id="password-login" placeholder="Password" required="">
-                <span class="eye">
+                <span>
                   <i id="show-login" class="fas fa-lock-open icons"></i>
                   <i id="hide-login" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
-              <button id="btn-login"><i class="far fa-play-circle"></i></button>
+              <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>
                 
               <div class="checkbox-container">
                 <input class="checkbox" id="checkbox" type="checkbox" name="remember">
@@ -65,8 +65,8 @@ export const loginMainScreen = () => {
 
                 <div>
                     <img src="img/icone-google.png" class="btn-google" id="google" type="button">
-                    <p class="phrase">Entrar com o Google</p>
                 </div>
+                <p class="phrase">Entrar com o Google</p>
             </form>
 
           </div> 
