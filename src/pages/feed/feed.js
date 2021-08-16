@@ -1,4 +1,4 @@
-import { signOut, createPost, postsCollection } from '../../services/index.js';
+import { signOut, createPost, postsCollection, deletePost } from '../../services/index.js';
 // import { navigateTo } from '../../routes.js';
 // import { error } from '../../services/error.js';
 
@@ -51,6 +51,8 @@ export const feed = () => {
             <i class="far fa-share-square icons-post"></i>
           </span>
 
+          <i class="far fa-trash-alt" data-btnDeletePost ="${post.id}"></i>
+
         </div>
       </div>
     `;
@@ -70,6 +72,16 @@ export const feed = () => {
 
   loadPosts();
 
+  // Criar post.
+  containerPost.addEventListener('submit', (e) => {
+    e.preventDefault();
+    createPost(text)
+      .then((res) => {
+        // console.log(res);
+        loadPosts();
+      });
+  });
+
   // DAR LIKE
   section.addEventListener('click', (e) => {
     const target = e.target;
@@ -80,18 +92,27 @@ export const feed = () => {
     }
   });
 
-  let conteudoNumeroDeCurtidas = Number(numeroDeCurtidas.innerHTML);
+  // let conteudoNumeroDeCurtidas = Number(numeroDeCurtidas.innerHTML);
 
+  // Delete Post:
+  /* const deleteButton = target.dataset.btnDeletePost;
+  const postId = post.id;
+  if (deleteButton) {
+    const deleteConfirmation = confirm("Você realmente gostaria de deletar este post?");
+    if(deleteConfirmation) {
+      deletePost(postId);
+    } else {
+        return false;
+    };
+ */
 
-  // Criar post.
-  containerPost.addEventListener('submit', (e) => {
-    e.preventDefault();
-    createPost(text)
-      .then((res) => {
-        // console.log(res);
-        loadPosts();
-      });
-  });
+  // deletar post
+  /* function deletePost(postId) {
+  const postsCollection = firebase.firestore().collection('posts');
+  postsCollection.doc(postId).delete().then(doc => {
+    loadPosts()
+  }
+ */
 
   // BOTÃO DE SAIR
   btnLogout.addEventListener('click', (e) => {
@@ -117,14 +138,6 @@ export const feed = () => {
   if (userLogged !== 'null') {
     getUserFromDatabase(userLogged.uid);
   } */
-
-// deletar post
-/* function deletePost(postId) {
-  const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then(doc => {
-    loadPosts()
-  }
- */
 
 // pegar usuario
 /* function getloggedUser() {
