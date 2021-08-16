@@ -80,6 +80,12 @@ export const signOut = () => {
 
 export const postsCollection = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
 
+export const deletePost = (id) => {
+  postsCollection
+    .doc(id)
+    .delete();
+};
+
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
 /* export const likedPost = () => likesCollection.add({
