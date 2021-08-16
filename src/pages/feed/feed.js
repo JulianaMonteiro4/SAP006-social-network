@@ -1,14 +1,14 @@
-import { signOut, createPost, postsCollection } from '../../services/index.js';
+import { signOut, createPost, postsCollection, deletePost } from '../../services/index.js';
 // import { navigateTo } from '../../routes.js';
 // import { error } from '../../services/error.js';
 
-export const feed = (user) => {
+export const feed = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
   feedPage.setAttribute('class', 'container');
   feedPage.innerHTML = ` 
-    <div class="container-main">
+    <div class="container-feed">
       <nav class="nav-bar">
         <img class="logoPagefeed" src="./img/logo-nome.png" alt="logo">
         <h2 class="photo"></h2>
@@ -39,11 +39,11 @@ export const feed = (user) => {
           <div class="container-icons">
 
             <span>${post.data().likes}</span>
-            <div class="heart">
-              <i class="far fa-star icons-post btn-like" data-like="like" data-like2="${post.id}"></i>
+            <div class="btn-post">
+              <i class="far fa-star icons-post btn-like icons-post" data-like="like" data-like2="${post.id}"></i>
               <i class="far fa-comment-dots icons-post"></i>
               <i class="far fa-share-square icons-post"></i>
-              <i class="far fa-trash-alt" data-btnDeletePost ="${post.id}"></i>
+              <i class="far fa-trash-alt icons-post" data-btndeletpost ="${post.id}"></i>
             </div>
           </div>
       </div>
@@ -61,23 +61,9 @@ export const feed = (user) => {
       });
     });
   };
-
   loadPosts();
 
-  // DAR LIKE
-  section.addEventListener('click', (e) => {
-    const target = e.target;
-    // const countLikes = post.data().likes;
-    if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
-      e.target.classList.add('liked');
-      // likes: post.data().likes - 1,
-    } else {
-      e.target.classList.remove('liked');
-      // likes: post.data().likes + 1,
-    }
-  });
-
-  // CRIAR POST
+  // Criar post.
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
     createPost(text)
@@ -85,6 +71,29 @@ export const feed = (user) => {
         // console.log(res);
         loadPosts();
       });
+  });
+
+  // DAR LIKE
+  section.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
+      e.target.classList.add('liked');
+      // pegar ID do post, quase igual o deletpost, pegar uid do usuario, a variavel likes vai ser um array e dentro colocar o id do usuario, 
+      // o que vai mostrar na tela é a quantidade de objetos dentro do array
+    } else {
+      e.target.classList.remove('liked');
+    }
+    const deleteButton = target.dataset.btndeletpost;
+    console.log(deleteButton);
+    if (deleteButton) {
+      const deleteConfirmation = confirm('Você realmente gostaria de deletar este post?');
+      if (deleteConfirmation) {
+        deletePost(deleteButton);
+        loadPosts();
+      } else {
+        return false;
+      }
+    }
   });
 
   // BOTÃO DE SAIR
@@ -111,14 +120,6 @@ export const feed = (user) => {
   if (userLogged !== 'null') {
     getUserFromDatabase(userLogged.uid);
   } */
-
-// DELETAR POST
-/* function deletePost(postId) {
-  const postsCollection = firebase.firestore().collection('posts');
-  postsCollection.doc(postId).delete().then(doc => {
-    loadPosts()
-  }
- */
 
 // pegar usuario
 /* function getloggedUser() {

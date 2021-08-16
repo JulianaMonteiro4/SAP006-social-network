@@ -1,6 +1,7 @@
 import { loginMainScreen } from './pages/login/login.js';
 import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
+import { blockUser } from './services/index.js';
 
 const routRender = () => {
   const elemento = document.getElementById('root');
@@ -13,13 +14,14 @@ const routRender = () => {
   elemento.appendChild(routes[window.location.pathname]());
 };
 
-window.addEventListener('popstate', routRender);
-window.addEventListener('load', () => {
-  routRender();
-});
-
 export const navigateTo = (url) => {
   window.history.pushState({}, '', url);
   const popstateEvent = new PopStateEvent('popstate', { state: {} });
   dispatchEvent(popstateEvent);
 };
+
+window.addEventListener('popstate', routRender);
+window.addEventListener('load', () => {
+  blockUser();
+  routRender();
+});

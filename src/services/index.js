@@ -80,6 +80,21 @@ export const signOut = () => {
 
 export const postsCollection = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
 
+export const deletePost = (id) => {
+  firebase.firestore().collection('posts')
+    .doc(id)
+    .delete();
+};
+
+export const blockUser = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    // console.log(user);
+    if (!user && window.location.pathname === '/feed') {
+      navigateTo('/');
+    }
+  });
+};
+
 // export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
 
 /* export const likedPost = () => likesCollection.add({
