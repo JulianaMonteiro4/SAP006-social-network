@@ -54,13 +54,12 @@ export const loginMainScreen = () => {
                   <i id="hide-login" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
-              <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>
-                
               <div class="checkbox-container">
-                <input class="checkbox" id="checkbox" type="checkbox" name="remember">
-                <label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
-                <span class="checkbox-phrase"><a id="recover" href="#">Esqueceu a senha?</a></span>
-              </div>
+              <input class="checkbox" id="checkbox" type="checkbox" name="remember">
+              <label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
+              <span class="checkbox-phrase"><a class="pass-animation" id="recover" href="#">Esqueceu a senha?</a></span>
+            </div>
+              <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>
 
                 <div>
                     <img src="img/icone-google.png" class="btn-google" id="google" type="button">

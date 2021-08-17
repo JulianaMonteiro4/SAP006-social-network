@@ -90,7 +90,7 @@ export const feed = () => {
     const deleteButton = target.dataset.btndeletpost;
     // console.log(deleteButton);
     if (deleteButton) {
-      const deleteConfirmation = confirm('Você realmente gostaria de deletar este post?');  // ver função p/ desabilitar-confirm.js.
+      const deleteConfirmation = confirm('Você realmente gostaria de deletar este post?'); // ver função p/ desabilitar-confirm.js.
       if (deleteConfirmation) {
         deletePost(deleteButton);
         loadPosts();
