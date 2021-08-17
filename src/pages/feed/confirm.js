@@ -1,4 +1,2 @@
-export const confirmAction = (msg) => {
 // eslint-disable-next-line
-  confirm(msg);
-};
+export const confirmAction = (msg) => confirm(msg);
