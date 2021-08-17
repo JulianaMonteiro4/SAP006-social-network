@@ -1,7 +1,7 @@
 import { loginMainScreen } from './pages/login/login.js';
 import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
-import { blockUser } from './services/index.js';
+import { blockNotLoggedUser } from './services/index.js';
 
 const routRender = () => {
   const elemento = document.getElementById('root');
@@ -22,6 +22,6 @@ export const navigateTo = (url) => {
 
 window.addEventListener('popstate', routRender);
 window.addEventListener('load', () => {
-  blockUser();
+  blockNotLoggedUser();
   routRender();
 });

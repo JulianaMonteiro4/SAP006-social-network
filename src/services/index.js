@@ -86,7 +86,7 @@ export const deletePost = (id) => {
     .delete();
 };
 
-export const blockUser = () => {
+export const blockNotLoggedUser = () => {
   firebase.auth().onAuthStateChanged((user) => {
     // console.log(user);
     if (!user && window.location.pathname === '/feed') {

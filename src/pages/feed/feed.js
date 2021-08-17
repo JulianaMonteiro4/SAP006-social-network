@@ -16,7 +16,7 @@ export const feed = () => {
       </nav>
       <section>
           <form id="container-post"> 
-            <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button">
+            <!-- <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button"> -->
             <input id="post-text" type="textarea" class="new-post" placeholder="Novo Post"/> 
             <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button> 
           </form>
@@ -35,14 +35,14 @@ export const feed = () => {
   const addPosts = (post) => {
     const postTemplate = `
       <div class="container-post-publicado">
-        <div class="post-publicado">❤️${post.data().text}</div> 
+        <div class="post-publicado">${post.data().text}</div> 
           <div class="container-icons">
 
             <span>${post.data().likes}</span>
             <div class="btn-post">
               <i class="far fa-star icons-post btn-like icons-post" data-like="like" data-like2="${post.id}"></i>
               <i class="far fa-comment-dots icons-post"></i>
-              <i class="far fa-share-square icons-post"></i>
+              <i class="far fa-edit icons-post"></i>
               <i class="far fa-trash-alt icons-post" data-btndeletpost ="${post.id}"></i>
             </div>
           </div>
@@ -69,6 +69,7 @@ export const feed = () => {
     createPost(text)
       .then((res) => {
         // console.log(res);
+        text.value = '';
         loadPosts();
       });
   });
@@ -83,8 +84,9 @@ export const feed = () => {
     } else {
       e.target.classList.remove('liked');
     }
+    // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
-    console.log(deleteButton);
+    // console.log(deleteButton);
     if (deleteButton) {
       const deleteConfirmation = confirm('Você realmente gostaria de deletar este post?');
       if (deleteConfirmation) {

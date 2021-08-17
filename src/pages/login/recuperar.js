@@ -10,7 +10,7 @@ export const recoverLink = () => {
   recoverPage.innerHTML = `              
     <div class="container-principal">
       <header>  
-        <img class="logo-img" src="img/logo.png" alt="logo">  
+        <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
       </header>
       <div class="container-main">
         <form>

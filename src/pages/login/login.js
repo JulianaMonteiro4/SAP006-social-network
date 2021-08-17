@@ -9,9 +9,8 @@ export const loginMainScreen = () => {
   const loginPage = document.createElement('section');
   loginPage.setAttribute('class', 'container background');
   loginPage.innerHTML = `
-    <div class="container-principal">
       <header>  
-        <img class="logo-img" src="img/logo.png" alt="logo">  
+        <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
       </header>
       <div class="container-main">
         <input type="checkbox" id="chk" aria-hidden="true">
@@ -68,10 +67,7 @@ export const loginMainScreen = () => {
                 </div>
                 <p class="phrase">Entrar com o Google</p>
             </form>
-
           </div> 
-      
-    </div>
   `;
 
   const email = loginPage.querySelector('#email');

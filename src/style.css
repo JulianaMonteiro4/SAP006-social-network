@@ -161,7 +161,7 @@ input {
 
 #hide, #hide-again, #hide-login{
     display: none;
-}*/
+}
 
 .root {
     text-align: center;
@@ -285,6 +285,7 @@ input {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
     font-size: 18px;
     text-align: left;
+    padding: 10px;
 }
 
 .container-icons{
