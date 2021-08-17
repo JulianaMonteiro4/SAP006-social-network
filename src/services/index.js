@@ -1,6 +1,7 @@
 import { error } from './error.js';
 import { navigateTo } from '../routes.js';
-// import { firebaseConfig } from './firebaseconfig.js';
+
+export const getCurrentUser = () => firebase.auth().currentUser.id;
 
 // CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
 export const newRegister = (email, password) => {
@@ -53,7 +54,6 @@ export const keepLogged = (persistence) => {
 // BLOQUEAR NAVEGAÇÃO USUÁRIO PARA FEED SEM ESTAR CONECTADO
 export const blockNotLoggedUser = () => {
   firebase.auth().onAuthStateChanged((user) => {
-    // console.log(user);
     if (!user && window.location.pathname === '/feed') {
       navigateTo('/');
     }
@@ -69,7 +69,7 @@ export const createPost = (text) => {
   const post = {
     text: text.value,
     user_id: user.uid,
-    likes: 0,
+    likes: [user.uid],
     comments: [],
     data: new Date(),
   };
@@ -77,15 +77,20 @@ export const createPost = (text) => {
   return postsCollection().doc().set(post);
 };
 
+// AUMENTAR CURTIDAS
+export const likesPost = (id, numberLikes) => {
+  postsCollection().get(id).update({ likes: numberLikes + 1 });
+};
+
+// DELETAR POSTS DO BANCO DE DADOS
 export const deletePost = (id) => {
   postsCollection().doc(id).delete();
 };
 
-/* export const editPost = (newPost, id) => {
-  postsCollection().doc(id).update({
-      text: newPost,
-    });
-}; */
+// EDITAR POSTS DO BANCO DE DADOS
+export const editPost = (newPost, id) => {
+  postsCollection().doc(id).update({ text: newPost });
+};
 
 // SIGN OUT
 export const signOut = () => {
