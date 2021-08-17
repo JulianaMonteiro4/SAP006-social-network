@@ -1,4 +1,5 @@
 import { signOut, createPost, postsCollection, deletePost } from '../../services/index.js';
+// import{ confirmAction } from '../feed/confirm.js'
 // import { navigateTo } from '../../routes.js';
 // import { error } from '../../services/error.js';
 
@@ -54,7 +55,7 @@ export const feed = () => {
 
   // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
   const loadPosts = () => {
-    postsCollection().then((snap) => {
+    postsCollection().orderBy('data', 'desc').get().then((snap) => {
       postList.innerHTML = '';
       snap.forEach((post) => {
         addPosts(post);
@@ -79,7 +80,8 @@ export const feed = () => {
     const target = e.target;
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
-      // pegar ID do post, quase igual o deletpost, pegar uid do usuario, a variavel likes vai ser um array e dentro colocar o id do usuario, 
+      // pegar ID do post, quase igual o deletpost, pegar uid do usuario, a variavel
+      // likes vai ser um array e dentro colocar o id do usuario,
       // o que vai mostrar na tela é a quantidade de objetos dentro do array
     } else {
       e.target.classList.remove('liked');
@@ -88,7 +90,7 @@ export const feed = () => {
     const deleteButton = target.dataset.btndeletpost;
     // console.log(deleteButton);
     if (deleteButton) {
-      const deleteConfirmation = confirm('Você realmente gostaria de deletar este post?');
+      const deleteConfirmation = confirm('Você realmente gostaria de deletar este post?');  // ver função p/ desabilitar-confirm.js.
       if (deleteConfirmation) {
         deletePost(deleteButton);
         loadPosts();
@@ -106,22 +108,6 @@ export const feed = () => {
 
   return main.appendChild(feedPage);
 };
-
-/* const getUserFromDatabase = (userLogged) => {
-    const usersCollection = firebase.firestore().collection('users');
-    usersCollection.get().then((snap) => {
-      snap.forEach((user) => {
-        if (userLogged === user.data().id) {
-          createPost(user.data().id, user.data().name, user.data().email);
-        }
-      });
-    });
-  };
-
-  const userLogged = firebase.auth().currentUser;
-  if (userLogged !== 'null') {
-    getUserFromDatabase(userLogged.uid);
-  } */
 
 // pegar usuario
 /* function getloggedUser() {

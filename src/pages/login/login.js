@@ -203,6 +203,11 @@ export const loginMainScreen = () => {
   return main.appendChild(loginPage);
 };
 
+/* senhas iguais no cadastro
+if(password.value === repeatPassword.value){
+        () => navigateTo('/')
+      } */
+
 /* // VERFIFICAÇÃO DE SENHA (TAMANHO E CONFIRMAÇÃO)
 const verifyPasswordLength = () => {
   if (password.value.length < 6) {

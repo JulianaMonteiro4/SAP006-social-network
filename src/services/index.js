@@ -50,6 +50,18 @@ export const keepLogged = (persistence) => {
     });
 };
 
+export const blockNotLoggedUser = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    // console.log(user);
+    if (!user && window.location.pathname === '/feed') {
+      navigateTo('/');
+    }
+  });
+};
+
+// COLEÇÃO DE POSTS
+export const postsCollection = () => firebase.firestore().collection('posts');
+
 // CRIAR POST NO FIREBASE
 export const createPost = (text) => {
   const user = firebase.auth().currentUser;
@@ -60,11 +72,19 @@ export const createPost = (text) => {
     comments: [],
     data: new Date(),
   };
-
   // SALVAR POSTS NO BANCO DE DADOS
-  const createCollectionOfPosts = firebase.firestore().collection('posts');
-  return createCollectionOfPosts.doc().set(post);
+  return postsCollection().doc().set(post);
 };
+
+export const deletePost = (id) => {
+  postsCollection().doc(id).delete();
+};
+
+/* export const editPost = (newPost, id) => {
+  postsCollection().doc(id).update({
+      text: newPost,
+    });
+}; */
 
 // SIGN OUT
 export const signOut = () => {
@@ -78,24 +98,17 @@ export const signOut = () => {
     });
 };
 
-export const postsCollection = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
-
-export const deletePost = (id) => {
-  firebase.firestore().collection('posts')
-    .doc(id)
-    .delete();
-};
-
-export const blockNotLoggedUser = () => {
-  firebase.auth().onAuthStateChanged((user) => {
-    // console.log(user);
-    if (!user && window.location.pathname === '/feed') {
-      navigateTo('/');
-    }
-  });
-};
-
-// export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
+/* export const userStatus = () => (
+  new Promise((res, rej) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        res(user);
+      } else {
+        rej();
+      }
+    });
+  })
+); */
 
 /* export const likedPost = () => likesCollection.add({
   liked: true,
@@ -113,46 +126,18 @@ export const comentPost = (comment) => {
 }; */
 
 /* // CRIAR DADOS EM UM USUÁRIO
-dataFirestore.collection('users').add({
-  name: inputNome.value,
-  idUser: userCredential.uid,
-})
-  .then((docRef) => {
-    console.log('Document written with ID: ', docRef.id);
-  })
-  .catch((error) => {
-    console.error('Error adding document: ', error);
-  });
-*/
-
-/* export const userStatus = () => (
-  new Promise((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
+/* const makeUserColection = (userLogged) => {
+    const usersCollection = firebase.firestore().collection('users');
+    usersCollection.get().then((snap) => {
+      snap.forEach((user) => {
+        if (userLogged === user.data().id) {
+          createPost(user.data().id, user.data().name, user.data().email);
+        }
+      });
     });
-  })
-); */
+  }; */
 
-/* const postsCollection = firebase.firestore().collection('posts');
-
-export const deletePost = (id) => {
-  postsCollection
-    .doc(id)
-    .delete();
-};
-
-export const editPost = (newPost, id) => {
-  postsCollection
-    .doc(id)
-    .update({
-      text: newPost,
-    });
-};
-
+/* PERFIL
 export const saveUserUpdate = (name) => {
   firebase.auth().currentUser.updateProfile({
     displayName: name,
