@@ -21,6 +21,8 @@ export const loginMainScreen = () => {
                 <input type="email" id="email" placeholder="Email" required="">
                 <i class="far fa-envelope icons"></i>
               </fieldset>
+              <p class="error-email">Insira um e-mail válido</p>
+
               <fieldset class="form-login">
                 <input type="password" id="password" placeholder="Password" required="">
                 <span>
@@ -28,6 +30,8 @@ export const loginMainScreen = () => {
                   <i id="hide" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
+              <p class="error-pass">Insira no mínimo 6 caracteres</p>
+
               <fieldset class="form-login">
                 <input type="password" id="repeat-password" placeholder="Repeat Password" required="">
                 <span>
@@ -35,7 +39,9 @@ export const loginMainScreen = () => {
                   <i id="hide-again" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
-              <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+              <p class="error-repeat">A senha deve ser igual ao campo anterior</p>
+
+              <button class="btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
           </div>
 
@@ -54,6 +60,10 @@ export const loginMainScreen = () => {
                   <i id="hide-login" class="fas fa-lock icons"></i>
                 </span>
               </fieldset>
+              <p class="error-login">Insira no mínimo 6 caracteres</p>
+
+              <button id="btn-login"><i class="far fa-play-circle"></i></button>
+                
               <div class="checkbox-container">
               <input class="checkbox" id="checkbox" type="checkbox" name="remember">
               <label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
@@ -85,6 +95,10 @@ export const loginMainScreen = () => {
   const hideAgain = loginPage.querySelector('#hide-again');
   const repeatPassword = loginPage.querySelector('#repeat-password');
   const btnRecoverPass = loginPage.querySelector('#recover');
+  const errorLogin = loginPage.querySelector('.error-login');
+  const errorEmail = loginPage.querySelector('.error-email');
+  const errorPass = loginPage.querySelector('.error-pass');
+  const errorRepeat = loginPage.querySelector('.error-repeat');
 
   // BOTÃO DE LOGIN
   btnLogin.addEventListener('click', (e) => {
@@ -197,6 +211,59 @@ export const loginMainScreen = () => {
             error('Por favor, verifique as informações digitadas');
         }
       });
+  });
+
+  // Validação email LOGIN
+  emailLogin.addEventListener('keyup', () => {
+    if (emailLogin.value.indexOf('@') === -1) {
+      emailLogin.setAttribute('style', 'color: red');
+    } else {
+      emailLogin.setAttribute('style', 'color: green');
+    }
+  });
+
+  // Validação de senha LOGIN
+  passwordLogin.addEventListener('keyup', () => {
+    if (passwordLogin.value.length < 6) {
+      passwordLogin.setAttribute('style', 'color: red');
+      errorLogin.style.display = 'block';
+    } else {
+      passwordLogin.setAttribute('style', 'color: green');
+      errorLogin.style.display = 'none';
+    }
+  });
+
+  // Validação de email CADASTRO
+  email.addEventListener('keyup', () => {
+    if (email.value.indexOf('@') === -1) {
+      email.setAttribute('style', 'color: red');
+      errorEmail.style.display = 'block';
+    } else {
+      email.setAttribute('style', 'color: green');
+      errorEmail.style.display = 'none';
+    }
+  });
+
+  // Validação de senha CADASTRO
+  password.addEventListener('keyup', () => {
+    if (password.value.length < 6) {
+      password.setAttribute('style', 'color: red');
+      errorPass.style.display = 'block';
+    } else {
+      password.setAttribute('style', 'color: green');
+      errorPass.style.display = 'none';
+    }
+  });
+
+  // Validação de mensagens igual na senha CADASTRO
+  repeatPassword.addEventListener('keyup', () => {
+    if (password.value !== repeatPassword.value) {
+      repeatPassword.setAttribute('style', 'color: red');
+      errorRepeat.style.display = 'block';
+    } else {
+      repeatPassword.setAttribute('style', 'color: green');
+      errorRepeat.style.display = 'none';
+    }
   });
 
   return main.appendChild(loginPage);
