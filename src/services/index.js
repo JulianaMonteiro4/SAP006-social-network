@@ -50,6 +50,7 @@ export const keepLogged = (persistence) => {
     });
 };
 
+// BLOQUEAR NAVEGAÇÃO USUÁRIO PARA FEED SEM ESTAR CONECTADO
 export const blockNotLoggedUser = () => {
   firebase.auth().onAuthStateChanged((user) => {
     // console.log(user);
