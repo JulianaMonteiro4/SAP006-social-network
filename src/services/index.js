@@ -69,7 +69,7 @@ export const createPost = (text) => {
   const post = {
     text: text.value,
     user_id: user.uid,
-    likes: [user.uid],
+    // likes: [user.uid],
     comments: [],
     data: new Date(),
   };
@@ -89,7 +89,7 @@ export const deletePost = (id) => {
 
 // EDITAR POSTS DO BANCO DE DADOS
 export const editPost = (newPost, id) => {
-  postsCollection().doc(id).update({ text: newPost });
+  postsCollection('post').doc(id).update({ text: newPost });
 };
 
 // SIGN OUT

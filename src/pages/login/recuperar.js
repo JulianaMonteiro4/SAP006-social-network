@@ -16,9 +16,11 @@ export const recoverLink = () => {
         <form>
           <label for="chk" aria-hidden="true">Recuperação</label>
           <fieldset class="form-login">
-            <input type="email" id="email" name="email" placeholder="Email" required="">
-            <i class="far fa-envelope icons"></i>
-          </fieldset>
+              <input type="email" id="email-login" placeholder="Email" required="">
+              <div class="icons-input">
+                <i class="far fa-envelope icons"></i>
+              </div>
+            </fieldset>
           <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
           <button class="btn" id="btn-recover" type="button">Recuperar</button>
           <button class="btn btn-back" id="btn-back-recover" type="button">Retornar</button>

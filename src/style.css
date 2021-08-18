@@ -60,15 +60,26 @@ input {
     background: #e0dede;
     justify-content: center;
     display: flex;
-    margin: 5px auto;
+    margin: 10px auto;
     padding: 10px;
     border: none;
     outline: none;
     border-radius: 5px;
 }
 
+.icons-input{
+    border: none;
+    position: absolute;
+    margin-left: 75%;
+    margin-top: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .form-login{
     border: none;
+    display: flex;
 }
 
 .form-post{
@@ -190,10 +201,9 @@ input {
     font-size: 17px;
     color: white;
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
-    padding-top: 18px;
+    padding-top: 8px;
     text-align: center;
-    align-items: center;
-    justify-content: center;
+
 }
 
 .footer a {
@@ -292,6 +302,12 @@ input {
     margin: 20px auto;
 }
 
+.iniciais{
+    position: absolute;
+    border: 25px solid rgb(180, 180, 180);
+    clip-path: circle(45%);
+}
+
 .post-publicado{
     background-color: #a2dcf0ab;
     width: 80%;
@@ -302,6 +318,8 @@ input {
     text-align: left;
     padding: 10px;
     resize: none;
+    border: 5px solid #ae435b;
+    border-bottom: 20px solid #ae435b;
 }
 
 .container-icons{
@@ -313,6 +331,8 @@ input {
     margin: 0 4px;
     display: flex;
     cursor: pointer;
+    color: ;
+    text-decoration: bold;
 }
 
 .liked{

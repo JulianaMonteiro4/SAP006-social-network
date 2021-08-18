@@ -19,27 +19,29 @@ export const loginMainScreen = () => {
               <label for="chk" aria-hidden="true">Cadastro</label>
               <fieldset class="form-login">
                 <input type="email" id="email" placeholder="Email" required="">
-                <i class="far fa-envelope icons"></i>
-              </fieldset>
-              <p class="error-email">Insira um e-mail válido</p>
+                  <div class="icons-input">
+                    <i class="far fa-envelope icons"></i>
+                  </div>
+                </fieldset>
+              <p id="error-email">Insira um e-mail válido</p>
 
               <fieldset class="form-login">
                 <input type="password" id="password" placeholder="Password" required="">
-                <span>
-                  <i id="show" class="fas fa-lock-open icons"></i>
-                  <i id="hide" class="fas fa-lock icons"></i>
-                </span>
+                  <div class="icons-input">
+                    <i id="show" class="fas fa-lock-open icons"></i>
+                    <i id="hide" class="fas fa-lock icons"></i>
+                  </div>
               </fieldset>
-              <p class="error-pass">Insira no mínimo 6 caracteres</p>
+              <p id="error-pass">Insira no mínimo 6 caracteres</p>
 
               <fieldset class="form-login">
                 <input type="password" id="repeat-password" placeholder="Repeat Password" required="">
-                <span>
-                  <i id="show-again" class="fas fa-lock-open icons"></i>
-                  <i id="hide-again" class="fas fa-lock icons"></i>
-                </span>
+                  <div class="icons-input">
+                    <i id="show-again" class="fas fa-lock-open icons"></i>
+                    <i id="hide-again" class="fas fa-lock icons"></i>
+                  </div>
               </fieldset>
-              <p class="error-repeat">A senha deve ser igual ao campo anterior</p>
+              <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
 
               <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
@@ -50,15 +52,17 @@ export const loginMainScreen = () => {
             <form>
               <fieldset class="form-login">
                 <input type="email" id="email-login" placeholder="Email" required="">
-                <i class="far fa-envelope icons"></i>
+                <div class="icons-input">
+                  <i class="far fa-envelope icons"></i>
+                </div>
               </fieldset>
 
               <fieldset class="form-login">
                 <input type="Password" id="password-login" placeholder="Password" required="">
-                <span>
+                <div class="icons-input">
                   <i id="show-login" class="fas fa-lock-open icons"></i>
                   <i id="hide-login" class="fas fa-lock icons"></i>
-                </span>
+                </div>
               </fieldset>
               <div class="checkbox-container">
               <input class="checkbox" id="checkbox" type="checkbox" name="remember">
@@ -91,10 +95,10 @@ export const loginMainScreen = () => {
   const hideAgain = loginPage.querySelector('#hide-again');
   const repeatPassword = loginPage.querySelector('#repeat-password');
   const btnRecoverPass = loginPage.querySelector('#recover');
-  const errorLogin = loginPage.querySelector('.error-login');
-  const errorEmail = loginPage.querySelector('.error-email');
-  const errorPass = loginPage.querySelector('.error-pass');
-  const errorRepeat = loginPage.querySelector('.error-repeat');
+  const errorLogin = loginPage.querySelector('#error-login');
+  const errorEmail = loginPage.querySelector('#error-email');
+  const errorPass = loginPage.querySelector('#error-pass');
+  const errorRepeat = loginPage.querySelector('#error-repeat');
 
   // BOTÃO DE LOGIN
   btnLogin.addEventListener('click', (e) => {
@@ -142,7 +146,7 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
-  // MOSTRAR E OCULTAR A SENHA
+  // MOSTRAR E OCULTAR A SENHA CADASTRO
   showRegister.addEventListener('click', (e) => {
     e.preventDefault();
     password.setAttribute('type', 'text');
@@ -157,7 +161,7 @@ export const loginMainScreen = () => {
     showRegister.style.display = 'block';
   });
 
-  // MOSTRAR E OCULTAR DE REPETIR A SENHA
+  // MOSTRAR E OCULTAR DE REPETIR A SENHA CADASTRO
   showAgain.addEventListener('click', (e) => {
     e.preventDefault();
     repeatPassword.setAttribute('type', 'text');
@@ -172,7 +176,7 @@ export const loginMainScreen = () => {
     showAgain.style.display = 'block';
   });
 
-  // MOSTRAR E OCULTAR DE REPETIR A SENHA
+  // MOSTRAR E OCULTAR DE REPETIR A SENHA CADASTRO
   showLogin.addEventListener('click', (e) => {
     e.preventDefault();
     passwordLogin.setAttribute('type', 'text');
