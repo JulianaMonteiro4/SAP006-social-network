@@ -1,6 +1,6 @@
-import { recoverPassword } from '../../services/index.js';
-import { navigateTo } from '../../routes.js';
+import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
+import { recoverPassword } from '../../services/index.js';
 
 export const recoverLink = () => {
   const main = document.getElementById('root');
@@ -16,11 +16,9 @@ export const recoverLink = () => {
         <form>
           <label for="chk" aria-hidden="true">Recuperação</label>
           <fieldset class="form-login">
-              <input type="email" id="email-login" placeholder="Email" required="">
-              <div class="icons-input">
-                <i class="far fa-envelope icons"></i>
-              </div>
-            </fieldset>
+            <input type="email" id="recover-email" name="email" placeholder="Email" required="">
+            <i class="far fa-envelope icons"></i>
+          </fieldset>
           <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
           <button class="btn" id="btn-recover" type="button">Recuperar</button>
           <button class="btn btn-back" id="btn-back-recover" type="button">Retornar</button>
@@ -36,7 +34,11 @@ export const recoverLink = () => {
   // BOTÃO DE ENVIAR RECUPERAÇÃO DE SENHA
   btnLinkRecover.addEventListener('click', (e) => {
     e.preventDefault();
-    recoverPassword(inputEmail.value).then(() => navigateTo('/'))
+    const email = inputEmail.value;
+    recoverPassword(email).then(() => {
+      error('E-mail para redefinição de senha enviado');
+      navigateTo('/');
+    })
       .catch(() => {
         const errorCode = error.code;
         switch (errorCode) {

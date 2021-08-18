@@ -1,16 +1,32 @@
-import { getCurrentUser, signOut, createPost, postsCollection, deletePost, editPost, likesPost } from '../../services/index.js';
-import{ confirmAction } from '../feed/confirm.js'
-// import { navigateTo } from '../../routes.js';
+import {
+  signOut,
+  createPost,
+  postsCollection,
+  deletePost,
+  editPost,
+} from '../../services/index.js';
+import { confirmAction } from '../../services/confirm.js';
+import { navigateTo } from '../../navegation.js';
 // import { error } from '../../services/error.js';
 
-// const user = getCurrentUser();
-// const uidUser = user.uid;
-// const date = new Date();
-// console.log(user);
-// console.log(uidUser);
-// console.log(date);
+// likesPost,
 
 export const feed = () => {
+  // pegar usuario
+/* function getloggedUser() {
+    userStatus().then((user) => {
+      const userId = user.uid;
+      const userEmail = user.email;
+      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
+      console.log(userId);
+      console.log(userIniciais);
+      // console.log("Ta logado", user.email, user.uid);
+      // return
+    });
+  }
+  getloggedUser();
+  */
+
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -78,7 +94,7 @@ export const feed = () => {
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
     createPost(text)
-      .then((res) => {
+      .then(() => {
         // console.log(res);
         text.value = '';
         loadPosts();
@@ -127,23 +143,11 @@ export const feed = () => {
   // BOTÃO DE SAIR
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
-    signOut();
+    signOut().then(() => navigateTo('/'));
   });
 
   return main.appendChild(feedPage);
 };
 
-// pegar usuario
-/* function getloggedUser() {
-    userStatus().then((user) => {
-      const userId = user.uid;
-      const userEmail = user.email;
-      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
-      console.log(userId);
-      console.log(userIniciais);
-      // console.log("Ta logado", user.email, user.uid);
-      // return
-    });
-  }
-  getloggedUser();
-  */
+// firebase.firestore.FieldValue.arrayUnion
+// remover firebase.firestore.FieldValue.arrayRemove.
