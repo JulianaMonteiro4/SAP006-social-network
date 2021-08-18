@@ -1,5 +1,10 @@
-import { loginWithRegister, loginWithGoogle, keepLogged, newRegister } from '../../services/index.js';
-import { navigateTo } from '../../routes.js';
+import {
+  loginWithRegister,
+  loginWithGoogle,
+  keepLogged,
+  newRegister,
+} from '../../services/index.js';
+import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 // getLoggedUser, userStatus - funções Gabs.
 
@@ -61,10 +66,8 @@ export const loginMainScreen = () => {
                 </span>
               </fieldset>
               <p class="error-login">Insira no mínimo 6 caracteres</p>
-
-              <button id="btn-login"><i class="far fa-play-circle"></i></button>
-                
-              <div class="checkbox-container">
+                            
+            <div class="checkbox-container">
               <input class="checkbox" id="checkbox" type="checkbox" name="remember">
               <label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
               <span class="checkbox-phrase"><a class="pass-animation" id="recover" href="#">Esqueceu a senha?</a></span>

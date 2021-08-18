@@ -14,12 +14,6 @@ const routRender = () => {
   elemento.appendChild(routes[window.location.pathname]());
 };
 
-export const navigateTo = (url) => {
-  window.history.pushState({}, '', url);
-  const popstateEvent = new PopStateEvent('popstate', { state: {} });
-  dispatchEvent(popstateEvent);
-};
-
 window.addEventListener('popstate', routRender);
 window.addEventListener('load', () => {
   blockNotLoggedUser();

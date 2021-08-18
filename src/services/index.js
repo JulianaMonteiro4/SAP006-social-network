@@ -1,28 +1,14 @@
 import { error } from './error.js';
-import { navigateTo } from '../routes.js';
-
-export const getCurrentUser = () => firebase.auth().currentUser.id;
+import { navigateTo } from '../navegation.js';
 
 // CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
 export const newRegister = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      error('Usuário cadastrado');
-    });
-}; // fazer IF ELSE PARA SENHAS DIFERENTES
+  firebase.auth().createUserWithEmailAndPassword(email, password);
+};
 
 // LOGIN DE USUÁRIOS EXISTENTES
 export const loginWithRegister = (email, password) => (
   firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      error('Usuário conectado');
-    })
-    .then(() => {
-      setTimeout(() => {
-      }, 1000);
-    })
 );
 
 // LOGIN COM O GOOGLE
@@ -34,21 +20,11 @@ export const loginWithGoogle = async () => {
 };
 
 // E-MAIL DE REDEFINIÇÃO DE SENHA
-export const recoverPassword = (email) => {
-  firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      error('E-mail para redefinição de senha enviado');
-    });
-};
+export const recoverPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 
 // MANTER CONECTADO
 export const keepLogged = (persistence) => {
-  firebase.auth().setPersistence(persistence)
-    .then(() => {
-    })
-    .catch(() => {
-      error('Não foi possível permanecer conectado(a)');
-    });
+  firebase.auth().setPersistence(persistence);
 };
 
 // BLOQUEAR NAVEGAÇÃO USUÁRIO PARA FEED SEM ESTAR CONECTADO
@@ -59,6 +35,9 @@ export const blockNotLoggedUser = () => {
     }
   });
 };
+
+// USUÁRIO
+export const currentUser = () => firebase.auth().currentUser;
 
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
@@ -96,7 +75,7 @@ export const editPost = (newPost, id) => {
 export const signOut = () => {
   firebase.auth().signOut()
     .then(() => {
-      navigateTo('/');
+      // navigateTo('/');
       error('Até Logo');
     })
     .catch(() => {
