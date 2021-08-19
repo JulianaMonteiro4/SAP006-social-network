@@ -1,4 +1,3 @@
-import { error } from './error.js';
 import { navigateTo } from '../navegation.js';
 
 // CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
@@ -15,7 +14,6 @@ export const loginWithRegister = (email, password) => (
 export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
-  navigateTo('/feed');
   return result;
 };
 
@@ -90,16 +88,7 @@ export const editPost = (newPost, id) => {
 };
 
 // SIGN OUT
-export const signOut = () => {
-  firebase.auth().signOut()
-    .then(() => {
-      // navigateTo('/');
-      error('Até Logo');
-    })
-    .catch(() => {
-      error('Tente novamente.');
-    });
-};
+export const signOut = () => firebase.auth().signOut();
 
 /* export const userStatus = () => (
   new Promise((res, rej) => {
