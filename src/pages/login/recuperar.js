@@ -60,5 +60,14 @@ export const recoverLink = () => {
     navigateTo('/');
   });
 
+  // Validação email LOGIN
+  inputEmail.addEventListener('keyup', () => {
+    if (inputEmail.value.indexOf('@') === -1) {
+      inputEmail.setAttribute('style', 'color: red');
+    } else {
+      inputEmail.setAttribute('style', 'color: green');
+    }
+  });
+
   return main.appendChild(recoverPage);
 };

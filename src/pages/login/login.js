@@ -48,7 +48,7 @@ export const loginMainScreen = () => {
               </fieldset>
               <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
 
-              <button class="btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+              <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
           </div>
 
@@ -69,7 +69,7 @@ export const loginMainScreen = () => {
                   <i id="hide-login" class="fas fa-lock icons"></i>
                 </div>
               </fieldset>
-              <p class="error-login">Insira no mínimo 6 caracteres</p>
+              <p id="error-login"></p>
                             
             <div class="checkbox-container">
               <input class="checkbox" id="checkbox" type="checkbox" name="remember">
@@ -153,6 +153,33 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
+  // BOTÃO DE CADASTRAR
+  btnRegister.addEventListener('click', (e) => {
+    e.preventDefault();
+    newRegister(email.value, password.value, repeatPassword.value)
+      .then(() => {
+        if (password.value === repeatPassword.value) {
+          navigateTo('/');
+        }
+      })
+      .catch((erro) => {
+        const errorCode = erro.code;
+        switch (errorCode) {
+          case 'auth/email-already-in-use':
+            error('Email em uso');
+            break;
+          case 'auth/invalid-email':
+            error('Email inválido');
+            break;
+          case 'auth/weak-password':
+            error('Senha fraca');
+            break;
+          default:
+            error('Por favor, verifique as informações digitadas');
+        }
+      });
+  });
+
   // MOSTRAR E OCULTAR A SENHA CADASTRO
   showRegister.addEventListener('click', (e) => {
     e.preventDefault();
@@ -196,28 +223,6 @@ export const loginMainScreen = () => {
     passwordLogin.setAttribute('type', 'password');
     hideLogin.style.display = 'none';
     showLogin.style.display = 'block';
-  });
-
-  // BOTÃO DE CADASTRAR
-  btnRegister.addEventListener('click', (e) => {
-    e.preventDefault();
-    newRegister(email.value, password.value, repeatPassword.value).then(() => navigateTo('/'))
-      .catch((erro) => {
-        const errorCode = erro.code;
-        switch (errorCode) {
-          case 'auth/email-already-in-use':
-            error('Email em uso');
-            break;
-          case 'auth/invalid-email':
-            error('Email inválido');
-            break;
-          case 'auth/weak-password':
-            error('Senha fraca');
-            break;
-          default:
-            error('Por favor, verifique as informações digitadas');
-        }
-      });
   });
 
   // Validação email LOGIN

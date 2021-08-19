@@ -4,6 +4,7 @@ import {
   postsCollection,
   deletePost,
   editPost,
+  likesPost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -57,14 +58,16 @@ export const feed = () => {
   const btnIcons = feedPage.querySelector('[data-section]');
 
   const addPosts = (post) => {
+    //  console.log(post.data());
+
     const postTemplate = `
       <div class="container-post-publicado">
         <textarea class="post-publicado">${post.data().text}</textarea>
           <div class="container-icons">
 
-            <span>${post.data().likes}</span>
+            <span>${post.data().likes.length}</span>
             <div class="btn-post">
-              <i class="far fa-star icons-post btn-like icons-post" data-like="like" data-like2="${post.id}">Like</i>
+              <i class="far fa-star icons-post btn-like icons-post" data-useruid="${post.data().user_id}" data-like="like" data-postid="${post.id}">Like</i>
               <i class="far fa-comment-dots icons-post"></i>
               <div class="edit-post">
                 <i class="far fa-edit icons-post" data-btneditpost ="${post.id}">Editar</i>
@@ -105,15 +108,11 @@ export const feed = () => {
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
     const target = e.target;
-    // length
-    // const postId = target.dataset.like2;
-    // const userUid = target.dataset.;
-    // const likesNumber = target.dataset.numberlikes;
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
-      // pegar ID do post, quase igual o deletpost, pegar uid do usuario
-      // a variavel likes vai ser um array e dentro colocar o id do usuario,
-      // o que vai mostrar na tela é a quantidade de objetos dentro do array
+      const postId = target.dataset.postid;
+      likesPost(postId);
+      loadPosts();
     } else {
       e.target.classList.remove('liked');
     }

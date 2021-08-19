@@ -48,17 +48,35 @@ export const createPost = (text) => {
   const post = {
     text: text.value,
     user_id: user.uid,
-    // likes: [user.uid],
+    likes: [],
     comments: [],
     data: new Date(),
   };
   // SALVAR POSTS NO BANCO DE DADOS
   return postsCollection().doc().set(post);
 };
-
+// nao usar remove pq ele retira o array e pula
+// indexOf busca o indice no array
 // AUMENTAR CURTIDAS
-export const likesPost = (id, numberLikes) => {
-  postsCollection().get(id).update({ likes: numberLikes + 1 });
+export const likesPost = (id) => {
+  postsCollection().doc(id).get()
+    .then((response) => {
+      const numberLikes = response.data().likes;
+      const user = firebase.auth().currentUser;
+      if (numberLikes.includes(user.uid)) {
+        const indexOfUid = numberLikes.indexOf(user.uid);
+        // console.log(indexOfUid);
+        numberLikes.splice(indexOfUid, 1); // splice remove do array
+        // console.log(numberLikes);
+        postsCollection().doc(id).update({ likes: [numberLikes] });
+      } else {
+        numberLikes.push(user.uid); // adiciona no array
+        // console.log(numberLikes);
+        postsCollection().doc(id).update({ likes: numberLikes });// pegar o valor do reponse n array
+      }
+      // console.log(numberLikes);
+    })
+    .catch(() => {});
 };
 
 // DELETAR POSTS DO BANCO DE DADOS
