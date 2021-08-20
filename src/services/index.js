@@ -65,16 +65,16 @@ export const likesPost = (id) => {
       const user = firebase.auth().currentUser;
       if (numberLikes.includes(user.uid)) {
         const indexOfUid = numberLikes.indexOf(user.uid);
-        // console.log(indexOfUid);
+        console.log(indexOfUid);
         numberLikes.splice(indexOfUid, 1); // splice remove do array
-        // console.log(numberLikes);
+        console.log(numberLikes);
         postsCollection().doc(id).update({ likes: [numberLikes] });
       } else {
         numberLikes.push(user.uid); // adiciona no array
-        // console.log(numberLikes);
+        console.log(numberLikes);
         postsCollection().doc(id).update({ likes: numberLikes });// pegar o valor do reponse n array
       }
-      // console.log(numberLikes);
+      console.log(numberLikes);
     })
     .catch(() => {});
 };

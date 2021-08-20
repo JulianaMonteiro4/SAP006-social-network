@@ -35,7 +35,7 @@ export const feed = () => {
   feedPage.innerHTML = ` 
     <div class="container-feed">
       <nav class="nav-bar">
-        <img class="logoPagefeed" src="./img/logo-nome.png" alt="logo">
+        <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
         <h2 class="photo"></h2>
         <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
@@ -67,11 +67,11 @@ export const feed = () => {
 
             <span>${post.data().likes.length}</span>
             <div class="btn-post">
-              <i class="far fa-star icons-post btn-like icons-post" data-useruid="${post.data().user_id}" data-like="like" data-postid="${post.id}">Like</i>
-              <i class="far fa-comment-dots icons-post"></i>
+              <i class="far fa-star icons-post btn-like" data-useruid="${post.data().user_id}" data-like="like" data-postid="${post.id}">Like</i>
+              <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
                 <i class="far fa-edit icons-post" data-btneditpost ="${post.id}">Editar</i>
-                <i class="far fa-save icons-post" data-btnsavepost>Salvar</i>
+                <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
               <i class="far fa-trash-alt icons-post" data-btndeletpost ="${post.id}"></i>
             </div>
@@ -104,7 +104,7 @@ export const feed = () => {
       });
   });
 
-  // BOTÕES DE LIKE, EXLCUIR, EDITAR E COMENTAR
+  // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
     const target = e.target;
@@ -112,7 +112,6 @@ export const feed = () => {
       e.target.classList.add('liked');
       const postId = target.dataset.postid;
       likesPost(postId);
-      loadPosts();
     } else {
       e.target.classList.remove('liked');
     }
