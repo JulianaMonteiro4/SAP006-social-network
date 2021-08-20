@@ -5,6 +5,7 @@ import {
   deletePost,
   editPost,
   likesPost,
+  currentUser,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -41,9 +42,13 @@ export const feed = () => {
       </nav>
       <section>
           <form class="form-post" id="container-post"> 
-            <!-- <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button"> -->
-            <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-            <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button> 
+            <div class="post">
+              <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
+              <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button">
+              <input class="image" type="file" name"arquivo" accept="image/*">
+              <!-- <progress value="0"></progress> -->
+              <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
+            </div>
           </form>
         <ul id="postList" class="post-list" data-section></ul>
       </section>
@@ -104,6 +109,25 @@ export const feed = () => {
       });
   });
 
+  // ADICIONAR IMAGEM
+  /* const iconPhoto = document.querySelector('.img-photo');
+  const inputPhoto = document.querySelector('.image');
+
+  iconPhoto.addEventListener('click', () => {
+    inputPhoto.click();
+  });
+
+  inputPhoto.addEventListener('change', () => {
+    if (inputPhoto.firstElementChild.length <= 0) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      iconPhoto.src = reader.result;
+    };
+    reader.readAsDataURL(inputPhoto.files[0]);
+  }); */
+
   // BOTÕES DE LIKE, EXLCUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
@@ -150,3 +174,21 @@ export const feed = () => {
 
 // firebase.firestore.FieldValue.arrayUnion
 // remover firebase.firestore.FieldValue.arrayRemove.
+
+/* const user = currentUser();
+  const userId = user.uid;
+  const image = document.querySelector('input[type=file]');
+
+  image.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+
+    uploadImg(userId, file).then(() => {
+      downloadImg(userId).then((url) => {
+        const imgUrl = url;
+
+        userId.updateProfile({
+          photoURL: imgUrl,
+        });
+      });
+    });
+  }); */
