@@ -63,16 +63,12 @@ export const likesPost = (id) => {
       const user = firebase.auth().currentUser;
       if (numberLikes.includes(user.uid)) {
         const indexOfUid = numberLikes.indexOf(user.uid);
-        // console.log(indexOfUid);
         numberLikes.splice(indexOfUid, 1); // splice remove do array
-        // console.log(numberLikes);
         postsCollection().doc(id).update({ likes: [numberLikes] });
       } else {
         numberLikes.push(user.uid); // adiciona no array
-        // console.log(numberLikes);
         postsCollection().doc(id).update({ likes: numberLikes });// pegar o valor do reponse n array
       }
-      // console.log(numberLikes);
     })
     .catch(() => {});
 };
@@ -90,17 +86,14 @@ export const editPost = (newPost, id) => {
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
 
-/* export const userStatus = () => (
-  new Promise((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
-    });
-  })
-); */
+/* export const uploadFoodPhoto = (file) => {
+  // create storage ref
+  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
+
+  // upload file
+  const task = storeageRef.put(file);
+  return task;
+}; */
 
 /* export const likedPost = () => likesCollection.add({
   liked: true,

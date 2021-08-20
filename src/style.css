@@ -6,10 +6,12 @@
 
 .background{
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   
+    width: 100%;
+    height: 100%;
 }
 
 .container-main{
-    width: 350px;
+    width: 90%;
     height: 500px;
     background-image: white;
     overflow: hidden;
@@ -43,7 +45,7 @@
     height: 100%;
 }
 
-label{
+.label{
     color: white;
     font-size: 2.5rem;
     justify-content: center;
@@ -54,7 +56,7 @@ label{
     transition: .5s ease-in-out;
 }
 
-input {
+.input {
     width: 60%;
     height: 15px;
     background: #e0dede;
@@ -134,7 +136,7 @@ input {
     float: right;
 }
 
-.login label{
+.login .label{
     color: #573b8a;
     transform: scale(.6);
 }
@@ -143,11 +145,11 @@ input {
     transform: translateY(-500px);
 }
 
-#chk:checked ~ .login label{
+#chk:checked ~ .login .label{
     transform: scale(1);
 }
 
-#chk:checked ~ .signup label{
+#chk:checked ~ .signup .label{
     transform: scale(.6);
 }
 
@@ -235,7 +237,7 @@ input {
     justify-content: space-between;
 }
 
-.logoPagefeed {
+.logoPageFeed {
     width: 100px;
     height: 60px;
     margin-left: 10px;
@@ -338,28 +340,142 @@ input {
     background-color: red;
 }
 
-/*
-.btn-cadastrar:active {
-    position:relative;
-    top: 3px;
-    box-shadow:none;
+@media screen and (min-width: 426px) and (max-width:768px){
+    .logo-img{
+        width: 25%;
+        height: 45%;
+    }
+    .icons-input{
+        margin-left: 77%;
+        margin-top: 2.5%;
+    }
+    
+    .checkbox-phrase{
+        font-size: 15px;
+    }
+    
+    .checkbox{
+        margin: 23px 90px;
+    }
+
+    .btn-google {
+        width: 10%;
+    }
+    .phrase{
+        font-size: 14px;
+    }
+    .meme-senha{
+        width: 28%;
+    }
 }
 
-.btn:active {
-    position:relative;
-    top: 3px;
-    box-shadow:none;
+@media screen and (min-width: 769px) and (max-width:1024px){
+    .logo-img{
+        width: 27%;
+        height: 40%;
+        margin: 15% 10%;
+        position: absolute;
+    }
+    .container-main{
+        width: 50%;
+        margin-right: 5%;
+    }
+    .icons-input{
+        margin-top: 4%;
+    }    
+    .checkbox{
+        margin: 23px 45px;
+    }
+    .checkbox-phrase{
+        font-size: 16px;
+    }
+    .meme-senha{
+        width: 35%;
+    }
+    .btn-logout{
+        width: 10%;
+        margin-top: 2%;
+
+     }
+     .logoPageFeed {
+        width: 150px;
+        height: 80px;
+        margin-left: 10px;
+        margin-top: 3px;
+    }
 }
- 
 
-/* @media screen and (min-width: 426px) and (max-width:1024px){
-} */
+@media screen and (min-width: 1025px) and (max-width:1440px){
+    .logo-img{
+        width: 27%;
+        height: 40%;
+        margin: 15% 10%;
+        position: absolute;
+    }
+    .container-main{
+        width: 50%;
+        margin-right: 5%;
+    }
+    .icons-input{
+        margin-top: 4%;
+    }    
+    .checkbox{
+        margin: 23px 45px;
+    }
+    .checkbox-phrase{
+        font-size: 16px;
+    }
+    .meme-senha{
+        width: 35%;
+    }
+    .btn-logout{
+        width: 10%;
+        margin-top: 2%;
 
-/* @media screen and (min-width:1025px) and (max-width:1440px){
-} */
+     }
+     .logoPageFeed {
+        width: 150px;
+        height: 80px;
+        margin-left: 10px;
+        margin-top: 3px;
+    }
+}
 
-/* @media screen and (min-width:1441px){ 
-} */
+@media screen and (min-width: 1441px){
+    .logo-img{
+        width: 27%;
+        height: 40%;
+        margin: 15% 10%;
+        position: absolute;
+    }
+    .container-main{
+        width: 50%;
+        margin-right: 5%;
+    }
+    .icons-input{
+        margin-top: 4%;
+    }    
+    .checkbox{
+        margin: 23px 45px;
+    }
+    .checkbox-phrase{
+        font-size: 16px;
+    }
+    .meme-senha{
+        width: 35%;
+    }
+    .btn-logout{
+        width: 10%;
+        margin-top: 2%;
+
+     }
+     .logoPageFeed {
+        width: 150px;
+        height: 80px;
+        margin-left: 10px;
+        margin-top: 3px;
+    }
+}
 
 /* .content .heart{
     height: 90px;

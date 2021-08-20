@@ -12,18 +12,18 @@ export const loginMainScreen = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const loginPage = document.createElement('section');
-  loginPage.setAttribute('class', 'container background');
+  loginPage.setAttribute('class', 'background');
   loginPage.innerHTML = `
       <header>  
         <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
       </header>
       <div class="container-main">
-        <input type="checkbox" id="chk" aria-hidden="true">
+        <input class="input" type="checkbox" id="chk" aria-hidden="true">
           <div class="signup">
             <form>
-              <label for="chk" aria-hidden="true">Cadastro</label>
+              <label class="label" for="chk" aria-hidden="true">Cadastro</label>
               <fieldset class="form-login">
-                <input type="email" id="email" placeholder="Email" required="">
+                <input class="input" type="email" id="email" placeholder="Email" required="">
                   <div class="icons-input">
                     <i class="far fa-envelope icons"></i>
                   </div>
@@ -31,7 +31,7 @@ export const loginMainScreen = () => {
               <p id="error-email">Insira um e-mail válido</p>
 
               <fieldset class="form-login">
-                <input type="password" id="password" placeholder="Password" required="">
+                <input class="input" type="password" id="password" placeholder="Password" required="">
                   <div class="icons-input">
                     <i id="show" class="fas fa-lock-open icons"></i>
                     <i id="hide" class="fas fa-lock icons"></i>
@@ -40,7 +40,7 @@ export const loginMainScreen = () => {
               <p id="error-pass">Insira no mínimo 6 caracteres</p>
 
               <fieldset class="form-login">
-                <input type="password" id="repeat-password" placeholder="Repeat Password" required="">
+                <input class="input" type="password" id="repeat-password" placeholder="Repeat Password" required="">
                   <div class="icons-input">
                     <i id="show-again" class="fas fa-lock-open icons"></i>
                     <i id="hide-again" class="fas fa-lock icons"></i>
@@ -53,17 +53,17 @@ export const loginMainScreen = () => {
           </div>
 
           <div class="login">
-            <label for="chk" aria-hidden="true">Login</label>
+            <label class="label" for="chk" aria-hidden="true">Login</label>
             <form>
               <fieldset class="form-login">
-                <input type="email" id="email-login" placeholder="Email" required="">
+                <input class="input" type="email" id="email-login" placeholder="Email" required="">
                 <div class="icons-input">
                   <i class="far fa-envelope icons"></i>
                 </div>
               </fieldset>
 
               <fieldset class="form-login">
-                <input type="Password" id="password-login" placeholder="Password" required="">
+                <input class="input" type="Password" id="password-login" placeholder="Password" required="">
                 <div class="icons-input">
                   <i id="show-login" class="fas fa-lock-open icons"></i>
                   <i id="hide-login" class="fas fa-lock icons"></i>
@@ -72,8 +72,8 @@ export const loginMainScreen = () => {
               <p id="error-login"></p>
                             
             <div class="checkbox-container">
-              <input class="checkbox" id="checkbox" type="checkbox" name="remember">
-              <label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
+              <input class="input checkbox" id="checkbox" type="checkbox" name="remember">
+              <label class="label checkbox-phrase" for="remember">Manter conectado(a)</label>
               <span class="checkbox-phrase"><a class="pass-animation" id="recover" href="#">Esqueceu a senha?</a></span>
             </div>
               <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>

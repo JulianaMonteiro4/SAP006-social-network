@@ -5,29 +5,13 @@ import {
   deletePost,
   editPost,
   likesPost,
+  currentUser,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
-// likesPost,
-
 export const feed = () => {
-  // pegar usuario
-/* function getloggedUser() {
-    userStatus().then((user) => {
-      const userId = user.uid;
-      const userEmail = user.email;
-      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
-      console.log(userId);
-      console.log(userIniciais);
-      // console.log("Ta logado", user.email, user.uid);
-      // return
-    });
-  }
-  getloggedUser();
-  */
-
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -35,7 +19,7 @@ export const feed = () => {
   feedPage.innerHTML = ` 
     <div class="container-feed">
       <nav class="nav-bar">
-        <img class="logoPagefeed" src="./img/logo-nome.png" alt="logo">
+        <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
         <h2 class="photo"></h2>
         <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
       </nav>
@@ -58,22 +42,26 @@ export const feed = () => {
   const btnIcons = feedPage.querySelector('[data-section]');
 
   const addPosts = (post) => {
-    //  console.log(post.data());
+    const getLike = post.data().likes.find((el) => el === currentUser().uid);
+    const textPost = post.data().text;
+    const userId = post.data().user_id;
+    const postId = post.id;
+    const likes = post.data().likes.length;
 
     const postTemplate = `
       <div class="container-post-publicado">
-        <textarea class="post-publicado">${post.data().text}</textarea>
+        <textarea class="post-publicado">${textPost}</textarea>
           <div class="container-icons">
 
-            <span>${post.data().likes.length}</span>
             <div class="btn-post">
-              <i class="far fa-star icons-post btn-like icons-post" data-useruid="${post.data().user_id}" data-like="like" data-postid="${post.id}">Like</i>
-              <i class="far fa-comment-dots icons-post"></i>
+              <i class="far fa-star icons-post btn-like ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+              <span class="number-likes">${likes}</span> Like</i>
+              <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
-                <i class="far fa-edit icons-post" data-btneditpost ="${post.id}">Editar</i>
-                <i class="far fa-save icons-post" data-btnsavepost>Salvar</i>
+                <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
+                <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
-              <i class="far fa-trash-alt icons-post" data-btndeletpost ="${post.id}"></i>
+              <i class="far fa-trash-alt icons-post" data-btndeletpost ="${postId}"></i>
             </div>
           </div>
       </div>
@@ -103,17 +91,21 @@ export const feed = () => {
       });
   });
 
-  // BOTÕES DE LIKE, EXLCUIR, EDITAR E COMENTAR
+  // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
     const target = e.target;
+    const numberLikesElement = target.querySelector('.number-likes');
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
       const postId = target.dataset.postid;
       likesPost(postId);
-      loadPosts();
+      const countLikesUp = Number(numberLikesElement.innerText) + 1;
+      numberLikesElement.innerHTML = countLikesUp;
     } else {
       e.target.classList.remove('liked');
+      const countLikesDown = Number(numberLikesElement.innerText) - 1;
+      numberLikesElement.innerHTML = countLikesDown;
     }
 
     // COMENTAR POST
@@ -126,7 +118,6 @@ export const feed = () => {
     }
     // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
-    // console.log(deleteButton);
     if (deleteButton) {
       const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?');
       if (deleteConfirmation) {
@@ -150,5 +141,17 @@ export const feed = () => {
   return main.appendChild(feedPage);
 };
 
-// firebase.firestore.FieldValue.arrayUnion
-// remover firebase.firestore.FieldValue.arrayRemove.
+// pegar usuario
+/* function getloggedUser() {
+    userStatus().then((user) => {
+      const userId = user.uid;
+      const userEmail = user.email;
+      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
+      console.log(userId);
+      console.log(userIniciais);
+      // console.log("Ta logado", user.email, user.uid);
+      // return
+    });
+  }
+  getloggedUser();
+  */
