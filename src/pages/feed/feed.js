@@ -61,7 +61,7 @@ export const feed = () => {
                 <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
-              <i class="far fa-trash-alt icons-post" data-btndeletpost ="${postId}"></i>
+              <i class="far fa-trash-alt icons-post" data-btndeletpost="${postId}"></i>
             </div>
           </div>
       </div>
@@ -99,13 +99,19 @@ export const feed = () => {
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
       const postId = target.dataset.postid;
-      likesPost(postId);
-      const countLikesUp = Number(numberLikesElement.innerText) + 1;
-      numberLikesElement.innerHTML = countLikesUp;
-    } else {
+      likesPost(postId)
+        .then(() => {
+          const countLikesUp = Number(numberLikesElement.innerHTML) + 1;
+          numberLikesElement.innerHTML = countLikesUp;
+        });
+    } else if (target.dataset.like === 'like' && target.classList.contains('liked')) {
       e.target.classList.remove('liked');
-      const countLikesDown = Number(numberLikesElement.innerText) - 1;
-      numberLikesElement.innerHTML = countLikesDown;
+      const postId = target.dataset.postid;
+      likesPost(postId)
+        .then(() => {
+          const countLikesDown = Number(numberLikesElement.innerHTML) - 1;
+          numberLikesElement.innerHTML = countLikesDown;
+        });
     }
 
     // COMENTAR POST
@@ -121,8 +127,10 @@ export const feed = () => {
     if (deleteButton) {
       const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?');
       if (deleteConfirmation) {
-        deletePost(deleteButton);
-        loadPosts();
+        deletePost(deleteButton)
+          .then(() => {
+            loadPosts();
+          });
       } else {
         return false;
       }
