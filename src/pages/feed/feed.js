@@ -47,7 +47,6 @@ export const feed = () => {
     const userId = post.data().user_id;
     const postId = post.id;
     const likes = post.data().likes.length;
-    console.log(post.data().likes);
 
     const postTemplate = `
       <div class="container-post-publicado">
@@ -99,7 +98,6 @@ export const feed = () => {
     const numberLikesElement = target.querySelector('.number-likes');
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
-      console.log('primeiro if');
       const postId = target.dataset.postid;
       likesPost(postId)
         .then(() => {
@@ -108,14 +106,12 @@ export const feed = () => {
         });
     } else if (target.dataset.like === 'like' && target.classList.contains('liked')) {
       e.target.classList.remove('liked');
-      console.log('segundo if');
       const postId = target.dataset.postid;
       likesPost(postId)
         .then(() => {
           const countLikesDown = Number(numberLikesElement.innerHTML) - 1;
           numberLikesElement.innerHTML = countLikesDown;
         });
-      console.log(target);
     }
 
     // COMENTAR POST
@@ -127,7 +123,6 @@ export const feed = () => {
       editPost();
     }
     // DELETAR POST
-    console.log(target);
     const deleteButton = target.dataset.btndeletpost;
     if (deleteButton) {
       const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?'); // ver função p/ desabilitar-confirm.js.
