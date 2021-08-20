@@ -47,6 +47,7 @@ export const feed = () => {
     const userId = post.data().user_id;
     const postId = post.id;
     const likes = post.data().likes.length;
+    console.log(post.data().likes);
 
     const postTemplate = `
       <div class="container-post-publicado">
@@ -61,7 +62,7 @@ export const feed = () => {
                 <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
-              <i class="far fa-trash-alt icons-post" data-btndeletpost ="${postId}"></i>
+              <i class="far fa-trash-alt icons-post" data-btndeletpost="${postId}"></i>
             </div>
           </div>
       </div>
@@ -98,14 +99,23 @@ export const feed = () => {
     const numberLikesElement = target.querySelector('.number-likes');
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
+      console.log('primeiro if');
       const postId = target.dataset.postid;
-      likesPost(postId);
-      const countLikesUp = Number(numberLikesElement.innerText) + 1;
-      numberLikesElement.innerHTML = countLikesUp;
-    } else {
+      likesPost(postId)
+        .then(() => {
+          const countLikesUp = Number(numberLikesElement.innerHTML) + 1;
+          numberLikesElement.innerHTML = countLikesUp;
+        });
+    } else if (target.dataset.like === 'like' && target.classList.contains('liked')) {
       e.target.classList.remove('liked');
-      const countLikesDown = Number(numberLikesElement.innerText) - 1;
-      numberLikesElement.innerHTML = countLikesDown;
+      console.log('segundo if');
+      const postId = target.dataset.postid;
+      likesPost(postId)
+        .then(() => {
+          const countLikesDown = Number(numberLikesElement.innerHTML) - 1;
+          numberLikesElement.innerHTML = countLikesDown;
+        });
+      console.log(target);
     }
 
     // COMENTAR POST
@@ -117,12 +127,15 @@ export const feed = () => {
       editPost();
     }
     // DELETAR POST
+    console.log(target);
     const deleteButton = target.dataset.btndeletpost;
     if (deleteButton) {
       const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?'); // ver função p/ desabilitar-confirm.js.
       if (deleteConfirmation) {
-        deletePost(deleteButton);
-        loadPosts();
+        deletePost(deleteButton)
+          .then(() => {
+            loadPosts();
+          });
       } else {
         return false;
       }
