@@ -6,7 +6,6 @@ import {
 } from '../../services/index.js';
 import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
-// getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
   const main = document.getElementById('root');

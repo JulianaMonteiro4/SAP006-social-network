@@ -22,8 +22,28 @@ export const feed = () => {
       <nav class="nav-bar">
         <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
         <h2 class="photo"></h2>
-        <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button>
+        <!-- <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button> -->
+
+        <div class="menu" id="openMenu">
+          <div id="bar1" class="bar"></div>
+          <div id="bar2" class="bar"></div>
+          <div id="bar3" class="bar"></div>
+        </div>
+
+
+        <ul class="mainMenu">
+          <li><a href="#">PROFILE</a></li>
+          <li id="btn-logout"><a href="#">SAIR</a></li>
+          <div class="closeMenu"><i class="fa fa-times"></i></div>
+        </ul>
       </nav>
+
+        </div>
+        <div class="menu-bg" id="menu-bg"></div>
+
+
+      </nav>
+
       <section>
           <form class="form-post" id="container-post"> 
             <div class="post">
@@ -54,7 +74,7 @@ export const feed = () => {
 
     const postTemplate = `
       <div class="container-post-publicado">
-        <textarea class="post-publicado">${textPost}</textarea>
+        <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
           <div class="container-icons">
 
           <div class="wrapper">
@@ -91,6 +111,37 @@ export const feed = () => {
 
     postList.innerHTML += postTemplate;
   };
+
+  const mainMenu = feedPage.querySelector('.mainMenu');
+  const closeMenu = feedPage.querySelector('.closeMenu');
+  const openMenu = feedPage.querySelector('#openMenu');
+
+  function show() {
+    mainMenu.style.display = 'flex';
+    mainMenu.style.top = '0';
+  }
+
+  function close() {
+    mainMenu.style.top = '-100%';
+  }
+
+  openMenu.addEventListener('click', show);
+  closeMenu.addEventListener('click', close);
+
+  /* function toggleMenu() {
+    btnMenu.classList.toggle('change');
+  }
+  btnMenu.addEventListener('click', toggleMenu);
+
+  function toggleNav() {
+    btnMenuNav.classList.toggle('change');
+  }
+  btnMenuNav.addEventListener('click', toggleNav);
+
+  function toggleMenuBg() {
+    btnMenuBg.classList.toggle('change-bg');
+  }
+  btnMenuBg.addEventListener('click', toggleMenuBg); */
 
   // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
   const loadPosts = () => {
@@ -197,3 +248,16 @@ export const feed = () => {
   }
   getloggedUser();
   */
+
+/* <div id="menu-bar">
+          <div class="menu" id="menu">
+            <div id="bar1" class="bar"></div>
+            <div id="bar2" class="bar"></div>
+            <div id="bar3" class="bar"></div>
+          </div>
+          <ul class="nav" id="nav">
+            <li><a href="#">PROFILE</a></li>
+            <li id="btn-logout"><a href="#">SAIR</a></li>
+          </ul>
+        </div>
+        <div class="menu-bg" id="menu-bg"></div> */

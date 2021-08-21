@@ -4,9 +4,6 @@ import { navigateTo } from '../../navegation.js';
 export const profile = () => {
   const main = document.querySelector('.root');
   main.innerHTML = '';
-  // const user = currentUser();
-  // const userId = user.uid;
-  // const storage = firebase.storage();
   const profilePage = document.createElement('section');
   profilePage.setAttribute('class', 'root-profile');
   profilePage.innerHTML = `
@@ -41,6 +38,8 @@ export const profile = () => {
   // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
   btnSave.addEventListener('click', (e) => {
     e.preventDefault();
-    navigateTo('/');
+    navigateTo('/feed');
   });
+
+  return main.appendChild(profilePage);
 };

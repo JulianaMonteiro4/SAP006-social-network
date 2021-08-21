@@ -254,7 +254,7 @@
     background-color: #521a26;
 }
 
-/* Pagina do Feed */
+/* PÁGINA DO FEED */
 .nav-bar {
     display: flex;
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
@@ -351,6 +351,124 @@
 .liked{
     background-color: red;
 }
+
+.stars #label-star{
+    font-size: 30px;
+    margin: 0 3px;
+    color: #ccc;
+}
+#star-1:hover ~ .content .stars .star-1,
+#star-1:checked ~ .content .stars .star-1,
+
+#star-2:hover ~ .content .stars .star-1,
+#star-2:hover ~ .content .stars .star-2,
+#star-2:checked ~ .content .stars .star-1,
+#star-2:checked ~ .content .stars .star-2,
+
+#star-3:hover ~ .content .stars .star-1,
+#star-3:hover ~ .content .stars .star-2,
+#star-3:hover ~ .content .stars .star-3,
+#star-3:checked ~ .content .stars .star-1,
+#star-3:checked ~ .content .stars .star-2,
+#star-3:checked ~ .content .stars .star-3,
+
+#star-4:hover ~ .content .stars .star-1,
+#star-4:hover ~ .content .stars .star-2,
+#star-4:hover ~ .content .stars .star-3,
+#star-4:hover ~ .content .stars .star-4,
+#star-4:checked ~ .content .stars .star-1,
+#star-4:checked ~ .content .stars .star-2,
+#star-4:checked ~ .content .stars .star-3,
+#star-4:checked ~ .content .stars .star-4,
+
+#star-5:hover ~ .content .stars .star-1,
+#star-5:hover ~ .content .stars .star-2,
+#star-5:hover ~ .content .stars .star-3,
+#star-5:hover ~ .content .stars .star-4,
+#star-5:hover ~ .content .stars .star-5,
+#star-5:checked ~ .content .stars .star-1,
+#star-5:checked ~ .content .stars .star-2,
+#star-5:checked ~ .content .stars .star-3,
+#star-5:checked ~ .content .stars .star-4,
+#star-5:checked ~ .content .stars .star-5{
+    color: #fd4;
+}
+.wrapper{
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+
+nav .mainMenu{
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #000;
+    transition: top 1s ease;
+    display: none;
+}
+
+nav .mainMenu .closeMenu{
+    position: absolute;
+    display: block;
+    top: 20px;
+    right: 20px;
+}
+
+nav .openMenu{
+    display: block;
+}
+
+nav .mainMenu li a:hover{
+    background: none;
+    color: rgb(255,123, 0);
+    font-size: 1.6rem;
+}
+
+.icons i{
+    display: inline-block;
+    padding: 12px;
+}
+
+.menu{
+    width: 35px;
+    height: 30px;
+    margin: 30px 0 20px 20px;
+    cursor: pointer;
+}
+
+.bar{
+    height: 5px;
+    width: 100%;
+    background-color: #b81568;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+#bar1{
+    transform: translateY(-4px);
+}
+
+#bar3{
+    transform: translateY(4px);
+}
+
+
+
+
 
 @media screen and (min-width: 426px) and (max-width:768px){
     .logo-img{
@@ -487,62 +605,5 @@
         margin-left: 10px;
         margin-top: 3px;
     }
-}
-
-
-
-
-
-
-.stars #label-star{
-    font-size: 30px;
-    margin: 0 3px;
-    color: #ccc;
-}
-#star-1:hover ~ .content .stars .star-1,
-#star-1:checked ~ .content .stars .star-1,
-
-#star-2:hover ~ .content .stars .star-1,
-#star-2:hover ~ .content .stars .star-2,
-#star-2:checked ~ .content .stars .star-1,
-#star-2:checked ~ .content .stars .star-2,
-
-#star-3:hover ~ .content .stars .star-1,
-#star-3:hover ~ .content .stars .star-2,
-#star-3:hover ~ .content .stars .star-3,
-#star-3:checked ~ .content .stars .star-1,
-#star-3:checked ~ .content .stars .star-2,
-#star-3:checked ~ .content .stars .star-3,
-
-#star-4:hover ~ .content .stars .star-1,
-#star-4:hover ~ .content .stars .star-2,
-#star-4:hover ~ .content .stars .star-3,
-#star-4:hover ~ .content .stars .star-4,
-#star-4:checked ~ .content .stars .star-1,
-#star-4:checked ~ .content .stars .star-2,
-#star-4:checked ~ .content .stars .star-3,
-#star-4:checked ~ .content .stars .star-4,
-
-#star-5:hover ~ .content .stars .star-1,
-#star-5:hover ~ .content .stars .star-2,
-#star-5:hover ~ .content .stars .star-3,
-#star-5:hover ~ .content .stars .star-4,
-#star-5:hover ~ .content .stars .star-5,
-#star-5:checked ~ .content .stars .star-1,
-#star-5:checked ~ .content .stars .star-2,
-#star-5:checked ~ .content .stars .star-3,
-#star-5:checked ~ .content .stars .star-4,
-#star-5:checked ~ .content .stars .star-5{
-    color: #fd4;
-}
-.wrapper{
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-input[type="radio"]{
-    display: none;
 }
 
