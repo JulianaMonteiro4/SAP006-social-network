@@ -132,7 +132,7 @@ export const loginMainScreen = () => {
   // BOTÃO DE LOGIN COM O GOOGLE
   btnLoginWithGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithGoogle();
+    loginWithGoogle().then(() => navigateTo('/feed'));
   });
 
   // LINK ESQUECEU A SENHA
