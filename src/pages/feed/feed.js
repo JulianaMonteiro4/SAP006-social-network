@@ -9,8 +9,7 @@ import {
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
-
-// import { error } from '../../services/error.js';
+import { error } from '../../services/error.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
