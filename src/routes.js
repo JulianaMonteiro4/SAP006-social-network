@@ -1,4 +1,5 @@
 import { loginMainScreen } from './pages/login/login.js';
+import { profile } from './pages/profile/index.js';
 import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
 import { blockNotLoggedUser } from './services/index.js';
@@ -7,6 +8,7 @@ const routRender = () => {
   const elemento = document.getElementById('root');
   const routes = {
     '/': loginMainScreen,
+    '/profile': profile,
     '/recuperar': recoverLink,
     '/feed': feed,
   };

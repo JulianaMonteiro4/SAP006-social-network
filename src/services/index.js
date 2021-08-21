@@ -41,14 +41,17 @@ export const currentUser = () => firebase.auth().currentUser;
 export const postsCollection = () => firebase.firestore().collection('posts');
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text) => {
+export const createPost = (text, ratingStars, nameUser) => {
   const user = firebase.auth().currentUser;
   const post = {
-    text: text.value,
+    user_name: nameUser,
+    user_img: user.photoURL,
     user_id: user.uid,
+    data: new Date(),
+    text: text.value,
     likes: [],
     comments: [],
-    data: new Date(),
+    rating: ratingStars,
   };
   // SALVAR POSTS NO BANCO DE DADOS
   return postsCollection().doc().set(post);
@@ -81,6 +84,22 @@ export const editPost = (newPost, id) => {
 
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
+
+// ADICIONAR IMAGEM
+export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
+
+export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
+
+// eslint-disable-next-line no-shadow
+export const downloadPicture = (namePicturePost, id) => {
+  firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
+    .then((url) => {
+      const picturePost = {
+        photo: url,
+      };
+      updatePost(picturePost, id);
+    });
+};
 
 /* export const uploadFoodPhoto = (file) => {
   // create storage ref

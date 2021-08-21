@@ -6,6 +6,7 @@ import {
   editPost,
   likesPost,
   currentUser,
+  uploadPicture,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -25,9 +26,12 @@ export const feed = () => {
       </nav>
       <section>
           <form class="form-post" id="container-post"> 
-            <!-- <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button"> -->
-            <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-            <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button> 
+            <div class="post">
+              <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
+              <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button">
+              <input class="inputPhotoPost" type="file" name"arquivo">
+              <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
+            </div>
           </form>
         <ul id="postList" class="post-list" data-section></ul>
       </section>
@@ -107,6 +111,18 @@ export const feed = () => {
         text.value = '';
         loadPosts();
       });
+  });
+
+  // ADICIONAR IMAGEM
+  const inputPhotoPost = feedPage.querySelector('.inputPhotoPost');
+  // console.log(inputPhotoPost);
+
+  inputPhotoPost.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const namePicturePost = file.name;
+    // console.log(namePicturePost);
+
+    uploadPicture(namePicturePost, file);
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
