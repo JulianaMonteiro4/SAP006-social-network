@@ -404,42 +404,37 @@ input[type="radio"]{
     display: none;
 }
 
-
-nav .mainMenu{
-    height: 100vh;
+/* MENU HAMBURGUER */
+nav .nav{
+    height: 50vh;
     position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
+    margin-top: 80px;
+    right: 0px;
+    left: 150px;
     z-index: 10;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #000;
+    background: #ae435ae5;
     transition: top 1s ease;
     display: none;
 }
 
-nav .mainMenu .closeMenu{
+nav .nav #closeMenu{
     position: absolute;
     display: block;
     top: 20px;
     right: 20px;
 }
 
-nav .openMenu{
+nav #openMenu{
     display: block;
 }
 
-nav .mainMenu li a:hover{
+nav .nav li a:hover{
     background: none;
     color: rgb(255,123, 0);
     font-size: 1.6rem;
-}
-
-.icons i{
-    display: inline-block;
-    padding: 12px;
 }
 
 .menu{
@@ -466,6 +461,36 @@ nav .mainMenu li a:hover{
     transform: translateY(4px);
 }
 
+.change .bar{
+    background-color: white;
+}
+
+.change #bar1{
+    transform: translateY(4px) rotateZ(-45deg);
+}
+
+.change #bar3{
+    transform: translateY(-6px) rotate(45deg);
+}
+
+.change #bar2{
+    opacity: 0;
+}
+
+.change{
+    display: block;
+}
+
+ul li a{
+    color:#fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+ul li{
+    list-style: none;
+    padding: 16px 0;
+}
 
 
 

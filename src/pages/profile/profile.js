@@ -23,7 +23,8 @@ export const profile = () => {
           </fieldset>
           <img class="photo-profile" src="img/perfil.png" alt="meme" title="meme">               
           <input class="inputPhoto" type="file" name"arquivo">
-          <button class="btn btn-back btn-save" id="btn-save" type="button">Salvar</button>
+          <button class="btn btn-save" id="btn-save" type="button">Salvar</button>
+          <button class="btn btn-back btn-save" id="btn-back-feed" type="button">Retornar</button>
         </form>
       </div>
     </div>       
@@ -34,9 +35,16 @@ export const profile = () => {
   // const photoProfile = profilePage.querySelector('.photo-profile');
   // const inputPhoto = profilePage.querySelector('.inputPhoto');
   const btnSave = profilePage.querySelector('#btn-save');
+  const btnBackFeed = profilePage.querySelector('#btn-back-feed');
 
   // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
   btnSave.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateTo('/feed');
+  });
+
+  // BOTÃO PARA RETORNAR PRO FEED
+  btnBackFeed.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/feed');
   });

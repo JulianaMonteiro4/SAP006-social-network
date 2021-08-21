@@ -58,7 +58,7 @@ export const createPost = (text, ratingStars, nameUser) => {
 };
 // nao usar remove pq ele retira o array e pula
 // indexOf busca o indice no array
-// pegar o valor do reponse n array
+// splice remove do array
 // AUMENTAR CURTIDAS
 export const likesPost = (id) => postsCollection().doc(id).get()
   .then((response) => {
@@ -66,7 +66,7 @@ export const likesPost = (id) => postsCollection().doc(id).get()
     const user = firebase.auth().currentUser;
     if (numberLikes.includes(user.uid)) {
       const indexOfUid = numberLikes.indexOf(user.uid);
-      numberLikes.splice(indexOfUid, 1); // splice remove do array
+      numberLikes.splice(indexOfUid, 1);
       return postsCollection().doc(id).update({ likes: numberLikes });
     }
     numberLikes.push(user.uid); // adiciona no array

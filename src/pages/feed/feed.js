@@ -30,17 +30,11 @@ export const feed = () => {
           <div id="bar3" class="bar"></div>
         </div>
 
-
-        <ul class="mainMenu">
-          <li><a href="#">PROFILE</a></li>
+        <ul class="nav" id="mainMenu">
+          <li id="menu-profile"><a href="#">PROFILE</a></li>
           <li id="btn-logout"><a href="#">SAIR</a></li>
           <div class="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
-      </nav>
-
-        </div>
-        <div class="menu-bg" id="menu-bg"></div>
-
 
       </nav>
 
@@ -48,7 +42,6 @@ export const feed = () => {
           <form class="form-post" id="container-post"> 
             <div class="post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-              <img src="img/icone-img.png" class="img-photo" id="btn-photo" type="button">
               <input class="inputPhotoPost" type="file" name"arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
             </div>
@@ -64,6 +57,7 @@ export const feed = () => {
   const postList = feedPage.querySelector('#postList');
   const btnLogout = feedPage.querySelector('#btn-logout');
   const btnIcons = feedPage.querySelector('[data-section]');
+  const btnMenuProfile = feedPage.querySelector('#menu-profile');
 
   const addPosts = (post) => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
@@ -71,6 +65,7 @@ export const feed = () => {
     const userId = post.data().user_id;
     const postId = post.id;
     const likes = post.data().likes.length;
+    const rating = post.data().rating;
 
     const postTemplate = `
       <div class="container-post-publicado">
@@ -112,36 +107,29 @@ export const feed = () => {
     postList.innerHTML += postTemplate;
   };
 
-  const mainMenu = feedPage.querySelector('.mainMenu');
+  const mainMenu = feedPage.querySelector('#mainMenu');
   const closeMenu = feedPage.querySelector('.closeMenu');
   const openMenu = feedPage.querySelector('#openMenu');
 
   function show() {
     mainMenu.style.display = 'flex';
     mainMenu.style.top = '0';
+    openMenu.classList.toggle('change');
   }
 
   function close() {
     mainMenu.style.top = '-100%';
+    console.log(close);
   }
 
   openMenu.addEventListener('click', show);
   closeMenu.addEventListener('click', close);
 
-  /* function toggleMenu() {
-    btnMenu.classList.toggle('change');
-  }
-  btnMenu.addEventListener('click', toggleMenu);
-
-  function toggleNav() {
-    btnMenuNav.classList.toggle('change');
-  }
-  btnMenuNav.addEventListener('click', toggleNav);
-
-  function toggleMenuBg() {
-    btnMenuBg.classList.toggle('change-bg');
-  }
-  btnMenuBg.addEventListener('click', toggleMenuBg); */
+  // ROTA MENU HAMBURGUER PROFILE
+  btnMenuProfile.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateTo('/profile');
+  });
 
   // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
   const loadPosts = () => {
@@ -198,8 +186,6 @@ export const feed = () => {
           numberLikesElement.innerHTML = countLikesDown;
         });
     }
-
-    // COMENTAR POST
 
     // EDITAR POST
     const editButton = target.dataset.btneditpost;
