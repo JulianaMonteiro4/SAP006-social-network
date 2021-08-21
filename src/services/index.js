@@ -57,32 +57,24 @@ export const createPost = (text) => {
 };
 // nao usar remove pq ele retira o array e pula
 // indexOf busca o indice no array
+// pegar o valor do reponse n array
 // AUMENTAR CURTIDAS
-export const likesPost = (id) => {
-  postsCollection().doc(id).get()
-    .then((response) => {
-      const numberLikes = response.data().likes;
-      const user = firebase.auth().currentUser;
-      if (numberLikes.includes(user.uid)) {
-        const indexOfUid = numberLikes.indexOf(user.uid);
-        // console.log(indexOfUid);
-        numberLikes.splice(indexOfUid, 1); // splice remove do array
-        // console.log(numberLikes);
-        postsCollection().doc(id).update({ likes: [numberLikes] });
-      } else {
-        numberLikes.push(user.uid); // adiciona no array
-        // console.log(numberLikes);
-        postsCollection().doc(id).update({ likes: numberLikes });// pegar o valor do reponse n array
-      }
-      // console.log(numberLikes);
-    })
-    .catch(() => {});
-};
+export const likesPost = (id) => postsCollection().doc(id).get()
+  .then((response) => {
+    const numberLikes = response.data().likes;
+    const user = firebase.auth().currentUser;
+    if (numberLikes.includes(user.uid)) {
+      const indexOfUid = numberLikes.indexOf(user.uid);
+      numberLikes.splice(indexOfUid, 1); // splice remove do array
+      return postsCollection().doc(id).update({ likes: numberLikes });
+    }
+    numberLikes.push(user.uid); // adiciona no array
+    return postsCollection().doc(id).update({ likes: numberLikes });
+  })
+  .catch(() => {});
 
 // DELETAR POSTS DO BANCO DE DADOS
-export const deletePost = (id) => {
-  postsCollection().doc(id).delete();
-};
+export const deletePost = (id) => postsCollection().doc(id).delete();
 
 // EDITAR POSTS DO BANCO DE DADOS
 export const editPost = (newPost, id) => {
@@ -101,17 +93,14 @@ export const signOut = () => {
     });
 };
 
-/* export const userStatus = () => (
-  new Promise((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
-    });
-  })
-); */
+/* export const uploadFoodPhoto = (file) => {
+  // create storage ref
+  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
+
+  // upload file
+  const task = storeageRef.put(file);
+  return task;
+}; */
 
 /* export const likedPost = () => likesCollection.add({
   liked: true,
