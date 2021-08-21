@@ -6,6 +6,7 @@ import {
   editPost,
   likesPost,
   currentUser,
+  uploadPicture,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -92,6 +93,18 @@ export const feed = () => {
         text.value = '';
         loadPosts();
       });
+  });
+
+  // ADICIONAR IMAGEM
+  const inputPhotoPost = feedPage.querySelector('.inputPhotoPost');
+  // console.log(inputPhotoPost);
+
+  inputPhotoPost.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    const namePicturePost = file.name;
+    // console.log(namePicturePost);
+
+    uploadPicture(namePicturePost, file);
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR

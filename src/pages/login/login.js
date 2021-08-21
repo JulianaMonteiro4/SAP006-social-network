@@ -159,7 +159,7 @@ export const loginMainScreen = () => {
     newRegister(email.value, password.value, repeatPassword.value)
       .then(() => {
         if (password.value === repeatPassword.value) {
-          navigateTo('/');
+          navigateTo('/profile');
         }
       })
       .catch((erro) => {

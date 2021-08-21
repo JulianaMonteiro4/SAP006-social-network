@@ -82,6 +82,22 @@ export const editPost = (newPost, id) => {
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
 
+// ADICIONAR IMAGEM
+export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
+
+export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
+
+// eslint-disable-next-line no-shadow
+export const downloadPicture = (namePicturePost, id) => {
+  firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
+    .then((url) => {
+      const picturePost = {
+        photo: url,
+      };
+      updatePost(picturePost, id);
+    });
+};
+
 /* export const uploadFoodPhoto = (file) => {
   // create storage ref
   const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
