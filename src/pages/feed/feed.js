@@ -9,7 +9,7 @@ import {
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
-// import { error } from '../../services/error.js';
+import { error } from '../../services/error.js';
 
 export const feed = () => {
   const main = document.getElementById('root');
@@ -143,7 +143,7 @@ export const feed = () => {
     // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
     if (deleteButton) {
-      const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?'); // ver função p/ desabilitar-confirm.js.
+      const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?');
       if (deleteConfirmation) {
         deletePost(deleteButton)
           .then(() => {
@@ -158,7 +158,10 @@ export const feed = () => {
   // BOTÃO DE SAIR
   btnLogout.addEventListener('click', (e) => {
     e.preventDefault();
-    signOut().then(() => navigateTo('/'));
+    signOut().then(() => navigateTo('/'))
+      .catch(() => {
+        error('Tente novamente.');
+      });
   });
 
   return main.appendChild(feedPage);
