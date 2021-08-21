@@ -10,6 +10,10 @@
     height: 100%;
 }
 
+.background-feed{
+    background: white;
+}
+
 .container-main{
     width: 90%;
     height: 500px;
@@ -192,7 +196,12 @@
 
 .root {
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 125px;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   
+}
+
+.root-feed{
+    background: transparent
 }
 
 .footer {
@@ -294,7 +303,6 @@
 .btn-publicar:hover{
     background: #7e561e;
 }
-
 
 .container-post-publicado{
     display: flex;
@@ -477,28 +485,56 @@
     }
 }
 
-/* .content .heart{
-    height: 90px;
-    width: 90px;
-    background: url('img/like.png') no-repeat;
-    background-position: left;
-    background-size: 2900%;
-    position: absolute;
-    top: 50%;
-    left: 21%;
-    transform: translate(-50%, -50%);
+
+.stars #label-star{
+    font-size: 30px;
+    margin: 0 3px;
+    color: #ccc;
+}
+#star-1:hover ~ .content .stars .star-1,
+#star-1:checked ~ .content .stars .star-1,
+
+#star-2:hover ~ .content .stars .star-1,
+#star-2:hover ~ .content .stars .star-2,
+#star-2:checked ~ .content .stars .star-1,
+#star-2:checked ~ .content .stars .star-2,
+
+#star-3:hover ~ .content .stars .star-1,
+#star-3:hover ~ .content .stars .star-2,
+#star-3:hover ~ .content .stars .star-3,
+#star-3:checked ~ .content .stars .star-1,
+#star-3:checked ~ .content .stars .star-2,
+#star-3:checked ~ .content .stars .star-3,
+
+#star-4:hover ~ .content .stars .star-1,
+#star-4:hover ~ .content .stars .star-2,
+#star-4:hover ~ .content .stars .star-3,
+#star-4:hover ~ .content .stars .star-4,
+#star-4:checked ~ .content .stars .star-1,
+#star-4:checked ~ .content .stars .star-2,
+#star-4:checked ~ .content .stars .star-3,
+#star-4:checked ~ .content .stars .star-4,
+
+#star-5:hover ~ .content .stars .star-1,
+#star-5:hover ~ .content .stars .star-2,
+#star-5:hover ~ .content .stars .star-3,
+#star-5:hover ~ .content .stars .star-4,
+#star-5:hover ~ .content .stars .star-5,
+#star-5:checked ~ .content .stars .star-1,
+#star-5:checked ~ .content .stars .star-2,
+#star-5:checked ~ .content .stars .star-3,
+#star-5:checked ~ .content .stars .star-4,
+#star-5:checked ~ .content .stars .star-5{
+    color: #fd4;
+}
+.wrapper{
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.heart:hover{
-    background-position: right;
-    animation: animate .8s steps(28) 1;
+input[type="radio"]{
+    display: none;
 }
 
-@keyframes animate{
-    0%{
-        background-position: left;
-    }
-    100%{
-        background-position: right;
-    }
-} */

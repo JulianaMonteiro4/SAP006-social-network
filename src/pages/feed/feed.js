@@ -15,7 +15,7 @@ export const feed = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
-  feedPage.setAttribute('class', 'container');
+  feedPage.setAttribute('class', 'container background-feed');
   feedPage.innerHTML = ` 
     <div class="container-feed">
       <nav class="nav-bar">
@@ -53,16 +53,34 @@ export const feed = () => {
         <textarea class="post-publicado">${textPost}</textarea>
           <div class="container-icons">
 
+          <div class="wrapper">
+            <input type="radio" name="rate" id="star-1">
+            <input type="radio" name="rate" id="star-2">
+            <input type="radio" name="rate" id="star-3">
+            <input type="radio" name="rate" id="star-4">
+            <input type="radio" name="rate" id="star-5">
+            <div class="content">
+              <div class="stars">
+                <label for="star-1" class="star-1 fas fa-star label-star"></label>
+                <label for="star-2" class="star-2 fas fa-star label-star"></label>
+                <label for="star-3" class="star-3 fas fa-star label-star"></label>
+                <label for="star-4" class="star-4 fas fa-star label-star"></label>
+                <label for="star-5" class="star-5 fas fa-star label-star"></label>
+              </div>
+            </div>
+          </div>
+
             <div class="btn-post">
-              <i class="far fa-star icons-post btn-like ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
-              <span class="number-likes">${likes}</span> Like</i>
+              <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+              <span class="number-likes">${likes}</span></i>
               <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
                 <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
-              <i class="far fa-trash-alt icons-post" data-btndeletpost="${postId}"></i>
+              <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
             </div>
+
           </div>
       </div>
     `;
