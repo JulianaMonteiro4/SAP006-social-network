@@ -128,7 +128,7 @@
     justify-content: center;
     display: block;
     color: #fff;
-    background: #573b8a;
+    background: #ae435b;
     font-size: 1em;
     font-weight: bold;
     margin-top: 10px;
@@ -247,7 +247,7 @@
 }
 
 .btn-back{
-    background-color: #ae435b;
+    background-color: #998daf;
 }
 
 .btn-back:hover{
@@ -440,7 +440,7 @@ nav .nav li a:hover{
 .menu{
     width: 35px;
     height: 30px;
-    margin: 30px 0 20px 20px;
+    margin: 30px 2% 20px 20px;
     cursor: pointer;
 }
 
@@ -493,7 +493,39 @@ ul li{
 }
 
 
+/* PÁGINA DE PROFILE */
 
+.photo-profile{
+    display: flex;
+    height: 125px;
+    justify-content: center;
+    clip-path: circle(20%);
+}
+
+.photo-profile-post{
+    clip-path: circle(44%);
+    margin-right: 10%;
+}
+
+.label-profile{
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+}
+
+.input-photo{
+    margin: 10px 0 25px 0;
+    display: inline-block;
+    align-items: center;
+}
+
+.input-photo-post{
+    margin: 10px 0 10px 0;
+}
+
+.btn-save{
+    margin-top: 30px;
+}
 
 @media screen and (min-width: 426px) and (max-width:768px){
     .logo-img{
@@ -527,13 +559,14 @@ ul li{
 @media screen and (min-width: 769px) and (max-width:1024px){
     .logo-img{
         width: 27%;
-        height: 40%;
-        margin: 15% 10%;
+        height: 33%;
+        margin: 22% 10%;
         position: absolute;
     }
     .container-main{
         width: 50%;
         margin-right: 5%;
+        padding-top: 18%;
     }
     .icons-input{
         margin-top: 4%;
@@ -570,7 +603,13 @@ ul li{
     .container-main{
         width: 50%;
         margin-right: 5%;
+        padding-top: 17%;
     }
+
+    .container-icons{
+        font-size: 20px;
+    }
+
     .icons-input{
         margin-top: 4%;
     }    
@@ -594,41 +633,120 @@ ul li{
         margin-left: 10px;
         margin-top: 3px;
     }
+
+    .new-post{
+        width: 68%;
+        font-size: 25px;
+        padding: 12px;
+        margin: 31px 15% 0 0;
+    }
+
+    .input-photo-post{
+        margin-right:16%;
+        font-size: 16px;
+    }
+
+    .btn-publicar{
+        margin-right: 15%;
+        width: 10%;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .post-publicado{
+        font-size: 22px;
+        height: 100px;
+    }
+
+    .menu{
+        margin-right: 2%;
+    }
+
+    .photo-profile-post{
+        margin-right: 2%;
+    }
+
+    nav .nav{
+        left: 65%;
+    }
 }
 
-@media screen and (min-width: 1441px){
+@media screen and (min-width: 1441px){ /* FALTA ARRUMAR ESSE*/
     .logo-img{
         width: 27%;
         height: 40%;
         margin: 15% 10%;
         position: absolute;
     }
+
     .container-main{
         width: 50%;
         margin-right: 5%;
+        padding-top: 46%;
     }
+
     .icons-input{
         margin-top: 4%;
-    }    
+    }  
+
     .checkbox{
         margin: 23px 45px;
     }
+
     .checkbox-phrase{
         font-size: 16px;
     }
+
     .meme-senha{
         width: 35%;
     }
+
     .btn-logout{
         width: 10%;
         margin-top: 2%;
+    }
 
-     }
-     .logoPageFeed {
+    .logoPageFeed {
         width: 150px;
         height: 80px;
         margin-left: 10px;
         margin-top: 3px;
+    }
+    
+    .new-post{
+        width: 68%;
+        font-size: 25px;
+        padding: 12px;
+        margin: 31px 15% 0 0;
+    }
+
+    .input-photo-post{
+        margin-right:16%;
+        font-size: 16px;
+    }
+
+    .btn-publicar{
+        margin-right: 15%;
+        width: 10%;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .post-publicado{
+        font-size: 22px;
+        height: 100px;
+    }
+
+    .menu{
+        margin-right: 2%;
+    }
+
+    .photo-profile-post{
+        margin-right: 2%;
+    }
+
+    nav .nav{
+        left: 65%;
     }
 }
 

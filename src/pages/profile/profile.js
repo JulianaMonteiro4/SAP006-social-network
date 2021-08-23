@@ -13,18 +13,25 @@ export const profile = () => {
       </header>
       <div class="container-main">
         <form>
-          <label class="label" for="chk" aria-hidden="true">Perfil</label>
+          <label class="label label-profile" for="chk" aria-hidden="true">Perfil</label>
+            <div class="photo-profile">
+              <img src="img/perfil.jpg" alt="meme" title="meme">
+            </div>
+            <input class="input-photo" type="file" name"arquivo">
           <fieldset class="form-login">
-            <input class=" input input-name" type="text" text="Nome de Usuário" value="">
-            <input class="input input-email" type="email" id="recover-email" placeholder="Email" value="">
+            <input class="input" type="text" id="text-name" placeholder="User Name" required="">
+              <div class="icons-input">
+                <i class="fas fa-user icons"></i>
+              </div>
+          </fieldset>
+          <fieldset class="form-login">
+            <input class="input" type="email" id="profile-email" placeholder="Email" required="">
             <div class="icons-input">
               <i class="far fa-envelope icons"></i>
             </div>
           </fieldset>
-          <img class="photo-profile" src="img/perfil.png" alt="meme" title="meme">               
-          <input class="inputPhoto" type="file" name"arquivo">
           <button class="btn btn-save" id="btn-save" type="button">Salvar</button>
-          <button class="btn btn-back btn-save" id="btn-back-feed" type="button">Retornar</button>
+          <button class="btn btn-back" id="btn-back-feed" type="button">Retornar</button>
         </form>
       </div>
     </div>       

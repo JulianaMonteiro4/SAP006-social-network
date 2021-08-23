@@ -47,7 +47,7 @@ export const loginMainScreen = () => {
               </fieldset>
               <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
 
-              <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+              <button class="btn" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
           </div>
 

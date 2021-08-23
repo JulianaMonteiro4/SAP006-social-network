@@ -21,7 +21,7 @@ export const feed = () => {
     <div class="container-feed">
       <nav class="nav-bar">
         <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
-        <h2 class="photo"></h2>
+          <img class="photo-profile-post" src="img/perfil.jpg" alt="meme" title="meme">
         <!-- <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button> -->
 
         <div class="menu" id="openMenu">
@@ -42,7 +42,7 @@ export const feed = () => {
           <form class="form-post" id="container-post"> 
             <div class="post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-              <input class="inputPhotoPost" type="file" name"arquivo">
+              <input class="input-photo-post" id="input-photo" type="file" name"arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
             </div>
           </form>
@@ -65,7 +65,7 @@ export const feed = () => {
     const userId = post.data().user_id;
     const postId = post.id;
     const likes = post.data().likes.length;
-    const rating = post.data().rating;
+    // const rating = post.data().rating;
 
     const postTemplate = `
       <div class="container-post-publicado">
@@ -119,7 +119,6 @@ export const feed = () => {
 
   function close() {
     mainMenu.style.top = '-100%';
-    console.log(close);
   }
 
   openMenu.addEventListener('click', show);
@@ -153,7 +152,7 @@ export const feed = () => {
   });
 
   // ADICIONAR IMAGEM
-  const inputPhotoPost = feedPage.querySelector('.inputPhotoPost');
+  const inputPhotoPost = feedPage.querySelector('#input-photo');
   // console.log(inputPhotoPost);
 
   inputPhotoPost.addEventListener('change', (e) => {
