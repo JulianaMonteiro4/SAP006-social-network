@@ -20,7 +20,7 @@
     background-image: white;
     overflow: hidden;
     margin-bottom: 50%;
-    background-color: #3a2b4e8a;
+    background-color: #4d2f758a;
     border-radius: 10px;
     margin: auto;
 }
@@ -139,7 +139,7 @@
 }
 
 .btn:hover{
-    background: #2a1949;
+    background: #72051d;
 }
 
 .login{
@@ -228,7 +228,7 @@
     height: 30px;
     font-size: 17px;
     color: white;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
+    background: #302b63;
     padding-top: 8px;
     text-align: center;
 
@@ -251,7 +251,7 @@
 }
 
 .btn-back:hover{
-    background-color: #521a26;
+    background-color: #1e0747;
 }
 
 /* PÁGINA DO FEED */
@@ -302,10 +302,7 @@
     margin-top: 20px;
     color: black;
     resize: none;
-}
-
-.btn-publicar:hover{
-    background: #7e561e;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
 }
 
 .container-post-publicado{
@@ -333,7 +330,7 @@
     padding: 20px;
     resize: none;
     border: 15px solid #a2dcf0ab;
-    border-bottom: 40px solid #a2dcf0ab;
+    border-top: 30px solid #a2dcf0ab;
 }
 
 .container-icons{
@@ -342,14 +339,10 @@
 }
 
 .icons-post{
-    margin: 0 4px;
+    margin: 0 15px;
     display: flex;
     cursor: pointer;
     text-decoration: bold;
-}
-
-.liked{
-    background-color: red;
 }
 
 .stars #label-star{
@@ -357,6 +350,7 @@
     margin: 0 3px;
     color: #ccc;
 }
+
 #star-1:hover ~ .content .stars .star-1,
 #star-1:checked ~ .content .stars .star-1,
 
@@ -402,6 +396,14 @@
 
 input[type="radio"]{
     display: none;
+}
+
+.photo-post{
+    height: 72px;
+    width: 20%;
+    position: absolute;
+    display: flex;
+    clip-path: circle(41%);
 }
 
 /* MENU HAMBURGUER */
@@ -525,6 +527,10 @@ ul li{
 
 .btn-save{
     margin-top: 30px;
+}
+
+.fa-heart::before{
+    color: red;
 }
 
 @media screen and (min-width: 426px) and (max-width:768px){

@@ -41,17 +41,16 @@ export const currentUser = () => firebase.auth().currentUser;
 export const postsCollection = () => firebase.firestore().collection('posts');
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text, ratingStars, nameUser) => {
+export const createPost = (text) => {
   const user = firebase.auth().currentUser;
   const post = {
-    user_name: nameUser,
     user_img: user.photoURL,
     user_id: user.uid,
     data: new Date(),
     text: text.value,
     likes: [],
     comments: [],
-    rating: ratingStars,
+    rating: [],
   };
   // SALVAR POSTS NO BANCO DE DADOS
   return postsCollection().doc().set(post);

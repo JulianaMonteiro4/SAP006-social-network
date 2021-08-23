@@ -33,7 +33,7 @@ export const feed = () => {
         <ul class="nav" id="mainMenu">
           <li id="menu-profile"><a href="#">PROFILE</a></li>
           <li id="btn-logout"><a href="#">SAIR</a></li>
-          <div class="closeMenu"><i class="fa fa-times"></i></div>
+          <div id="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
 
       </nav>
@@ -68,8 +68,10 @@ export const feed = () => {
     // const rating = post.data().rating;
 
     const postTemplate = `
+    <img class="photo-post" src="img/perfil.jpg" alt="meme" title="meme">
       <div class="container-post-publicado">
         <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
+
           <div class="container-icons">
 
           <div class="wrapper">
@@ -92,14 +94,13 @@ export const feed = () => {
             <div class="btn-post">
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-              <!-- <i class="far fa-comment-dots icons-post"></i> -->
+                <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
                 <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
               <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
             </div>
-
           </div>
       </div>
     `;
@@ -108,7 +109,7 @@ export const feed = () => {
   };
 
   const mainMenu = feedPage.querySelector('#mainMenu');
-  const closeMenu = feedPage.querySelector('.closeMenu');
+  const closeMenu = feedPage.querySelector('#closeMenu');
   const openMenu = feedPage.querySelector('#openMenu');
 
   function show() {
@@ -168,16 +169,16 @@ export const feed = () => {
   btnIcons.addEventListener('click', (e) => {
     const target = e.target;
     const numberLikesElement = target.querySelector('.number-likes');
-    if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
-      e.target.classList.add('liked');
+    if (target.dataset.like === 'like' && !target.classList.contains('fas')) {
+      e.target.classList.add('fas');
       const postId = target.dataset.postid;
       likesPost(postId)
         .then(() => {
           const countLikesUp = Number(numberLikesElement.innerHTML) + 1;
           numberLikesElement.innerHTML = countLikesUp;
         });
-    } else if (target.dataset.like === 'like' && target.classList.contains('liked')) {
-      e.target.classList.remove('liked');
+    } else if (target.dataset.like === 'like' && target.classList.contains('fas')) {
+      e.target.classList.remove('fas');
       const postId = target.dataset.postid;
       likesPost(postId)
         .then(() => {
