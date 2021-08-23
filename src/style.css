@@ -481,6 +481,16 @@
     }
 }
 
+/* PAGINA PERFIL */
+.photo-profile{
+    display: flex;
+    width: 40%;
+    height: 70%;
+    margin: 2px auto;
+    align-items: center;
+    justify-content: center;
+}
+
 /* .content .heart{
     height: 90px;
     width: 90px;

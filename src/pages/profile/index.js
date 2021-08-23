@@ -8,13 +8,13 @@ export const profile = () => {
   // const userId = user.uid;
   // const storage = firebase.storage();
   const profilePage = document.createElement('section');
-  profilePage.setAttribute('class', 'root-profile');
+  profilePage.setAttribute('class', 'container background');
   profilePage.innerHTML = `
     <div class="container-principal">
       <header>
         <img class="logo-img" src="img/gif-logo.gif" alt="logo">
       </header>
-      <div class="container-main">
+      <div class="container-main container-profile">
         <form>
           <label class="label" for="chk" aria-hidden="true">Perfil</label>
           <fieldset class="form-login">
@@ -43,4 +43,6 @@ export const profile = () => {
     e.preventDefault();
     navigateTo('/');
   });
+
+  return main.appendChild(profilePage);
 };
