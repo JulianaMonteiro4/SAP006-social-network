@@ -58,7 +58,6 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
   const btnIcons = feedPage.querySelector('[data-section]');
   const btnMenuProfile = feedPage.querySelector('#menu-profile');
-  const data = feedPage.querySelector('#date-post');
 
   const addPosts = (post) => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);

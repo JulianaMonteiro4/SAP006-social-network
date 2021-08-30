@@ -42,6 +42,9 @@ export const currentUser = () => firebase.auth().currentUser;
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
 
+// COLEÇÃO DE USUÁRIOS
+export const usersCollection = () => firebase.firestore().collection('users');
+
 // FORMATAR A DATA
 const postData = () => {
   const data = new Date();
@@ -60,23 +63,22 @@ export const createPost = (text) => {
     comments: [],
     rating: [],
   };
+
   // SALVAR POSTS NO BANCO DE DADOS
   return postsCollection().doc().set(post);
 };
-// nao usar remove pq ele retira o array e pula
-// indexOf busca o indice no array
-// splice remove do array
+
 // AUMENTAR CURTIDAS
 export const likesPost = (id) => postsCollection().doc(id).get()
   .then((response) => {
     const numberLikes = response.data().likes;
     const user = firebase.auth().currentUser;
     if (numberLikes.includes(user.uid)) {
-      const indexOfUid = numberLikes.indexOf(user.uid);
-      numberLikes.splice(indexOfUid, 1);
+      const indexOfUid = numberLikes.indexOf(user.uid); // indexOf busca o indice no array
+      numberLikes.splice(indexOfUid, 1); // splice remove do array
       return postsCollection().doc(id).update({ likes: numberLikes });
     }
-    numberLikes.push(user.uid); // adiciona no array
+    numberLikes.push(user.uid); // push adiciona no array
     return postsCollection().doc(id).update({ likes: numberLikes });
   })
   .catch(() => {});
@@ -89,6 +91,8 @@ export const editPost = (newPost, id) => {
   postsCollection('post').doc(id).update({ text: newPost });
 };
 
+// export const storageRef = firebase.storage.ref();
+
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
 
@@ -97,7 +101,7 @@ export const updatePost = (post, id) => firebase.firestore().collection('posts')
 
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
 
-// eslint-disable-next-line no-shadow
+// INSERIR IMAGEM NO FIREBASE
 export const downloadPicture = (namePicturePost, id) => {
   firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
     .then((url) => {
@@ -112,6 +116,18 @@ export const downloadPicture = (namePicturePost, id) => {
 export const updateProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
 
 export const dowloadProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
+
+/* // CRIAR USUÁRIOS FIREBASE
+export const createUsers = (imageUrl) => {
+  const user = firebase.auth().currentUser;
+  const users = {
+    user_name: user.name,
+    profile_picture: imageUrl,
+    email: user.email.value,
+  };
+  // SALVAR USUÁRIO NO BANCO DE DADOS
+  return postsCollection().doc().set(users);
+}; */
 
 /* export const uploadFoodPhoto = (file) => {
   // create storage ref
@@ -137,18 +153,6 @@ export const comentPost = (comment) => {
     .catch((error) => error);
 }; */
 
-/* // CRIAR DADOS EM UM USUÁRIO
-/* const makeUserColection = (userLogged) => {
-    const usersCollection = firebase.firestore().collection('users');
-    usersCollection.get().then((snap) => {
-      snap.forEach((user) => {
-        if (userLogged === user.data().id) {
-          createPost(user.data().id, user.data().name, user.data().email);
-        }
-      });
-    });
-  }; */
-
 /* PERFIL
 export const saveUserUpdate = (name) => {
   firebase.auth().currentUser.updateProfile({
@@ -167,3 +171,15 @@ export const saveUser = (user, userEmail, userName) => {
     .then(() => true)
     .catch((error) => error);
 }; */
+
+/* // CRIAR DADOS EM UM USUÁRIO
+/* const makeUserColection = (userLogged) => {
+    const usersCollection = firebase.firestore().collection('users');
+    usersCollection.get().then((snap) => {
+      snap.forEach((user) => {
+        if (userLogged === user.data().id) {
+          createPost(user.data().id, user.data().name, user.data().email);
+        }
+      });
+    });
+  }; */
