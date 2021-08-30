@@ -37,21 +37,28 @@ export const blockNotLoggedUser = () => {
 // USUÁRIO
 export const currentUser = () => firebase.auth().currentUser;
 
+// export const photoURL = () => firebase.auth().currentUser.photoURL;
+
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
 
+// DATA
+const postData = () => {
+  const data = new Date();
+  return data.toLocaleString('pt-BR');
+};
+
 // CRIAR POST NO FIREBASE
-export const createPost = (text, ratingStars, nameUser) => {
+export const createPost = (text) => {
   const user = firebase.auth().currentUser;
   const post = {
-    user_name: nameUser,
     user_img: user.photoURL,
     user_id: user.uid,
-    data: new Date(),
+    data: postData(),
     text: text.value,
     likes: [],
     comments: [],
-    rating: ratingStars,
+    rating: [],
   };
   // SALVAR POSTS NO BANCO DE DADOS
   return postsCollection().doc().set(post);
@@ -85,7 +92,7 @@ export const editPost = (newPost, id) => {
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
 
-// ADICIONAR IMAGEM
+// ADICIONAR IMAGEM NO POST
 export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
 
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
@@ -100,6 +107,11 @@ export const downloadPicture = (namePicturePost, id) => {
       updatePost(picturePost, id);
     });
 };
+
+// ADICIONAR IMAGEM NO PERFIL
+export const updateProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
+
+export const dowloadProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
 
 /* export const uploadFoodPhoto = (file) => {
   // create storage ref

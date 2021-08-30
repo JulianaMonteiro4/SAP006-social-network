@@ -21,7 +21,7 @@ export const feed = () => {
     <div class="container-feed">
       <nav class="nav-bar">
         <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
-        <h2 class="photo"></h2>
+          <img class="photo-profile-post" src="img/perfil.jpg" alt="meme" title="meme">
         <!-- <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button> -->
 
         <div class="menu" id="openMenu">
@@ -33,7 +33,7 @@ export const feed = () => {
         <ul class="nav" id="mainMenu">
           <li id="menu-profile"><a href="#">PROFILE</a></li>
           <li id="btn-logout"><a href="#">SAIR</a></li>
-          <div class="closeMenu"><i class="fa fa-times"></i></div>
+          <div id="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
 
       </nav>
@@ -42,7 +42,7 @@ export const feed = () => {
           <form class="form-post" id="container-post"> 
             <div class="post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-              <input class="inputPhotoPost" type="file" name"arquivo">
+              <input class="input-photo-post" id="input-photo" type="file" name"arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
             </div>
           </form>
@@ -58,18 +58,22 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
   const btnIcons = feedPage.querySelector('[data-section]');
   const btnMenuProfile = feedPage.querySelector('#menu-profile');
+  const data = feedPage.querySelector('#date-post');
 
   const addPosts = (post) => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
     const textPost = post.data().text;
     const userId = post.data().user_id;
+    const userName = post.data().user_name;
+    const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
-    const rating = post.data().rating;
+    // const rating = post.data().rating;
 
     const postTemplate = `
       <li class="container-post-publicado">
         <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
+
           <div class="container-icons">
 
           <div class="wrapper">
@@ -92,7 +96,7 @@ export const feed = () => {
             <section class="btn-post">
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-              <!-- <i class="far fa-comment-dots icons-post"></i> -->
+                <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
                 <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
@@ -108,7 +112,7 @@ export const feed = () => {
   };
 
   const mainMenu = feedPage.querySelector('#mainMenu');
-  const closeMenu = feedPage.querySelector('.closeMenu');
+  const closeMenu = feedPage.querySelector('#closeMenu');
   const openMenu = feedPage.querySelector('#openMenu');
 
   function show() {
@@ -119,7 +123,6 @@ export const feed = () => {
 
   function close() {
     mainMenu.style.top = '-100%';
-    console.log(close);
   }
 
   openMenu.addEventListener('click', show);
@@ -153,7 +156,7 @@ export const feed = () => {
   });
 
   // ADICIONAR IMAGEM
-  const inputPhotoPost = feedPage.querySelector('.inputPhotoPost');
+  const inputPhotoPost = feedPage.querySelector('#input-photo');
   // console.log(inputPhotoPost);
 
   inputPhotoPost.addEventListener('change', (e) => {
@@ -167,8 +170,7 @@ export const feed = () => {
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
-    const target = e.target;
-    console.log(target);
+    const target = e.target; // target referencia ao objeto que enviou o evento
     const numberLikesElement = target.querySelector('.number-likes');
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
