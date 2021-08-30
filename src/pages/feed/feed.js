@@ -193,7 +193,7 @@ export const feed = () => {
     // EDITAR POST
     const editButton = target.dataset.btneditpost;
     // const button = e.target;
-    if (editButton) {
+    /* if (editButton) {
       const li = feedPage.querySelector('.container-post-publicado');
       const toEditPost = feedPage.querySelector('.post-publicado');
       const input = feedPage.createElement('input');
@@ -206,7 +206,7 @@ export const feed = () => {
       /* if (editButton) {
         editPost();
         (button.textContent === 'btneditpost')
-      } */
+      } 
     } else if (button.textContent === 'save') {
       const input = li.firstElementChild;
       const span = document.createElement('span');
@@ -214,7 +214,7 @@ export const feed = () => {
       li.insertBefore(span, input);
       li.removeChild(input);
       button.textContent = 'edit';
-    }
+    } */
 
  // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
