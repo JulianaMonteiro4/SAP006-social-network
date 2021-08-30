@@ -45,7 +45,7 @@ export const loginMainScreen = () => {
                     <i id="hide-again" class="fas fa-lock icons"></i>
                   </div>
               </fieldset>
-              <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
+              <p class="error-hide" id="error-repeat"></p>
 
               <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
@@ -152,15 +152,31 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
+  // FUNÇÃO PARA CONFIRMAR SENHAS
+  const checkPassword = () => {
+    const pswd = password.value;
+    const pswdRepeat = repeatPassword.value;
+    console.log(pswd, pswdRepeat);
+    const message = loginPage.querySelector('#error-repeat');
+    console.log(message);
+
+    if (pswd.length !== 0) {
+      if (pswd === pswdRepeat) {
+        message.innerHTML = 'Senhas corretas';
+      } else {
+        message.innerHTML = 'A senha deve ser igual ao campo anterior';
+      }
+    }
+  };
+
+  checkPassword();
+
   // BOTÃO DE CADASTRAR
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
     newRegister(email.value, password.value, repeatPassword.value)
-      .then(() => {
-        if (password.value === repeatPassword.value) {
-          navigateTo('/profile');
-        }
-      })
+      // .then(() => checkPassword())
+      .then(() => navigateTo('/profile'))
       .catch((erro) => {
         const errorCode = erro.code;
         switch (errorCode) {
@@ -279,35 +295,3 @@ export const loginMainScreen = () => {
 
   return main.appendChild(loginPage);
 };
-
-/* senhas iguais no cadastro
-if(password.value === repeatPassword.value){
-        () => navigateTo('/')
-      } */
-
-/* // VERFIFICAÇÃO DE SENHA (TAMANHO E CONFIRMAÇÃO)
-const verifyPasswordLength = () => {
-  if (password.value.length < 6) {
-    passwordLength.style.color = 'red';
-    passwordLength.innerHTML = 'Senha com mínimo de 6 dígitos.';
-  } else {
-    passwordLength.style.color = 'darkgreen';
-    passwordLength.innerHTML = 'Senha válida!';
-  }
-};
-
-const verifyConfirmPassword = () => {
-  if (password.value !== passwordConfirm.value) {
-    passwordError.style.color = 'red';
-    passwordError.innerHTML = 'Senhas não correspondentes.';
-    return false;
-  } else {
-    passwordError.style.color = 'darkgreen';
-    passwordError.innerHTML = 'Senhas confirmadas!';
-    return true;
-  }
-};
-
-passwordConfirm.addEventListener('input', verifyConfirmPassword);
-  password.addEventListener('input', verifyPasswordLength);
-*/

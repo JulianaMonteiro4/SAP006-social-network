@@ -68,7 +68,7 @@ export const feed = () => {
     const rating = post.data().rating;
 
     const postTemplate = `
-      <div class="container-post-publicado">
+      <li class="container-post-publicado">
         <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
           <div class="container-icons">
 
@@ -89,7 +89,7 @@ export const feed = () => {
             </div>
           </div>
 
-            <div class="btn-post">
+            <section class="btn-post">
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
               <!-- <i class="far fa-comment-dots icons-post"></i> -->
@@ -98,10 +98,10 @@ export const feed = () => {
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
               <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
-            </div>
+            </section>
 
           </div>
-      </div>
+      </li>
     `;
 
     postList.innerHTML += postTemplate;
@@ -168,6 +168,7 @@ export const feed = () => {
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
     const target = e.target;
+    console.log(target);
     const numberLikesElement = target.querySelector('.number-likes');
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');
@@ -189,11 +190,31 @@ export const feed = () => {
 
     // EDITAR POST
     const editButton = target.dataset.btneditpost;
+    // const button = e.target;
     if (editButton) {
-      // text.value = '';
-      editPost();
+      const li = feedPage.querySelector('.container-post-publicado');
+      const toEditPost = feedPage.querySelector('.post-publicado');
+      const input = feedPage.createElement('input');
+      input.type = 'text';
+      input.value = toEditPost.textContent;
+      li.toInsertBefore(input, toEditPost);
+      li.removeChild(toEditPost);
+      button.textContent = 'save';
+
+      /* if (editButton) {
+        editPost();
+        (button.textContent === 'btneditpost')
+      } */
+    } else if (button.textContent === 'save') {
+      const input = li.firstElementChild;
+      const span = document.createElement('span');
+      span.textContent = input.value;
+      li.insertBefore(span, input);
+      li.removeChild(input);
+      button.textContent = 'edit';
     }
-    // DELETAR POST
+
+ // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
     if (deleteButton) {
       const deleteConfirmation = confirmAction('Você realmente gostaria de deletar este post?');
@@ -219,21 +240,6 @@ export const feed = () => {
 
   return main.appendChild(feedPage);
 };
-
-// pegar usuario
-/* function getloggedUser() {
-    userStatus().then((user) => {
-      const userId = user.uid;
-      const userEmail = user.email;
-      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
-      console.log(userId);
-      console.log(userIniciais);
-      // console.log("Ta logado", user.email, user.uid);
-      // return
-    });
-  }
-  getloggedUser();
-  */
 
 /* <div id="menu-bar">
           <div class="menu" id="menu">
