@@ -37,25 +37,35 @@ export const blockNotLoggedUser = () => {
 // USUÁRIO
 export const currentUser = () => firebase.auth().currentUser;
 
+// export const photoURL = () => firebase.auth().currentUser.photoURL;
+
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
+
+// FORMATAR A DATA
+const postData = () => {
+  const data = new Date();
+  return data.toLocaleString('pt-BR');
+};
 
 // CRIAR POST NO FIREBASE
 export const createPost = (text) => {
   const user = firebase.auth().currentUser;
   const post = {
-    text: text.value,
+    user_img: user.photoURL,
     user_id: user.uid,
+    data: postData(),
+    text: text.value,
     likes: [],
     comments: [],
-    data: new Date(),
+    rating: [],
   };
   // SALVAR POSTS NO BANCO DE DADOS
   return postsCollection().doc().set(post);
 };
 // nao usar remove pq ele retira o array e pula
 // indexOf busca o indice no array
-// pegar o valor do reponse n array
+// splice remove do array
 // AUMENTAR CURTIDAS
 export const likesPost = (id) => postsCollection().doc(id).get()
   .then((response) => {
@@ -63,7 +73,7 @@ export const likesPost = (id) => postsCollection().doc(id).get()
     const user = firebase.auth().currentUser;
     if (numberLikes.includes(user.uid)) {
       const indexOfUid = numberLikes.indexOf(user.uid);
-      numberLikes.splice(indexOfUid, 1); // splice remove do array
+      numberLikes.splice(indexOfUid, 1);
       return postsCollection().doc(id).update({ likes: numberLikes });
     }
     numberLikes.push(user.uid); // adiciona no array
@@ -82,7 +92,7 @@ export const editPost = (newPost, id) => {
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
 
-// ADICIONAR IMAGEM
+// ADICIONAR IMAGEM NO POST
 export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
 
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
@@ -97,6 +107,11 @@ export const downloadPicture = (namePicturePost, id) => {
       updatePost(picturePost, id);
     });
 };
+
+// ADICIONAR IMAGEM NO PERFIL
+export const updateProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
+
+export const dowloadProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
 
 /* export const uploadFoodPhoto = (file) => {
   // create storage ref

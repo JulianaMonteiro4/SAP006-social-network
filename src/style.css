@@ -10,13 +10,17 @@
     height: 100%;
 }
 
+.background-feed{
+    background: white;
+}
+
 .container-main{
     width: 90%;
     height: 500px;
     background-image: white;
     overflow: hidden;
     margin-bottom: 50%;
-    background-color: #3a2b4e8a;
+    background-color: #4d2f758a;
     border-radius: 10px;
     margin: auto;
 }
@@ -86,8 +90,17 @@
 
 .post{
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    align-items: flex-end;
+    width: 80%;
+    background: #bfe0f3b6;
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 40px;
+    margin-left: 8%;
+    margin-bottom: 48px;
+    box-shadow: 5px 10px 10px rgb(0 0 0 / 32%);
 }
 
 .image{
@@ -124,7 +137,7 @@
     justify-content: center;
     display: block;
     color: #fff;
-    background: #573b8a;
+    background: #ae435b;
     font-size: 1em;
     font-weight: bold;
     margin-top: 10px;
@@ -135,7 +148,7 @@
 }
 
 .btn:hover{
-    background: #2a1949;
+    background: #72051d;
 }
 
 .login{
@@ -209,7 +222,12 @@
 
 .root {
     text-align: center;
-    padding-bottom: 50px;
+    padding-bottom: 125px;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   
+}
+
+.root-feed{
+    background: transparent
 }
 
 .footer {
@@ -219,7 +237,7 @@
     height: 30px;
     font-size: 17px;
     color: white;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
+    background: #302b63;
     padding-top: 8px;
     text-align: center;
 
@@ -238,14 +256,14 @@
 }
 
 .btn-back{
-    background-color: #ae435b;
+    background-color: #998daf;
 }
 
 .btn-back:hover{
-    background-color: #521a26;
+    background-color: #1e0747;
 }
 
-/* Pagina do Feed */
+/* PÁGINA DO FEED */
 .nav-bar {
     display: flex;
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
@@ -286,26 +304,52 @@
 .new-post{
     background-color: #63bbd9e0;
     width: 90%;
-    height: 80px;
+    align-items: center;
+    height: 100px;
+    text-align:center;
     border-radius: 10px;
     font-size: 20px;
-    padding: 10px;
-    margin-top: 20px;
+    margin: 20px;
     color: black;
     resize: none;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
 }
-
-.btn-publicar:hover{
-    background: #7e561e;
-}
-
 
 .container-post-publicado{
     display: flex;
-    flex-direction: column;
+    width: 85%;
+    margin-left: 5%;
     align-items: center;
-    justify-content: center;
-    margin: 20px auto;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: 48px;
+    border-radius: 10px;
+    background: #bfe0f3b6;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.315);
+    padding: 2%;
+}
+
+.info-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding: 20px;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.user-name{
+    font-weight: 600;
+    width: 100%;
+}
+
+.data-post{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .iniciais{
@@ -316,16 +360,14 @@
 
 .post-publicado{
     background-color: white;
-    width: 60%;
+    width: 80%;
     height: 70px;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
     font-size: 18px;
     text-align: left;
     padding: 20px;
     resize: none;
-    border: 15px solid #a2dcf0ab;
-    border-bottom: 40px solid #a2dcf0ab;
+    border-top: 30px solid #a2dcf0;
 }
 
 .container-icons{
@@ -334,14 +376,198 @@
 }
 
 .icons-post{
-    margin: 0 4px;
+    margin: 0 15px;
     display: flex;
     cursor: pointer;
     text-decoration: bold;
 }
 
-.liked{
-    background-color: red;
+.stars #label-star{
+    font-size: 30px;
+    margin: 0 3px;
+    color: #ccc;
+}
+
+#star-1:hover ~ .content .stars .star-1,
+#star-1:checked ~ .content .stars .star-1,
+
+#star-2:hover ~ .content .stars .star-1,
+#star-2:hover ~ .content .stars .star-2,
+#star-2:checked ~ .content .stars .star-1,
+#star-2:checked ~ .content .stars .star-2,
+
+#star-3:hover ~ .content .stars .star-1,
+#star-3:hover ~ .content .stars .star-2,
+#star-3:hover ~ .content .stars .star-3,
+#star-3:checked ~ .content .stars .star-1,
+#star-3:checked ~ .content .stars .star-2,
+#star-3:checked ~ .content .stars .star-3,
+
+#star-4:hover ~ .content .stars .star-1,
+#star-4:hover ~ .content .stars .star-2,
+#star-4:hover ~ .content .stars .star-3,
+#star-4:hover ~ .content .stars .star-4,
+#star-4:checked ~ .content .stars .star-1,
+#star-4:checked ~ .content .stars .star-2,
+#star-4:checked ~ .content .stars .star-3,
+#star-4:checked ~ .content .stars .star-4,
+
+#star-5:hover ~ .content .stars .star-1,
+#star-5:hover ~ .content .stars .star-2,
+#star-5:hover ~ .content .stars .star-3,
+#star-5:hover ~ .content .stars .star-4,
+#star-5:hover ~ .content .stars .star-5,
+#star-5:checked ~ .content .stars .star-1,
+#star-5:checked ~ .content .stars .star-2,
+#star-5:checked ~ .content .stars .star-3,
+#star-5:checked ~ .content .stars .star-4,
+#star-5:checked ~ .content .stars .star-5{
+    color: #fd4;
+}
+.wrapper{
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+.photo-post{
+    height: 72px;
+    width: 20%;
+    position: absolute;
+    display: flex;
+    clip-path: circle(41%);
+}
+
+/* MENU HAMBURGUER */
+nav .nav{
+    height: 50vh;
+    position: fixed;
+    margin-top: 80px;
+    right: 0px;
+    left: 150px;
+    z-index: 10;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ae435ae5;
+    transition: top 1s ease;
+    display: none;
+}
+
+nav .nav #closeMenu{
+    position: absolute;
+    display: block;
+    top: 20px;
+    right: 20px;
+}
+
+nav #openMenu{
+    display: block;
+}
+
+nav .nav li a:hover{
+    background: none;
+    color: rgb(255,123, 0);
+    font-size: 1.6rem;
+}
+
+.menu{
+    width: 35px;
+    height: 30px;
+    margin: 30px 2% 20px 20px;
+    cursor: pointer;
+}
+
+.bar{
+    height: 5px;
+    width: 100%;
+    background-color: #b81568;
+    display: block;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+#bar1{
+    transform: translateY(-4px);
+}
+
+#bar3{
+    transform: translateY(4px);
+}
+
+.change .bar{
+    background-color: white;
+}
+
+.change #bar1{
+    transform: translateY(4px) rotateZ(-45deg);
+}
+
+.change #bar3{
+    transform: translateY(-6px) rotate(45deg);
+}
+
+.change #bar2{
+    opacity: 0;
+}
+
+.change{
+    display: block;
+}
+
+ul li a{
+    color:#fff;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+ul li{
+    list-style: none;
+    padding: 16px 0;
+}
+
+
+/* PÁGINA DE PROFILE */
+
+.photo-profile{
+    display: flex;
+    height: 125px;
+    justify-content: center;
+    clip-path: circle(20%);
+}
+
+.photo-profile-post{
+    clip-path: circle(44%);
+    margin-right: 10%;
+}
+
+.label-profile{
+    display: flex;
+    justify-content: center;
+    margin: 15px auto;
+}
+
+.input-photo{
+    margin: 10px 0 25px 0;
+    display: inline-block;
+    align-items: center;
+}
+
+.input-photo-post{
+    margin: 10px 0 10px 0;
+}
+
+.btn-save{
+    margin-top: 30px;
+}
+
+.liked::before{
+    color: red;
 }
 
 @media screen and (min-width: 426px) and (max-width:768px){
@@ -376,13 +602,17 @@
 @media screen and (min-width: 769px) and (max-width:1024px){
     .logo-img{
         width: 27%;
-        height: 40%;
-        margin: 15% 10%;
+        height: 33%;
+        margin: 22% 10%;
         position: absolute;
     }
     .container-main{
         width: 50%;
         margin-right: 5%;
+        padding-top: 18%;
+    }
+    .container-post-publicado{
+        width: 70%;
     }
     .icons-input{
         margin-top: 4%;
@@ -416,10 +646,21 @@
         margin: 15% 10%;
         position: absolute;
     }
+
+    .container-post-publicado{
+        width: 60%;
+        margin-left: 18%;
+    }
     .container-main{
         width: 50%;
         margin-right: 5%;
+        padding-top: 17%;
     }
+
+    .container-icons{
+        font-size: 20px;
+    }
+
     .icons-input{
         margin-top: 4%;
     }    
@@ -443,66 +684,130 @@
         margin-left: 10px;
         margin-top: 3px;
     }
+
+    .post{
+        width: 70%;
+        margin-left: 12%;
+    }
+
+    .new-post{
+        width: 80%;
+        font-size: 25px;
+        padding: 12px;
+        margin-left: 4%;
+    }
+
+    .input-photo-post{
+        margin-right:16%;
+        font-size: 16px;
+    }
+
+    .btn-publicar{
+        margin-bottom: 2%;
+        width: 10%;
+        height: 40px;
+        font-size: 20px;
+        align-items: center;
+    }
+
+    .input-photo-post{
+        margin-left: 15%;
+    } 
+
+    .post-publicado{
+        font-size: 22px;
+        height: 100px;
+    }
+
+    .menu{
+        margin-right: 2%;
+    }
+
+    .photo-profile-post{
+        margin-right: 2%;
+    }
+
+    nav .nav{
+        left: 65%;
+    }
 }
 
-@media screen and (min-width: 1441px){
+@media screen and (min-width: 1441px){ /*FALTA ARRUMAR ESSE*/
     .logo-img{
         width: 27%;
         height: 40%;
         margin: 15% 10%;
         position: absolute;
     }
+
     .container-main{
         width: 50%;
         margin-right: 5%;
+        padding-top: 46%;
     }
+
     .icons-input{
         margin-top: 4%;
-    }    
+    }  
+
     .checkbox{
         margin: 23px 45px;
     }
+
     .checkbox-phrase{
         font-size: 16px;
     }
+
     .meme-senha{
         width: 35%;
     }
+
     .btn-logout{
         width: 10%;
         margin-top: 2%;
+    }
 
-     }
-     .logoPageFeed {
+    .logoPageFeed {
         width: 150px;
         height: 80px;
         margin-left: 10px;
         margin-top: 3px;
     }
-}
-
-/* .content .heart{
-    height: 90px;
-    width: 90px;
-    background: url('img/like.png') no-repeat;
-    background-position: left;
-    background-size: 2900%;
-    position: absolute;
-    top: 50%;
-    left: 21%;
-    transform: translate(-50%, -50%);
-}
-
-.heart:hover{
-    background-position: right;
-    animation: animate .8s steps(28) 1;
-}
-
-@keyframes animate{
-    0%{
-        background-position: left;
+    
+    .new-post{
+        width: 68%;
+        font-size: 25px;
+        padding: 12px;
+        margin: 31px 15% 0 0;
     }
-    100%{
-        background-position: right;
+
+    .input-photo-post{
+        margin-right:16%;
+        font-size: 16px;
     }
-} */
+
+    .btn-publicar{
+        margin-right: 15%;
+        width: 10%;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .post-publicado{
+        font-size: 22px;
+        height: 100px;
+    }
+
+    .menu{
+        margin-right: 2%;
+    }
+
+    .photo-profile-post{
+        margin-right: 2%;
+    }
+
+    nav .nav{
+        left: 65%;
+    }
+}
+
