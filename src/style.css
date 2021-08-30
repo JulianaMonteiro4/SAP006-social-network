@@ -578,7 +578,6 @@ ul li{
     display: block!important;
 }
 
-
 @media screen and (min-width: 426px) and (max-width:768px){
     .logo-img{
         width: 25%;

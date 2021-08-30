@@ -77,8 +77,9 @@ export const feed = () => {
         <div class="info-user">
           <p class="user-name">${userName}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
+          <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
         </div>
-        <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
+        <textarea class="post-publicado">${textPost}</textarea>
 
           <div class="container-icons">
 
@@ -103,10 +104,9 @@ export const feed = () => {
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
               <div class="edit-post">
-                <i class="far fa-edit icons-post btn-edit" data-btneditpost="${postId}">Editar</i>
-                <i class="far fa-edit icons-post hidden-content btn-save" data-btnsavepost="${postId}">Salvar</i>
+                <i class="far fa-edit icons-post btn-edit" data-btneditpost="${postId}"> Editar</i>
+                <i class="far fa-save icons-post hidden-content btn-save" data-btnsavepost="${postId}"> Salvar</i>
               </div>
-              <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
             </div>
           </div>
       </div>
@@ -203,7 +203,6 @@ export const feed = () => {
       textAreaPost.focus();
       elementEditButton.classList.add('hidden-content');
       elementSaveButton.classList.add('show-content');
-      // textAreaPost(editPost());
     }
 
     // APARECER O SALVAR POST
@@ -216,7 +215,6 @@ export const feed = () => {
       elementEditButton.classList.remove('hidden-content');
       elementSaveButton.classList.remove('show-content');
       editPost(newEditedPost, saveButton);
-      console.log(editPost);
     }
 
     // DELETAR POST

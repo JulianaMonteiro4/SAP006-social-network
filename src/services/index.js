@@ -52,7 +52,7 @@ const postData = () => {
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text) => {
+export const createPost = (text,url) => {
   const user = firebase.auth().currentUser;
   const post = {
     user_img: user.photoURL,
@@ -61,7 +61,6 @@ export const createPost = (text) => {
     text: text.value,
     likes: [],
     comments: [],
-    rating: [],
   };
 
   // SALVAR POSTS NO BANCO DE DADOS
@@ -98,7 +97,6 @@ export const signOut = () => firebase.auth().signOut();
 
 // ADICIONAR IMAGEM NO POST
 export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
-
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
 
 // INSERIR IMAGEM NO FIREBASE
