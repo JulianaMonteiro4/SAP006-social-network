@@ -13,6 +13,8 @@ import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
 export const feed = () => {
+  const loggedUser = currentUser();
+  console.log(loggedUser);
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -100,10 +102,9 @@ export const feed = () => {
             <div class="btn-post">
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-                <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
-                <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
-                <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
+                <i class="far fa-edit icons-post btn-edit" data-btneditpost="${postId}">Editar</i>
+                <i class="far fa-edit icons-post hidden-content btn-save" data-btnsavepost="${postId}">Salvar</i>
               </div>
               <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
             </div>
@@ -193,12 +194,31 @@ export const feed = () => {
         });
     }
 
-    // EDITAR POST
+    // APARECER O EDITAR POST
     const editButton = target.dataset.btneditpost;
     if (editButton) {
-      // text.value = '';
-      editPost();
+      const textAreaPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
+      const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
+      textAreaPost.focus();
+      elementEditButton.classList.add('hidden-content');
+      elementSaveButton.classList.add('show-content');
+      // textAreaPost(editPost());
     }
+
+    // APARECER O SALVAR POST
+    const saveButton = target.dataset.btnsavepost;
+    if (saveButton) {
+      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
+      const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
+      const newEditedPost = textAreaSaveNewPost.value;
+      elementEditButton.classList.remove('hidden-content');
+      elementSaveButton.classList.remove('show-content');
+      editPost(newEditedPost, saveButton);
+      console.log(editPost);
+    }
+
     // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
     if (deleteButton) {

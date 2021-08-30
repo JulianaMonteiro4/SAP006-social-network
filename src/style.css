@@ -60,7 +60,7 @@
     transition: .5s ease-in-out;
 }
 
-.input {
+.input, .name-input, .email-input{
     width: 60%;
     height: 15px;
     background: #e0dede;
@@ -569,6 +569,15 @@ ul li{
 .liked::before{
     color: red;
 }
+
+.hidden-content{
+    display: none!important;
+}
+
+.show-content{
+    display: block!important;
+}
+
 
 @media screen and (min-width: 426px) and (max-width:768px){
     .logo-img{

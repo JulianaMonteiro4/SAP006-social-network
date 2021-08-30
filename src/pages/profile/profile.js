@@ -1,11 +1,14 @@
 import { navigateTo } from '../../navegation.js';
-/* import {
+import {
   currentUser,
-  updateProfile,
-  dowloadProfile,
-} from '../../services/index.js'; */
+  updatePhotoProfile,
+  dowloadPhotoProfile,
+} from '../../services/index.js';
 
 export const profile = () => {
+  const user = currentUser();
+  console.log(user);
+
   const main = document.querySelector('.root');
   main.innerHTML = '';
   const profilePage = document.createElement('section');
@@ -19,17 +22,17 @@ export const profile = () => {
         <form>
           <label class="label label-profile" for="chk" aria-hidden="true">Perfil</label>
             <div class="photo-profile">
-              <img class="icon-profile" src="img/perfil.jpg" alt="meme" title="meme">
+              <img class="icon-profile" src="" alt="meme" title="meme">
             </div>
             <input class="inputPhoto" type="file" />
           <fieldset class="form-login">
-            <input class="input" type="text" id="text-name" placeholder="User Name" required="">
+            <input class="name-input" type="text" id="text-name" placeholder="User Name" value="${user.displayName}">
               <div class="icons-input">
                 <i class="fas fa-user icons"></i>
               </div>
           </fieldset>
           <fieldset class="form-login">
-            <input class="input" type="email" id="profile-email" placeholder="Email" required="">
+            <input class="email-input" type="email" id="profile-email" value="${user.email}">
             <div class="icons-input">
               <i class="far fa-envelope icons"></i>
             </div>
@@ -43,56 +46,47 @@ export const profile = () => {
 
   // const user = currentUser();
   // const userId = firebase.auth().currentUser.uid;
-  // console.log(userId);
-  // const inputName = profilePage.querySelector('.input-name').value;
-  // const inputEmail = profilePage.querySelector('.input-email');
-  // const iconProfile = profilePage.querySelector('.icon-profile');
-  // const inputPhoto = profilePage.querySelector('.inputPhoto');
+  const inputName = profilePage.querySelector('.name-input');
+  // const inputEmail = profilePage.querySelector('.email-input');
+  const iconProfile = profilePage.querySelector('.icon-profile');
+  const inputPhoto = profilePage.querySelector('.inputPhoto');
   const btnSave = profilePage.querySelector('#btn-save');
   const btnBackFeed = profilePage.querySelector('#btn-back-feed');
 
+  // SALVANDO AS INFORMAÇÕES DO PERFIL
+  btnSave.addEventListener('click', () => {
+    user.updateProfile({
+      displayName: inputName.value,
+    });
+  });
+
   // FOTO DE PERFIL
-  /* function mostrarFoto() {
-    const photoUser = user.photoURL;
-
-    if (photoUser) {
-      iconProfile.src = photoUser;
-    }
-  }
-
-  mostrarFoto();
+  iconProfile.src = user.photoURL;
+  console.log(iconProfile);
+  console.log(user.photoURL);
 
   inputPhoto.addEventListener('change', (e) => {
     const file = e.target.files[0];
-    // console.log(namePicture);
 
-    updateProfile(userId, file).then(() => {
-      dowloadProfile(userId).then((url) => {
-        const imgURL = url;
+    updatePhotoProfile(user.uid, file);
+    dowloadPhotoProfile(user.uid).then((url) => {
+      const imgProfile = url;
 
-        user.updateImg({
-          photoURL: imgURL,
-        });
-        mostrarFoto();
+      user.updateProfile({
+        photoURL: imgProfile,
       });
     });
-  }); */
+  });
 
-  // SALVAR INFORMAÇÕES DO USUARIO
-  /* btnSave.addEventListener('click', (e) => {
-    e.preventDefault();
-    const infoUser = {
-      inputName: inputName.value,
-      inputEmail: inputEmail.value,
-    };
-    console.log(infoUser);
-  }); */
+
+
+
 
   // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
-  btnSave.addEventListener('click', (e) => {
+  /* btnSave.addEventListener('click', (e) => {
     e.preventDefault();
     navigateTo('/feed');
-  });
+  }); */
 
   // BOTÃO PARA RETORNAR PRO FEED
   btnBackFeed.addEventListener('click', (e) => {
