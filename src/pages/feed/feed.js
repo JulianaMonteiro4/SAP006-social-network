@@ -58,11 +58,14 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
   const btnIcons = feedPage.querySelector('[data-section]');
   const btnMenuProfile = feedPage.querySelector('#menu-profile');
+  const data = feedPage.querySelector('#date-post');
 
   const addPosts = (post) => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
     const textPost = post.data().text;
     const userId = post.data().user_id;
+    const userName = post.data().user_name;
+    const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
     // const rating = post.data().rating;
@@ -70,6 +73,10 @@ export const feed = () => {
     const postTemplate = `
     <img class="photo-post" src="img/perfil.jpg" alt="meme" title="meme">
       <div class="container-post-publicado">
+        <div class="info-user">
+          <p class="user-name">${userName}</p>
+          <p class="data-post" id="date-post">${dataPost}</p>
+        </div>
         <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
 
           <div class="container-icons">

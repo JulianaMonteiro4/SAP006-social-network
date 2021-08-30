@@ -1,23 +1,27 @@
-// import { currentUser } from '../../services/index.js';
 import { navigateTo } from '../../navegation.js';
+/* import {
+  currentUser,
+  updateProfile,
+  dowloadProfile,
+} from '../../services/index.js'; */
 
 export const profile = () => {
   const main = document.querySelector('.root');
   main.innerHTML = '';
   const profilePage = document.createElement('section');
-  profilePage.setAttribute('class', 'root-profile');
+  profilePage.setAttribute('class', 'container background');
   profilePage.innerHTML = `
     <div class="container-principal">
       <header>
         <img class="logo-img" src="img/gif-logo.gif" alt="logo">
       </header>
-      <div class="container-main">
+      <div class="container-main container-profile">
         <form>
           <label class="label label-profile" for="chk" aria-hidden="true">Perfil</label>
             <div class="photo-profile">
-              <img src="img/perfil.jpg" alt="meme" title="meme">
+              <img class="icon-profile" src="img/perfil.jpg" alt="meme" title="meme">
             </div>
-            <input class="input-photo" type="file" name"arquivo">
+            <input class="inputPhoto" type="file" />
           <fieldset class="form-login">
             <input class="input" type="text" id="text-name" placeholder="User Name" required="">
               <div class="icons-input">
@@ -37,12 +41,52 @@ export const profile = () => {
     </div>       
   `;
 
-  // const inputName = profilePage.querySelector('.input-name');
+  // const user = currentUser();
+  // const userId = firebase.auth().currentUser.uid;
+  // console.log(userId);
+  // const inputName = profilePage.querySelector('.input-name').value;
   // const inputEmail = profilePage.querySelector('.input-email');
-  // const photoProfile = profilePage.querySelector('.photo-profile');
+  // const iconProfile = profilePage.querySelector('.icon-profile');
   // const inputPhoto = profilePage.querySelector('.inputPhoto');
   const btnSave = profilePage.querySelector('#btn-save');
   const btnBackFeed = profilePage.querySelector('#btn-back-feed');
+
+  // FOTO DE PERFIL
+  /* function mostrarFoto() {
+    const photoUser = user.photoURL;
+
+    if (photoUser) {
+      iconProfile.src = photoUser;
+    }
+  }
+
+  mostrarFoto();
+
+  inputPhoto.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    // console.log(namePicture);
+
+    updateProfile(userId, file).then(() => {
+      dowloadProfile(userId).then((url) => {
+        const imgURL = url;
+
+        user.updateImg({
+          photoURL: imgURL,
+        });
+        mostrarFoto();
+      });
+    });
+  }); */
+
+  // SALVAR INFORMAÇÕES DO USUARIO
+  /* btnSave.addEventListener('click', (e) => {
+    e.preventDefault();
+    const infoUser = {
+      inputName: inputName.value,
+      inputEmail: inputEmail.value,
+    };
+    console.log(infoUser);
+  }); */
 
   // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
   btnSave.addEventListener('click', (e) => {

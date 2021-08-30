@@ -1,0 +1,38 @@
+.logo-img{
+    display: flex;
+    width: 40%;
+    height: 60%;
+    margin: 2px auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-main{
+    width: 350px;
+    height: 500px;
+    background-image: white;
+    overflow: hidden;
+    margin-bottom: 50%;
+    background-color: #3a2b4ebd;
+    border-radius: 10px;
+    box-shadow: 5px 20px 50px #000;
+    margin: auto;
+}
+
+.area-photo {
+    width: 100px;
+    overflow: hidden;
+}
+
+.image-upload > input {
+    visibility:hidden;
+    width:0;
+    height:0
+}
+
+.user-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 60px;
+    margin-bottom: 30px;
+}

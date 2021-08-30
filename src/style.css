@@ -90,8 +90,17 @@
 
 .post{
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    align-items: flex-end;
+    width: 80%;
+    background: #bfe0f3b6;
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 40px;
+    margin-left: 8%;
+    margin-bottom: 48px;
+    box-shadow: 5px 10px 10px rgb(0 0 0 / 32%);
 }
 
 .image{
@@ -295,11 +304,12 @@
 .new-post{
     background-color: #63bbd9e0;
     width: 90%;
-    height: 80px;
+    align-items: center;
+    height: 100px;
+    text-align:center;
     border-radius: 10px;
     font-size: 20px;
-    padding: 10px;
-    margin-top: 20px;
+    margin: 20px;
     color: black;
     resize: none;
     box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
@@ -307,10 +317,39 @@
 
 .container-post-publicado{
     display: flex;
-    flex-direction: column;
+    width: 85%;
+    margin-left: 5%;
     align-items: center;
-    justify-content: center;
-    margin: 20px auto;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: 48px;
+    border-radius: 10px;
+    background: #bfe0f3b6;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.315);
+    padding: 2%;
+}
+
+.info-user{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    padding: 20px;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.user-name{
+    font-weight: 600;
+    width: 100%;
+}
+
+.data-post{
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .iniciais{
@@ -321,16 +360,14 @@
 
 .post-publicado{
     background-color: white;
-    width: 60%;
+    width: 80%;
     height: 70px;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
     font-size: 18px;
     text-align: left;
     padding: 20px;
     resize: none;
-    border: 15px solid #a2dcf0ab;
-    border-top: 30px solid #a2dcf0ab;
+    border-top: 30px solid #a2dcf0;
 }
 
 .container-icons{
@@ -574,6 +611,9 @@ ul li{
         margin-right: 5%;
         padding-top: 18%;
     }
+    .container-post-publicado{
+        width: 70%;
+    }
     .icons-input{
         margin-top: 4%;
     }    
@@ -605,6 +645,11 @@ ul li{
         height: 40%;
         margin: 15% 10%;
         position: absolute;
+    }
+
+    .container-post-publicado{
+        width: 60%;
+        margin-left: 18%;
     }
     .container-main{
         width: 50%;
@@ -640,11 +685,16 @@ ul li{
         margin-top: 3px;
     }
 
+    .post{
+        width: 70%;
+        margin-left: 12%;
+    }
+
     .new-post{
-        width: 68%;
+        width: 80%;
         font-size: 25px;
         padding: 12px;
-        margin: 31px 15% 0 0;
+        margin-left: 4%;
     }
 
     .input-photo-post{
@@ -653,11 +703,16 @@ ul li{
     }
 
     .btn-publicar{
-        margin-right: 15%;
+        margin-bottom: 2%;
         width: 10%;
         height: 40px;
         font-size: 20px;
+        align-items: center;
     }
+
+    .input-photo-post{
+        margin-left: 15%;
+    } 
 
     .post-publicado{
         font-size: 22px;
@@ -677,7 +732,7 @@ ul li{
     }
 }
 
-@media screen and (min-width: 1441px){ /* FALTA ARRUMAR ESSE*/
+@media screen and (min-width: 1441px){ /*FALTA ARRUMAR ESSE*/
     .logo-img{
         width: 27%;
         height: 40%;
