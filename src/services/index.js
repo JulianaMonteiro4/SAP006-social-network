@@ -42,7 +42,7 @@ export const currentUser = () => firebase.auth().currentUser;
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
 
-// DATA
+// FORMATAR A DATA
 const postData = () => {
   const data = new Date();
   return data.toLocaleString('pt-BR');
