@@ -109,9 +109,9 @@ export const downloadPicture = (namePicturePost, id) => {
 };
 
 // ADICIONAR IMAGEM NO PERFIL
-export const updateProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
+export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
 
-export const dowloadProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
+export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
 
 /* export const uploadFoodPhoto = (file) => {
   // create storage ref

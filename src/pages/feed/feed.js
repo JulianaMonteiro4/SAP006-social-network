@@ -13,6 +13,8 @@ import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
 export const feed = () => {
+  const loggedUser = currentUser();
+  console.log(loggedUser);
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
