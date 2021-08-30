@@ -6,7 +6,6 @@ import {
 } from '../../services/index.js';
 import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
-// getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
   const main = document.getElementById('root');
@@ -48,7 +47,7 @@ export const loginMainScreen = () => {
               </fieldset>
               <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
 
-              <button class="btn btn-back" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+              <button class="btn" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
             </form>
           </div>
 
@@ -132,7 +131,7 @@ export const loginMainScreen = () => {
   // BOTÃO DE LOGIN COM O GOOGLE
   btnLoginWithGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithGoogle();
+    loginWithGoogle().then(() => navigateTo('/feed'));
   });
 
   // LINK ESQUECEU A SENHA

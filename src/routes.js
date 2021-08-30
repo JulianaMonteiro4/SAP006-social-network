@@ -1,5 +1,5 @@
 import { loginMainScreen } from './pages/login/login.js';
-import { profile } from './pages/profile/index.js';
+import { profile } from './pages/profile/profile.js';
 import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
 import { blockNotLoggedUser } from './services/index.js';
