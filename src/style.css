@@ -60,7 +60,7 @@
     transition: .5s ease-in-out;
 }
 
-.input {
+.input, .name-input, .email-input{
     width: 60%;
     height: 15px;
     background: #e0dede;

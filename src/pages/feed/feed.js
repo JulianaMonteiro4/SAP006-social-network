@@ -13,6 +13,8 @@ import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
 export const feed = () => {
+  const loggedUser = currentUser();
+  console.log(loggedUser);
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -65,7 +67,6 @@ export const feed = () => {
     const userId = post.data().user_id;
     const userName = post.data().user_name;
     const dataPost = post.data().data;
-    console.log(dataPost);
     const postId = post.id;
     const likes = post.data().likes.length;
     // const rating = post.data().rating;
