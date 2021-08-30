@@ -37,7 +37,7 @@ export const profile = () => {
               <i class="far fa-envelope icons"></i>
             </div>
           </fieldset>
-          <button class="btn btn-save" id="btn-save" type="button">Salvar</button>
+          <button class="btn" id="btn-save" type="button">Salvar</button>
           <button class="btn btn-back" id="btn-back-feed" type="button">Retornar</button>
         </form>
       </div>
