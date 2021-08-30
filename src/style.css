@@ -529,7 +529,7 @@ ul li{
     margin-top: 30px;
 }
 
-.fa-heart::before{
+.liked::before{
     color: red;
 }
 

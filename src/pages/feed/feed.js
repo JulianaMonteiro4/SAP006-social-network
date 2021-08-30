@@ -167,18 +167,18 @@ export const feed = () => {
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
-    const target = e.target;
+    const target = e.target; // target referencia ao objeto que enviou o evento
     const numberLikesElement = target.querySelector('.number-likes');
-    if (target.dataset.like === 'like' && !target.classList.contains('fas')) {
-      e.target.classList.add('fas');
+    if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
+      e.target.classList.add('liked');
       const postId = target.dataset.postid;
       likesPost(postId)
         .then(() => {
           const countLikesUp = Number(numberLikesElement.innerHTML) + 1;
           numberLikesElement.innerHTML = countLikesUp;
         });
-    } else if (target.dataset.like === 'like' && target.classList.contains('fas')) {
-      e.target.classList.remove('fas');
+    } else if (target.dataset.like === 'like' && target.classList.contains('liked')) {
+      e.target.classList.remove('liked');
       const postId = target.dataset.postid;
       likesPost(postId)
         .then(() => {
