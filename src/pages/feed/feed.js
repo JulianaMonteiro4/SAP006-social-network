@@ -45,6 +45,22 @@ export const feed = () => {
           <form class="form-post" id="container-post"> 
             <div class="post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
+              <div class="wrapper">
+                <input type="radio" name="rate" id="star-1">
+                <input type="radio" name="rate" id="star-2">
+                <input type="radio" name="rate" id="star-3">
+                <input type="radio" name="rate" id="star-4">
+                <input type="radio" name="rate" id="star-5">
+                <div class="content">
+                  <div class="stars">
+                    <label for="star-1" class="star-1 fas fa-star label-star"></label>
+                    <label for="star-2" class="star-2 fas fa-star label-star"></label>
+                    <label for="star-3" class="star-3 fas fa-star label-star"></label>
+                    <label for="star-4" class="star-4 fas fa-star label-star"></label>
+                    <label for="star-5" class="star-5 fas fa-star label-star"></label>
+                  </div>
+                </div>
+              </div>
               <input class="input-photo-post" id="input-photo" type="file" name"arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
             </div>
@@ -70,7 +86,6 @@ export const feed = () => {
     const postId = post.id;
     const likes = post.data().likes.length;
     const userNamePost = post.data().nameUser;
-    console.log(userNamePost);
     // const rating = post.data().rating;
 
     const postTemplate = `
@@ -80,26 +95,26 @@ export const feed = () => {
           <p class="user-name">${userNamePost}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
         </div>
-        <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
-        
-          <div class="container-icons">
-
-          <div class="wrapper">
-            <input type="radio" name="rate" id="star-1">
-            <input type="radio" name="rate" id="star-2">
-            <input type="radio" name="rate" id="star-3">
-            <input type="radio" name="rate" id="star-4">
-            <input type="radio" name="rate" id="star-5">
-            <div class="content">
-              <div class="stars">
-                <label for="star-1" class="star-1 fas fa-star label-star"></label>
-                <label for="star-2" class="star-2 fas fa-star label-star"></label>
-                <label for="star-3" class="star-3 fas fa-star label-star"></label>
-                <label for="star-4" class="star-4 fas fa-star label-star"></label>
-                <label for="star-5" class="star-5 fas fa-star label-star"></label>
-              </div>
+        <p class="stars-show"></p>
+        <div class="wrapper">
+          <input type="radio" name="rate" id="star-1">
+          <input type="radio" name="rate" id="star-2">
+          <input type="radio" name="rate" id="star-3">
+          <input type="radio" name="rate" id="star-4">
+          <input type="radio" name="rate" id="star-5">
+          <div class="content">
+            <div class="stars">
+              <label for="star-1" class="star-1 fas fa-star label-star"></label>
+              <label for="star-2" class="star-2 fas fa-star label-star"></label>
+              <label for="star-3" class="star-3 fas fa-star label-star"></label>
+              <label for="star-4" class="star-4 fas fa-star label-star"></label>
+              <label for="star-5" class="star-5 fas fa-star label-star"></label>
             </div>
           </div>
+        </div>
+        <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
+        <img clas="img-publicada" src="">
+          <div class="container-icons">
 
             <div class="btn-post">
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
@@ -162,17 +177,24 @@ export const feed = () => {
       });
   });
 
+  // AVALIAÇÃO ESTRELAS
+  // const starsEvaluationElement = document.querySelector('[data-stars-form]:checked');
+
   // ADICIONAR IMAGEM
   const inputPhotoPost = feedPage.querySelector('#input-photo');
-  // console.log(inputPhotoPost);
 
   inputPhotoPost.addEventListener('change', (e) => {
     const file = e.target.files[0];
     const namePicturePost = file.name;
-    // console.log(namePicturePost);
 
     uploadPicture(namePicturePost, file);
-    // downloadPicturePost(namePicturePost, );
+    /* downloadPicturePost(namePicturePost, ).then((url) => {
+      const picturePost = {
+        photo: url,
+      };
+      updatePost(picturePost, id);
+      });
+    }; */
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR

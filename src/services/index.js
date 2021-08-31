@@ -103,15 +103,7 @@ export const updatePost = (post, id) => firebase.firestore().collection('posts')
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
 
 // INSERIR IMAGEM NO FIREBASE
-export const downloadPicturePost = (namePicturePost, id) => {
-  firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
-    .then((url) => {
-      const picturePost = {
-        photo: url,
-      };
-      updatePost(picturePost, id);
-    });
-};
+export const downloadPicturePost = (namePicturePost) => firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL();
 
 // ADICIONAR IMAGEM NO PERFIL
 export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);

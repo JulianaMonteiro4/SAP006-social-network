@@ -62,6 +62,8 @@ export const profile = () => {
 
   // FOTO DE PERFIL
   iconProfile.src = user.photoURL;
+  console.log(iconProfile);
+  console.log(user.photoURL);
 
   inputPhoto.addEventListener('change', (e) => {
     const file = e.target.files[0];
