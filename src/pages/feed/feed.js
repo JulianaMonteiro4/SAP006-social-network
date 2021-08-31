@@ -7,6 +7,7 @@ import {
   likesPost,
   currentUser,
   uploadPicture,
+  // downloadPicturePost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -65,7 +66,6 @@ export const feed = () => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
     const textPost = post.data().text;
     const userId = post.data().user_id;
-    const userName = post.data().user_name;
     const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
@@ -75,7 +75,7 @@ export const feed = () => {
     <img class="photo-post" src="${userImage || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user">
       <div class="container-post-publicado">
         <div class="info-user">
-          <p class="user-name">${userName}</p>
+          <p class="user-name">${userNamePost}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
           <img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">
         </div>
@@ -167,6 +167,7 @@ export const feed = () => {
     // console.log(namePicturePost);
 
     uploadPicture(namePicturePost, file);
+    // downloadPicturePost(namePicturePost, );
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR

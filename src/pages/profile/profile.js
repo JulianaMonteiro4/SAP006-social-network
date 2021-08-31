@@ -62,8 +62,6 @@ export const profile = () => {
 
   // FOTO DE PERFIL
   iconProfile.src = user.photoURL;
-  console.log(iconProfile);
-  console.log(user.photoURL);
 
   inputPhoto.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -77,10 +75,6 @@ export const profile = () => {
       });
     });
   });
-
-
-
-
 
   // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
   /* btnSave.addEventListener('click', (e) => {
