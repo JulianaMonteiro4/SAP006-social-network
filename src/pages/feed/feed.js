@@ -87,8 +87,8 @@ export const feed = () => {
             <div class="btn-post">
               <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-              ${loggedUser ? ` <img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">` : ''}
-              ${loggedUser ? ` <img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">` : ''}
+              ${loggedUser ? `<img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">` : ''}
+              ${loggedUser ? `<img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">` : ''}
             </div>
           </div>
       </div>

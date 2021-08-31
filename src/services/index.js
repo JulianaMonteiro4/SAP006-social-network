@@ -50,7 +50,7 @@ const postData = () => {
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text, photoURL) => {
+export const createPost = (text) => {
   const user = firebase.auth().currentUser;
   const post = {
     user_photo: user.photoURL,

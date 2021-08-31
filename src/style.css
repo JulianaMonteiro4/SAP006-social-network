@@ -380,59 +380,6 @@
     text-decoration: bold;
 }
 
-/* .stars #label-star{
-    font-size: 30px;
-    margin: 0 3px;
-    color: #ccc;
-}
-
-#star-1:hover ~ .content .stars .star-1,
-#star-1:checked ~ .content .stars .star-1,
-
-#star-2:hover ~ .content .stars .star-1,
-#star-2:hover ~ .content .stars .star-2,
-#star-2:checked ~ .content .stars .star-1,
-#star-2:checked ~ .content .stars .star-2,
-
-#star-3:hover ~ .content .stars .star-1,
-#star-3:hover ~ .content .stars .star-2,
-#star-3:hover ~ .content .stars .star-3,
-#star-3:checked ~ .content .stars .star-1,
-#star-3:checked ~ .content .stars .star-2,
-#star-3:checked ~ .content .stars .star-3,
-
-#star-4:hover ~ .content .stars .star-1,
-#star-4:hover ~ .content .stars .star-2,
-#star-4:hover ~ .content .stars .star-3,
-#star-4:hover ~ .content .stars .star-4,
-#star-4:checked ~ .content .stars .star-1,
-#star-4:checked ~ .content .stars .star-2,
-#star-4:checked ~ .content .stars .star-3,
-#star-4:checked ~ .content .stars .star-4,
-
-#star-5:hover ~ .content .stars .star-1,
-#star-5:hover ~ .content .stars .star-2,
-#star-5:hover ~ .content .stars .star-3,
-#star-5:hover ~ .content .stars .star-4,
-#star-5:hover ~ .content .stars .star-5,
-#star-5:checked ~ .content .stars .star-1,
-#star-5:checked ~ .content .stars .star-2,
-#star-5:checked ~ .content .stars .star-3,
-#star-5:checked ~ .content .stars .star-4,
-#star-5:checked ~ .content .stars .star-5{
-    color: #fd4;
-}
-.wrapper{
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-input[type="radio"]{
-    display: none;
-} */
-
 .photo-post{
     height: 72px;
     width: 20%;
