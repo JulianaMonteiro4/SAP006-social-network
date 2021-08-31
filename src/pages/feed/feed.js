@@ -7,6 +7,7 @@ import {
   likesPost,
   currentUser,
   uploadPicture,
+  // downloadPicturePost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -35,7 +36,7 @@ export const feed = () => {
         <ul class="nav" id="mainMenu">
           <li id="menu-profile"><a href="#">PROFILE</a></li>
           <li id="btn-logout"><a href="#">SAIR</a></li>
-          <div class="closeMenu"><i class="fa fa-times"></i></div>
+          <div id="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
 
       </nav>
@@ -65,19 +66,22 @@ export const feed = () => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
     const textPost = post.data().text;
     const userId = post.data().user_id;
-    const userName = post.data().user_name;
     const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
+    const userNamePost = post.data().nameUser;
+    console.log(userNamePost);
     // const rating = post.data().rating;
 
     const postTemplate = `
+    <img class="photo-post" src="img/perfil.jpg" alt="meme" title="meme">
       <div class="container-post-publicado">
         <div class="info-user">
-          <p class="user-name">${userName}</p>
-          <p class="data-post">${dataPost}</p>
+          <p class="user-name">${userNamePost}</p>
+          <p class="data-post" id="date-post">${dataPost}</p>
         </div>
         <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
+        
           <div class="container-icons">
 
           <div class="wrapper">
@@ -100,14 +104,13 @@ export const feed = () => {
             <div class="btn-post">
               <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-              <!-- <i class="far fa-comment-dots icons-post"></i> -->
+                <!-- <i class="far fa-comment-dots icons-post"></i> -->
               <div class="edit-post">
                 <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
                 <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
               </div>
               <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
             </div>
-
           </div>
       </div>
     `;
@@ -116,7 +119,7 @@ export const feed = () => {
   };
 
   const mainMenu = feedPage.querySelector('#mainMenu');
-  const closeMenu = feedPage.querySelector('.closeMenu');
+  const closeMenu = feedPage.querySelector('#closeMenu');
   const openMenu = feedPage.querySelector('#openMenu');
 
   function show() {
@@ -169,12 +172,13 @@ export const feed = () => {
     // console.log(namePicturePost);
 
     uploadPicture(namePicturePost, file);
+    // downloadPicturePost(namePicturePost, );
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
-    const target = e.target;
+    const target = e.target; // target referencia ao objeto que enviou o evento
     const numberLikesElement = target.querySelector('.number-likes');
     if (target.dataset.like === 'like' && !target.classList.contains('liked')) {
       e.target.classList.add('liked');

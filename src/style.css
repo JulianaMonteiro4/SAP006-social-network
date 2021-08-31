@@ -20,7 +20,7 @@
     background-image: white;
     overflow: hidden;
     margin-bottom: 50%;
-    background-color: #3a2b4e8a;
+    background-color: #4d2f758a;
     border-radius: 10px;
     margin: auto;
 }
@@ -148,7 +148,7 @@
 }
 
 .btn:hover{
-    background: #2a1949;
+    background: #72051d;
 }
 
 .login{
@@ -237,7 +237,7 @@
     height: 30px;
     font-size: 17px;
     color: white;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
+    background: #302b63;
     padding-top: 8px;
     text-align: center;
 
@@ -260,7 +260,7 @@
 }
 
 .btn-back:hover{
-    background-color: #521a26;
+    background-color: #1e0747;
 }
 
 /* PÁGINA DO FEED */
@@ -306,16 +306,13 @@
     width: 90%;
     align-items: center;
     height: 100px;
-    text-align:center;
+    text-align:left;
+    padding: 7px;
     border-radius: 10px;
     font-size: 20px;
     margin: 20px;
     color: black;
     resize: none;
-}
-
-.btn-publicar:hover{
-    background: #7e561e;
 }
 
 .container-post-publicado{
@@ -339,6 +336,8 @@
     width: 90%;
     padding: 20px;
     border-bottom: 1px solid;
+    margin-bottom: 10px;
+    font-size: 14px;
 }
 
 .user-name{
@@ -361,16 +360,14 @@
 
 .post-publicado{
     background-color: white;
-    width: 60%;
+    width: 80%;
     height: 70px;
     border-radius: 10px;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
     font-size: 18px;
     text-align: left;
     padding: 20px;
     resize: none;
-    border: 15px solid #a2dcf0ab;
-    border-bottom: 40px solid #a2dcf0ab;
+    border-top: 30px solid #a2dcf0;
 }
 
 .container-icons{
@@ -379,14 +376,10 @@
 }
 
 .icons-post{
-    margin: 0 4px;
+    margin: 0 15px;
     display: flex;
     cursor: pointer;
     text-decoration: bold;
-}
-
-.liked{
-    background-color: red;
 }
 
 .stars #label-star{
@@ -394,6 +387,7 @@
     margin: 0 3px;
     color: #ccc;
 }
+
 #star-1:hover ~ .content .stars .star-1,
 #star-1:checked ~ .content .stars .star-1,
 
@@ -439,6 +433,14 @@
 
 input[type="radio"]{
     display: none;
+}
+
+.photo-post{
+    height: 72px;
+    width: 20%;
+    position: absolute;
+    display: flex;
+    clip-path: circle(41%);
 }
 
 /* MENU HAMBURGUER */
@@ -562,6 +564,10 @@ ul li{
 
 .btn-save{
     margin-top: 30px;
+}
+
+.liked::before{
+    color: red;
 }
 
 @media screen and (min-width: 426px) and (max-width:768px){
@@ -726,7 +732,7 @@ ul li{
     }
 }
 
-@media screen and (min-width: 1441px){ /* FALTA ARRUMAR ESSE*/
+@media screen and (min-width: 1441px){ /*FALTA ARRUMAR ESSE*/
     .logo-img{
         width: 27%;
         height: 40%;
