@@ -365,7 +365,7 @@
     text-align: left;
     padding: 20px;
     resize: none;
-    border-top: 30px solid #a2dcf0;
+    border-top: 15px solid #a2dcf0;
 }
 
 .container-icons{
@@ -584,7 +584,7 @@ ul li{
 }
 
 .liked::before{
-    color: red;
+    color: rgb(255, 255, 59);
 }
 
 .hidden-content{

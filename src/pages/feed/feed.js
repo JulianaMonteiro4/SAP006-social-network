@@ -13,7 +13,7 @@ import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
 export const feed = () => {
-  const loggedUser = currentUser();
+  // const loggedUser = currentUser();
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -100,7 +100,7 @@ export const feed = () => {
           </div>-->
 
             <div class="btn-post">
-              <i class="fas fa-heart icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+              <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
                 <img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">
                 <img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">
@@ -212,6 +212,7 @@ export const feed = () => {
       elementEditButton.classList.remove('hidden-content');
       elementSaveButton.classList.remove('show-content');
       editPost(newEditedPost, saveButton);
+      loadPosts();
     }
 
     // DELETAR POST
