@@ -14,7 +14,6 @@ import { error } from '../../services/error.js';
 
 export const feed = () => {
   const loggedUser = currentUser();
-  console.log(loggedUser);
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -33,8 +32,8 @@ export const feed = () => {
         </div>
 
         <ul class="nav" id="mainMenu">
-          <li id="menu-profile"><a href="#">PROFILE</a></li>
-          <li id="btn-logout"><a href="#">SAIR</a></li>
+          <li id="menu-profile"><a href="#">👥 PROFILE</a></li>
+          <li id="btn-logout"><a href="#">🚪 SAIR</a></li>
           <div id="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
 
@@ -101,7 +100,7 @@ export const feed = () => {
           </div>-->
 
             <div class="btn-post">
-              <i class="far fa-heart icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+              <i class="fas fa-heart icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
                 <img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">
                 <img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">

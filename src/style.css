@@ -380,7 +380,7 @@
     text-decoration: bold;
 }
 
-.stars #label-star{
+/* .stars #label-star{
     font-size: 30px;
     margin: 0 3px;
     color: #ccc;
@@ -431,7 +431,7 @@
 
 input[type="radio"]{
     display: none;
-}
+} */
 
 .photo-post{
     height: 72px;
@@ -547,6 +547,11 @@ ul li{
 .btn-like{
     display: flex;
     float: left;
+}
+
+.sair{
+    display: flex;
+    width: 10%;
 }
 
 /* PÁGINA DE PROFILE */
