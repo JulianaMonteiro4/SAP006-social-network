@@ -7,7 +7,6 @@ import {
 
 export const profile = () => {
   const user = currentUser();
-  console.log(user);
 
   const main = document.querySelector('.root');
   main.innerHTML = '';
@@ -54,7 +53,8 @@ export const profile = () => {
   const btnBackFeed = profilePage.querySelector('#btn-back-feed');
 
   // SALVANDO AS INFORMAÇÕES DO PERFIL
-  btnSave.addEventListener('click', () => {
+  btnSave.addEventListener('click', (e) => {
+    e.preventDefault();
     user.updateProfile({
       displayName: inputName.value,
     });
@@ -62,8 +62,6 @@ export const profile = () => {
 
   // FOTO DE PERFIL
   iconProfile.src = user.photoURL;
-  console.log(iconProfile);
-  console.log(user.photoURL);
 
   inputPhoto.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -77,16 +75,6 @@ export const profile = () => {
       });
     });
   });
-
-
-
-
-
-  // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
-  /* btnSave.addEventListener('click', (e) => {
-    e.preventDefault();
-    navigateTo('/feed');
-  }); */
 
   // BOTÃO PARA RETORNAR PRO FEED
   btnBackFeed.addEventListener('click', (e) => {

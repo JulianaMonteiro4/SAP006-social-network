@@ -52,11 +52,13 @@ const postData = () => {
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text,url) => {
+export const createPost = (text, photoURL) => {
   const user = firebase.auth().currentUser;
   const post = {
-    user_img: user.photoURL,
+    user_photo: user.photoURL,
+    user_img: photoURL.id,
     user_id: user.uid,
+    nameUser: user.displayName,
     data: postData(),
     text: text.value,
     likes: [],
@@ -100,7 +102,7 @@ export const updatePost = (post, id) => firebase.firestore().collection('posts')
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
 
 // INSERIR IMAGEM NO FIREBASE
-export const downloadPicture = (namePicturePost, id) => {
+export const downloadPicturePost = (namePicturePost, id) => {
   firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
     .then((url) => {
       const picturePost = {
