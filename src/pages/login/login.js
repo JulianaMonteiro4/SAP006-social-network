@@ -1,68 +1,115 @@
-// MANIPULAÇÃO DO DOM DO LOGIN
-
-import { loginWithRegister, loginWithGoogle, keepLogged } from '../../services/index.js';
-import { navigateTo } from '../../routes.js';
+import {
+  loginWithRegister,
+  loginWithGoogle,
+  keepLogged,
+  newRegister,
+} from '../../services/index.js';
+import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
-// getLoggedUser, userStatus - funções Gabs.
 
 export const loginMainScreen = () => {
   const main = document.getElementById('root');
   main.innerHTML = '';
   const loginPage = document.createElement('section');
-  loginPage.setAttribute('class', 'container background-claquete');
+  loginPage.setAttribute('class', 'background');
   loginPage.innerHTML = `
-    <div class="l-container-grid">
-      <header class="header-grid">  
-        <img class="logo-img" src="img/logo.png" alt="logo">  
+      <header>  
+        <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
       </header>
-      <section class="main-container">
-        <div class="btn-cadastrar">
-          <img src="img/icone-register.png" class="img-register" id="cadastro" type="button">
-        </div>
-        <h2 class="title">Login</h2>
-        <form class="container-form">
-          
-        <fieldset class="input">
-          <input class="text-field" id="email" type="e-mail" placeholder="Insira seu e-mail"/>
-          <i class="far fa-envelope"></i>
-        </fieldset>
-        
-        <fieldset class="input">
-          <input class="text-field" id="password" type="password" placeholder="Insira sua senha"/>
-          <span class="eye">
-            <i id="show" class="fas fa-lock-open"></i>
-            <i id="hide" class="fas fa-lock"></i>
-          </span>
-        </fieldset>
-          
-          <button class="btn btn-animation" type="button" id="btn-login"><i class="far fa-play-circle"></i></button>
-          <div class="checkbox-container">
-            <input id="checkbox" type="checkbox" name="remember"><label class="checkbox-phrase" for="remember">Manter conectado(a)</label>
-            <span class="checkbox-phrase"><a id="recover" href="#">Esqueceu a senha?</a></span>
+      <div class="container-main">
+        <input class="input" type="checkbox" id="chk" aria-hidden="true">
+          <div class="signup">
+            <form>
+              <label class="label" for="chk" aria-hidden="true">Cadastro</label>
+              <fieldset class="form-login">
+                <input class="input" type="email" id="email" placeholder="Email" required="">
+                  <div class="icons-input">
+                    <i class="far fa-envelope icons"></i>
+                  </div>
+                </fieldset>
+              <p id="error-email">Insira um e-mail válido</p>
+
+              <fieldset class="form-login">
+                <input class="input" type="password" id="password" placeholder="Password" required="">
+                  <div class="icons-input">
+                    <i id="show" class="fas fa-lock-open icons"></i>
+                    <i id="hide" class="fas fa-lock icons"></i>
+                  </div>
+              </fieldset>
+              <p id="error-pass">Insira no mínimo 6 caracteres</p>
+
+              <fieldset class="form-login">
+                <input class="input" type="password" id="repeat-password" placeholder="Repeat Password" required="">
+                  <div class="icons-input">
+                    <i id="show-again" class="fas fa-lock-open icons"></i>
+                    <i id="hide-again" class="fas fa-lock icons"></i>
+                  </div>
+              </fieldset>
+              <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
+
+              <button class="btn" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+            </form>
           </div>
-          <div>
-              <img src="img/icone-google.png" class="btn-google" id="google" type="button">
-          </div>
-          <p class="phrase">Entrar com o Google</p>
-        </form>
-      </section> 
-    </div>
+
+          <div class="login">
+            <label class="label" for="chk" aria-hidden="true">Login</label>
+            <form>
+              <fieldset class="form-login">
+                <input class="input" type="email" id="email-login" placeholder="Email" required="">
+                <div class="icons-input">
+                  <i class="far fa-envelope icons"></i>
+                </div>
+              </fieldset>
+
+              <fieldset class="form-login">
+                <input class="input" type="Password" id="password-login" placeholder="Password" required="">
+                <div class="icons-input">
+                  <i id="show-login" class="fas fa-lock-open icons"></i>
+                  <i id="hide-login" class="fas fa-lock icons"></i>
+                </div>
+              </fieldset>
+              <p id="error-login"></p>
+                            
+            <div class="checkbox-container">
+              <input class="input checkbox" id="checkbox" type="checkbox" name="remember">
+              <label class="label checkbox-phrase" for="remember">Manter conectado(a)</label>
+              <span class="checkbox-phrase"><a class="pass-animation" id="recover" href="#">Esqueceu a senha?</a></span>
+            </div>
+              <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>
+
+                <div>
+                    <img src="img/icone-google.png" class="btn-google" id="google" type="button">
+                </div>
+                <p class="phrase">Entrar com o Google</p>
+            </form>
+          </div> 
   `;
 
   const email = loginPage.querySelector('#email');
+  const emailLogin = loginPage.querySelector('#email-login');
   const password = loginPage.querySelector('#password');
+  const passwordLogin = loginPage.querySelector('#password-login');
   const btnLogin = loginPage.querySelector('#btn-login');
   const btnLoginWithGoogle = loginPage.querySelector('#google');
-  const imgBtnRegister = loginPage.querySelector('#cadastro');
-  const btnRecoverPass = loginPage.querySelector('#recover');
+  const btnRegister = loginPage.querySelector('#btn-register');
   const keepMeSignedIn = loginPage.querySelector('#checkbox');
-  const show = loginPage.querySelector('#show');
-  const hide = loginPage.querySelector('#hide');
+  const showRegister = loginPage.querySelector('#show');
+  const hideRegister = loginPage.querySelector('#hide');
+  const showLogin = loginPage.querySelector('#show-login');
+  const hideLogin = loginPage.querySelector('#hide-login');
+  const showAgain = loginPage.querySelector('#show-again');
+  const hideAgain = loginPage.querySelector('#hide-again');
+  const repeatPassword = loginPage.querySelector('#repeat-password');
+  const btnRecoverPass = loginPage.querySelector('#recover');
+  const errorLogin = loginPage.querySelector('#error-login');
+  const errorEmail = loginPage.querySelector('#error-email');
+  const errorPass = loginPage.querySelector('#error-pass');
+  const errorRepeat = loginPage.querySelector('#error-repeat');
 
   // BOTÃO DE LOGIN
   btnLogin.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithRegister(email.value, password.value).then(() => navigateTo('/feed'))
+    loginWithRegister(emailLogin.value, passwordLogin.value).then(() => navigateTo('/feed'))
       .catch((erro) => {
         const errorCode = erro.code;
         switch (errorCode) {
@@ -84,13 +131,7 @@ export const loginMainScreen = () => {
   // BOTÃO DE LOGIN COM O GOOGLE
   btnLoginWithGoogle.addEventListener('click', (e) => {
     e.preventDefault();
-    loginWithGoogle();
-  });
-
-  // BOTÃO PARA CADASTRAR
-  imgBtnRegister.addEventListener('click', (e) => {
-    e.preventDefault();
-    navigateTo('/cadastro');
+    loginWithGoogle().then(() => navigateTo('/feed'));
   });
 
   // LINK ESQUECEU A SENHA
@@ -111,20 +152,162 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
-  // MOSTRAR E OCULTAR A SENHA
-  show.addEventListener('click', (e) => {
+  // BOTÃO DE CADASTRAR
+  btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    password.setAttribute('type', 'text');
-    show.style.display = 'none';
-    hide.style.display = 'block';
+    newRegister(email.value, password.value, repeatPassword.value)
+      .then(() => {
+        if (password.value === repeatPassword.value) {
+          navigateTo('/profile');
+        }
+      })
+      .catch((erro) => {
+        const errorCode = erro.code;
+        switch (errorCode) {
+          case 'auth/email-already-in-use':
+            error('Email em uso');
+            break;
+          case 'auth/invalid-email':
+            error('Email inválido');
+            break;
+          case 'auth/weak-password':
+            error('Senha fraca');
+            break;
+          default:
+            error('Por favor, verifique as informações digitadas');
+        }
+      });
   });
 
-  hide.addEventListener('click', (e) => {
+  // MOSTRAR E OCULTAR A SENHA CADASTRO
+  showRegister.addEventListener('click', (e) => {
+    e.preventDefault();
+    password.setAttribute('type', 'text');
+    showRegister.style.display = 'none';
+    hideRegister.style.display = 'block';
+  });
+
+  hideRegister.addEventListener('click', (e) => {
     e.preventDefault();
     password.setAttribute('type', 'password');
-    hide.style.display = 'none';
-    show.style.display = 'block';
+    hideRegister.style.display = 'none';
+    showRegister.style.display = 'block';
+  });
+
+  // MOSTRAR E OCULTAR DE REPETIR A SENHA CADASTRO
+  showAgain.addEventListener('click', (e) => {
+    e.preventDefault();
+    repeatPassword.setAttribute('type', 'text');
+    showAgain.style.display = 'none';
+    hideAgain.style.display = 'block';
+  });
+
+  hideAgain.addEventListener('click', (e) => {
+    e.preventDefault();
+    repeatPassword.setAttribute('type', 'password');
+    hideAgain.style.display = 'none';
+    showAgain.style.display = 'block';
+  });
+
+  // MOSTRAR E OCULTAR DE REPETIR A SENHA CADASTRO
+  showLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    passwordLogin.setAttribute('type', 'text');
+    showLogin.style.display = 'none';
+    hideLogin.style.display = 'block';
+  });
+
+  hideLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    passwordLogin.setAttribute('type', 'password');
+    hideLogin.style.display = 'none';
+    showLogin.style.display = 'block';
+  });
+
+  // Validação email LOGIN
+  emailLogin.addEventListener('keyup', () => {
+    if (emailLogin.value.indexOf('@') === -1) {
+      emailLogin.setAttribute('style', 'color: red');
+    } else {
+      emailLogin.setAttribute('style', 'color: green');
+    }
+  });
+
+  // Validação de senha LOGIN
+  passwordLogin.addEventListener('keyup', () => {
+    if (passwordLogin.value.length < 6) {
+      passwordLogin.setAttribute('style', 'color: red');
+      errorLogin.style.display = 'block';
+    } else {
+      passwordLogin.setAttribute('style', 'color: green');
+      errorLogin.style.display = 'none';
+    }
+  });
+
+  // Validação de email CADASTRO
+  email.addEventListener('keyup', () => {
+    if (email.value.indexOf('@') === -1) {
+      email.setAttribute('style', 'color: red');
+      errorEmail.style.display = 'block';
+    } else {
+      email.setAttribute('style', 'color: green');
+      errorEmail.style.display = 'none';
+    }
+  });
+
+  // Validação de senha CADASTRO
+  password.addEventListener('keyup', () => {
+    if (password.value.length < 6) {
+      password.setAttribute('style', 'color: red');
+      errorPass.style.display = 'block';
+    } else {
+      password.setAttribute('style', 'color: green');
+      errorPass.style.display = 'none';
+    }
+  });
+
+  // Validação de mensagens igual na senha CADASTRO
+  repeatPassword.addEventListener('keyup', () => {
+    if (password.value !== repeatPassword.value) {
+      repeatPassword.setAttribute('style', 'color: red');
+      errorRepeat.style.display = 'block';
+    } else {
+      repeatPassword.setAttribute('style', 'color: green');
+      errorRepeat.style.display = 'none';
+    }
   });
 
   return main.appendChild(loginPage);
 };
+
+/* senhas iguais no cadastro
+if(password.value === repeatPassword.value){
+        () => navigateTo('/')
+      } */
+
+/* // VERFIFICAÇÃO DE SENHA (TAMANHO E CONFIRMAÇÃO)
+const verifyPasswordLength = () => {
+  if (password.value.length < 6) {
+    passwordLength.style.color = 'red';
+    passwordLength.innerHTML = 'Senha com mínimo de 6 dígitos.';
+  } else {
+    passwordLength.style.color = 'darkgreen';
+    passwordLength.innerHTML = 'Senha válida!';
+  }
+};
+
+const verifyConfirmPassword = () => {
+  if (password.value !== passwordConfirm.value) {
+    passwordError.style.color = 'red';
+    passwordError.innerHTML = 'Senhas não correspondentes.';
+    return false;
+  } else {
+    passwordError.style.color = 'darkgreen';
+    passwordError.innerHTML = 'Senhas confirmadas!';
+    return true;
+  }
+};
+
+passwordConfirm.addEventListener('input', verifyConfirmPassword);
+  password.addEventListener('input', verifyPasswordLength);
+*/

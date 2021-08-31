@@ -1,13 +1,14 @@
-import { registerUser } from './pages/cadastro/cadastro.js';
 import { loginMainScreen } from './pages/login/login.js';
+import { profile } from './pages/profile/profile.js';
 import { recoverLink } from './pages/login/recuperar.js';
 import { feed } from './pages/feed/feed.js';
+import { blockNotLoggedUser } from './services/index.js';
 
 const routRender = () => {
   const elemento = document.getElementById('root');
   const routes = {
     '/': loginMainScreen,
-    '/cadastro': registerUser,
+    '/profile': profile,
     '/recuperar': recoverLink,
     '/feed': feed,
   };
@@ -17,11 +18,6 @@ const routRender = () => {
 
 window.addEventListener('popstate', routRender);
 window.addEventListener('load', () => {
+  blockNotLoggedUser();
   routRender();
 });
-
-export const navigateTo = (url) => {
-  window.history.pushState({}, '', url);
-  const popstateEvent = new PopStateEvent('popstate', { state: {} });
-  dispatchEvent(popstateEvent);
-};

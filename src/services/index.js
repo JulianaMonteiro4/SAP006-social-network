@@ -1,86 +1,140 @@
-import { error } from './error.js';
-import { navigateTo } from '../routes.js';
-// import { dataFirestore } from './firebaseconfig.js';
+import { navigateTo } from '../navegation.js';
 
 // CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
 export const newRegister = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      error('Usuário cadastrado');
-    });
-}; // fazer IF ELSE PARA SENHAS DIFERENTES
+  firebase.auth().createUserWithEmailAndPassword(email, password);
+};
 
 // LOGIN DE USUÁRIOS EXISTENTES
 export const loginWithRegister = (email, password) => (
   firebase.auth().signInWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-      error('Usuário conectado');
-    })
-    .then(() => {
-      setTimeout(() => {
-      }, 1000);
-    })
 );
 
 // LOGIN COM O GOOGLE
 export const loginWithGoogle = async () => {
   const provider = new firebase.auth.GoogleAuthProvider();
   const result = await firebase.auth().signInWithPopup(provider);
-  navigateTo('/feed');
   return result;
 };
 
 // E-MAIL DE REDEFINIÇÃO DE SENHA
-export const recoverPassword = (email) => {
-  firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      error('E-mail para redefinição de senha enviado');
-    });
-};
+export const recoverPassword = (email) => firebase.auth().sendPasswordResetEmail(email);
 
 // MANTER CONECTADO
 export const keepLogged = (persistence) => {
-  firebase.auth().setPersistence(persistence)
-    .then(() => {
-    })
-    .catch(() => {
-      error('Não foi possível permanecer conectado(a)');
-    });
+  firebase.auth().setPersistence(persistence);
+};
+
+// BLOQUEAR NAVEGAÇÃO USUÁRIO PARA FEED SEM ESTAR CONECTADO
+export const blockNotLoggedUser = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    if (!user && window.location.pathname === '/feed') {
+      navigateTo('/');
+    }
+  });
+};
+
+// USUÁRIO
+export const currentUser = () => firebase.auth().currentUser;
+
+// export const photoURL = () => firebase.auth().currentUser.photoURL;
+
+// COLEÇÃO DE POSTS
+export const postsCollection = () => firebase.firestore().collection('posts');
+
+// COLEÇÃO DE USUÁRIOS
+export const usersCollection = () => firebase.firestore().collection('users');
+
+// FORMATAR A DATA
+const postData = () => {
+  const data = new Date();
+  return data.toLocaleString('pt-BR');
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text) => {
+export const createPost = (text,url) => {
   const user = firebase.auth().currentUser;
   const post = {
-    text: text.value,
+    user_img: user.photoURL,
     user_id: user.uid,
-    likes: 0,
+    data: postData(),
+    text: text.value,
+    likes: [],
     comments: [],
-    data: new Date(),
   };
 
-  // salvar post no Banco de dados.
-  const createCollectionOfPosts = firebase.firestore().collection('posts');
-  return createCollectionOfPosts.doc().set(post);
+  // SALVAR POSTS NO BANCO DE DADOS
+  return postsCollection().doc().set(post);
 };
 
+// AUMENTAR CURTIDAS
+export const likesPost = (id) => postsCollection().doc(id).get()
+  .then((response) => {
+    const numberLikes = response.data().likes;
+    const user = firebase.auth().currentUser;
+    if (numberLikes.includes(user.uid)) {
+      const indexOfUid = numberLikes.indexOf(user.uid); // indexOf busca o indice no array
+      numberLikes.splice(indexOfUid, 1); // splice remove do array
+      return postsCollection().doc(id).update({ likes: numberLikes });
+    }
+    numberLikes.push(user.uid); // push adiciona no array
+    return postsCollection().doc(id).update({ likes: numberLikes });
+  })
+  .catch(() => {});
+
+// DELETAR POSTS DO BANCO DE DADOS
+export const deletePost = (id) => postsCollection().doc(id).delete();
+
+// EDITAR POSTS DO BANCO DE DADOS
+export const editPost = (newPost, id) => {
+  postsCollection('post').doc(id).update({ text: newPost });
+};
+
+// export const storageRef = firebase.storage.ref();
+
 // SIGN OUT
-export const signOut = () => {
-  firebase.auth().signOut()
-    .then(() => {
-      navigateTo('/');
-      error('Até Logo');
-    })
-    .catch(() => {
-      error('Tente novamente.');
+export const signOut = () => firebase.auth().signOut();
+
+// ADICIONAR IMAGEM NO POST
+export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
+export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
+
+// INSERIR IMAGEM NO FIREBASE
+export const downloadPicture = (namePicturePost, id) => {
+  firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
+    .then((url) => {
+      const picturePost = {
+        photo: url,
+      };
+      updatePost(picturePost, id);
     });
 };
 
-export const postsCollection = () => firebase.firestore().collection('posts').orderBy('data', 'desc').get();
+// ADICIONAR IMAGEM NO PERFIL
+export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
 
-// export const createNewPost = (post) => firebase.firestore().collection('posts').add(post);
+export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
+
+/* // CRIAR USUÁRIOS FIREBASE
+export const createUsers = (imageUrl) => {
+  const user = firebase.auth().currentUser;
+  const users = {
+    user_name: user.name,
+    profile_picture: imageUrl,
+    email: user.email.value,
+  };
+  // SALVAR USUÁRIO NO BANCO DE DADOS
+  return postsCollection().doc().set(users);
+}; */
+
+/* export const uploadFoodPhoto = (file) => {
+  // create storage ref
+  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
+
+  // upload file
+  const task = storeageRef.put(file);
+  return task;
+}; */
 
 /* export const likedPost = () => likesCollection.add({
   liked: true,
@@ -97,27 +151,33 @@ export const comentPost = (comment) => {
     .catch((error) => error);
 }; */
 
-/* // CRIAR DADOS EM UM USUÁRIO
-dataFirestore.collection('users').add({
-  name: inputNome.value,
-  idUser: userCredential.uid,
-})
-  .then((docRef) => {
-    console.log('Document written with ID: ', docRef.id);
+/* PERFIL
+export const saveUserUpdate = (name) => {
+  firebase.auth().currentUser.updateProfile({
+    displayName: name,
   })
-  .catch((error) => {
-    console.error('Error adding document: ', error);
-  });
-*/
+    .then(() => true)
+    .catch((error) => error);
+};
 
-/* export const userStatus = () => (
-  new Promise((res, rej) => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        res(user);
-      } else {
-        rej();
-      }
-    });
+export const saveUser = (user, userEmail, userName) => {
+  firebase.firestore().collection('users').doc(userEmail).set({
+    userId: user.uid,
+    name: userName,
+    email: userEmail
   })
-); */
+    .then(() => true)
+    .catch((error) => error);
+}; */
+
+/* // CRIAR DADOS EM UM USUÁRIO
+/* const makeUserColection = (userLogged) => {
+    const usersCollection = firebase.firestore().collection('users');
+    usersCollection.get().then((snap) => {
+      snap.forEach((user) => {
+        if (userLogged === user.data().id) {
+          createPost(user.data().id, user.data().name, user.data().email);
+        }
+      });
+    });
+  }; */
