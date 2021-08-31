@@ -56,7 +56,7 @@ export const createPost = (text, photoURL) => {
   const user = firebase.auth().currentUser;
   const post = {
     user_photo: user.photoURL,
-    user_img: photoURL.id,
+    // user_img: photoURL.id,
     user_id: user.uid,
     nameUser: user.displayName,
     data: postData(),
