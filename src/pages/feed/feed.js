@@ -70,6 +70,7 @@ export const feed = () => {
     const postId = post.id;
     const likes = post.data().likes.length;
     const userImage = post.data().user_img;
+    const userNamePost = post.data().nameUser;
 
     const postTemplate = `
     <img class="photo-post" src="${userImage || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user">
