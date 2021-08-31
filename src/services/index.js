@@ -37,8 +37,6 @@ export const blockNotLoggedUser = () => {
 // USUÁRIO
 export const currentUser = () => firebase.auth().currentUser;
 
-// export const photoURL = () => firebase.auth().currentUser.photoURL;
-
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
 
@@ -92,8 +90,6 @@ export const editPost = (newPost, id) => {
   postsCollection('post').doc(id).update({ text: newPost });
 };
 
-// export const storageRef = firebase.storage.ref();
-
 // SIGN OUT
 export const signOut = () => firebase.auth().signOut();
 
@@ -117,34 +113,7 @@ export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imag
 
 export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
 
-/* // CRIAR USUÁRIOS FIREBASE
-export const createUsers = (imageUrl) => {
-  const user = firebase.auth().currentUser;
-  const users = {
-    user_name: user.name,
-    profile_picture: imageUrl,
-    email: user.email.value,
-  };
-  // SALVAR USUÁRIO NO BANCO DE DADOS
-  return postsCollection().doc().set(users);
-}; */
-
-/* export const uploadFoodPhoto = (file) => {
-  // create storage ref
-  const storeageRef = firebase.storage().ref(`userRecipePhoto/ ${file.name}`);
-
-  // upload file
-  const task = storeageRef.put(file);
-  return task;
-}; */
-
-/* export const likedPost = () => likesCollection.add({
-  liked: true,
-})
-  .then(() => true)
-  .catch((error) => error);
-
-export const comentPost = (comment) => {
+/* export const comentPost = (comment) => {
   console.log(comment);
   return likesCollection.add({
     liked: true,
@@ -152,34 +121,3 @@ export const comentPost = (comment) => {
     .then(() => true)
     .catch((error) => error);
 }; */
-
-/* PERFIL
-export const saveUserUpdate = (name) => {
-  firebase.auth().currentUser.updateProfile({
-    displayName: name,
-  })
-    .then(() => true)
-    .catch((error) => error);
-};
-
-export const saveUser = (user, userEmail, userName) => {
-  firebase.firestore().collection('users').doc(userEmail).set({
-    userId: user.uid,
-    name: userName,
-    email: userEmail
-  })
-    .then(() => true)
-    .catch((error) => error);
-}; */
-
-/* // CRIAR DADOS EM UM USUÁRIO
-/* const makeUserColection = (userLogged) => {
-    const usersCollection = firebase.firestore().collection('users');
-    usersCollection.get().then((snap) => {
-      snap.forEach((user) => {
-        if (userLogged === user.data().id) {
-          createPost(user.data().id, user.data().name, user.data().email);
-        }
-      });
-    });
-  }; */

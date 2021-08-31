@@ -81,7 +81,7 @@ export const feed = () => {
           ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">` : ''}
         </div>
         <textarea class="post-publicado">${textPost}</textarea>
-        ${userImgPost}
+        <!--${userImgPost}-->
           <div class="container-icons">
 
             <div class="btn-post">
@@ -228,18 +228,3 @@ export const feed = () => {
 
   return main.appendChild(feedPage);
 };
-
-// pegar usuario
-/* function getloggedUser() {
-    userStatus().then((user) => {
-      const userId = user.uid;
-      const userEmail = user.email;
-      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
-      console.log(userId);
-      console.log(userIniciais);
-      // console.log("Ta logado", user.email, user.uid);
-      // return
-    });
-  }
-  getloggedUser();
-  */
