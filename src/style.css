@@ -306,13 +306,13 @@
     width: 90%;
     align-items: center;
     height: 100px;
-    text-align:center;
+    text-align:left;
+    padding: 7px;
     border-radius: 10px;
     font-size: 20px;
     margin: 20px;
     color: black;
     resize: none;
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.315);
 }
 
 .container-post-publicado{
@@ -337,7 +337,6 @@
     padding: 20px;
     border-bottom: 1px solid;
     margin-bottom: 10px;
-    font-size: 14px;
 }
 
 .user-name{
@@ -346,7 +345,6 @@
 }
 
 .data-post{
-    width: 300px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -470,12 +468,6 @@ nav #openMenu{
     display: block;
 }
 
-nav .nav li a:hover{
-    background: none;
-    color: rgb(255,123, 0);
-    font-size: 1.6rem;
-}
-
 .menu{
     width: 35px;
     height: 30px;
@@ -501,19 +493,19 @@ nav .nav li a:hover{
 }
 
 .change .bar{
-    background-color: white;
+    background-color: #f74ea5;
 }
 
 .change #bar1{
-    transform: translateY(4px) rotateZ(-45deg);
-}
-
-.change #bar3{
-    transform: translateY(-6px) rotate(45deg);
+    transform: translateY(4px) rotateZ(180deg);
 }
 
 .change #bar2{
-    opacity: 0;
+    transform: translateY(-10px) rotate(180deg);
+}
+
+.change #bar3{
+    transform: translateY(4px) rotate(180deg);
 }
 
 .change{
@@ -526,14 +518,38 @@ ul li a{
     font-size: 20px;
 }
 
+ul li a:hover {
+    border-top: 2px solid rgb(31, 200, 252);
+    border-bottom: 2px solid rgb(31, 200, 252);
+}
+
 ul li{
     list-style: none;
     padding: 16px 0;
 }
 
+.btn-edit{
+    display: flex;
+    width: 8%;
+    float: right;
+}
+
+.btn-save{
+    width: 8%;
+    float: right;
+}
+
+.delete-button{
+    display: flex;
+    width: 8%;
+}
+
+.btn-like{
+    display: flex;
+    float: left;
+}
 
 /* PÁGINA DE PROFILE */
-
 .photo-profile{
     display: flex;
     height: 125px;
@@ -562,12 +578,20 @@ ul li{
     margin: 10px 0 10px 0;
 }
 
-.btn-save{
-    margin-top: 30px;
-}
-
 .liked::before{
     color: red;
+}
+
+.hidden-content{
+    display: none!important;
+}
+
+.show-content{
+    display: block!important;
+}
+
+textarea:focus{
+    border-color: #b81568;
 }
 
 @media screen and (min-width: 426px) and (max-width:768px){

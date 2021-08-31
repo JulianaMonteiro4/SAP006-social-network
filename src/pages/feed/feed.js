@@ -60,7 +60,6 @@ export const feed = () => {
   const btnLogout = feedPage.querySelector('#btn-logout');
   const btnIcons = feedPage.querySelector('[data-section]');
   const btnMenuProfile = feedPage.querySelector('#menu-profile');
-  const data = feedPage.querySelector('#date-post');
 
   const addPosts = (post) => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
@@ -70,20 +69,21 @@ export const feed = () => {
     const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
-    // const rating = post.data().rating;
+    const userImage = post.data().user_img;
 
     const postTemplate = `
-    <img class="photo-post" src="img/perfil.jpg" alt="meme" title="meme">
+    <img class="photo-post" src="${userImage || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user">
       <div class="container-post-publicado">
         <div class="info-user">
           <p class="user-name">${userName}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
+          <img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">
         </div>
-        <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
+        <textarea class="post-publicado">${textPost}</textarea>
 
           <div class="container-icons">
 
-          <div class="wrapper">
+          <!--<div class="wrapper">
             <input type="radio" name="rate" id="star-1">
             <input type="radio" name="rate" id="star-2">
             <input type="radio" name="rate" id="star-3">
@@ -98,17 +98,13 @@ export const feed = () => {
                 <label for="star-5" class="star-5 fas fa-star label-star"></label>
               </div>
             </div>
-          </div>
+          </div>-->
 
             <div class="btn-post">
-              <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+              <i class="far fa-heart icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-                <!-- <i class="far fa-comment-dots icons-post"></i> -->
-              <div class="edit-post">
-                <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
-                <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
-              </div>
-              <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
+                <img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">
+                <img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">
             </div>
           </div>
       </div>
@@ -196,38 +192,28 @@ export const feed = () => {
         });
     }
 
-    // EDITAR POST
+    // APARECER O EDITAR POST
     const editButton = target.dataset.btneditpost;
     if (editButton) {
-      // text.value = '';
-      editPost();
+      const textAreaPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
+      const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
+      textAreaPost.focus();
+      elementEditButton.classList.add('hidden-content');
+      elementSaveButton.classList.add('show-content');
     }
 
-    // EDITAR POST
-    // const editButton = target.dataset.btneditpost;
-    // const button = e.target;
-    /* if (editButton) {
-      const li = feedPage.querySelector('.container-post-publicado');
-      const toEditPost = feedPage.querySelector('.post-publicado');
-      const input = feedPage.createElement('input');
-      input.type = 'text';
-      input.value = toEditPost.textContent;
-      li.toInsertBefore(input, toEditPost);
-      li.removeChild(toEditPost);
-      button.textContent = 'save';
-
-      /* if (editButton) {
-        editPost();
-        (button.textContent === 'btneditpost')
-      } 
-    } else if (button.textContent === 'save') {
-      const input = li.firstElementChild;
-      const span = document.createElement('span');
-      span.textContent = input.value;
-      li.insertBefore(span, input);
-      li.removeChild(input);
-      button.textContent = 'edit';
-    } */
+    // APARECER O SALVAR POST
+    const saveButton = target.dataset.btnsavepost;
+    if (saveButton) {
+      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
+      const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
+      const newEditedPost = textAreaSaveNewPost.value;
+      elementEditButton.classList.remove('hidden-content');
+      elementSaveButton.classList.remove('show-content');
+      editPost(newEditedPost, saveButton);
+    }
 
     // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
