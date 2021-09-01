@@ -110,7 +110,8 @@ export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imag
 
 export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
 
-/* export const comentPost = (comment) => {
+/*
+export const comentPost = (comment) => {
   console.log(comment);
   return likesCollection.add({
     liked: true,

@@ -235,7 +235,7 @@
     position: fixed;
     bottom: 0;
     height: 30px;
-    font-size: 17px;
+    font-size: 14px;
     color: white;
     background: #302b63;
     padding-top: 8px;
@@ -365,7 +365,7 @@
     text-align: left;
     padding: 20px;
     resize: none;
-    border-top: 15px solid #a2dcf0;
+    border-top: 30px solid #a2dcf0;
 }
 
 .container-icons{
@@ -496,11 +496,6 @@ ul li{
     float: left;
 }
 
-.sair{
-    display: flex;
-    width: 10%;
-}
-
 /* PÁGINA DE PROFILE */
 .photo-profile{
     display: flex;
@@ -531,7 +526,7 @@ ul li{
 }
 
 .liked::before{
-    color: rgb(255, 255, 59);
+    color: yellow;
 }
 
 .hidden-content{
@@ -635,6 +630,7 @@ textarea:focus{
     .meme-senha{
         width: 28%;
     }
+    
 }
 
 @media screen and (min-width: 769px) and (max-width:1024px){
@@ -674,6 +670,9 @@ textarea:focus{
         height: 80px;
         margin-left: 10px;
         margin-top: 3px;
+    }
+    .footer{
+        font-size: 17px;
     }
 }
 
