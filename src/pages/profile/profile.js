@@ -1,9 +1,9 @@
-import { navigateTo } from '../../navegation.js';
 import {
   currentUser,
   updatePhotoProfile,
   dowloadPhotoProfile,
 } from '../../services/index.js';
+import { navigateTo } from '../../navegation.js';
 
 export const profile = () => {
   const user = currentUser();
@@ -37,6 +37,11 @@ export const profile = () => {
             </div>
           </fieldset>
           <button class="btn" id="btn-save" type="button">Salvar</button>
+            <div class="modal-bg">
+              <div class="modal"></div>
+                <h2 class="modal-phrase">Informações salvas.</h2>
+                <button class="modal-close">X</button>
+              </div>
           <button class="btn btn-back" id="btn-back-feed" type="button">Retornar</button>
         </form>
       </main>
@@ -51,6 +56,8 @@ export const profile = () => {
   const inputPhoto = profilePage.querySelector('.inputPhoto');
   const btnSave = profilePage.querySelector('#btn-save');
   const btnBackFeed = profilePage.querySelector('#btn-back-feed');
+  const modalBg = profilePage.querySelector('.modal-bg');
+  const modalClose = profilePage.querySelector('.modal-close');
 
   // SALVANDO AS INFORMAÇÕES DO PERFIL
   btnSave.addEventListener('click', (e) => {
@@ -58,6 +65,12 @@ export const profile = () => {
     user.updateProfile({
       displayName: inputName.value,
     });
+    modalBg.classList.add('bg-active');
+  });
+
+  modalClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    modalBg.classList.remove('bg-active');
   });
 
   // FOTO DE PERFIL

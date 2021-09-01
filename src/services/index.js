@@ -37,13 +37,8 @@ export const blockNotLoggedUser = () => {
 // USUÁRIO
 export const currentUser = () => firebase.auth().currentUser;
 
-// export const photoURL = () => firebase.auth().currentUser.photoURL;
-
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
-
-// COLEÇÃO DE USUÁRIOS
-export const usersCollection = () => firebase.firestore().collection('users');
 
 // FORMATAR A DATA
 const postData = () => {
@@ -52,7 +47,7 @@ const postData = () => {
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text, photoURL) => {
+export const createPost = (text) => {
   const user = firebase.auth().currentUser;
   const post = {
     user_photo: user.photoURL,
@@ -115,8 +110,7 @@ export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imag
 
 export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
 
-/*
-export const comentPost = (comment) => {
+/* export const comentPost = (comment) => {
   console.log(comment);
   return likesCollection.add({
     liked: true,
