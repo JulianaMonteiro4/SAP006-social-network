@@ -7,7 +7,6 @@ import {
 
 export const profile = () => {
   const user = currentUser();
-  console.log(user);
 
   const main = document.querySelector('.root');
   main.innerHTML = '';
@@ -37,7 +36,7 @@ export const profile = () => {
               <i class="far fa-envelope icons"></i>
             </div>
           </fieldset>
-          <button class="btn btn-save" id="btn-save" type="button">Salvar</button>
+          <button class="btn" id="btn-save" type="button">Salvar</button>
           <button class="btn btn-back" id="btn-back-feed" type="button">Retornar</button>
         </form>
       </div>
@@ -54,7 +53,8 @@ export const profile = () => {
   const btnBackFeed = profilePage.querySelector('#btn-back-feed');
 
   // SALVANDO AS INFORMAÇÕES DO PERFIL
-  btnSave.addEventListener('click', () => {
+  btnSave.addEventListener('click', (e) => {
+    e.preventDefault();
     user.updateProfile({
       displayName: inputName.value,
     });
@@ -77,12 +77,6 @@ export const profile = () => {
       });
     });
   });
-
-  // BOTÃO PARA IR PRO FEED DEPOIS DE SALVAR AS INFORMAÇÕES
-  /* btnSave.addEventListener('click', (e) => {
-    e.preventDefault();
-    navigateTo('/feed');
-  }); */
 
   // BOTÃO PARA RETORNAR PRO FEED
   btnBackFeed.addEventListener('click', (e) => {

@@ -7,15 +7,13 @@ import {
   likesPost,
   currentUser,
   uploadPicture,
-  // downloadPicturePost,
+  downloadPicturePost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
 export const feed = () => {
-  const loggedUser = currentUser();
-  console.log(loggedUser);
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
@@ -34,8 +32,8 @@ export const feed = () => {
         </div>
 
         <ul class="nav" id="mainMenu">
-          <li id="menu-profile"><a href="#">PROFILE</a></li>
-          <li id="btn-logout"><a href="#">SAIR</a></li>
+          <li id="menu-profile"><a href="#">👥 PROFILE</a></li>
+          <li id="btn-logout"><a href="#">🚪 SAIR</a></li>
           <div id="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
 
@@ -44,23 +42,7 @@ export const feed = () => {
       <section>
           <form class="form-post" id="container-post"> 
             <div class="post">
-              <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-              <div class="wrapper">
-                <input type="radio" name="rate" id="star-1">
-                <input type="radio" name="rate" id="star-2">
-                <input type="radio" name="rate" id="star-3">
-                <input type="radio" name="rate" id="star-4">
-                <input type="radio" name="rate" id="star-5">
-                <div class="content">
-                  <div class="stars">
-                    <label for="star-1" class="star-1 fas fa-star label-star"></label>
-                    <label for="star-2" class="star-2 fas fa-star label-star"></label>
-                    <label for="star-3" class="star-3 fas fa-star label-star"></label>
-                    <label for="star-4" class="star-4 fas fa-star label-star"></label>
-                    <label for="star-5" class="star-5 fas fa-star label-star"></label>
-                  </div>
-                </div>
-              </div>
+              <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea>
               <input class="input-photo-post" id="input-photo" type="file" name"arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
             </div>
@@ -85,54 +67,51 @@ export const feed = () => {
     const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
+    const userPhoto = post.data().user_photo;
     const userNamePost = post.data().nameUser;
-    // const rating = post.data().rating;
+    /* const userImgPost = post.data().user_img;
+    const imgPost = postId.userImgPost; */
+    const loggedUser = currentUser().uid === userId;
+    console.log(loggedUser);
 
     const postTemplate = `
-    <img class="photo-post" src="img/perfil.jpg" alt="meme" title="meme">
+    <img class="photo-post" src="${userPhoto || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user">
       <div class="container-post-publicado">
         <div class="info-user">
           <p class="user-name">${userNamePost}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
-        </div>
-        <p class="stars-show"></p>
-        <div class="wrapper">
-          <input type="radio" name="rate" id="star-1">
-          <input type="radio" name="rate" id="star-2">
-          <input type="radio" name="rate" id="star-3">
-          <input type="radio" name="rate" id="star-4">
-          <input type="radio" name="rate" id="star-5">
-          <div class="content">
-            <div class="stars">
-              <label for="star-1" class="star-1 fas fa-star label-star"></label>
-              <label for="star-2" class="star-2 fas fa-star label-star"></label>
-              <label for="star-3" class="star-3 fas fa-star label-star"></label>
-              <label for="star-4" class="star-4 fas fa-star label-star"></label>
-              <label for="star-5" class="star-5 fas fa-star label-star"></label>
-            </div>
-          </div>
+          ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">` : ''}
         </div>
         <textarea class="post-publicado" conteditable="false">${textPost}</textarea>
-        <img clas="img-publicada" src="">
           <div class="container-icons">
 
             <div class="btn-post">
-              <i class="far fa-heart icons-post ${getLike ? 'liked' : ''}" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+              <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
               <span class="number-likes">${likes}</span></i>
-                <!-- <i class="far fa-comment-dots icons-post"></i> -->
-              <div class="edit-post">
-                <i class="far fa-edit icons-post" data-btneditpost ="${postId}">Editar</i>
-                <!-- <i class="far fa-save icons-post" data-btnsavepost>Salvar</i> -->
-              </div>
-              <i class="far fa-trash-alt icons-post delete-button" data-btndeletpost="${postId}"></i>
+              ${loggedUser ? ` <img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">` : ''}
+              ${loggedUser ? ` <img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">` : ''}
             </div>
           </div>
       </div>
     `;
 
     postList.innerHTML += postTemplate;
+
+    // ADICIONAR IMAGEM
+    const inputPhotoPost = feedPage.querySelector('#input-photo');
+    // console.log(inputPhotoPost);
+
+    inputPhotoPost.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      const namePicturePost = file.name;
+      // console.log(namePicturePost);
+
+      uploadPicture(namePicturePost, file);
+      downloadPicturePost(namePicturePost, postId);
+    });
   };
 
+  // MENU HAMBURGUER
   const mainMenu = feedPage.querySelector('#mainMenu');
   const closeMenu = feedPage.querySelector('#closeMenu');
   const openMenu = feedPage.querySelector('#openMenu');
@@ -177,9 +156,6 @@ export const feed = () => {
       });
   });
 
-  // AVALIAÇÃO ESTRELAS
-  // const starsEvaluationElement = document.querySelector('[data-stars-form]:checked');
-
   // ADICIONAR IMAGEM
   const inputPhotoPost = feedPage.querySelector('#input-photo');
 
@@ -220,12 +196,30 @@ export const feed = () => {
         });
     }
 
-    // EDITAR POST
+    // BOTÃO DE EDITAR POST
     const editButton = target.dataset.btneditpost;
     if (editButton) {
-      // text.value = '';
-      editPost();
+      const textAreaPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
+      const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
+      textAreaPost.focus();
+      elementEditButton.classList.add('hidden-content');
+      elementSaveButton.classList.add('show-content');
     }
+
+    // BOTÃO PARA SALVAR O POST EDITADO
+    const saveButton = target.dataset.btnsavepost;
+    if (saveButton) {
+      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
+      const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
+      const newEditedPost = textAreaSaveNewPost.value;
+      elementEditButton.classList.remove('hidden-content');
+      elementSaveButton.classList.remove('show-content');
+      editPost(newEditedPost, saveButton);
+      loadPosts();
+    }
+
     // DELETAR POST
     const deleteButton = target.dataset.btndeletpost;
     if (deleteButton) {
@@ -252,31 +246,3 @@ export const feed = () => {
 
   return main.appendChild(feedPage);
 };
-
-// pegar usuario
-/* function getloggedUser() {
-    userStatus().then((user) => {
-      const userId = user.uid;
-      const userEmail = user.email;
-      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
-      console.log(userId);
-      console.log(userIniciais);
-      // console.log("Ta logado", user.email, user.uid);
-      // return
-    });
-  }
-  getloggedUser();
-  */
-
-/* <div id="menu-bar">
-          <div class="menu" id="menu">
-            <div id="bar1" class="bar"></div>
-            <div id="bar2" class="bar"></div>
-            <div id="bar3" class="bar"></div>
-          </div>
-          <ul class="nav" id="nav">
-            <li><a href="#">PROFILE</a></li>
-            <li id="btn-logout"><a href="#">SAIR</a></li>
-          </ul>
-        </div>
-        <div class="menu-bg" id="menu-bg"></div> */
