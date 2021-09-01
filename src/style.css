@@ -598,6 +598,7 @@ textarea:focus{
     height: 20px;
     background-color: rgb(31, 200, 252);
     border-radius: 6px;
+    box-shadow: 5px 4px 15px rgba(0, 0, 0, 0.808);
 }
 
 .modal button{
