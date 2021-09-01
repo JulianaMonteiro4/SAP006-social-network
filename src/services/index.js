@@ -1,9 +1,9 @@
 import { navigateTo } from '../navegation.js';
 
 // CRIAR UMA CONTA - (VERIFICAR ERRO COM SENHAS DIFERENTES)
-export const newRegister = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password);
-};
+export const newRegister = (email, password) => (
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+);
 
 // LOGIN DE USUÁRIOS EXISTENTES
 export const loginWithRegister = (email, password) => (
