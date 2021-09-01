@@ -40,9 +40,6 @@ export const currentUser = () => firebase.auth().currentUser;
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
 
-// COLEÇÃO DE USUÁRIOS
-export const usersCollection = () => firebase.firestore().collection('users');
-
 // FORMATAR A DATA
 const postData = () => {
   const data = new Date();

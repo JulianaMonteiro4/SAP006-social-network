@@ -7,7 +7,7 @@ import {
   likesPost,
   currentUser,
   uploadPicture,
-  downloadPicturePost,
+  // downloadPicturePost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -106,7 +106,7 @@ export const feed = () => {
       // console.log(namePicturePost);
 
       uploadPicture(namePicturePost, file);
-      downloadPicturePost(namePicturePost, postId);
+      // downloadPicturePost(namePicturePost, postId);
     });
   };
 
