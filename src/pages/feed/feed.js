@@ -132,7 +132,7 @@ export const feed = () => {
     navigateTo('/profile');
   });
 
-  // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
+  // BUSCAR NO BANCO DE DADOS OS POSTS
   const loadPosts = () => {
     postsCollection().orderBy('data', 'desc').get().then((snap) => {
       postList.innerHTML = '';
@@ -188,7 +188,7 @@ export const feed = () => {
     }
 
     // BOTÃO PARA SALVAR O POST EDITADO
-    const saveButton = target.dataset.btnsavepost;
+    const saveButton = target.dataset.btnsavepost; // é o post id
     if (saveButton) {
       const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
       const elementEditButton = e.target.parentNode.querySelector('.btn-edit');

@@ -223,7 +223,7 @@
 .root {
     text-align: center;
     padding-bottom: 125px;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   
+    /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   */
 }
 
 .root-feed{
@@ -526,7 +526,7 @@ ul li{
 }
 
 .liked::before{
-    color: red;
+    color: yellow;
 }
 
 .hidden-content{
