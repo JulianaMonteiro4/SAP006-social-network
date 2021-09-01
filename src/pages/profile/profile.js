@@ -17,7 +17,7 @@ export const profile = () => {
       <header>
         <img class="logo-img" src="img/gif-logo.gif" alt="logo">
       </header>
-      <div class="container-main container-profile">
+      <main class="container-main container-profile">
         <form>
           <label class="label label-profile" for="chk" aria-hidden="true">Perfil</label>
             <div class="photo-profile">
@@ -39,7 +39,7 @@ export const profile = () => {
           <button class="btn" id="btn-save" type="button">Salvar</button>
           <button class="btn btn-back" id="btn-back-feed" type="button">Retornar</button>
         </form>
-      </div>
+      </main>
     </div>       
   `;
 
