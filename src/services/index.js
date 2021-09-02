@@ -40,9 +40,6 @@ export const currentUser = () => firebase.auth().currentUser;
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
 
-// COLEÇÃO DE USUÁRIOS
-export const usersCollection = () => firebase.firestore().collection('users');
-
 // FORMATAR A DATA
 const postData = () => {
   const data = new Date();
@@ -50,11 +47,11 @@ const postData = () => {
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text) => {
+export const createPost = (text, photoURL) => {
   const user = firebase.auth().currentUser;
   const post = {
     user_photo: user.photoURL,
-    // user_img: photoURL,
+    user_img: photoURL,
     user_id: user.uid,
     nameUser: user.displayName,
     data: postData(),
@@ -97,13 +94,13 @@ export const signOut = () => firebase.auth().signOut();
 export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
 
-// INSERIR IMAGEM NO FIREBASE
-export const downloadPicturePost = (namePicturePost) => firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL();
+// INSERIR IMAGEM DO POST NO FIREBASE
+export const downloadPicturePost = (namePicturePost) => firebase.storage().ref(`post/${namePicturePost}`).getDownloadURL();
 
 // ADICIONAR IMAGEM NO PERFIL
 export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
 
-export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
+export const dowloadPhotoProfile = (userId) => firebase.storage().ref(`imageProfile/${userId}`).getDownloadURL();
 
 /* export const comentPost = (comment) => {
   console.log(comment);

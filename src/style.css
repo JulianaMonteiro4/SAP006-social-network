@@ -224,7 +224,7 @@
 .root {
     text-align: center;
     padding-bottom: 125px;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   
+    /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   */
 }
 
 .root-feed{
@@ -236,7 +236,7 @@
     position: fixed;
     bottom: 0;
     height: 30px;
-    font-size: 17px;
+    font-size: 14px;
     color: white;
     background: #302b63;
     padding-top: 8px;
@@ -366,7 +366,7 @@
     text-align: left;
     padding: 20px;
     resize: none;
-    border-top: 15px solid #a2dcf0;
+    border-top: 30px solid #a2dcf0;
 }
 
 .container-icons{
@@ -379,80 +379,6 @@
     display: flex;
     cursor: pointer;
     text-decoration: bold;
-}
-
-.stars #label-star{
-    font-size: 30px;
-    margin: 0 3px;
-    color: #ccc;
-}
-
-#star-1:hover ~ .content .stars .star-1,
-#star-1:checked ~ .content .stars .star-1,
-
-#star-2:hover ~ .content .stars .star-1,
-#star-2:hover ~ .content .stars .star-2,
-#star-2:checked ~ .content .stars .star-1,
-#star-2:checked ~ .content .stars .star-2,
-
-#star-3:hover ~ .content .stars .star-1,
-#star-3:hover ~ .content .stars .star-2,
-#star-3:hover ~ .content .stars .star-3,
-#star-3:checked ~ .content .stars .star-1,
-#star-3:checked ~ .content .stars .star-2,
-#star-3:checked ~ .content .stars .star-3,
-
-#star-4:hover ~ .content .stars .star-1,
-#star-4:hover ~ .content .stars .star-2,
-#star-4:hover ~ .content .stars .star-3,
-#star-4:hover ~ .content .stars .star-4,
-#star-4:checked ~ .content .stars .star-1,
-#star-4:checked ~ .content .stars .star-2,
-#star-4:checked ~ .content .stars .star-3,
-#star-4:checked ~ .content .stars .star-4,
-
-#star-5:hover ~ .content .stars .star-1,
-#star-5:hover ~ .content .stars .star-2,
-#star-5:hover ~ .content .stars .star-3,
-#star-5:hover ~ .content .stars .star-4,
-#star-5:hover ~ .content .stars .star-5,
-#star-5:checked ~ .content .stars .star-1,
-#star-5:checked ~ .content .stars .star-2,
-#star-5:checked ~ .content .stars .star-3,
-#star-5:checked ~ .content .stars .star-4,
-#star-5:checked ~ .content .stars .star-5{
-    color: #fd4;
-}
-
-/* #star-1:checked{
-    content: "Eu não gostei nada 😒";
-}
-
-#star-2:checked ~ form p:before{
-    content: "Eu não gostei tanto 😕";
-}
-
-#star-3:checked ~ form p:before{
-    content: "Eu achei neutro 🤔";
-}
-
-#star-4:checked ~ form p:before{
-    content: "Eu gostei um pouco 🙂";
-}
-
-#star-5:checked ~ form p:before{
-    content: "Eu gostei muito 😍";
-} */
-
-.wrapper{
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-input[type="radio"]{
-    display: none;
 }
 
 .photo-post{
@@ -571,11 +497,6 @@ ul li{
     float: left;
 }
 
-.sair{
-    display: flex;
-    width: 10%;
-}
-
 /* PÁGINA DE PROFILE */
 .photo-profile{
     display: flex;
@@ -606,7 +527,7 @@ ul li{
 }
 
 .liked::before{
-    color: rgb(255, 255, 59);
+    color: yellow;
 }
 
 .hidden-content{
@@ -619,6 +540,67 @@ ul li{
 
 textarea:focus{
     border-color: #b81568;
+}
+
+/* MODAL */ 
+.modal-bg{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s opacity 0.5s;
+}
+
+.bg-active{
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal{
+    position: relative;
+    background-color: #b81569ed;
+    width: 60%;
+    height: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 40px;
+    box-shadow: 5px 10px 10px rgb(0, 0, 0);
+}
+
+.modal-phrase{
+    padding: 10px 30px;
+    color: white;
+    border: none;
+    position: absolute;
+    font-size: 19px;
+}
+
+.modal-close{
+    position: absolute;
+    top: 37%;
+    right: 26%;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    width: 6%;
+    height: 20px;
+    background-color: rgb(31, 200, 252);
+    border-radius: 6px;
+}
+
+.modal button{
+    background-color: turquoise;
+    width: 10%;
+    height: 20px;
+    border: none;
 }
 
 @media screen and (min-width: 426px) and (max-width:768px){
@@ -648,6 +630,7 @@ textarea:focus{
     .meme-senha{
         width: 28%;
     }
+    
 }
 
 @media screen and (min-width: 769px) and (max-width:1024px){
@@ -687,6 +670,9 @@ textarea:focus{
         height: 80px;
         margin-left: 10px;
         margin-top: 3px;
+    }
+    .footer{
+        font-size: 17px;
     }
 }
 
