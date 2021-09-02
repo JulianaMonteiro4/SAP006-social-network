@@ -177,7 +177,8 @@ export const loginMainScreen = () => {
     const emailInput = email.value;
     const pswd = password.value;
     const pswdRepeat = repeatPassword.value;
-    newRegister(emailInput, pswd, pswdRepeat).then(() => navigateTo('/profile'))
+    newRegister(emailInput, pswd, pswdRepeat)
+      .then(() => navigateTo('/profile'))
       .catch((erro) => {
         const errorCode = erro.code;
         switch (errorCode) {

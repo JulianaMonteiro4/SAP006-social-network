@@ -47,11 +47,11 @@ const postData = () => {
 };
 
 // CRIAR POST NO FIREBASE
-export const createPost = (text) => {
+export const createPost = (text, photoURL) => {
   const user = firebase.auth().currentUser;
   const post = {
     user_photo: user.photoURL,
-    // user_img: photoURL.id,
+    user_img: photoURL,
     user_id: user.uid,
     nameUser: user.displayName,
     data: postData(),
@@ -94,24 +94,20 @@ export const signOut = () => firebase.auth().signOut();
 export const updatePost = (post, id) => firebase.firestore().collection('posts').doc(id).update(post);
 export const uploadPicture = (namePicture, file) => firebase.storage().ref(`post/${namePicture}`).put(file);
 
-// INSERIR IMAGEM NO FIREBASE
-export const downloadPicturePost = (namePicturePost, id) => {
-  firebase.storage().ref().child(`post/${namePicturePost}`).getDownloadURL()
-    .then((url) => {
-      const picturePost = {
-        photo: url,
-      };
-      updatePost(picturePost, id);
-    });
-};
+// INSERIR IMAGEM DO POST NO FIREBASE
+export const downloadPicturePost = (namePicturePost) => firebase.storage().ref(`post/${namePicturePost}`).getDownloadURL();
 
 // ADICIONAR IMAGEM NO PERFIL
 export const updatePhotoProfile = (userId, file) => firebase.storage().ref(`imageProfile/${userId}`).put(file);
 
-export const dowloadPhotoProfile = (userId) => firebase.storage().ref().child(`imageProfile/${userId}`).getDownloadURL();
+export const dowloadPhotoProfile = (userId) => firebase.storage().ref(`imageProfile/${userId}`).getDownloadURL();
 
+<<<<<<< HEAD
 /*
 export const comentPost = (comment) => {
+=======
+/* export const comentPost = (comment) => {
+>>>>>>> 9479aaced0bead06ba233199f10b2d007716c466
   console.log(comment);
   return likesCollection.add({
     liked: true,

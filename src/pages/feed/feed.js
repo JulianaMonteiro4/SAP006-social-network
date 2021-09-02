@@ -7,7 +7,7 @@ import {
   likesPost,
   currentUser,
   uploadPicture,
-  // downloadPicturePost,
+  downloadPicturePost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
@@ -80,7 +80,7 @@ export const feed = () => {
           ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">` : ''}
         </section>
         <textarea class="post-publicado">${textPost}</textarea>
-        <!--${userImgPost}-->
+        <img class="img-post" src="${userImgPost || ''}">
         <section class="container-icons">
           <div class="btn-post">
             <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
@@ -132,7 +132,7 @@ export const feed = () => {
     navigateTo('/profile');
   });
 
-  // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
+  // BUSCAR NO BANCO DE DADOS OS POSTS
   const loadPosts = () => {
     postsCollection().orderBy('data', 'desc').get().then((snap) => {
       postList.innerHTML = '';
@@ -146,14 +146,21 @@ export const feed = () => {
   // CRIAR POST
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
-    createPost(text)
-      .then(() => {
-        text.value = '';
-        loadPosts();
+    const inputPhotoPost = feedPage.querySelector('#input-photo');
+
+    const inputPost = inputPhotoPost.files[0];
+    uploadPicture(inputPost.name, inputPost).then(() => {
+      downloadPicturePost(inputPost.name).then((url) => {
+        createPost(text, url)
+          .then(() => {
+            text.value = '';
+            loadPosts();
+          });
       });
+    });
   });
 
-  // BOTÕES FEED:
+  // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
   // DAR LIKE
   btnIcons.addEventListener('click', (e) => {
     const target = e.target; // target referencia ao objeto que enviou o evento
@@ -179,7 +186,7 @@ export const feed = () => {
     // BOTÃO DE EDITAR POST
     const editButton = target.dataset.btneditpost;
     if (editButton) {
-      const textAreaPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const textAreaPost = e.target.parentNode.parentNode.parentNode.querySelector('.post-publicado');
       const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
       const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
       textAreaPost.focus();
@@ -188,9 +195,9 @@ export const feed = () => {
     }
 
     // BOTÃO PARA SALVAR O POST EDITADO
-    const saveButton = target.dataset.btnsavepost;
+    const saveButton = target.dataset.btnsavepost; // é o post id
     if (saveButton) {
-      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.querySelector('.post-publicado');
       const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
       const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
       const newEditedPost = textAreaSaveNewPost.value;

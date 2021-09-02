@@ -7,6 +7,7 @@ import { navigateTo } from '../../navegation.js';
 
 export const profile = () => {
   const user = currentUser();
+  console.log(user);
 
   const main = document.querySelector('.root');
   main.innerHTML = '';
@@ -75,16 +76,21 @@ export const profile = () => {
 
   // FOTO DE PERFIL
   iconProfile.src = user.photoURL;
+  console.log(iconProfile);
+  console.log(user.photoURL);
 
   inputPhoto.addEventListener('change', (e) => {
     const file = e.target.files[0];
 
-    updatePhotoProfile(user.uid, file);
-    dowloadPhotoProfile(user.uid).then((url) => {
-      const imgProfile = url;
+    updatePhotoProfile(user.uid, file).then((banana) => {
+      console.log(banana);
+      dowloadPhotoProfile(user.uid).then((url) => {
+        const imgProfile = url;
+        console.log(imgProfile);
 
-      user.updateProfile({
-        photoURL: imgProfile,
+        user.updateProfile({
+          photoURL: imgProfile,
+        });
       });
     });
   });
