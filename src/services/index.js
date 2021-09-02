@@ -36,6 +36,7 @@ export const blockNotLoggedUser = () => {
 
 // USUÁRIO
 export const currentUser = () => firebase.auth().currentUser;
+// export const currentUserChanged = () => firebase.auth().onAuthStateChanged((user) => user);
 
 // COLEÇÃO DE POSTS
 export const postsCollection = () => firebase.firestore().collection('posts');
@@ -110,3 +111,15 @@ export const dowloadPhotoProfile = (userId) => firebase.storage().ref(`imageProf
     .then(() => true)
     .catch((error) => error);
 }; */
+
+/* export const userStatus = () => (
+  new Promise((res, rej) => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        res(user);
+      } else {
+        rej();
+      }
+    });
+  })
+); */

@@ -27,7 +27,7 @@ export const loginMainScreen = () => {
                 <i class="far fa-envelope icons"></i>
               </div>
               </fieldset>
-            <p id="error-email">Insira um e-mail válido</p>
+            <p id="error-email"></p>
 
             <fieldset class="form-login">
               <input class="input" type="password" id="password" placeholder="Password" required="">

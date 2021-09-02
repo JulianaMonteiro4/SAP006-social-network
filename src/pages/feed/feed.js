@@ -41,7 +41,7 @@ export const feed = () => {
           <form class="form-post" id="container-post"> 
             <section class="post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-              <input class="input-photo-post" id="input-photo" type="file" name"arquivo">
+              <input class="input-photo-post" id="input-photo" type="file" name="arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
             </section>
           </form>
@@ -78,7 +78,7 @@ export const feed = () => {
           <p class="data-post" id="date-post">${dataPost}</p>
           ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">` : ''}
         </section>
-        <textarea class="post-publicado">${textPost}</textarea>
+        <textarea disabled class="post-publicado">${textPost}</textarea>
         <img class="img-post" src="${userImgPost || ''}">
         <section class="container-icons">
           <div class="btn-post">
@@ -148,15 +148,24 @@ export const feed = () => {
     const inputPhotoPost = feedPage.querySelector('#input-photo');
 
     const inputPost = inputPhotoPost.files[0];
-    uploadPicture(inputPost.name, inputPost).then(() => {
-      downloadPicturePost(inputPost.name).then((url) => {
-        createPost(text, url)
-          .then(() => {
-            text.value = '';
-            loadPosts();
-          });
+    if (inputPost !== undefined) {
+      uploadPicture(inputPost.name, inputPost).then(() => {
+        downloadPicturePost(inputPost.name).then((url) => {
+          createPost(text, url)
+            .then(() => {
+              text.value = '';
+              inputPhotoPost.value = '';
+              loadPosts();
+            });
+        });
       });
-    });
+    } else {
+      createPost(text, null)
+        .then(() => {
+          text.value = '';
+          loadPosts();
+        });
+    }
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
@@ -186,6 +195,7 @@ export const feed = () => {
     const editButton = target.dataset.btneditpost;
     if (editButton) {
       const textAreaPost = e.target.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      textAreaPost.disabled = false;
       const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
       const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
       textAreaPost.focus();
@@ -193,7 +203,7 @@ export const feed = () => {
       elementSaveButton.classList.add('show-content');
     }
 
-    // BOTÃO PARA SALVAR O POST EDITADO
+    // BOTÃO PARA SALVAR O POST EDITADO //
     const saveButton = target.dataset.btnsavepost; // é o post id
     if (saveButton) {
       const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.querySelector('.post-publicado');
@@ -232,3 +242,17 @@ export const feed = () => {
 
   return main.appendChild(feedPage);
 };
+
+/* function getloggedUser() {
+    userStatus().then((user) => {
+      const userId = user.uid;
+      const userEmail = user.email;
+      const userIniciais = userEmail.substring(0.2); //pegar 2 iniciais do e-mail
+      console.log(userId);
+      console.log(userIniciais);
+      // console.log("Ta logado", user.email, user.uid);
+      // return
+    });
+  }
+  getloggedUser();
+  */
