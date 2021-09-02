@@ -22,7 +22,6 @@ export const feed = () => {
     <main class="container-feed">
       <nav class="nav-bar">
         <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
-        <img class="photo-profile-post" src="img/perfil.jpg" alt="meme" title="meme">
         <!-- <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button> -->
 
         <section class="menu" id="openMenu">
