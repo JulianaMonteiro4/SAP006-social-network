@@ -1,3 +1,7 @@
+html, body{
+    height: 100%;
+}
+
 *{
     margin: 0;
     padding: 0;
@@ -28,7 +32,7 @@
 
 .container-feed{
     width: 100%;
-    height: 100%;
+    padding-bottom: 50px;
 }
 
 .logo-img{
@@ -220,8 +224,7 @@
 
 .root {
     text-align: center;
-    padding-bottom: 125px;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+    height: 100%;
 }
 
 .root-feed{

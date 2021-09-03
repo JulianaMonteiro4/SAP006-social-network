@@ -71,21 +71,21 @@ export const feed = () => {
     const loggedUser = currentUser().uid === userId;
 
     const postTemplate = `
-      <img class="photo-post" src="${userPhoto || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user">
       <li class="container-post-publicado">
+        <img class="photo-post" src="${userPhoto || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user" />
         <section class="info-user">
           <p class="user-name">${userNamePost}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
-          ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">` : ''}
+          ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}" />` : ''}
         </section>
         <textarea disabled class="post-publicado">${textPost}</textarea>
-        <img class="img-post" src="${userImgPost || ''}">
+        <img class="img-post" src="${userImgPost || ''}" />
         <section class="container-icons">
           <div class="btn-post">
             <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
             <span class="number-likes">${likes}</span></i>
-            ${loggedUser ? `<img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">` : ''}
-            ${loggedUser ? `<img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">` : ''}
+            ${loggedUser ? `<img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}" />` : ''}
+            ${loggedUser ? `<img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}" />` : ''}
           </div>
         </section>
       </li>
