@@ -32,8 +32,8 @@ export const loginMainScreen = () => {
             <fieldset class="form-login">
               <input class="input" type="password" id="password" placeholder="Password" required="">
               <div class="icons-input">
-                <i id="show" class="fas fa-lock-open icons"></i>
-                <i id="hide" class="fas fa-lock icons"></i>
+                <i id="show" class="fas fa-lock icons"></i>
+                <i id="hide" class="fas fa-lock-open icons"></i>
               </div>
             </fieldset>
             <p id="error-pass">Insira no mínimo 6 caracteres</p>
@@ -41,8 +41,8 @@ export const loginMainScreen = () => {
             <fieldset class="form-login">
               <input class="input" type="password" id="repeat-password" placeholder="Repeat Password" required="">
               <div class="icons-input">
-                <i id="show-again" class="fas fa-lock-open icons"></i>
-                <i id="hide-again" class="fas fa-lock icons"></i>
+                <i id="show-again" class="fas fa-lock icons"></i>
+                <i id="hide-again" class="fas fa-lock-open icons"></i>
               </div>
             </fieldset>
             <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
@@ -64,8 +64,8 @@ export const loginMainScreen = () => {
             <fieldset class="form-login">
               <input class="input" type="Password" id="password-login" placeholder="Password" required="">
               <div class="icons-input">
-                <i id="show-login" class="fas fa-lock-open icons"></i>
-                <i id="hide-login" class="fas fa-lock icons"></i>
+                <i id="show-login" class="fas fa-lock icons"></i>
+                <i id="hide-login" class="fas fa-lock-open icons"></i>
               </div>
             </fieldset>
             <p id="error-login"></p>

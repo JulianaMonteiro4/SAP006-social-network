@@ -38,8 +38,8 @@ export const feed = () => {
       </nav>
 
       <article>
-          <form class="form-post" id="container-post"> 
-            <section class="post">
+          <form id="container-post"> 
+            <section class="container-new-post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
               <input class="input-photo-post" id="input-photo" type="file" name="arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
@@ -76,7 +76,7 @@ export const feed = () => {
         <section class="info-user">
           <p class="user-name">${userNamePost}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
-          ${loggedUser ? `<img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}" />` : ''}
+          ${loggedUser ? `<img src="img/lixeira.png" class="icons-post-feed delete-button" data-btndeletpost="${postId}" />` : ''}
         </section>
         <textarea disabled class="post-publicado">${textPost}</textarea>
         <img class="img-post" src="${userImgPost || ''}" />
