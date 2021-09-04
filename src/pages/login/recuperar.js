@@ -12,20 +12,20 @@ export const recoverLink = () => {
       <header>  
         <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
       </header>
-      <div class="container-main">
+      <main class="container-main container-recover">
         <form>
           <label class="label" for="chk" aria-hidden="true">Recuperação</label>
           <fieldset class="form-login">
             <input class="input" type="email" id="recover-email" name="email" placeholder="Email" required="">
-            <div class="icons-input">
-              <i class="far fa-envelope icons"></i>
-            </div>
+              <div class="icons-input icon-recover">
+                <i class="far fa-envelope icons"></i>
+              </div>
           </fieldset>
           <img class="meme-senha" src="img/meme-senha.jpg" alt="meme" title="meme">               
           <button class="btn" id="btn-recover" type="button">Recuperar</button>
           <button class="btn btn-back" id="btn-back-recover" type="button">Retornar</button>
         </form>
-      </div>
+      </main>
     </div>              
   `;
 
@@ -41,8 +41,8 @@ export const recoverLink = () => {
       error('E-mail para redefinição de senha enviado');
       navigateTo('/');
     })
-      .catch(() => {
-        const errorCode = error.code;
+      .catch((erro) => {
+        const errorCode = erro.code;
         switch (errorCode) {
           case 'auth/invalid-email':
             error('Email inválido');

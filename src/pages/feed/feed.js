@@ -7,50 +7,47 @@ import {
   likesPost,
   currentUser,
   uploadPicture,
+  downloadPicturePost,
 } from '../../services/index.js';
 import { confirmAction } from '../../services/confirm.js';
 import { navigateTo } from '../../navegation.js';
 import { error } from '../../services/error.js';
 
 export const feed = () => {
-  const loggedUser = currentUser();
-  console.log(loggedUser);
   const main = document.getElementById('root');
   main.innerHTML = '';
   const feedPage = document.createElement('section');
   feedPage.setAttribute('class', 'container background-feed');
   feedPage.innerHTML = ` 
-    <div class="container-feed">
+    <main class="container-feed">
       <nav class="nav-bar">
         <img class="logoPageFeed" src="./img/logo-nome.png" alt="logo">
-          <img class="photo-profile-post" src="img/perfil.jpg" alt="meme" title="meme">
         <!-- <button class="btn btn-logout" type="button" id="btn-logout"><i class="fas fa-sign-out-alt"></i></button> -->
 
-        <div class="menu" id="openMenu">
+        <section class="menu" id="openMenu">
           <div id="bar1" class="bar"></div>
           <div id="bar2" class="bar"></div>
           <div id="bar3" class="bar"></div>
-        </div>
+        </section>
 
         <ul class="nav" id="mainMenu">
-          <li id="menu-profile"><a href="#">PROFILE</a></li>
-          <li id="btn-logout"><a href="#">SAIR</a></li>
+          <li id="menu-profile"><a href="#">👥 PROFILE</a></li>
+          <li id="btn-logout"><a href="#">🚪 SAIR</a></li>
           <div id="closeMenu"><i class="fa fa-times"></i></div>
         </ul>
-
       </nav>
 
-      <section>
-          <form class="form-post" id="container-post"> 
-            <div class="post">
+      <article>
+          <form id="container-post"> 
+            <section class="container-new-post">
               <textarea id="post-text" type="textarea" class="new-post" placeholder="Novo Post"></textarea> 
-              <input class="input-photo-post" id="input-photo" type="file" name"arquivo">
+              <input class="input-photo-post" id="input-photo" type="file" name="arquivo">
               <button id="btnSendPost" type="submit" class="btn-publicar">Publicar</button>
-            </div>
+            </section>
           </form>
         <ul id="postList" class="post-list" data-section></ul>
-      </section>
-    </div>         
+      </article>
+    </main>         
   `;
 
   // DOM-VAR
@@ -65,54 +62,52 @@ export const feed = () => {
     const getLike = post.data().likes.find((el) => el === currentUser().uid);
     const textPost = post.data().text;
     const userId = post.data().user_id;
-    const userName = post.data().user_name;
     const dataPost = post.data().data;
     const postId = post.id;
     const likes = post.data().likes.length;
-    const userImage = post.data().user_img;
+    const userPhoto = post.data().user_photo;
+    const userNamePost = post.data().nameUser;
+    const userImgPost = post.data().user_img;
+    const loggedUser = currentUser().uid === userId;
 
     const postTemplate = `
-    <img class="photo-post" src="${userImage || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user">
-      <div class="container-post-publicado">
-        <div class="info-user">
-          <p class="user-name">${userName}</p>
+      <li class="container-post-publicado">
+        <img class="photo-post" src="${userPhoto || 'img/perfil.jpg'}"  alt="photo-user" title="photo-user" />
+        <section class="info-user">
+          <p class="user-name">${userNamePost}</p>
           <p class="data-post" id="date-post">${dataPost}</p>
-          <img src="img/lixeira.png" class="icons-post delete-button" data-btndeletpost="${postId}">
-        </div>
-        <textarea class="post-publicado">${textPost}</textarea>
-
-          <div class="container-icons">
-
-          <!--<div class="wrapper">
-            <input type="radio" name="rate" id="star-1">
-            <input type="radio" name="rate" id="star-2">
-            <input type="radio" name="rate" id="star-3">
-            <input type="radio" name="rate" id="star-4">
-            <input type="radio" name="rate" id="star-5">
-            <div class="content">
-              <div class="stars">
-                <label for="star-1" class="star-1 fas fa-star label-star"></label>
-                <label for="star-2" class="star-2 fas fa-star label-star"></label>
-                <label for="star-3" class="star-3 fas fa-star label-star"></label>
-                <label for="star-4" class="star-4 fas fa-star label-star"></label>
-                <label for="star-5" class="star-5 fas fa-star label-star"></label>
-              </div>
-            </div>
-          </div>-->
-
-            <div class="btn-post">
-              <i class="far fa-heart icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
-              <span class="number-likes">${likes}</span></i>
-                <img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}">
-                <img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}">
-            </div>
+          ${loggedUser ? `<img src="img/lixeira.png" class="icons-post-feed delete-button" data-btndeletpost="${postId}" />` : ''}
+        </section>
+        <textarea disabled class="post-publicado">${textPost}</textarea>
+        <img class="img-post" src="${userImgPost || ''}" />
+        <section class="container-icons">
+          <div>
+            <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
+            <span class="number-likes">${likes}</span></i>
+            ${loggedUser ? `<img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}" />` : ''}
+            ${loggedUser ? `<img src="img/salvar.png" class="icons-post hidden-content btn-save" data-btnsavepost="${postId}" />` : ''}
           </div>
-      </div>
+        </section>
+      </li>
     `;
 
     postList.innerHTML += postTemplate;
+
+    // ADICIONAR IMAGEM
+    const inputPhotoPost = feedPage.querySelector('#input-photo');
+    // console.log(inputPhotoPost);
+
+    inputPhotoPost.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      const namePicturePost = file.name;
+      // console.log(namePicturePost);
+
+      uploadPicture(namePicturePost, file);
+      // downloadPicturePost(namePicturePost, postId);
+    });
   };
 
+  // MENU HAMBURGUER
   const mainMenu = feedPage.querySelector('#mainMenu');
   const closeMenu = feedPage.querySelector('#closeMenu');
   const openMenu = feedPage.querySelector('#openMenu');
@@ -136,7 +131,7 @@ export const feed = () => {
     navigateTo('/profile');
   });
 
-  // BUSCAR NO BANCO DE DADOS OS POSTS - // get() - ler todos os posts.
+  // BUSCAR NO BANCO DE DADOS OS POSTS
   const loadPosts = () => {
     postsCollection().orderBy('data', 'desc').get().then((snap) => {
       postList.innerHTML = '';
@@ -150,23 +145,27 @@ export const feed = () => {
   // CRIAR POST
   containerPost.addEventListener('submit', (e) => {
     e.preventDefault();
-    createPost(text)
-      .then(() => {
-        text.value = '';
-        loadPosts();
+    const inputPhotoPost = feedPage.querySelector('#input-photo');
+
+    const inputPost = inputPhotoPost.files[0];
+    if (inputPost !== undefined) {
+      uploadPicture(inputPost.name, inputPost).then(() => {
+        downloadPicturePost(inputPost.name).then((url) => {
+          createPost(text, url)
+            .then(() => {
+              text.value = '';
+              inputPhotoPost.value = '';
+              loadPosts();
+            });
+        });
       });
-  });
-
-  // ADICIONAR IMAGEM
-  const inputPhotoPost = feedPage.querySelector('#input-photo');
-  // console.log(inputPhotoPost);
-
-  inputPhotoPost.addEventListener('change', (e) => {
-    const file = e.target.files[0];
-    const namePicturePost = file.name;
-    // console.log(namePicturePost);
-
-    uploadPicture(namePicturePost, file);
+    } else {
+      createPost(text, null)
+        .then(() => {
+          text.value = '';
+          loadPosts();
+        });
+    }
   });
 
   // BOTÕES DE LIKE, EXCLUIR, EDITAR E COMENTAR
@@ -192,10 +191,11 @@ export const feed = () => {
         });
     }
 
-    // APARECER O EDITAR POST
+    // BOTÃO DE EDITAR POST
     const editButton = target.dataset.btneditpost;
     if (editButton) {
-      const textAreaPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const textAreaPost = e.target.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      textAreaPost.disabled = false;
       const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
       const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
       textAreaPost.focus();
@@ -203,16 +203,17 @@ export const feed = () => {
       elementSaveButton.classList.add('show-content');
     }
 
-    // APARECER O SALVAR POST
-    const saveButton = target.dataset.btnsavepost;
+    // BOTÃO PARA SALVAR O POST EDITADO //
+    const saveButton = target.dataset.btnsavepost; // é o post id
     if (saveButton) {
-      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.parentNode.querySelector('.post-publicado');
+      const textAreaSaveNewPost = e.target.parentNode.parentNode.parentNode.querySelector('.post-publicado');
       const elementEditButton = e.target.parentNode.querySelector('.btn-edit');
       const elementSaveButton = e.target.parentNode.querySelector('.btn-save');
       const newEditedPost = textAreaSaveNewPost.value;
       elementEditButton.classList.remove('hidden-content');
       elementSaveButton.classList.remove('show-content');
       editPost(newEditedPost, saveButton);
+      loadPosts();
     }
 
     // DELETAR POST
@@ -242,7 +243,6 @@ export const feed = () => {
   return main.appendChild(feedPage);
 };
 
-// pegar usuario
 /* function getloggedUser() {
     userStatus().then((user) => {
       const userId = user.uid;
@@ -256,16 +256,3 @@ export const feed = () => {
   }
   getloggedUser();
   */
-
-/* <div id="menu-bar">
-          <div class="menu" id="menu">
-            <div id="bar1" class="bar"></div>
-            <div id="bar2" class="bar"></div>
-            <div id="bar3" class="bar"></div>
-          </div>
-          <ul class="nav" id="nav">
-            <li><a href="#">PROFILE</a></li>
-            <li id="btn-logout"><a href="#">SAIR</a></li>
-          </ul>
-        </div>
-        <div class="menu-bg" id="menu-bg"></div> */

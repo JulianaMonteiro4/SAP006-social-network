@@ -13,76 +13,77 @@ export const loginMainScreen = () => {
   const loginPage = document.createElement('section');
   loginPage.setAttribute('class', 'background');
   loginPage.innerHTML = `
-      <header>  
-        <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
-      </header>
-      <div class="container-main">
-        <input class="input" type="checkbox" id="chk" aria-hidden="true">
-          <div class="signup">
-            <form>
-              <label class="label" for="chk" aria-hidden="true">Cadastro</label>
-              <fieldset class="form-login">
-                <input class="input" type="email" id="email" placeholder="Email" required="">
-                  <div class="icons-input">
-                    <i class="far fa-envelope icons"></i>
-                  </div>
-                </fieldset>
-              <p id="error-email">Insira um e-mail válido</p>
-
-              <fieldset class="form-login">
-                <input class="input" type="password" id="password" placeholder="Password" required="">
-                  <div class="icons-input">
-                    <i id="show" class="fas fa-lock-open icons"></i>
-                    <i id="hide" class="fas fa-lock icons"></i>
-                  </div>
+    <header>  
+      <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
+    </header>
+    <main class="container-main">
+      <input class="input" type="checkbox" id="chk" aria-hidden="true">
+        <section class="signup">
+          <form>
+            <label class="label" for="chk" aria-hidden="true">Cadastro</label>
+            <fieldset class="form-login">
+              <input class="input" type="email" id="email" placeholder="Email" required="">
+              <div class="icons-input">
+                <i class="far fa-envelope icons"></i>
+              </div>
               </fieldset>
-              <p id="error-pass">Insira no mínimo 6 caracteres</p>
+            <p id="error-email"></p>
 
-              <fieldset class="form-login">
-                <input class="input" type="password" id="repeat-password" placeholder="Repeat Password" required="">
-                  <div class="icons-input">
-                    <i id="show-again" class="fas fa-lock-open icons"></i>
-                    <i id="hide-again" class="fas fa-lock icons"></i>
-                  </div>
-              </fieldset>
-              <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
+            <fieldset class="form-login">
+              <input class="input" type="password" id="password" placeholder="Password" required="">
+              <div class="icons-input">
+                <i id="show" class="fas fa-lock icons"></i>
+                <i id="hide" class="fas fa-lock-open icons"></i>
+              </div>
+            </fieldset>
+            <p id="error-pass">Insira no mínimo 6 caracteres</p>
 
-              <button class="btn" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
-            </form>
-          </div>
+            <fieldset class="form-login">
+              <input class="input" type="password" id="repeat-password" placeholder="Repeat Password" required="">
+              <div class="icons-input">
+                <i id="show-again" class="fas fa-lock icons"></i>
+                <i id="hide-again" class="fas fa-lock-open icons"></i>
+              </div>
+            </fieldset>
+            <p class="error-hide" id="error-repeat">A senha deve ser igual ao campo anterior</p>
 
-          <div class="login">
-            <label class="label" for="chk" aria-hidden="true">Login</label>
-            <form>
-              <fieldset class="form-login">
-                <input class="input" type="email" id="email-login" placeholder="Email" required="">
-                <div class="icons-input">
-                  <i class="far fa-envelope icons"></i>
-                </div>
-              </fieldset>
+            <button class="btn" id="btn-register"><i class="fas fa-ticket-alt"> Cadastrar</i></button>
+          </form>
+        </section>
 
-              <fieldset class="form-login">
-                <input class="input" type="Password" id="password-login" placeholder="Password" required="">
-                <div class="icons-input">
-                  <i id="show-login" class="fas fa-lock-open icons"></i>
-                  <i id="hide-login" class="fas fa-lock icons"></i>
-                </div>
-              </fieldset>
-              <p id="error-login"></p>
-                            
+        <section class="login">
+          <label class="label" for="chk" aria-hidden="true">Login</label>
+          <form>
+            <fieldset class="form-login">
+              <input class="input" type="email" id="email-login" placeholder="Email" required="">
+              <div class="icons-input">
+                <i class="far fa-envelope icons"></i>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-login">
+              <input class="input" type="Password" id="password-login" placeholder="Password" required="">
+              <div class="icons-input">
+                <i id="show-login" class="fas fa-lock icons"></i>
+                <i id="hide-login" class="fas fa-lock-open icons"></i>
+              </div>
+            </fieldset>
+            <p id="error-login"></p>
+                          
             <div class="checkbox-container">
               <input class="input checkbox" id="checkbox" type="checkbox" name="remember">
               <label class="label checkbox-phrase" for="remember">Manter conectado(a)</label>
               <span class="checkbox-phrase"><a class="pass-animation" id="recover" href="#">Esqueceu a senha?</a></span>
             </div>
-              <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>
 
-                <div>
-                    <img src="img/icone-google.png" class="btn-google" id="google" type="button">
-                </div>
-                <p class="phrase">Entrar com o Google</p>
-            </form>
-          </div> 
+            <button class="btn" id="btn-login"><i class="far fa-play-circle"></i></button>
+            <div>
+              <img src="img/icone-google.png" class="btn-google" id="google" type="button">
+            </div>
+            <p class="phrase">Entrar com o Google</p>
+          </form>
+        </section>
+      </main> 
   `;
 
   const email = loginPage.querySelector('#email');
@@ -152,15 +153,32 @@ export const loginMainScreen = () => {
     keepLogged(none);
   });
 
+  // FUNÇÃO PARA CONFIRMAR SENHAS
+  /* const checkPassword = () => {
+    const pswd = password.value;
+    const pswdRepeat = repeatPassword.value;
+    console.log(pswd, pswdRepeat);
+    console.log(message);
+
+    if (pswd.length !== 0) {
+      if (pswd === pswdRepeat) {
+        errorRepeat.innerHTML = 'Senhas corretas';
+      } else {
+        errorRepeat.innerHTML = 'A senha deve ser igual ao campo anterior';
+      }
+    }
+  };
+
+  checkPassword(); */
+
   // BOTÃO DE CADASTRAR
   btnRegister.addEventListener('click', (e) => {
     e.preventDefault();
-    newRegister(email.value, password.value, repeatPassword.value)
-      .then(() => {
-        if (password.value === repeatPassword.value) {
-          navigateTo('/profile');
-        }
-      })
+    const emailInput = email.value;
+    const pswd = password.value;
+    const pswdRepeat = repeatPassword.value;
+    newRegister(emailInput, pswd, pswdRepeat)
+      .then(() => navigateTo('/profile'))
       .catch((erro) => {
         const errorCode = erro.code;
         switch (errorCode) {
@@ -279,35 +297,3 @@ export const loginMainScreen = () => {
 
   return main.appendChild(loginPage);
 };
-
-/* senhas iguais no cadastro
-if(password.value === repeatPassword.value){
-        () => navigateTo('/')
-      } */
-
-/* // VERFIFICAÇÃO DE SENHA (TAMANHO E CONFIRMAÇÃO)
-const verifyPasswordLength = () => {
-  if (password.value.length < 6) {
-    passwordLength.style.color = 'red';
-    passwordLength.innerHTML = 'Senha com mínimo de 6 dígitos.';
-  } else {
-    passwordLength.style.color = 'darkgreen';
-    passwordLength.innerHTML = 'Senha válida!';
-  }
-};
-
-const verifyConfirmPassword = () => {
-  if (password.value !== passwordConfirm.value) {
-    passwordError.style.color = 'red';
-    passwordError.innerHTML = 'Senhas não correspondentes.';
-    return false;
-  } else {
-    passwordError.style.color = 'darkgreen';
-    passwordError.innerHTML = 'Senhas confirmadas!';
-    return true;
-  }
-};
-
-passwordConfirm.addEventListener('input', verifyConfirmPassword);
-  password.addEventListener('input', verifyPasswordLength);
-*/
