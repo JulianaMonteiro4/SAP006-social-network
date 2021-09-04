@@ -81,7 +81,7 @@ export const feed = () => {
         <textarea disabled class="post-publicado">${textPost}</textarea>
         <img class="img-post" src="${userImgPost || ''}" />
         <section class="container-icons">
-          <div class="btn-post">
+          <div>
             <i class="fas fa-star icons-post ${getLike ? 'liked' : ''} btn-like" data-useruid="${userId}" data-like="like" data-postid="${postId}">
             <span class="number-likes">${likes}</span></i>
             ${loggedUser ? `<img src="img/editar.png" class="icons-post btn-edit" data-btneditpost="${postId}" />` : ''}

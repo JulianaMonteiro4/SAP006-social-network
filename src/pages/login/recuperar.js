@@ -12,7 +12,7 @@ export const recoverLink = () => {
       <header>  
         <img class="logo-img" src="img/gif-logo.gif" alt="logo">  
       </header>
-      <main class="container-main">
+      <main class="container-main container-recover">
         <form>
           <label class="label" for="chk" aria-hidden="true">Recuperação</label>
           <fieldset class="form-login">
