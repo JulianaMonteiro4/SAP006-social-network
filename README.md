@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://ik.imagekit.io/llneva6qvex/Social_Network/README/gif-logo_6KlUNGn3j.gif?updatedAt=1631049989020" height="180" width="180">
+    <img src="https://ik.imagekit.io/llneva6qvex/Social_Network/README/Webp.net-gifmaker_IntqFIY13.gif?updatedAt=1631055615046" height="180" width="180">
 </h1>
 
 <h1 align="center">🎬</h1>
