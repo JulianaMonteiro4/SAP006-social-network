@@ -1,10 +1,10 @@
 <h1 align="center">
-    <img src="https://ik.imagekit.io/llneva6qvex/Social_Network/README/gif-logo_6KlUNGn3j.gif?updatedAt=1631049989020" height="180" width="180">
+    <img src="https://ik.imagekit.io/llneva6qvex/Social_Network/README/Webp.net-gifmaker_IntqFIY13.gif?updatedAt=1631055615046" height="180" width="180">
 </h1>
 
 <h1 align="center">🎬</h1>
 <h2 align="center">MEMES, SÉRIES E VOCÊ</h2>
-<h3 align="center">Para acessar a aplicação, clique <a href="https://biancacristinaalves.github.io/SAP006-data-lovers/" target="_blank" style="color:#97CE4C" title="Clique aqui!">Aqui 🚀.</a></h3>
+<h3 align="center">Para acessar a aplicação, clique <a href="#" target="_blank" style="color:#97CE4C" title="Clique aqui!">Aqui 🚀.</a></h3>
 
 <h1 align="center">
   <img src="https://ik.imagekit.io/llneva6qvex/Social_Network/README/bloggif_6137eadcc6b2c_Wc_HSmksv.gif?updatedAt=1631054581554" width="180">
