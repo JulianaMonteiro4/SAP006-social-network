@@ -1,20 +1,33 @@
+html, body{
+    height: 100%;
+}
+
 *{
-    font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
     padding: 0;
     border: 0;
 }
 
+/* FUNDO DAS PÁGINAS DE LOGIN/RECUPERAR/PROFILE*/
 .background{
     background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   
     width: 100%;
     height: 100%;
 }
 
-.background-feed{
-    background: white;
+/* LOGO DAS PÁGINAS */
+.logo-img{
+    width: 50%;
+    margin: 8px 0 0 0;
 }
 
+/* ESTILIZAÇÃO DA ROOT PARA RECEBER TUDO */
+.root {
+    text-align: center;
+    height: 100%;
+}
+
+/* ESTILIZAÇÃO E ANIMAÇÃO DA CAIXA NAS PÁGINAS DE LOGIN/RECUPERAR/PROFILE */
 .container-main{
     width: 90%;
     height: 500px;
@@ -24,20 +37,15 @@
     background-color: #4d2f758a;
     border-radius: 10px;
     margin: auto;
+    box-shadow: 0px 0px 30px 0px rgb(255 22 255);
 }
 
-.container-feed{
-    width: 100%;
-    height: 100%;
+.container-profile{
+    box-shadow: 0px 0px 30px 0px #52ebff;
 }
 
-.logo-img{
-    display: flex;
-    width: 40%;
-    height: 60%;
-    margin: 2px auto;
-    align-items: center;
-    justify-content: center;
+.container-recover{
+    box-shadow: 0px 0px 30px 0px #fe6161;
 }
 
 #chk{
@@ -74,82 +82,9 @@
     border-radius: 5px;
 }
 
-.icons-input{
-    border: none;
-    position: absolute;
-    margin-left: 75%;
-    margin-top: 6%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .form-login{
     border: none;
     display: flex;
-}
-
-.post{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 80%;
-    background: #bfe0f3b6;
-    border-radius: 10px;
-    padding: 2%;
-    margin-top: 40px;
-    margin-left: 8%;
-    margin-bottom: 48px;
-    box-shadow: 5px 10px 10px rgb(0 0 0 / 32%);
-}
-
-.image{
-    margin-left: 30px;
-    width: 110px;
-}
-
-.btn-publicar{
-    margin-top: 8px;
-    width: 80px;
-    height: 30px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
-    background-color: #f3a63a;
-    justify-content: flex-end;
-    margin: 5px 10px 0 0;
-}
-
-.icons{
-    float: right;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    color: grey;
-    border: none;
-}
-
-.btn{
-    width: 40%;
-    height: 35px;
-    margin: 10px auto;
-    justify-content: center;
-    display: block;
-    color: #fff;
-    background: #ae435b;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 10px;
-    outline: none;
-    border-radius: 5px;
-    transition: .2s ease-in;
-    cursor: pointer;
-}
-
-.btn:hover{
-    background: #72051d;
 }
 
 .login{
@@ -158,13 +93,6 @@
     border-radius: 60% / 10%;
     transform: translateY(-180px);
     transition: .8s ease-in-out;
-}
-
-.edit-post{
-    display: block;
-    align-items: center;
-    justify-content: right;
-    float: right;
 }
 
 .login .label{
@@ -186,13 +114,14 @@
 
 .checkbox-container{
     display: flex;
+    margin: 7px 0 16px 0;
 }
 
 .checkbox{
     position: absolute;
     width: 12px;
     height: 12px;
-    margin: 20px 20px;
+    margin: 20px;
 }
 
 .checkbox-phrase{
@@ -200,15 +129,22 @@
     margin: 20px auto;
 }
 
+/* ICONE DE CADEADO */
+#hide, #hide-again, #hide-login{
+    display: none;
+}
+
+/* ESTILIZAÇÃO ICONE DO GOOGLE */
 .btn-google {
     width: 13%;
     height: 13%;
     display: flex;
-    margin-top: 20px;
+    margin-top: 30px;
     margin-left: 45%;
     margin-right: 50%;
 }
 
+/* ESTILIZAÇÃO FRASE DO GOOGLE */
 .phrase {
     display: flex;
     font-size: 13px;
@@ -216,44 +152,56 @@
     justify-content: center;
     text-align: center;
 }
+/* FINAL ESTILIZAÇÃO E ANIMAÇÃO DA CAIXA NAS PÁGINAS DE LOGIN/RECUPERAR/PROFILE */
 
-#hide, #hide-again, #hide-login{
-    display: none;
+
+/* ESTILIZAÇÃO DOS ICONES DOS INPUTS */
+.icons-input{
+    border: none;
+    position: absolute;
+    margin-left: 75%;
+    margin-top: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.root {
-    text-align: center;
-    padding-bottom: 125px;
-    /* background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;   */
+.icon-recover{
+    margin-left: 69%;
+    margin-top: 5%;
 }
 
-.root-feed{
-    background: transparent
+.icons{
+    float: right;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    color: grey;
+    border: none;
+}
+/* FINAL ESTILIZAÇÃO DOS ICONES DOS INPUTS */
+
+
+/* BOTÕES EM GERAL */
+.btn{
+    width: 40%;
+    height: 35px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #ae435b;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 10px;
+    outline: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
 }
 
-.footer {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    height: 30px;
-    font-size: 14px;
-    color: white;
-    background: #302b63;
-    padding-top: 8px;
-    text-align: center;
-
-}
-
-.footer a {
-    text-decoration: none;
-    color: white;
-}
-
-.meme-senha{
-    width: 55%;
-    height: 55%;
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.315);
-    border-radius: 15px;
+.btn:hover{
+    background: #72051d;
 }
 
 .btn-back{
@@ -263,16 +211,28 @@
 .btn-back:hover{
     background-color: #1e0747;
 }
+/* FINAL BOTÕES EM GERAL */
 
-/* PÁGINA DO FEED */
-.nav-bar {
-    display: flex;
-    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
-    height: 80px;
-    color: blanchedalmond;
-    justify-content: space-between;
+
+/* IMAGEM DO RECUPERAR A SENHA */
+.meme-senha{
+    width: 50%;
+    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.315);
+    border-radius: 15px;
 }
 
+/* PÁGINA DO FEED */
+/* ESTILIZAÇÃO DA ROOT FEED PARA RECEBER TUDO */
+.root-feed{
+    background: transparent
+}
+
+/* FUNDO DA PÁGINA DE FEED */
+.background-feed{
+    background: white;
+}
+
+/* LOGO DA PÁGINA DE FEED */
 .logoPageFeed {
     width: 100px;
     height: 60px;
@@ -280,28 +240,46 @@
     margin-top: 10px;
 }
 
-.photo {
-    margin: 2rem 0;
-    font-size: 30px;
-    text-align: center;
-    margin: auto;
+/* ESTILIZAÇÃO DO CONTAINER PARA RECEBER TUDO DO FEED */
+.container-feed{
+    width: 100%;
+    padding-bottom: 50px;
 }
 
+/* PARTE ROXA DE CIMA ONDE FICA O MENU E O LOGO */
+.nav-bar {
+    display: flex;
+    background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e) ;
+    height: 80px;
+    color: blanchedalmond;
+    justify-content: space-between;
+    box-shadow: 0px 0px 25px 0px rgb(255 22 255);
+}
+
+/* BOTÃO DE SAIR */
 .btn-logout{
-   width: 30%;
-    margin-left: 20%;
-    margin-right: 5%;
+    width: 30%;
+     margin-left: 20%;
+     margin-right: 5%;
+ }
+
+/* CONTAINER ONDE VAI FICAR O NEW POST */
+.container-new-post{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 82%;
+    background: #bfe0f3b6;
+    border-radius: 10px;
+    padding: 2%;
+    margin-top: 35px;
+    margin-left: 7%;
+    margin-bottom: 45px;
+    box-shadow: 5px 10px 10px rgb(0 0 0 / 32%);
 }
 
-.img-photo{
-    position: absolute;
-    flex-direction: row;
-    float: right;
-    width: 35px;
-    height: 35px;
-    opacity: 70%;
-}
-
+/* CAMPO PARA PUBLICAR NOVO POST */
 .new-post{
     background-color: #63bbd9e0;
     width: 90%;
@@ -316,12 +294,31 @@
     resize: none;
 }
 
+/* INSERIR IMAGEM NO POST */
+.input-photo-post{
+    margin: 10px 0 10px 0;
+}
+
+/* BOTÃO DE PUBLICAR */
+.btn-publicar{
+    margin-top: 8px;
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.315);
+    background-color: #f3a63a;
+    justify-content: flex-end;
+    margin: 5px 10px 0 0;
+}
+/* FINAL CONTAINER ONDE VAI FICAR O NEW POST */
+
+/* CONTAINER DE POSTS PUBLICADOS/A PÁGINA TODA */
 .container-post-publicado{
     display: flex;
     width: 85%;
     margin-left: 5%;
-    align-items: center;
-    justify-content: space-around;
     flex-direction: column;
     margin-bottom: 48px;
     border-radius: 10px;
@@ -330,6 +327,16 @@
     padding: 2%;
 }
 
+/* IMAGEM DO POST*/
+.photo-post{
+    width: 20%;
+    position: absolute;
+    display: flex;
+    clip-path: circle(40%);
+    margin-top: -11px;
+}
+
+/* CONTAINER PARA INFORMAÇÕES DO USUÁRIO */
 .info-user{
     display: flex;
     align-items: center;
@@ -340,40 +347,59 @@
     margin-bottom: 10px;
 }
 
+/* NOME DO USUÁRIO NO POST */
 .user-name{
     font-weight: 600;
     width: 100%;
+    font-size: 20px;
 }
 
+/* DATA DO POST */
 .data-post{
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-right: 5%;
 }
 
-.iniciais{
-    position: absolute;
-    border: 25px solid rgb(180, 180, 180);
-    clip-path: circle(45%);
+.icons-post-feed{
+    display: flex;
 }
 
+/* BOTÃO DE DELETAR*/
+.delete-button{
+    display: flex;
+    width: 8%;
+}
+/* FINAL CONTAINER PARA INFORMAÇÕES DO USUÁRIO */
+
+
+/* CONTAINER PARA O CONTEUDO DO POST - TEXTOS/IMAGENS */
 .post-publicado{
     background-color: white;
-    width: 80%;
-    height: 70px;
+    width: 93%;
+    height: 40px;
     border-radius: 10px;
     font-size: 18px;
     text-align: left;
-    padding: 20px;
+    padding: 10px;
     resize: none;
-    border-top: 30px solid #a2dcf0;
+    border-top: 20px solid #7cc1d9;
 }
 
+.img-post{
+    width: 100%;
+}
+/* FINAL CONTAINER PARA O CONTEUDO DO POST - TEXTOS/IMAGENS */
+
+/* CONTAINER PARA ICONES DO POST */
 .container-icons{
     display: flex;
     margin: 8px;
+    width: 100%;
 }
 
+/* ICONES DO POST */
 .icons-post{
     margin: 0 15px;
     display: flex;
@@ -381,13 +407,54 @@
     text-decoration: bold;
 }
 
-.photo-post{
-    height: 72px;
-    width: 20%;
-    position: absolute;
+/* BOTÃO DE CURTIR*/
+.btn-like{
     display: flex;
-    clip-path: circle(41%);
+    float: left;
 }
+
+/* MUDAR A COR DO BOTÃO DE CURTIR */
+.liked::before{
+    color: yellow;
+}
+
+/* BOTÃO DE EDITAR*/
+.btn-edit{
+    display: flex;
+    width: 8%;
+    float: right;
+}
+
+/* BOTÃO DE SALVAR O EDITAR*/
+.btn-save{
+    width: 8%;
+    float: right;
+}
+
+/* EDITAR O POST */
+.edit-post{
+    display: block;
+    align-items: center;
+    justify-content: right;
+    float: right;
+}
+
+/* ESCONDER BOTÃO DE EDITAR O POST */
+.hidden-content{
+    display: none!important;
+}
+
+/* MOSTRAR BOTÃO DE EDITAR O POST */
+.show-content{
+    display: block!important;
+}
+
+/* FOCAR O TEXAREA PARA QUANDO CLICAR NO EDITAR */
+textarea:focus{
+    border-color: #b81568;
+}
+/* FINAL EDITAR O POST */
+
 
 /* MENU HAMBURGUER */
 nav .nav{
@@ -475,32 +542,13 @@ ul li{
     list-style: none;
     padding: 16px 0;
 }
+/* FINAL MENU HAMBURGUER */
 
-.btn-edit{
-    display: flex;
-    width: 8%;
-    float: right;
-}
-
-.btn-save{
-    width: 8%;
-    float: right;
-}
-
-.delete-button{
-    display: flex;
-    width: 8%;
-}
-
-.btn-like{
-    display: flex;
-    float: left;
-}
 
 /* PÁGINA DE PROFILE */
 .photo-profile{
     display: flex;
-    height: 125px;
+    height: 135px;
     justify-content: center;
     clip-path: circle(20%);
 }
@@ -521,28 +569,10 @@ ul li{
     display: inline-block;
     align-items: center;
 }
+/* FINAL PÁGINA DE PROFILE */
 
-.input-photo-post{
-    margin: 10px 0 10px 0;
-}
 
-.liked::before{
-    color: yellow;
-}
-
-.hidden-content{
-    display: none!important;
-}
-
-.show-content{
-    display: block!important;
-}
-
-textarea:focus{
-    border-color: #b81568;
-}
-
-/* MODAL */ 
+/* MODAL DO PROFILE */ 
 .modal-bg{
     position: fixed;
     width: 100%;
@@ -594,6 +624,7 @@ textarea:focus{
     height: 20px;
     background-color: rgb(31, 200, 252);
     border-radius: 6px;
+    box-shadow: 5px 4px 15px rgba(0, 0, 0, 0.808);
 }
 
 .modal button{
@@ -602,6 +633,28 @@ textarea:focus{
     height: 20px;
     border: none;
 }
+/* FINAL DO MODAL DO PROFILE */ 
+
+/* ESTILIZAÇÃO DO FOOTER */
+.footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    height: 40px;
+    font-size: 17px;
+    color: white;
+    background: #302b63;
+    padding-top: 8px;
+    text-align: center;
+
+}
+
+.footer a {
+    text-decoration: none;
+    color: white;
+}
+/* FINAL ESTILIZAÇÃO DO FOOTER */
+
 
 @media screen and (min-width: 426px) and (max-width:768px){
     .logo-img{
