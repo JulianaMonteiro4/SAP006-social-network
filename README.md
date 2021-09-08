@@ -163,18 +163,14 @@ npm run deploy.
 
 #### 6.1 Inicialização de um projeto no Console do Firebase
 
-Esta etapa de configuração do projeto no [Firebase Console](https://console.firebase.google.com/) deverá ser realizada por apenas **UMA integrante** do trio.
-
-Inicie um novo projeto no [console do Firebase](https://console.firebase.google.com/) `Adicionar projeto`
-
+Inicie um novo projeto no Firebase:
+- Adicionar projeto
 - Insira o nome do seu projeto e clique em `Continuar`
-- Pode deixar desativada a opção `Ativar o Google Analytics neste projeto`, pois não usaremos essa funcionalidade
 - Clicar em `Criar projeto`
 
 Adicionar as colaboradoras ao projeto Firebase
 
 - No Dashboard do projeto criado, há no menu lateral uma engrenagem em `Visão geral do projeto`, selecionar `Usuários e permissões` para adicionar suas colegas como membro no projeto
-- Utilizar os e-mails `Gmail` das colegas e configurar os papéis como `Proprietário`
 
 Adicionar o Firebase ao seu aplicativo
 
@@ -185,8 +181,6 @@ Adicionar o Firebase ao seu aplicativo
 - `Adicionar o SDK do Firebase` no o arquivo `src/index.html` do projeto
 
 #### 6.2 Instalação global de Firebase em sua máquina
-
-Esta etapa deve ser realizada por **TODAS integrantes**.
 
 Este projeto está configurado para rodar por meio do servidor do Firebase. Para isso, será necessário possuir o [Firebase CLI](https://firebase.google.com/docs/cli#install_the_firebase_cli) instalado globalmente em sua máquina. Utilize o comando a seguir no seu terminal:
 
@@ -203,8 +197,6 @@ firebase login
 O login é feito por meio de uma conta Google, portanto, deve abrir uma janela em um navegador automaticamente para realizar o login. Se não abrir, pode clicar no link que vai aparecer no terminal.
 
 #### 8.3 Configuração do projeto Firebase no repositório
-
-Esta etapa deverá ser realizada por apenas **UMA integrante** do trio.
 
 **IMPORTANTE** rodar todos comandos do Firebase a seguir no terminal a partir da pasta raiz do projeto.
 
@@ -227,7 +219,7 @@ Esta etapa deverá ser realizada por apenas **UMA integrante** do trio.
 
 #### 8.4 Rodando a aplicação
 
-Após atualização de seu repositório contendo a configuração inicial do projeto Firebase (item 8.1.4. acima), você deve abrir o terminal na raiz do projeto para rodar o comando de instalação de dependências:
+Após atualização de seu repositório contendo a configuração inicial do projeto Firebase, você deve abrir o terminal na raiz do projeto para rodar o comando de instalação de dependências:
 
 ```bash
 npm i
@@ -239,11 +231,9 @@ E para rodar o projeto, use o comando:
 npm start
 ```
 
-Você verá que o servidor do Firebase está configurado para rodar seu projeto em [http://localhost:5000](http://localhost:5000).
-
 #### 8.5 Configuração de base de dados Firestore Database
 
-No [console do Firebase](https://console.firebase.google.com/), adicionar Firestore Database ao projeto Firebase.
+No Firebase, adicionar Firestore Database ao projeto Firebase.
 
 - Clique no menu lateral `Firestore Database` e em `Criar banco de dados`
 - Selecionar `Iniciar no modo de produção`, clicar em `Avançar`
